@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# Data (large files)
+keiba_predictor/data/*.csv
+!keiba_predictor/data/cleaned_races.csv
+!keiba_predictor/data/featured_races.csv
+!keiba_predictor/data/results_history.csv
+keiba_predictor/data/*.png
+
+# Model (binary) - xgb_model.pkl はリポジトリで管理する
+# keiba_predictor/model/*.pkl
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets / 認証情報（Discord Webhook URL 等を含むため）
+.env
+keiba_notify.bat
+logs/
+keiba_predictor/data/debug/
