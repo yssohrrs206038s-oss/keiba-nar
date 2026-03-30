@@ -1,0 +1,159 @@
+name: NAR 予想生成・通知（土日）
+
+on:
+  schedule:
+    - cron: '0 2 * * 6'   # 土曜 11:00 JST — 予想生成
+    - cron: '0 2 * * 0'   # 日曜 11:00 JST — 予想生成
+    - cron: '0 5 * * 6'   # 土曜 14:00 JST — 通知
+    - cron: '0 5 * * 0'   # 日曜 14:00 JST — 通知
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'predict=予想生成のみ / notify=通知のみ / both=両方'
+        required: false
+        default: 'both'
+
+env:
+  DISCORD_WEBHOOK_URL:        ${{ secrets.DISCORD_WEBHOOK_URL }}
+  DISCORD_REPORT_WEBHOOK_URL: ${{ secrets.DISCORD_REPORT_WEBHOOK_URL }}
+  ANTHROPIC_API_KEY:          ${{ secrets.ANTHROPIC_API_KEY }}
+  TWITTER_API_KEY:             ${{ secrets.TWITTER_API_KEY }}
+  TWITTER_API_SECRET:          ${{ secrets.TWITTER_API_SECRET }}
+  TWITTER_ACCESS_TOKEN:        ${{ secrets.TWITTER_ACCESS_TOKEN }}
+  TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+  ENABLE_X_POST: "true"
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 最新コミットをプル
+        run: git pull --ff-only origin ${{ github.ref_name }} || true
+
+      - name: 実行モードを判定
+        id: mode
+        run: |
+          HOUR=$(date -u +%H)
+          INPUT_MODE="${{ inputs.mode }}"
+          if [ -n "$INPUT_MODE" ] && [ "$INPUT_MODE" != "" ]; then
+            echo "mode=$INPUT_MODE" >> $GITHUB_OUTPUT
+            echo "📋 手動実行モード: $INPUT_MODE"
+          elif [ "$HOUR" -lt 4 ]; then
+            echo "mode=predict" >> $GITHUB_OUTPUT
+            echo "📋 スケジュール: 予想生成モード (UTC $HOUR時)"
+          else
+            echo "mode=notify" >> $GITHUB_OUTPUT
+            echo "📋 スケジュール: 通知モード (UTC $HOUR時)"
+          fi
+
+      - name: Python 3.11 をセットアップ
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: 依存パッケージをインストール
+        run: |
+          pip install -r requirements.txt
+          echo "✅ pip install 完了"
+
+      - name: Playwright Chromium をインストール
+        if: steps.mode.outputs.mode == 'predict' || steps.mode.outputs.mode == 'both'
+        run: |
+          python -m playwright install chromium
+          python -m playwright install-deps chromium
+
+      - name: モデルファイルを確認
+        run: |
+          MODEL_PATH="keiba_predictor/model/xgb_model.pkl"
+          if [ ! -f "$MODEL_PATH" ]; then
+            echo "::error::モデルファイルが見つかりません: $MODEL_PATH"
+            exit 1
+          fi
+          echo "✅ モデルファイル確認OK"
+
+      # ── 予想生成（11時JST） ──────────────────────────────────
+      - name: NAR予想を生成（predict_live）
+        if: steps.mode.outputs.mode == 'predict' || steps.mode.outputs.mode == 'both'
+        continue-on-error: true
+        run: |
+          echo "🔮 NAR予想生成中（predict_live）..."
+          python -c "
+          import sys, json, logging
+          sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+          logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
+          from keiba_predictor.discord_notify import _load_cache, scrape_grade_race_ids
+          from keiba_predictor.model.predict import predict_live
+          import requests
+
+          session = requests.Session()
+          grade_races = scrape_grade_race_ids(session)
+          cache = _load_cache()
+
+          for race in grade_races:
+              rid = race['race_id']
+              name = race.get('race_name', rid)
+              if cache.get(rid, {}).get('predicted_top3_nums'):
+                  print(f'  キャッシュ済みスキップ: {name}')
+                  continue
+              try:
+                  print(f'  予想生成: {name} ({rid})')
+                  predict_live(rid, notify=False)
+              except Exception as e:
+                  print(f'  失敗: {name}: {e}')
+          print('NAR予想生成完了')
+          "
+          echo "✅ NAR予想生成完了"
+
+      - name: 予想キャッシュをコミット・プッシュ
+        if: steps.mode.outputs.mode == 'predict' || steps.mode.outputs.mode == 'both'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add keiba_predictor/data/predictions_cache.json 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "ℹ️ 変更なし"
+          else
+            git commit -m "chore: NAR予想キャッシュ更新 [skip ci]"
+            git push
+            echo "✅ コミット・プッシュ完了"
+          fi
+
+      # ── 通知（14時JST） ──────────────────────────────────────
+      - name: Discord にNAR予想を送信
+        if: steps.mode.outputs.mode == 'notify' || steps.mode.outputs.mode == 'both'
+        continue-on-error: true
+        run: |
+          echo "📤 NAR予想通知を送信..."
+          python -m keiba_predictor.main notify --mode predict
+          echo "✅ 通知完了"
+
+      - name: レポートをコミット
+        if: always()
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add keiba_predictor/data/predictions_cache.json 2>/dev/null || true
+          git add keiba_predictor/data/note_report_*.md 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "ℹ️ 変更なし"
+          else
+            git commit -m "chore: NAR予想キャッシュ・レポート更新 [skip ci]"
+            git push
+          fi
+
+      - name: ❌ エラーを Discord に通知
+        if: failure()
+        run: |
+          if [ -z "$DISCORD_WEBHOOK_URL" ]; then exit 0; fi
+          RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          curl -s -X POST "$DISCORD_WEBHOOK_URL" \
+            -H "Content-Type: application/json" \
+            -d "{\"content\": \"⚠️ **NAR予想ワークフローが失敗しました**\nログ: ${RUN_URL}\"}" || true

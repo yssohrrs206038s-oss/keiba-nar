@@ -1,0 +1,101 @@
+name: NAR 結果通知（土日）
+
+on:
+  schedule:
+    - cron: '0 9 * * 6'   # 土曜 18:00 JST
+    - cron: '0 9 * * 0'   # 日曜 18:00 JST
+  workflow_dispatch:
+    inputs:
+      race_id:
+        description: '結果照合対象のレースID。空欄=予想キャッシュ内の全レース。'
+        required: false
+        default: ''
+
+env:
+  DISCORD_WEBHOOK_URL:        ${{ secrets.DISCORD_WEBHOOK_URL }}
+  DISCORD_REPORT_WEBHOOK_URL: ${{ secrets.DISCORD_REPORT_WEBHOOK_URL }}
+  ANTHROPIC_API_KEY:          ${{ secrets.ANTHROPIC_API_KEY }}
+  TWITTER_API_KEY:             ${{ secrets.TWITTER_API_KEY }}
+  TWITTER_API_SECRET:          ${{ secrets.TWITTER_API_SECRET }}
+  TWITTER_ACCESS_TOKEN:        ${{ secrets.TWITTER_ACCESS_TOKEN }}
+  TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+  ENABLE_X_POST: "true"
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  result:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 最新コミットをプル
+        run: |
+          git pull --ff-only origin ${{ github.ref_name }} || true
+          echo "📦 予想キャッシュ確認:"
+          ls -la keiba_predictor/data/predictions_cache.json 2>/dev/null \
+            && echo "✅ キャッシュあり" \
+            || echo "⚠️ キャッシュなし"
+
+      - name: Discord Webhook URL を確認
+        run: |
+          if [ -z "$DISCORD_WEBHOOK_URL" ]; then
+            echo "::error::DISCORD_WEBHOOK_URL が設定されていません。"
+            exit 1
+          fi
+          echo "✅ DISCORD_WEBHOOK_URL: 設定済み"
+
+      - name: Python 3.11 をセットアップ
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: 依存パッケージをインストール
+        run: |
+          pip install -r requirements.txt
+          echo "✅ pip install 完了"
+
+      - name: Discord にNAR結果を送信
+        run: |
+          echo "📤 NAR結果通知を送信中..."
+          RACE_ID="${{ inputs.race_id }}"
+          if [ -n "$RACE_ID" ]; then
+            echo "🎯 指定レースID: $RACE_ID"
+            python -m keiba_predictor.main notify --mode result --race-id "$RACE_ID"
+          else
+            echo "📋 キャッシュ内の全レースを対象"
+            python -m keiba_predictor.main notify --mode result
+          fi
+          echo "✅ notify コマンド終了"
+
+      - name: 週次外れ分析
+        continue-on-error: true
+        run: python -m keiba_predictor.analysis.loss_analysis
+
+      - name: 結果履歴をコミット
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add keiba_predictor/data/results_history.csv 2>/dev/null || true
+          git add keiba_predictor/data/manual_results.json 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "ℹ️ 変更なし"
+          else
+            git commit -m "chore: NAR結果履歴を更新 [skip ci]"
+            git push
+            echo "✅ コミット・プッシュ完了"
+          fi
+
+      - name: ❌ エラーを Discord に通知
+        if: failure()
+        run: |
+          if [ -z "$DISCORD_WEBHOOK_URL" ]; then exit 0; fi
+          RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          curl -s -X POST "$DISCORD_WEBHOOK_URL" \
+            -H "Content-Type: application/json" \
+            -d "{\"content\": \"⚠️ **NAR結果ワークフローが失敗しました**\nログ: ${RUN_URL}\"}" || true

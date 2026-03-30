@@ -1,0 +1,136 @@
+name: NAR 水曜データ更新・学習
+
+on:
+  schedule:
+    - cron: '0 0 * * 3'  # 毎週水曜 0:00 UTC = JST 9:00
+  workflow_dispatch:
+
+env:
+  DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v4
+
+      - name: Discord Webhook URL を確認
+        run: |
+          if [ -z "$DISCORD_WEBHOOK_URL" ]; then
+            echo "::error::DISCORD_WEBHOOK_URL が設定されていません。"
+            exit 1
+          fi
+          echo "✅ DISCORD_WEBHOOK_URL: 設定済み"
+
+      - name: Python 3.11 をセットアップ
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: 依存パッケージをインストール
+        run: |
+          pip install -r requirements.txt
+          echo "✅ pip install 完了"
+
+      # ── データ収集・学習パイプライン ─────────────────────────
+      - name: NARスクレイピング（直近2ヶ月）
+        run: |
+          YEAR=$(date +%Y)
+          MONTH=$(date +%-m)
+          PREV_MONTH=$((MONTH - 1))
+          PREV_YEAR=$YEAR
+          if [ $PREV_MONTH -le 0 ]; then
+            PREV_MONTH=12
+            PREV_YEAR=$((YEAR - 1))
+          fi
+          START="${PREV_YEAR}-$(printf '%02d' $PREV_MONTH)"
+          END="${YEAR}-$(printf '%02d' $MONTH)"
+          echo "📅 NAR スクレイピング期間: $START ～ $END"
+          python -m keiba_predictor.main scrape --start "$START" --end "$END" --nar
+
+      - name: データクリーニング
+        run: |
+          python -m keiba_predictor.main clean
+          echo "✅ クリーニング完了"
+
+      - name: 特徴量エンジニアリング
+        run: |
+          python -m keiba_predictor.main features --league nar
+          echo "✅ 特徴量生成完了"
+
+      - name: モデル学習（NAR）
+        run: |
+          python -m keiba_predictor.main train --league nar
+          echo "✅ NAR モデル学習完了"
+
+      - name: モデルメトリクスを取得
+        run: |
+          python -c "
+          import pickle, os, sys
+          model_path = 'keiba_predictor/model/xgb_model.pkl'
+          try:
+              with open(model_path, 'rb') as f:
+                  bundle = pickle.load(f)
+              auc      = bundle.get('cv_auc_mean',      0.0)
+              fukusho  = bundle.get('cv_fukusho_mean',  0.0)
+              print(f'AUC: {auc:.4f}  複勝的中率: {fukusho*100:.1f}%')
+              with open(os.environ['GITHUB_ENV'], 'a') as env_file:
+                  env_file.write(f'MODEL_AUC={auc:.4f}\n')
+                  env_file.write(f'MODEL_FUKUSHO={fukusho*100:.1f}\n')
+          except Exception as e:
+              print(f'メトリクス取得エラー: {e}', file=sys.stderr)
+              with open(os.environ['GITHUB_ENV'], 'a') as env_file:
+                  env_file.write('MODEL_AUC=N/A\n')
+                  env_file.write('MODEL_FUKUSHO=N/A\n')
+          "
+
+      - name: モデル・CSVをコミット
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add    keiba_predictor/model/xgb_model.pkl           2>/dev/null || true
+          git add    keiba_predictor/data/predictions_cache.json 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "ℹ️ 変更なし"
+          else
+            git commit -m "chore: NAR水曜データ更新 AUC=${MODEL_AUC} 複勝=${MODEL_FUKUSHO}% [skip ci]"
+            git push
+            echo "✅ コミット・プッシュ完了"
+          fi
+
+      - name: ✅ 完了を Discord に通知
+        run: |
+          PAYLOAD=$(python3 -c "
+          import json
+          msg = (
+              '\`\`\`\n'
+              '✅ KEIBA EDGE NAR データ更新完了\n'
+              'AUC: ${MODEL_AUC} / 複勝的中率: ${MODEL_FUKUSHO}%\n'
+              '次回予想: 土曜11時\n'
+              '\`\`\`'
+          )
+          print(json.dumps({'content': msg}))
+          ")
+          curl -s -X POST "$DISCORD_WEBHOOK_URL" \
+            -H "Content-Type: application/json" \
+            -d "$PAYLOAD" || true
+
+      - name: クレジット残量チェック
+        continue-on-error: true
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          TWITTER_BEARER_TOKEN: ${{ secrets.TWITTER_BEARER_TOKEN }}
+        run: python -m keiba_predictor.credit_monitor
+
+      - name: ❌ エラーを Discord に通知
+        if: failure()
+        run: |
+          if [ -z "$DISCORD_WEBHOOK_URL" ]; then exit 0; fi
+          RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          curl -s -X POST "$DISCORD_WEBHOOK_URL" \
+            -H "Content-Type: application/json" \
+            -d "{\"content\": \"⚠️ **NAR水曜データ更新が失敗しました**\nログ: ${RUN_URL}\"}" || true
