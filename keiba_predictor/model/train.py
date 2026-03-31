@@ -256,6 +256,11 @@ def train(
 
     # ── 特徴量・ラベル ───────────────────────────────────────
     available_cols = [c for c in FEATURE_COLS if c in df.columns]
+    # 文字列混入対策: 全列を数値変換（変換不可はNaN）
+    for col in available_cols:
+        df[col] = pd.to_numeric(df[col], errors="coerce")
+    df["top3"] = pd.to_numeric(df["top3"], errors="coerce")
+    df = df.dropna(subset=["top3"]).reset_index(drop=True)
     X = df[available_cols].astype(float)
     y = df["top3"].astype(int)
 
