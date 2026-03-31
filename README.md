@@ -36,6 +36,27 @@ python -m keiba_predictor.main train
 python -m keiba_predictor.main predict <race_id>
 ```
 
+## モデルファイルの管理
+
+NARモデル（xgb_model.pkl）は130MB超のためGitHub管理外です。
+GitHub Actionsでは Google Drive から自動ダウンロードします。
+
+### セットアップ手順
+
+1. ローカルで学習したモデルを Google Drive にアップロード
+2. 共有設定を「リンクを知っている全員」に変更
+3. 共有URLからファイルIDを取得:
+   `https://drive.google.com/file/d/{FILE_ID}/view` の `{FILE_ID}` 部分
+4. GitHub Secrets に登録:
+   - `NAR_MODEL_GDRIVE_ID`: Google DriveのファイルID
+
+### 手動ダウンロード
+
+```bash
+export NAR_MODEL_GDRIVE_ID="xxxxxxxxxxxxxxxxxxxxx"
+python keiba_predictor/scripts/download_model.py
+```
+
 ## JRA版との違い
 
 | 項目 | JRA版 | NAR版 |

@@ -70,6 +70,11 @@ jobs:
           python -m playwright install chromium
           python -m playwright install-deps chromium
 
+      - name: モデルをGoogle Driveからダウンロード
+        env:
+          NAR_MODEL_GDRIVE_ID: ${{ secrets.NAR_MODEL_GDRIVE_ID }}
+        run: python keiba_predictor/scripts/download_model.py
+
       - name: モデルファイルを確認
         run: |
           MODEL_PATH="keiba_predictor/model/xgb_model.pkl"
