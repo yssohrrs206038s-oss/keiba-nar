@@ -34,7 +34,6 @@ jobs:
       - name: 依存パッケージをインストール
         run: |
           pip install -r requirements.txt
-          pip install google-api-python-client google-auth-httplib2 google-auth-oauthlib
           echo "✅ pip install 完了"
 
       # ── データ収集 ──────────────────────────────────────────
@@ -87,63 +86,9 @@ jobs:
       - name: モデルをGoogle Driveにアップロード
         continue-on-error: true
         env:
-          NAR_MODEL_GDRIVE_ID: ${{ secrets.NAR_MODEL_GDRIVE_ID }}
           GDRIVE_SERVICE_ACCOUNT_JSON: ${{ secrets.GDRIVE_SERVICE_ACCOUNT_JSON }}
-        run: |
-          python -c "
-          import os, sys
-          gdrive_id = os.environ.get('NAR_MODEL_GDRIVE_ID', '')
-          sa_json = os.environ.get('GDRIVE_SERVICE_ACCOUNT_JSON', '')
-
-          if not gdrive_id:
-              print('NAR_MODEL_GDRIVE_ID 未設定 → アップロードスキップ')
-              sys.exit(0)
-
-          if not sa_json:
-              # gdownでアップロード（サービスアカウントなし）
-              print('GDRIVE_SERVICE_ACCOUNT_JSON 未設定 → gdownアップロード試行')
-              try:
-                  import gdown
-                  # gdownはダウンロード専用のため、アップロードはスキップ
-                  print('gdownはアップロード非対応 → 手動アップロードが必要です')
-                  sys.exit(0)
-              except Exception as e:
-                  print(f'gdownエラー: {e}')
-                  sys.exit(0)
-
-          # サービスアカウントでアップロード
-          import json, tempfile
-          from googleapiclient.discovery import build
-          from googleapiclient.http import MediaFileUpload
-          from google.oauth2 import service_account
-
-          # サービスアカウントキーを一時ファイルに書き出し
-          sa_data = json.loads(sa_json)
-          with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
-              json.dump(sa_data, f)
-              sa_path = f.name
-
-          creds = service_account.Credentials.from_service_account_file(
-              sa_path, scopes=['https://www.googleapis.com/auth/drive.file']
-          )
-          service = build('drive', 'v3', credentials=creds)
-
-          model_path = 'keiba_predictor/model/xgb_model.pkl'
-          media = MediaFileUpload(model_path, resumable=True)
-
-          # 既存ファイルを更新
-          try:
-              service.files().update(
-                  fileId=gdrive_id,
-                  media_body=media,
-              ).execute()
-              print(f'Google Drive アップロード完了: {gdrive_id}')
-          except Exception as e:
-              print(f'Google Drive アップロード失敗: {e}')
-              sys.exit(1)
-
-          os.unlink(sa_path)
-          "
+          NAR_MODEL_GDRIVE_ID: ${{ secrets.NAR_MODEL_GDRIVE_ID }}
+        run: python keiba_predictor/scripts/upload_model.py
 
       # ── キャッシュをコミット ─────────────────────────────────
       - name: キャッシュをコミット
@@ -171,7 +116,7 @@ jobs:
               '\`\`\`\n'
               '✅ KEIBA EDGE NAR データ更新完了\n'
               'AUC: ${MODEL_AUC} / 複勝的中率: ${MODEL_FUKUSHO}%\n'
-              'モデルGoogle Drive更新済み\n'
+              '📤 Google Drive: ${GDRIVE_UPLOAD:-未実行}\n'
               '次回予想: 明日09時\n'
               '\`\`\`'
           )

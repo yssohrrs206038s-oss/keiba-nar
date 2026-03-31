@@ -12,3 +12,5 @@ tweepy>=4.14.0
 shap>=0.43.0
 optuna>=3.5.0
 gdown>=4.7.0
+google-api-python-client>=2.0.0
+google-auth>=2.0.0
