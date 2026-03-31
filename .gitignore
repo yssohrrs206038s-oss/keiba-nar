@@ -37,3 +37,6 @@ Thumbs.db
 keiba_notify.bat
 logs/
 keiba_predictor/data/debug/
+keiba_predictor/data/cleaned_races.csv
+keiba_predictor/data/featured_races.csv
+keiba_predictor/data/raw_races.csv
