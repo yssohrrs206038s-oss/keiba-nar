@@ -28,11 +28,11 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(mess
 logger = logging.getLogger(__name__)
 
 # ── URL定数 ────────────────────────────────────────────────────
-RACE_TOP_URL    = "https://race.netkeiba.com"
+RACE_TOP_URL    = "https://nar.netkeiba.com"  # NAR版
 DB_URL          = "https://db.netkeiba.com"
 CALENDAR_URL    = RACE_TOP_URL + "/top/calendar.html"
 RACE_LIST_URL   = RACE_TOP_URL + "/top/race_list_sub.html"  # 静的HTMLフラグメント
-RACE_RESULT_URL     = DB_URL + "/race/{race_id}/"
+RACE_RESULT_URL     = RACE_TOP_URL + "/race/{race_id}/"     # NAR版: nar.netkeiba.com
 RACE_RESULT_SITE_URL = RACE_TOP_URL + "/race/result.html"   # 静的HTML版（距離取得用）
 
 # ── 競馬場コードマッピング ──────────────────────────────────────
@@ -75,7 +75,7 @@ HEADERS = {
     "Accept-Language": "ja,en-US;q=0.9,en;q=0.8",
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
     "Accept-Encoding": "gzip, deflate, br",
-    "Referer": "https://race.netkeiba.com/",
+    "Referer": "https://nar.netkeiba.com/",
 }
 
 DATA_DIR = Path(__file__).parent.parent / "data"
@@ -109,7 +109,7 @@ def _get_result_html_with_playwright(url: str) -> Optional[str]:
                 },
             )
             page = ctx.new_page()
-            page.goto("https://db.netkeiba.com/", wait_until="domcontentloaded", timeout=20000)
+            page.goto("https://nar.netkeiba.com/", wait_until="domcontentloaded", timeout=20000)
             time.sleep(1)
             page.goto(url, wait_until="networkidle", timeout=30000)
             try:

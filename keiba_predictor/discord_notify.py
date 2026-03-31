@@ -247,7 +247,7 @@ def scrape_grade_race_ids(session: requests.Session) -> list[dict]:
         found_this_day: list[dict] = []
 
         for path in LIST_PATHS:
-            url = f"https://race.netkeiba.com/top/{path}?kaisai_date={kaisai_date}"
+            url = f"https://nar.netkeiba.com/top/{path}?kaisai_date={kaisai_date}"
             logger.info(f"取得中: {url}")
             soup = _get(url, session)
             if soup is None:
@@ -393,7 +393,7 @@ def update_featured_races_csv(
         found_this_day: list[dict] = []
 
         for list_path in LIST_PATHS:
-            url = f"https://race.netkeiba.com/top/{list_path}?kaisai_date={kaisai_date}"
+            url = f"https://nar.netkeiba.com/top/{list_path}?kaisai_date={kaisai_date}"
             logger.info(f"[update_featured] 取得中: {url}")
             soup = _get(url, session)
             if soup is None:

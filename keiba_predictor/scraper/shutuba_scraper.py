@@ -2,7 +2,7 @@
 出馬表スクレイパー
 
 netkeiba から出馬表を取得する。
-  https://race.netkeiba.com/race/shutuba.html?race_id={race_id}
+  https://nar.netkeiba.com/race/shutuba.html?race_id={race_id}
 """
 
 import re
@@ -18,7 +18,7 @@ from keiba_predictor.scraper.netkeiba_scraper import _get, HEADERS, VENUE_CODE_M
 
 logger = logging.getLogger(__name__)
 
-SHUTUBA_URL = "https://race.netkeiba.com/race/shutuba.html"
+SHUTUBA_URL = "https://nar.netkeiba.com/race/shutuba.html"
 
 
 def _get_html_with_playwright(url: str) -> Optional[str]:
@@ -45,7 +45,7 @@ def _get_html_with_playwright(url: str) -> Optional[str]:
             )
             page = ctx.new_page()
             # トップページで Cookie を取得してから出馬表へ
-            page.goto("https://race.netkeiba.com/", wait_until="domcontentloaded", timeout=20000)
+            page.goto("https://nar.netkeiba.com/", wait_until="domcontentloaded", timeout=20000)
             time.sleep(1)
             page.goto(url, wait_until="networkidle", timeout=30000)
             # 出馬表テーブルが描画されるまで最大10秒待機
@@ -309,7 +309,7 @@ def scrape_shutuba(race_id: str) -> Optional[dict]:
         session = requests.Session()
         session.headers.update(HEADERS)
         try:
-            session.get("https://race.netkeiba.com/", headers=HEADERS, timeout=15)
+            session.get("https://nar.netkeiba.com/", headers=HEADERS, timeout=15)
             time.sleep(1.0)
         except Exception:
             pass
