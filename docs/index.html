@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KEIBA EDGE NAR | AI地方競馬予想</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --orange:    #E8621A;
+      --orange-lt: #FF8C42;
+      --orange-dk: #B84A10;
+      --bg:        #0a0a0f;
+      --bg-card:   #13131e;
+      --bg-card2:  #1a1a2a;
+      --border:    #2a2a40;
+      --text:      #e8e8f0;
+      --text-muted:#8888aa;
+      --green:     #2ecc71;
+      --red:       #e74c3c;
+      --radius:    12px;
+      --shadow:    0 4px 24px rgba(0,0,0,.6);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;
+      line-height: 1.6; min-height: 100vh;
+    }
+    #loading {
+      position: fixed; inset: 0; background: var(--bg);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      z-index: 999; transition: opacity .4s;
+    }
+    #loading.hidden { opacity: 0; pointer-events: none; }
+    .spinner {
+      width: 56px; height: 56px; border: 4px solid var(--border);
+      border-top-color: var(--orange); border-radius: 50%;
+      animation: spin .8s linear infinite; margin-bottom: 16px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    header {
+      background: linear-gradient(135deg, #1a0d05 0%, #2a1510 100%);
+      border-bottom: 2px solid var(--orange-dk); padding: 16px 24px;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .header-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    }
+    .logo { display: flex; align-items: center; gap: 12px; }
+    .logo-icon { font-size: 28px; }
+    .logo-text {
+      font-size: 20px; font-weight: 900; letter-spacing: .04em;
+      background: linear-gradient(90deg, var(--orange), var(--orange-lt));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .logo-sub { font-size: 10px; color: var(--text-muted); letter-spacing: .08em; }
+    #last-updated { font-size: 11px; color: var(--text-muted); }
+
+    .tab-nav {
+      display: flex; background: var(--bg-card);
+      border-bottom: 2px solid var(--border);
+      position: sticky; top: 56px; z-index: 90; overflow-x: auto;
+    }
+    .tab-btn {
+      flex: 1; min-width: 0; padding: 12px 8px; font-size: 13px; font-weight: 600;
+      color: var(--text-muted); background: none; border: none; cursor: pointer;
+      white-space: nowrap; border-bottom: 3px solid transparent; transition: .2s;
+    }
+    .tab-btn.active { color: var(--orange); border-bottom-color: var(--orange); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    main { max-width: 1100px; margin: 0 auto; padding: 24px 16px 64px; }
+    .section-title {
+      font-size: 17px; font-weight: 700; color: var(--orange);
+      border-left: 4px solid var(--orange); padding-left: 12px;
+      margin-bottom: 16px; margin-top: 32px;
+    }
+    .section-title:first-child { margin-top: 0; }
+
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px; margin-bottom: 24px;
+    }
+    .stat-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 16px 12px; text-align: center;
+      min-height: 90px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    }
+    .stat-value {
+      font-size: 28px; font-weight: 900;
+      background: linear-gradient(135deg, var(--orange), var(--orange-lt));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .stat-label { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+    .stat-card.green .stat-value { background: linear-gradient(135deg,#2ecc71,#a8ff78);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+    .race-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+    .race-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 14px 16px;
+    }
+    .race-header {
+      font-size: 14px; font-weight: 700; margin-bottom: 8px;
+      display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    }
+    .race-venue {
+      font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px;
+      background: var(--orange-dk); color: var(--orange-lt);
+    }
+    .race-meta { font-size: 11px; color: var(--text-muted); }
+    .race-confidence { font-size: 12px; color: var(--orange); margin-left: auto; }
+    .horse-row {
+      display: flex; align-items: center; gap: 8px; font-size: 13px;
+      padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,.03);
+    }
+    .horse-row:last-child { border-bottom: none; }
+    .horse-mark { font-weight: 900; width: 20px; text-align: center; }
+    .mark-hon { color: var(--orange); }
+    .mark-tai { color: #74b9ff; }
+    .mark-ana { color: #a8ffb8; }
+    .horse-prob { margin-left: auto; font-weight: 700; color: var(--orange); font-size: 13px; }
+
+    .bet-line { font-size: 11px; color: var(--text-muted); margin-top: 6px; }
+
+    .history-table {
+      width: 100%; border-collapse: collapse; background: var(--bg-card);
+      border-radius: var(--radius); overflow: hidden;
+    }
+    .history-table th {
+      background: var(--bg-card2); border-bottom: 1px solid var(--border);
+      padding: 8px 10px; font-size: 11px; color: var(--text-muted); text-align: left;
+    }
+    .history-table td {
+      padding: 8px 10px; font-size: 12px; border-bottom: 1px solid var(--border);
+    }
+    .history-table tr:last-child td { border-bottom: none; }
+    .no-data { text-align: center; color: var(--text-muted); padding: 40px 20px; font-size: 13px; }
+
+    footer {
+      text-align: center; padding: 24px 16px; font-size: 11px;
+      color: var(--text-muted); border-top: 1px solid var(--border);
+    }
+    @media (max-width: 600px) {
+      .header-inner { justify-content: center; text-align: center; }
+      .tab-btn { font-size: 12px; padding: 10px 4px; }
+      .race-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="loading">
+  <div class="spinner"></div>
+  <div style="color:var(--text-muted);font-size:13px;">読み込み中...</div>
+</div>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <span class="logo-icon">🐴</span>
+      <div>
+        <div class="logo-text">KEIBA EDGE NAR</div>
+        <div class="logo-sub">AI地方競馬予想ダッシュボード</div>
+      </div>
+    </div>
+    <div id="last-updated">読み込み中...</div>
+  </div>
+</header>
+
+<nav class="tab-nav" id="tab-nav">
+  <button class="tab-btn active" data-tab="predict">🐴 今日の予想</button>
+  <button class="tab-btn" data-tab="results">📊 成績</button>
+  <button class="tab-btn" data-tab="venue">📍 開催場</button>
+</nav>
+
+<main id="tab-container">
+  <div class="tab-panel active" id="panel-predict">
+    <div class="section-title">🐴 今日の予想</div>
+    <div class="race-grid" id="race-grid">
+      <div class="no-data">予想データを読み込んでいます...</div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="panel-results">
+    <div class="section-title">📊 累計実績</div>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-value" id="s-races">--</div><div class="stat-label">通算レース</div></div>
+      <div class="stat-card green"><div class="stat-value" id="s-fukusho">--</div><div class="stat-label">複勝的中率</div></div>
+      <div class="stat-card"><div class="stat-value" id="s-roi">--</div><div class="stat-label">累計回収率</div></div>
+    </div>
+    <div class="section-title">📋 直近レース結果</div>
+    <div style="overflow-x:auto;">
+      <table class="history-table">
+        <thead><tr><th>日付</th><th>レース</th><th>複勝</th><th>回収率</th></tr></thead>
+        <tbody id="history-tbody">
+          <tr><td colspan="4" class="no-data">履歴データなし</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="panel-venue">
+    <div class="section-title">📍 今日の開催場</div>
+    <div id="venue-grid" class="race-grid">
+      <div class="no-data">開催データなし</div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>KEIBA EDGE NAR &copy; 2026 | Powered by XGBoost &amp; Claude AI</p>
+  <p style="margin-top:4px;">本サイトの予想はAIによる分析です。馬券購入は自己責任でお願いします。</p>
+</footer>
+
+<script>
+const REPO   = 'yssohrrs206038s-oss/keiba-nar';
+const BRANCH = 'main';
+const RAW    = `https://raw.githubusercontent.com/${REPO}/${BRANCH}`;
+const CACHE_URL = `${RAW}/keiba_predictor/data/predictions_cache.json`;
+const HIST_URL  = `${RAW}/keiba_predictor/data/results_history.csv`;
+
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
+  ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+async function fetchJSON(url) {
+  const r = await fetch(url + '?t=' + Date.now());
+  if (!r.ok) throw new Error(`HTTP ${r.status}`);
+  return r.json();
+}
+async function fetchText(url) {
+  const r = await fetch(url + '?t=' + Date.now());
+  if (!r.ok) throw new Error(`HTTP ${r.status}`);
+  return r.text();
+}
+function parseCSV(text) {
+  const lines = text.trim().split('\n');
+  if (lines.length < 2) return [];
+  const hdr = lines[0].split(',').map(h => h.trim().replace(/^\uFEFF/, ''));
+  return lines.slice(1).map(l => {
+    const v = l.split(','); const o = {};
+    hdr.forEach((h, i) => { o[h] = (v[i] ?? '').trim(); });
+    return o;
+  });
+}
+
+/* タブ */
+const TAB_IDS = ['predict', 'results', 'venue'];
+let curTab = 0;
+function switchTab(i) {
+  if (i < 0 || i >= TAB_IDS.length) return;
+  curTab = i;
+  document.querySelectorAll('.tab-btn').forEach((b, j) => b.classList.toggle('active', j === i));
+  document.querySelectorAll('.tab-panel').forEach((p, j) => p.classList.toggle('active', j === i));
+}
+document.getElementById('tab-nav').addEventListener('click', e => {
+  const b = e.target.closest('.tab-btn');
+  if (b) switchTab(TAB_IDS.indexOf(b.dataset.tab));
+});
+let touchX = 0;
+const ctn = document.getElementById('tab-container');
+ctn.addEventListener('touchstart', e => { touchX = e.changedTouches[0].screenX; }, { passive: true });
+ctn.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].screenX - touchX;
+  if (Math.abs(dx) > 60) switchTab(curTab + (dx < 0 ? 1 : -1));
+}, { passive: true });
+
+/* 予想カード */
+function renderPredictions(cache) {
+  const grid = document.getElementById('race-grid');
+  const entries = Object.entries(cache)
+    .filter(([k]) => !k.startsWith('_'))
+    .sort((a, b) => {
+      const da = (a[1].race_date || '') + ' ' + (a[1].start_time || '99:99');
+      const db = (b[1].race_date || '') + ' ' + (b[1].start_time || '99:99');
+      return da.localeCompare(db);
+    });
+  if (!entries.length) { grid.innerHTML = '<div class="no-data">今日の予想データがありません</div>'; return; }
+
+  grid.innerHTML = entries.map(([id, r]) => {
+    const name = r.race_name || id;
+    const course = r.course_info || '';
+    const venue = r.venue || '';
+    const conf = r.confidence_stars || '';
+    const roles = [
+      { key: 'honmei', mark: '◎', cls: 'mark-hon' },
+      { key: 'taikou', mark: '○', cls: 'mark-tai' },
+      { key: 'ana',    mark: '▲', cls: 'mark-ana' },
+    ];
+    const horses = roles.map(({ key, mark, cls }) => {
+      const p = r[key];
+      if (!p || !p.horse_name) return '';
+      const prob = ((p.prob || 0) * 100).toFixed(0);
+      return `<div class="horse-row">
+        <span class="horse-mark ${cls}">${mark}</span>
+        <span>${esc(p.horse_number)}番 ${esc(p.horse_name)}</span>
+        <span class="horse-prob">${prob}%</span>
+      </div>`;
+    }).join('');
+
+    const bs = r.bet_strategy || {};
+    let betLine = '';
+    if (bs.total_points) {
+      const parts = [];
+      if (bs.fukusho && bs.fukusho.length) parts.push(`複勝:${bs.fukusho[0].num}番`);
+      if (bs.umaren && bs.umaren.length) parts.push(`馬連:${bs.umaren.map(u=>u.nums.join('-')).join('/')}`);
+      if (bs.use_wide && bs.wide && bs.wide.length) parts.push(`ワイド:${bs.wide.map(w=>w.nums.join('-')).join('/')}`);
+      betLine = `<div class="bet-line">${parts.join(' / ')} 計${bs.total_points}点</div>`;
+    }
+
+    return `<div class="race-card">
+      <div class="race-header">
+        ${venue ? `<span class="race-venue">${esc(venue)}</span>` : ''}
+        <span>${esc(name)}</span>
+        <span class="race-meta">${esc(course)} ${r.start_time ? r.start_time + '発走' : ''}</span>
+        ${conf ? `<span class="race-confidence">🎯${esc(conf)}</span>` : ''}
+      </div>
+      ${horses}
+      ${betLine}
+    </div>`;
+  }).join('');
+
+  // 開催場タブ
+  renderVenues(entries);
+}
+
+/* 開催場タブ */
+function renderVenues(entries) {
+  const vg = document.getElementById('venue-grid');
+  const venueMap = {};
+  entries.forEach(([id, r]) => {
+    const v = r.venue || '不明';
+    if (!venueMap[v]) venueMap[v] = [];
+    venueMap[v].push([id, r]);
+  });
+  const venues = Object.keys(venueMap).sort();
+  if (!venues.length) { vg.innerHTML = '<div class="no-data">開催データなし</div>'; return; }
+
+  vg.innerHTML = venues.map(v => {
+    const races = venueMap[v];
+    const rows = races.map(([id, r]) => {
+      const name = r.race_name || id;
+      const hon = r.honmei || {};
+      const prob = hon.prob ? ((hon.prob) * 100).toFixed(0) + '%' : '';
+      return `<div style="font-size:12px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.03);">
+        ${esc(name)} <span style="color:var(--text-muted);">${r.course_info || ''} ${r.start_time || ''}</span>
+        ${hon.horse_name ? ` ◎${esc(hon.horse_number)}番${esc(hon.horse_name)} ${prob}` : ''}
+      </div>`;
+    }).join('');
+    return `<div class="race-card">
+      <div style="font-size:15px;font-weight:700;color:var(--orange);margin-bottom:8px;">📍 ${esc(v)}（${races.length}R）</div>
+      ${rows}
+    </div>`;
+  }).join('');
+}
+
+/* 成績 */
+function renderStats(rows) {
+  if (!rows.length) return;
+  const n = rows.length;
+  const fHits = rows.filter(r => r.fukusho_hit === 'True').length;
+  const bet = rows.reduce((s, r) => s + (+r.bet_total || 0), 0);
+  const ret = rows.reduce((s, r) => s + (+r.return_total || 0), 0);
+  const roi = bet > 0 ? ret / bet : 0;
+  document.getElementById('s-races').textContent = n + ' 戦';
+  document.getElementById('s-fukusho').textContent = (n ? (fHits / n * 100).toFixed(0) : '0') + '%';
+  document.getElementById('s-roi').textContent = (roi * 100).toFixed(0) + '%';
+}
+
+function renderHistory(rows) {
+  const tbody = document.getElementById('history-tbody');
+  const recent = rows.slice(-10).reverse();
+  if (!recent.length) { tbody.innerHTML = '<tr><td colspan="4" class="no-data">履歴なし</td></tr>'; return; }
+  tbody.innerHTML = recent.map(r => {
+    const fHit = r.fukusho_hit === 'True';
+    const bet = +r.bet_total || 0;
+    const ret = +r.return_total || 0;
+    const roi = bet > 0 ? (ret / bet * 100).toFixed(0) + '%' : '--';
+    const color = bet > 0 && ret >= bet ? 'color:var(--green)' : 'color:var(--red)';
+    return `<tr>
+      <td style="color:var(--text-muted)">${esc((r.date||'').slice(0,10))}</td>
+      <td>${esc((r.race_name||'').slice(0,20))}</td>
+      <td>${fHit ? '✅' : '❌'}</td>
+      <td style="${color};font-weight:700">${esc(roi)}</td>
+    </tr>`;
+  }).join('');
+}
+
+/* メイン */
+async function main() {
+  try {
+    const cache = await fetchJSON(CACHE_URL);
+    renderPredictions(cache);
+  } catch (e) {
+    document.getElementById('race-grid').innerHTML =
+      `<div class="no-data">予想データの取得に失敗しました<br><small>${esc(e.message)}</small></div>`;
+  }
+  try {
+    const csv = await fetchText(HIST_URL);
+    const rows = parseCSV(csv);
+    renderStats(rows);
+    renderHistory(rows);
+  } catch (e) {
+    document.getElementById('history-tbody').innerHTML =
+      `<tr><td colspan="4" class="no-data">履歴取得失敗</td></tr>`;
+  }
+  document.getElementById('last-updated').textContent =
+    '更新: ' + new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' });
+  const ld = document.getElementById('loading');
+  ld.classList.add('hidden');
+  setTimeout(() => ld.remove(), 500);
+}
+main();
+</script>
+</body>
+</html>
