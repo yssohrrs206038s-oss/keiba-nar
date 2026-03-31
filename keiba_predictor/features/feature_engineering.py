@@ -67,12 +67,12 @@ FEATURE_COLS = [
     # [追加特徴量]
     "horse_course_fukusho_rate",  # 同コース（芝/ダート）過去複勝率
     "horse_dist_fukusho_rate",    # 同距離帯（±200m）過去複勝率
-    "race_grade_enc",             # レース格 G1=6 … 未勝利=0
+    # race_grade_enc 除外（NARはrace_nameが全NaNでグレード判定不可）
     "jockey_horse_fukusho_rate",  # 騎手×馬コンビ複勝率
     "horse_track_fukusho_rate",  # 馬場状態別複勝率（良/稍重/重/不良）
-    "running_style_enc",         # 脚質（逃=0/先=1/差=2/追=3）
-    "pace_pressure",             # 展開圧力（同レース内の逃げ+先行馬の数）
-    "jockey_course_fukusho_rate",# 騎手×コース（venue+course_type）複勝率
+    # running_style_enc 除外（NARデータに脚質・通過順位なし）
+    # pace_pressure 除外（running_style_encに依存）
+    "jockey_district_fukusho_rate",  # 騎手×地区複勝率（NAR向け）
     "jockey_dist_fukusho_rate",  # 騎手×距離帯複勝率
     "weeks_since_last_race",     # 前走からの週数
     "is_fresh",                  # 休み明けフラグ（中8週以上=1）
@@ -415,22 +415,32 @@ def _dist_band_label(distance) -> str:
     return "long"
 
 
-def add_jockey_course_dist_features(df: pd.DataFrame) -> pd.DataFrame:
-    """騎手×コース（venue+course_type）複勝率と騎手×距離帯複勝率を追加する。
+_NAR_DISTRICT_MAP = {
+    "門別": "北海道",
+    "盛岡": "東北", "水沢": "東北",
+    "浦和": "南関東", "船橋": "南関東", "大井": "南関東", "川崎": "南関東",
+    "金沢": "中部", "笠松": "中部", "名古屋": "中部",
+    "園田": "近畿", "姫路": "近畿",
+    "高知": "四国九州", "佐賀": "四国九州",
+}
 
+
+def add_jockey_course_dist_features(df: pd.DataFrame) -> pd.DataFrame:
+    """騎手×地区複勝率と騎手×距離帯複勝率を追加する（NAR向け）。
+
+    venue名が数値コードのままの行は「不明」地区として扱う。
     当該レース自身は含めない（leakage防止）。
     """
     df = df.sort_values(["jockey_id", "race_date"]).reset_index(drop=True)
 
-    # 騎手×venue×course_type 複勝率
-    logger.info("騎手×コース複勝率を計算中...")
-    if "venue" in df.columns and "course_type_enc" in df.columns:
-        df["jockey_course_fukusho_rate"] = (
-            df.groupby(["jockey_id", "venue", "course_type_enc"], group_keys=False)["top3"]
-            .transform(lambda x: x.shift(1).expanding().mean())
-        )
-    else:
-        df["jockey_course_fukusho_rate"] = np.nan
+    # 騎手×地区 複勝率
+    logger.info("騎手×地区複勝率を計算中...")
+    df["_district"] = df["venue"].map(_NAR_DISTRICT_MAP).fillna("不明")
+    df["jockey_district_fukusho_rate"] = (
+        df.groupby(["jockey_id", "_district"], group_keys=False)["top3"]
+        .transform(lambda x: x.shift(1).expanding().mean())
+    )
+    df = df.drop(columns=["_district"])
 
     # 騎手×距離帯 複勝率
     logger.info("騎手×距離帯複勝率を計算中...")
@@ -454,10 +464,11 @@ def build_features(df: pd.DataFrame) -> pd.DataFrame:
     df = add_past_time_features(df)
     df = add_win_rate_features(df)          # jockey_fukusho_rate を先に生成
     df = add_prev_race_features(df)
-    df = add_race_grade_feature(df)
+    # race_grade_enc: NARはrace_nameが全NaNのため除外
+    # running_style_enc / pace_pressure: NARデータに脚質なしのため除外
     df = add_horse_course_dist_features(df)
     df = add_jockey_horse_features(df)      # jockey_fukusho_rate に依存するため最後
-    df = add_jockey_course_dist_features(df)
+    df = add_jockey_course_dist_features(df)  # NAR: 地区別に変更
     df = add_jockey_trainer_features(df)
 
     # same_day_rank / prob_vs_avg は学習時には使えない（leakage）ため NaN で埋める
