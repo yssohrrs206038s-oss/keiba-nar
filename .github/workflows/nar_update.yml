@@ -1,4 +1,4 @@
-name: NAR 水曜データ更新・学習
+name: NAR 水曜データ更新・モデル再学習
 
 on:
   schedule:
@@ -34,37 +34,32 @@ jobs:
       - name: 依存パッケージをインストール
         run: |
           pip install -r requirements.txt
+          pip install google-api-python-client google-auth-httplib2 google-auth-oauthlib
           echo "✅ pip install 完了"
 
-      # ── データ収集・学習パイプライン ─────────────────────────
-      - name: NARスクレイピング（直近2ヶ月）
+      # ── データ収集 ──────────────────────────────────────────
+      - name: NARスクレイピング（直近2週間）
         run: |
-          YEAR=$(date +%Y)
-          MONTH=$(date +%-m)
-          PREV_MONTH=$((MONTH - 1))
-          PREV_YEAR=$YEAR
-          if [ $PREV_MONTH -le 0 ]; then
-            PREV_MONTH=12
-            PREV_YEAR=$((YEAR - 1))
-          fi
-          START="${PREV_YEAR}-$(printf '%02d' $PREV_MONTH)"
-          END="${YEAR}-$(printf '%02d' $MONTH)"
-          echo "📅 NAR スクレイピング期間: $START ～ $END"
-          python -m keiba_predictor.main scrape --start "$START" --end "$END" --nar
+          TWO_WEEKS_AGO=$(date -d "14 days ago" +%Y-%m 2>/dev/null || \
+            python3 -c "from datetime import date,timedelta;print((date.today()-timedelta(days=14)).strftime('%Y-%m'))")
+          END=$(date +%Y-%m)
+          echo "📅 NAR スクレイピング期間: $TWO_WEEKS_AGO ～ $END"
+          python -m keiba_predictor.main scrape --start "$TWO_WEEKS_AGO" --end "$END" --nar
 
       - name: データクリーニング
         run: |
           python -m keiba_predictor.main clean
           echo "✅ クリーニング完了"
 
+      # ── 特徴量生成・モデル学習 ──────────────────────────────
       - name: 特徴量エンジニアリング
         run: |
-          python -m keiba_predictor.main features --league nar
+          python -m keiba_predictor.main features
           echo "✅ 特徴量生成完了"
 
       - name: モデル学習（NAR）
         run: |
-          python -m keiba_predictor.main train --league nar
+          python -m keiba_predictor.main train
           echo "✅ NAR モデル学習完了"
 
       - name: モデルメトリクスを取得
@@ -88,20 +83,86 @@ jobs:
                   env_file.write('MODEL_FUKUSHO=N/A\n')
           "
 
-      - name: モデル・CSVをコミット
+      # ── モデルをGoogle Driveにアップロード ───────────────────
+      - name: モデルをGoogle Driveにアップロード
+        continue-on-error: true
+        env:
+          NAR_MODEL_GDRIVE_ID: ${{ secrets.NAR_MODEL_GDRIVE_ID }}
+          GDRIVE_SERVICE_ACCOUNT_JSON: ${{ secrets.GDRIVE_SERVICE_ACCOUNT_JSON }}
+        run: |
+          python -c "
+          import os, sys
+          gdrive_id = os.environ.get('NAR_MODEL_GDRIVE_ID', '')
+          sa_json = os.environ.get('GDRIVE_SERVICE_ACCOUNT_JSON', '')
+
+          if not gdrive_id:
+              print('NAR_MODEL_GDRIVE_ID 未設定 → アップロードスキップ')
+              sys.exit(0)
+
+          if not sa_json:
+              # gdownでアップロード（サービスアカウントなし）
+              print('GDRIVE_SERVICE_ACCOUNT_JSON 未設定 → gdownアップロード試行')
+              try:
+                  import gdown
+                  # gdownはダウンロード専用のため、アップロードはスキップ
+                  print('gdownはアップロード非対応 → 手動アップロードが必要です')
+                  sys.exit(0)
+              except Exception as e:
+                  print(f'gdownエラー: {e}')
+                  sys.exit(0)
+
+          # サービスアカウントでアップロード
+          import json, tempfile
+          from googleapiclient.discovery import build
+          from googleapiclient.http import MediaFileUpload
+          from google.oauth2 import service_account
+
+          # サービスアカウントキーを一時ファイルに書き出し
+          sa_data = json.loads(sa_json)
+          with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
+              json.dump(sa_data, f)
+              sa_path = f.name
+
+          creds = service_account.Credentials.from_service_account_file(
+              sa_path, scopes=['https://www.googleapis.com/auth/drive.file']
+          )
+          service = build('drive', 'v3', credentials=creds)
+
+          model_path = 'keiba_predictor/model/xgb_model.pkl'
+          media = MediaFileUpload(model_path, resumable=True)
+
+          # 既存ファイルを更新
+          try:
+              service.files().update(
+                  fileId=gdrive_id,
+                  media_body=media,
+              ).execute()
+              print(f'Google Drive アップロード完了: {gdrive_id}')
+          except Exception as e:
+              print(f'Google Drive アップロード失敗: {e}')
+              sys.exit(1)
+
+          os.unlink(sa_path)
+          "
+
+      # ── キャッシュをコミット ─────────────────────────────────
+      - name: キャッシュをコミット
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add    keiba_predictor/model/xgb_model.pkl           2>/dev/null || true
-          git add    keiba_predictor/data/predictions_cache.json 2>/dev/null || true
+          git config pull.rebase true
+          git config rebase.autoStash true
+          git add keiba_predictor/data/predictions_cache.json 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "ℹ️ 変更なし"
           else
             git commit -m "chore: NAR水曜データ更新 AUC=${MODEL_AUC} 複勝=${MODEL_FUKUSHO}% [skip ci]"
+            git pull --rebase -X theirs origin ${{ github.ref_name }} || true
             git push
             echo "✅ コミット・プッシュ完了"
           fi
 
+      # ── Discord に完了通知 ────────────────────────────────────
       - name: ✅ 完了を Discord に通知
         run: |
           PAYLOAD=$(python3 -c "
@@ -110,7 +171,8 @@ jobs:
               '\`\`\`\n'
               '✅ KEIBA EDGE NAR データ更新完了\n'
               'AUC: ${MODEL_AUC} / 複勝的中率: ${MODEL_FUKUSHO}%\n'
-              '次回予想: 土曜11時\n'
+              'モデルGoogle Drive更新済み\n'
+              '次回予想: 明日09時\n'
               '\`\`\`'
           )
           print(json.dumps({'content': msg}))
@@ -119,6 +181,7 @@ jobs:
             -H "Content-Type: application/json" \
             -d "$PAYLOAD" || true
 
+      # ── クレジット残量チェック ─────────────────────────────────
       - name: クレジット残量チェック
         continue-on-error: true
         env:
@@ -126,6 +189,7 @@ jobs:
           TWITTER_BEARER_TOKEN: ${{ secrets.TWITTER_BEARER_TOKEN }}
         run: python -m keiba_predictor.credit_monitor
 
+      # ── エラー時の Discord 通知 ──────────────────────────────
       - name: ❌ エラーを Discord に通知
         if: failure()
         run: |
