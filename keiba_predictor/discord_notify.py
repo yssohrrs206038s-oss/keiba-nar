@@ -182,6 +182,55 @@ def _dump_html_for_debug(soup, kaisai_date: str) -> None:
         logger.debug(f"  [debug] HTML保存失敗: {e}")
 
 
+def scrape_nar_race_ids_for_today(session: requests.Session) -> list[dict]:
+    """今日のNARレース一覧を取得する（最大30レース）。
+
+    Returns:
+        [{"race_id", "race_name", "race_date"}, ...]
+    """
+    from keiba_predictor.scraper.netkeiba_scraper import (
+        scrape_nar_race_ids_for_date, NAR_RACE_LIST_URL, _get,
+    )
+
+    today = date.today()
+    kaisai_date = today.strftime("%Y%m%d")
+    race_date_str = today.isoformat()
+
+    logger.info(f"[NAR] 今日のレース取得: {kaisai_date}")
+    race_ids = scrape_nar_race_ids_for_date(kaisai_date, session)
+
+    if not race_ids:
+        logger.info(f"[NAR] 今日 ({kaisai_date}) の開催なし")
+        return []
+
+    # レース名を取得（race_list_sub.html から）
+    found: list[dict] = []
+    url = f"{NAR_RACE_LIST_URL}?kaisai_date={kaisai_date}"
+    soup = _get(url, session, encoding="UTF-8")
+
+    name_map: dict[str, str] = {}
+    if soup:
+        for a in soup.select("a[href*='race_id=']"):
+            m = re.search(r"race_id=(\d{12})", a.get("href", ""))
+            if m:
+                rid = m.group(1)
+                name_el = a.find_parent("li")
+                if name_el:
+                    n = name_el.select_one(".Race_Name") or name_el.select_one(".RaceName")
+                    if n:
+                        name_map[rid] = n.get_text(strip=True)
+
+    for rid in race_ids[:30]:  # 最大30レース
+        found.append({
+            "race_id": rid,
+            "race_name": name_map.get(rid, rid),
+            "race_date": race_date_str,
+        })
+
+    logger.info(f"[NAR] 今日のレース: {len(found)} 件")
+    return found
+
+
 def scrape_grade_race_ids(session: requests.Session) -> list[dict]:
     """今週末の重賞レース一覧 [{race_id, race_name, race_date}, ...] を返す。"""
     found: list[dict] = []
