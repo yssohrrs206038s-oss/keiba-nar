@@ -702,6 +702,7 @@ def predict_live(
     webhook_url: Optional[str] = None,
     model_path: Optional[Path] = None,
     cleaned_path: Optional[Path] = None,
+    is_grade: bool = False,
 ) -> pd.DataFrame:
     """
     出馬表をリアルタイムでスクレイピングして予測する。
