@@ -158,17 +158,27 @@ def _parse_shutuba_row(tr) -> Optional[dict]:
         m = re.search(r"/horse/(\w+)/?", horse_link["href"])
         horse_id = m.group(1) if m else ""
 
-    # 性齢
-    sex, age = _parse_sex_age(_txt(".Barei", "td.Barei", "td.sexage"))
+    # 性齢（NAR: classなしのtd[4]にフォールバック）
+    sex_age_text = _txt(".Barei", "td.Barei", "td.sexage")
+    if not sex_age_text:
+        tds = tr.select("td")
+        if len(tds) > 4:
+            sex_age_text = tds[4].get_text(strip=True)
+    sex, age = _parse_sex_age(sex_age_text)
     sex_enc = _SEX_ENC.get(sex, 0) if sex else 0
 
-    # 斤量
+    # 斤量（NAR: .Txt_C または td[5]にフォールバック）
     try:
-        weight_carried = float(_txt(".Futan", "td.Futan", "td.Wt"))
+        wc_text = _txt(".Futan", "td.Futan", "td.Wt", ".Txt_C")
+        if not wc_text:
+            tds = tr.select("td")
+            if len(tds) > 5:
+                wc_text = tds[5].get_text(strip=True)
+        weight_carried = float(wc_text) if wc_text else None
     except ValueError:
         weight_carried = None
 
-    # 馬体重
+    # 馬体重（NAR: td.Weight）
     horse_weight, horse_weight_diff = _parse_horse_weight(
         _txt(".HorseWeight", "td.HorseWeight", "td.Weight")
     )
@@ -209,23 +219,31 @@ def _parse_shutuba_row(tr) -> Optional[dict]:
             td_text = td.get_text(strip=True).replace(",", "")
             td_cls = " ".join(td.get("class") or [])
             # Oddsを含むクラス、またはPopular系クラスの数値
-            if re.match(r"^\d+\.\d$", td_text) and ("Odds" in td_cls or "Txt_R" in td_cls or "Popular" in td_cls):
+            if re.match(r"^\d+\.\d+$", td_text) and ("Odds" in td_cls or "Txt_R" in td_cls or "Popular" in td_cls):
                 try:
                     odds = float(td_text)
                     break
                 except ValueError:
                     continue
 
-    # 人気
+    # 人気（NAR: td.Popular.Txt_C にフォールバック）
     popularity = None
     for pop_sel in (".Popular_Ninki", "td.Popular_Ninki", ".Popular span",
-                    "td.Popular", "td.popular_rank", "span.Popular_Ninki"):
+                    "td.Popular.Txt_C", "td.Popular", "td.popular_rank",
+                    "span.Popular_Ninki"):
         el = tr.select_one(pop_sel)
         if el:
             pop_text = el.get_text(strip=True)
             if pop_text.isdigit():
                 popularity = int(pop_text)
                 break
+    # インデックスフォールバック: td[10]
+    if popularity is None:
+        tds = tr.select("td")
+        if len(tds) > 10:
+            pop_text = tds[10].get_text(strip=True)
+            if pop_text.isdigit():
+                popularity = int(pop_text)
 
     # 脚質（逃/先/差/追）
     _RUNNING_STYLE_MAP = {"逃": 0, "先": 1, "差": 2, "追": 3, "逃げ": 0, "先行": 1, "差し": 2, "追込": 3, "追い込み": 3}
