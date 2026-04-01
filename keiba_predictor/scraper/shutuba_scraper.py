@@ -328,7 +328,7 @@ def scrape_shutuba(race_id: str) -> Optional[dict]:
         session.headers.update(HEADERS)
         try:
             session.get("https://nar.netkeiba.com/", headers=HEADERS, timeout=15)
-            time.sleep(1.0)
+            time.sleep(random.uniform(0.5, 1.5))
         except Exception:
             pass
         soup = _get(url, session)

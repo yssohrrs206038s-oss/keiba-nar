@@ -128,7 +128,7 @@ def _get_result_html_with_playwright(url: str) -> Optional[str]:
         return None
 
 
-def _get(url: str, session: requests.Session, encoding: str = "EUC-JP") -> Optional[BeautifulSoup]:
+def _get(url: str, session: requests.Session, encoding: str = "UTF-8") -> Optional[BeautifulSoup]:
     """
     GETリクエストを送り BeautifulSoup を返す。失敗時はNone。
 
@@ -144,7 +144,12 @@ def _get(url: str, session: requests.Session, encoding: str = "EUC-JP") -> Optio
         # Content-Type ヘッダーから charset を取得（あればそちらを優先）
         ct = resp.headers.get("Content-Type", "")
         m = re.search(r"charset=([^\s;,]+)", ct, re.I)
-        detected = m.group(1).strip() if m else encoding
+        if m:
+            detected = m.group(1).strip()
+        elif resp.apparent_encoding and resp.apparent_encoding.lower() not in ("ascii", "windows-1252"):
+            detected = resp.apparent_encoding
+        else:
+            detected = encoding
         # bytes + from_encoding: BS4 が <meta charset> も考慮して正しく解析する
         return BeautifulSoup(resp.content, "html.parser", from_encoding=detected)
     except requests.RequestException as e:
