@@ -1516,7 +1516,7 @@ def run_result_notify(
     send_discord(webhook_url,
         f"🏆 **本日のNAR結果** ({date.today().isoformat()})  全{len(grade_races)}レース")
 
-    from keiba_predictor.scraper.netkeiba_scraper import scrape_race_result
+    from keiba_predictor.scraper.netkeiba_scraper import scrape_nar_race_result as scrape_race_result
     from keiba_predictor.history import (
         record_result, load_history,
         weekly_summary, cumulative_summary, hit_streak, format_summary_message,

@@ -1001,7 +1001,9 @@ def scrape_nar_race_result(
     # ── 着順テーブル ──────────────────────────────────────────
     # NAR ページのテーブルクラスは JRA と異なる場合があるため複数セレクタを試みる
     result_table = (
-        soup.select_one("table.race_table_01")
+        soup.select_one("table.RaceTable01")
+        or soup.select_one("table.ResultMain")
+        or soup.select_one("table.race_table_01")
         or soup.select_one("table.nk_tb_common")
         or soup.select_one("table.ResultTableWrap")
         or soup.select_one("table#ResultTableBody")
