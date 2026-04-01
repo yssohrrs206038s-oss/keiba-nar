@@ -2,7 +2,8 @@ name: NAR 予想生成・通知（毎日）
 
 on:
   schedule:
-    - cron: '0 0 * * *'   # 毎日 09:00 JST — 予想生成
+    - cron: '0 0 * * 0-2,4-6'  # 水曜以外 09:00 JST — 予想生成
+    - cron: '0 2 * * 3'        # 水曜のみ 11:00 JST — 予想生成（update完了後）
     - cron: '0 5 * * *'   # 毎日 14:00 JST — 通知
   workflow_dispatch:
     inputs:
