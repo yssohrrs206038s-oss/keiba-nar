@@ -57,24 +57,37 @@ jobs:
       - name: データクリーニング
         run: |
           if [ ! -f keiba_predictor/data/raw_races.csv ]; then
-            echo "⚠️ raw_races.csv が見つかりません → クリーニングスキップ"
+            echo "⚠️ raw_races.csv が見つかりません → 以降のステップをスキップ"
+            echo "DATA_READY=false" >> $GITHUB_ENV
           else
             python -m keiba_predictor.main clean
             echo "✅ クリーニング完了"
+            echo "DATA_READY=true" >> $GITHUB_ENV
           fi
 
       # ── 特徴量生成・モデル学習 ──────────────────────────────
       - name: 特徴量エンジニアリング
+        if: env.DATA_READY == 'true'
         run: |
-          python -m keiba_predictor.main features
-          echo "✅ 特徴量生成完了"
+          if [ ! -f keiba_predictor/data/cleaned_races.csv ]; then
+            echo "⚠️ cleaned_races.csv が見つかりません → スキップ"
+          else
+            python -m keiba_predictor.main features
+            echo "✅ 特徴量生成完了"
+          fi
 
       - name: モデル学習（NAR）
+        if: env.DATA_READY == 'true'
         run: |
-          python -m keiba_predictor.main train
-          echo "✅ NAR モデル学習完了"
+          if [ ! -f keiba_predictor/data/featured_races.csv ]; then
+            echo "⚠️ featured_races.csv が見つかりません → スキップ"
+          else
+            python -m keiba_predictor.main train
+            echo "✅ NAR モデル学習完了"
+          fi
 
       - name: モデルメトリクスを取得
+        if: env.DATA_READY == 'true'
         run: |
           python -c "
           import pickle, os, sys
@@ -97,6 +110,7 @@ jobs:
 
       # ── モデルをGoogle Driveにアップロード ───────────────────
       - name: モデルをGoogle Driveにアップロード
+        if: env.DATA_READY == 'true'
         continue-on-error: true
         env:
           GDRIVE_SERVICE_ACCOUNT_JSON: ${{ secrets.GDRIVE_SERVICE_ACCOUNT_JSON }}
