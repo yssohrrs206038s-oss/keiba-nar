@@ -43,12 +43,25 @@ jobs:
             python3 -c "from datetime import date,timedelta;print((date.today()-timedelta(days=14)).strftime('%Y-%m'))")
           END=$(date +%Y-%m)
           echo "📅 NAR スクレイピング期間: $TWO_WEEKS_AGO ～ $END"
-          python -m keiba_predictor.main scrape --start "$TWO_WEEKS_AGO" --end "$END" --nar
+          python -c "
+          import sys, logging
+          sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+          logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
+          from keiba_predictor.scraper.netkeiba_scraper import scrape_nar_races
+          start = '$TWO_WEEKS_AGO'.split('-')
+          end = '$END'.split('-')
+          df = scrape_nar_races(int(start[0]), int(start[1]), int(end[0]), int(end[1]))
+          print(f'NAR取得完了: {len(df)} rows')
+          "
 
       - name: データクリーニング
         run: |
-          python -m keiba_predictor.main clean
-          echo "✅ クリーニング完了"
+          if [ ! -f keiba_predictor/data/raw_races.csv ]; then
+            echo "⚠️ raw_races.csv が見つかりません → クリーニングスキップ"
+          else
+            python -m keiba_predictor.main clean
+            echo "✅ クリーニング完了"
+          fi
 
       # ── 特徴量生成・モデル学習 ──────────────────────────────
       - name: 特徴量エンジニアリング
