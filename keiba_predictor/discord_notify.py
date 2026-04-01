@@ -1345,68 +1345,38 @@ def run_predict_notify(
 
     model_bundle = load_model(model_path)
 
-    # --test-race-id が指定された場合は重賞検索をスキップ
-    from_featured = False
+    # --test-race-id が指定された場合はレース検索をスキップ
     if test_race_id:
         race_name = str(test_race_id)
         grade_races = [{"race_id": test_race_id, "race_name": race_name, "race_date": "（テスト）"}]
         logger.info(f"テストモード: race_id={test_race_id} race_name={race_name}")
         send_discord(webhook_url, f"🧪 **テスト送信** race_id={test_race_id}  {race_name}")
     else:
+        # NAR: 今日のレースを取得（重賞検索ではなく毎日開催）
         session = requests.Session()
-        logger.info("週末重賞を検索中...")
-        grade_races = scrape_grade_race_ids(session)
+        logger.info("今日のNARレースを検索中...")
+        grade_races = scrape_nar_race_ids_for_today(session)
         if not grade_races:
-            dates = _weekend_dates()
-            sat = f"{dates[0][:4]}-{dates[0][4:6]}-{dates[0][6:]}"
-            sun = f"{dates[1][:4]}-{dates[1][4:6]}-{dates[1][6:]}"
-            logger.warning(f"スクレイピングで重賞0件 ({sat}/{sun}) → featured_races.csv にフォールバック")
-            grade_races = _load_featured_race_ids_for_weekend(featured_path)
-            if not grade_races:
-                msg = (
-                    f"🏇 今週末（{sat} / {sun}）の重賞レース情報が取得できませんでした。\n"
-                    "以下のいずれかが原因の可能性があります:\n"
-                    "• netkeibaへのアクセス失敗（ネットワーク/レート制限）\n"
-                    "• 今週末に重賞レースがない\n"
-                    "• HTMLの構造変更によりレース名が取得できていない\n\n"
-                    "💡 featured_races.csv に今週のレースIDを手動登録することで\n"
-                    "スクレイピング失敗時でも予想を実行できます。\n\n"
-                    "デバッグ用ログ確認:\n"
-                    "```\n"
-                    "python -m keiba_predictor.main notify --mode predict --debug\n"
-                    "```"
-                )
-                send_discord(webhook_url, msg)
-                return
-            from_featured = True
-            send_discord(webhook_url,
-                f"⚠️ スクレイピング失敗 → featured_races.csv から {len(grade_races)} レースを使用")
-        dates_str = " / ".join(sorted({r["race_date"] for r in grade_races}))
+            today_str = date.today().isoformat()
+            send_discord(webhook_url, f"🐴 本日（{today_str}）のNARレースが見つかりませんでした。")
+            return
         send_discord(webhook_url,
-            f"🏇 **今週末の重賞予想** ({dates_str})  全{len(grade_races)}レース")
+            f"🐴 **本日のNAR予想** ({date.today().isoformat()})  全{len(grade_races)}レース")
 
     notified = 0
     cache = _load_cache()
 
-    # 当週土日以外のレースをキャッシュから除外
-    dates = _weekend_dates()
-    weekend_set = {
-        f"{d[:4]}-{d[4:6]}-{d[6:]}" for d in dates
-    }
+    # 昨日以前のレースをキャッシュから除外（NAR: 毎日開催のため当日分のみ保持）
+    today_str = date.today().isoformat()
     stale_ids = [
         rid for rid, entry in cache.items()
-        if entry.get("race_date") and entry["race_date"] not in weekend_set
+        if not rid.startswith("_") and entry.get("race_date") and entry["race_date"] < today_str
     ]
     if stale_ids:
         for rid in stale_ids:
-            name = cache[rid].get("race_name", rid)
-            logger.info(f"  先週レース除外: {name} ({cache[rid].get('race_date')})")
             del cache[rid]
         _save_cache(cache)
-        logger.info(f"  {len(stale_ids)} 件の先週レースをキャッシュから削除")
-
-    # 当日のレースのみ通知（土曜実行→土曜レース、日曜実行→日曜レース）
-    today_str = date.today().isoformat()  # "YYYY-MM-DD"
+        logger.info(f"  {len(stale_ids)} 件の過去レースをキャッシュから削除")
     logger.info(f"本日: {today_str}")
 
     # 発走時刻順にソート（キャッシュの start_time を使用）
@@ -1526,29 +1496,25 @@ def run_result_notify(
         grade_races = [{"race_id": race_id, "race_name": race_name, "race_date": race_date}]
         logger.info(f"指定レースID: {race_id} ({race_name})")
     else:
-        # 今週末の重賞IDを取得
-        logger.info("今週末の重賞を検索中...")
-        grade_races = scrape_grade_race_ids(session)
+        # NAR: キャッシュ内の当日レースを結果照合対象にする
+        logger.info("キャッシュから本日のNARレースを取得中...")
+        today_str = date.today().isoformat()
+        grade_races = []
+        for rid, entry in cache.items():
+            if rid.startswith("_"):
+                continue
+            if entry.get("race_date") == today_str:
+                grade_races.append({
+                    "race_id": rid,
+                    "race_name": entry.get("race_name", rid),
+                    "race_date": today_str,
+                })
     if not grade_races:
-        dates = _weekend_dates()
-        sat = f"{dates[0][:4]}-{dates[0][4:6]}-{dates[0][6:]}"
-        sun = f"{dates[1][:4]}-{dates[1][4:6]}-{dates[1][6:]}"
-        logger.warning(f"スクレイピングで重賞0件 ({sat}/{sun}) → featured_races.csv にフォールバック")
-        grade_races = _load_featured_race_ids_for_weekend()
-        if not grade_races:
-            msg = (
-                f"🏆 今週末（{sat} / {sun}）の重賞レース情報が取得できませんでした。\n"
-                "netkeibaへのアクセス失敗または重賞レースなしの可能性があります。"
-            )
-            logger.warning(msg)
-            send_discord(webhook_url, msg)
-            return
-        send_discord(webhook_url,
-            f"⚠️ スクレイピング失敗 → featured_races.csv から {len(grade_races)} レースを使用")
+        send_discord(webhook_url, f"🐴 本日のNARレース結果が見つかりませんでした。")
+        return
 
-    dates_str = " / ".join(sorted({r["race_date"] for r in grade_races}))
     send_discord(webhook_url,
-        f"🏆 **今週末の重賞結果** ({dates_str})  全{len(grade_races)}レース")
+        f"🏆 **本日のNAR結果** ({date.today().isoformat()})  全{len(grade_races)}レース")
 
     from keiba_predictor.scraper.netkeiba_scraper import scrape_race_result
     from keiba_predictor.history import (
