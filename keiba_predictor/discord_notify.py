@@ -30,7 +30,7 @@ import pandas as pd
 import requests
 
 from keiba_predictor.scraper.netkeiba_scraper import (
-    _get, _sleep, RACE_RESULT_URL,
+    _get, _sleep, RACE_RESULT_URL, NAR_RESULT_URL,
 )
 from keiba_predictor.model.predict import load_model, predict_race, calc_ev_and_flags, format_prediction, _build_course_info
 from keiba_predictor.ai_comment import generate_comments
@@ -872,14 +872,24 @@ def scrape_payouts(race_id: str, session: requests.Session) -> dict:
     Returns:
         {"馬連": [{"combo": "3-5", "amount": 1450}], "ワイド": [...], ...}
     """
-    url  = RACE_RESULT_URL.format(race_id=race_id)
-    soup = _get(url, session)
+    # NAR: result.html?race_id=...  (EUC-JP)
+    url = f"{NAR_RESULT_URL}?race_id={race_id}"
+    soup = _get(url, session, encoding="euc-jp")
     if soup is None:
         return {}
 
     payouts: dict[str, list] = {}
 
-    for table in soup.select("table.pay_table_01"):
+    def _parse_yen(s: str) -> Optional[int]:
+        s = re.sub(r"[¥￥,円\s]", "", s)
+        try:
+            return int(s)
+        except ValueError:
+            return None
+
+    # NAR: Payout_Detail_Table / JRA: pay_table_01
+    pay_tables = soup.select("table.Payout_Detail_Table, table.pay_table_01")
+    for table in pay_tables:
         current_type = None
         for tr in table.select("tr"):
             th = tr.select_one("th")
@@ -892,19 +902,16 @@ def scrape_payouts(race_id: str, session: requests.Session) -> dict:
             combos  = tds[0].get_text(" ", strip=True)
             amounts = tds[1].get_text(" ", strip=True)
 
-            # 金額を数値に（"¥1,450" → 1450）
-            def _parse_yen(s: str) -> Optional[int]:
-                s = re.sub(r"[¥,\s]", "", s)
-                try:
-                    return int(s)
-                except ValueError:
-                    return None
-
             amt = _parse_yen(amounts)
             payouts.setdefault(current_type, []).append({
                 "combo":  combos,
                 "amount": amt,
             })
+
+    if payouts:
+        logger.info(f"  払戻金取得: {race_id} → {list(payouts.keys())}")
+    else:
+        logger.warning(f"  払戻金テーブルなし: {race_id}")
 
     return payouts
 
