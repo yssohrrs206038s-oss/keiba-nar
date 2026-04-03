@@ -14,7 +14,7 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 
-from keiba_predictor.scraper.netkeiba_scraper import _get, HEADERS, VENUE_CODE_MAP
+from keiba_predictor.scraper.netkeiba_scraper import _get, HEADERS, VENUE_CODE_MAP, NAR_VENUE_CODE_MAP
 
 logger = logging.getLogger(__name__)
 
@@ -439,7 +439,9 @@ def scrape_shutuba(race_id: str) -> Optional[dict]:
         start_time = f"{int(mt.group(1)):02d}:{mt.group(2)}"
 
     # 会場
-    venue = VENUE_CODE_MAP.get(str(race_id)[4:6], "")
+    # NAR: race_id[4:6] が競馬場コード（JRAの[8:10]とは異なる）
+    venue_code = str(race_id)[4:6]
+    venue = NAR_VENUE_CODE_MAP.get(venue_code, VENUE_CODE_MAP.get(venue_code, ""))
 
     # コース・距離
     distance = 0
