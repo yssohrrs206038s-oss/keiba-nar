@@ -48,6 +48,21 @@ GRADE_RE = re.compile(r"\(G[Ⅰ-Ⅲ1-3]\)|\(GI{1,3}\)")
 
 MARK = {"honmei": "◎", "taikou": "○", "ana": "△", "hoshi": "☆"}
 
+# ── 開催場 → YouTube チャンネル URL ─────────────────────────────
+VENUE_YOUTUBE: dict[str, str] = {
+    "大井":   "https://www.youtube.com/@oikeiba",
+    "川崎":   "https://www.youtube.com/@kawasakikeiba",
+    "船橋":   "https://www.youtube.com/@funabashikeiba",
+    "浦和":   "https://www.youtube.com/@urawakeiba",
+    "門別":   "https://www.youtube.com/@hokkaidokeiba",
+    "名古屋": "https://www.youtube.com/@nagoyakeiba",
+    "園田":   "https://www.youtube.com/@sonodakeiba",
+    "笠松":   "https://www.youtube.com/@kasamatsukeiba",
+    "金沢":   "https://www.youtube.com/@kanazawakeiba",
+    "高知":   "https://www.youtube.com/@kochikeiba",
+    "佐賀":   "https://www.youtube.com/@sagakeiba",
+}
+
 
 # ══════════════════════════════════════════════════════════════
 # ══════════════════════════════════════════════════════════════
@@ -955,6 +970,55 @@ def _record_manual_result(race_id: str, race_name: str, race_date: str,
     logger.info(f"  [history] 手動記録: {name} fukusho={fukusho_hit} umaren={umaren_hit} sanren={sanren_hit} return=¥{return_total:,}")
 
 
+def _build_hit_message(
+    venue: str,
+    race_name: str,
+    honmei_num: Optional[int],
+    honmei_name: str,
+    fukusho_hit: bool,
+    umaren_hit: bool,
+    umaren_pay: str,
+    sanren_hit: bool,
+    sanren_pay: str,
+) -> Optional[str]:
+    """的中時の特別通知メッセージを生成する。何も的中していなければ None。"""
+    if not (fukusho_hit or umaren_hit or sanren_hit):
+        return None
+
+    RULE = "━" * 20
+    lines = [
+        "🎯 NAR的中！",
+        RULE,
+        f"🏇 {venue} {race_name}",
+    ]
+    if honmei_num is not None:
+        lines.append(f"◎ {honmei_num}番 {honmei_name}")
+    lines.append(RULE)
+
+    hit_details = []
+    if fukusho_hit:
+        hit_details.append("複勝 ✅ 的中")
+    if umaren_hit:
+        detail = "馬連 ✅ 的中"
+        if umaren_pay:
+            detail += f"（配当{re.sub(r'[¥,]', '', str(umaren_pay))}円）"
+        hit_details.append(detail)
+    if sanren_hit:
+        detail = "3連複 ✅ 的中"
+        if sanren_pay:
+            detail += f"（配当{re.sub(r'[¥,]', '', str(sanren_pay))}円）"
+        hit_details.append(detail)
+    lines.append("\n".join(hit_details))
+    lines.append(RULE)
+
+    yt_url = VENUE_YOUTUBE.get(venue, "")
+    if yt_url:
+        lines.append(f"📹 レース動画 → {yt_url}")
+        lines.append(RULE)
+
+    return "\n".join(lines)
+
+
 def _fmt_result(race_name: str, race_date: str,
                 actual_df: pd.DataFrame,
                 pred: dict,
@@ -1589,6 +1653,70 @@ def run_result_notify(
         if send_discord(webhook_url, msg):
             notified += 1
             logger.info(f"  送信: {race_name}")
+
+        # ── 的中時に専用チャンネルへ特別通知 ─────────────────────
+        try:
+            # 的中判定を再取得
+            predicted_nums = pred.get("predicted_top3_nums", [])
+            if manual and manual.get("predicted_top3_nums"):
+                predicted_nums = manual["predicted_top3_nums"]
+
+            if manual and manual.get("honmei") is not None:
+                _honmei_num = int(manual["honmei"])
+            elif predicted_nums:
+                _honmei_num = predicted_nums[0]
+            else:
+                _honmei_num = (pred.get("honmei") or {}).get("horse_number")
+
+            # 馬名マップ
+            _num_to_name: dict[int, str] = {}
+            for _role in ("honmei", "taikou", "ana"):
+                _p = pred.get(_role, {})
+                _pn = _p.get("horse_number")
+                if _pn is not None:
+                    _num_to_name[int(_pn)] = _p.get("horse_name", "")
+            for _, _r in actual_df.iterrows():
+                _an = _r.get("horse_number")
+                _aname = str(_r.get("horse_name", ""))
+                if pd.notna(_an) and _aname:
+                    _num_to_name.setdefault(int(_an), _aname)
+            _honmei_name = _num_to_name.get(_honmei_num, "") if _honmei_num else ""
+
+            # 確定 1-3 着
+            _df_copy = actual_df.copy()
+            _df_copy["_fp"] = pd.to_numeric(_df_copy["finish_position"], errors="coerce")
+            _top3 = _df_copy[_df_copy["_fp"].isin([1, 2, 3])].sort_values("_fp").head(3)
+            _actual_top3_nums = [int(r["horse_number"]) for _, r in _top3.iterrows() if pd.notna(r.get("horse_number"))]
+
+            if manual and "fukusho_hit" in manual:
+                _fh = manual["fukusho_hit"]
+                _uh = manual.get("umaren_hit", False)
+                _sh = manual.get("sanrenpuku_hit", False)
+                _mp = manual.get("payouts", {})
+                _up = f"¥{_mp['umaren']:,}" if _mp.get("umaren") else ""
+                _sp = f"¥{_mp['sanrenpuku']:,}" if _mp.get("sanrenpuku") else ""
+            else:
+                _fh = (_honmei_num is not None) and (int(_honmei_num) in _actual_top3_nums)
+                _uh, _up = _check_umaren_raw(predicted_nums, _actual_top3_nums, payouts)
+                _ana_num = pred.get("ana_horse_num")
+                _sh, _sp = _check_sanrenpuku_raw(predicted_nums, _actual_top3_nums, payouts, _ana_num)
+
+            _venue = pred.get("venue", "")
+            hit_msg = _build_hit_message(
+                _venue, race_name, _honmei_num, _honmei_name,
+                _fh, _uh, _up, _sh, _sp,
+            )
+            if hit_msg:
+                hit_webhook = os.environ.get("DISCORD_HIT_WEBHOOK_URL", "")
+                if hit_webhook:
+                    send_discord(hit_webhook, hit_msg)
+                    logger.info(f"  的中通知送信（専用ch）: {race_name}")
+                else:
+                    # 専用チャンネル未設定時は通常チャンネルに送信
+                    send_discord(webhook_url, hit_msg)
+                    logger.info(f"  的中通知送信（通常ch）: {race_name}")
+        except Exception as e:
+            logger.warning(f"  的中通知エラー ({race_name}): {e}")
 
         # 的中実績を CSV に記録
         if manual and "fukusho_hit" in manual:
