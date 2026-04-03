@@ -296,6 +296,12 @@
 
   <!-- 分析タブ -->
   <div class="tab-panel" id="panel-analysis">
+    <div class="section-title">🎯 券種別的中率</div>
+    <div class="chart-wrap"><canvas id="hit-rate-chart"></canvas></div>
+
+    <div class="section-title">📍 開催場別回収率</div>
+    <div class="chart-wrap"><canvas id="venue-roi-chart"></canvas></div>
+
     <div class="section-title">📍 開催場別成績</div>
     <div style="overflow-x:auto;">
       <table class="history-table" id="course-table">
@@ -723,6 +729,111 @@ function renderRankings(rows) {
 }
 
 /* ================================================================
+   券種別的中率グラフ
+================================================================ */
+function renderHitRateChart(rows) {
+  if (!rows.length) return;
+  const n = rows.length;
+  const fRate = +(rows.filter(r => r.fukusho_hit === 'True').length / n * 100).toFixed(1);
+  const uRate = +(rows.filter(r => r.umaren_hit === 'True' || r.wide_hit === 'True').length / n * 100).toFixed(1);
+  const sRate = +(rows.filter(r => r.sanrenpuku_hit === 'True').length / n * 100).toFixed(1);
+
+  new Chart(document.getElementById('hit-rate-chart').getContext('2d'), {
+    type: 'bar',
+    data: {
+      labels: ['複勝', '馬連/ワイド', '3連複'],
+      datasets: [{
+        label: '的中率 (%)',
+        data: [fRate, uRate, sRate],
+        backgroundColor: ['rgba(46,204,113,.7)', 'rgba(52,152,219,.7)', 'rgba(243,156,18,.7)'],
+        borderRadius: 6,
+        barThickness: 60,
+      }]
+    },
+    options: {
+      responsive: true,
+      indexAxis: 'x',
+      plugins: {
+        legend: { display: false },
+        tooltip: { backgroundColor: '#0f1a14', borderColor: '#1e3a28', borderWidth: 1, titleColor: '#2ecc71', bodyColor: '#e0f0e6',
+          callbacks: { label: ctx => `${ctx.parsed.y}% (${n}戦)` } },
+      },
+      scales: {
+        x: { ticks: { color: '#7aaa8c', font: { size: 13, weight: 'bold' } }, grid: { display: false } },
+        y: { ticks: { color: '#7aaa8c', callback: v => v + '%', font: { size: 11 } }, grid: { color: 'rgba(255,255,255,.04)' }, suggestedMin: 0, suggestedMax: 100 }
+      }
+    }
+  });
+}
+
+/* ================================================================
+   開催場別回収率グラフ
+================================================================ */
+function renderVenueRoiChart(rows) {
+  if (!rows.length) return;
+  const venueData = {};
+  rows.forEach(r => {
+    const rid = (r.race_id || '').trim();
+    if (rid.length < 6) return;
+    const venue = VENUE_MAP[rid.slice(4, 6)] || '';
+    if (!venue) return;
+    if (!venueData[venue]) venueData[venue] = { bet: 0, ret: 0, n: 0, fHit: 0 };
+    venueData[venue].bet += +r.bet_total || 0;
+    venueData[venue].ret += +r.return_total || 0;
+    venueData[venue].n++;
+    if (r.fukusho_hit === 'True') venueData[venue].fHit++;
+  });
+
+  const entries = Object.entries(venueData)
+    .filter(([, v]) => v.n >= 1)
+    .sort((a, b) => {
+      const roiA = a[1].bet > 0 ? a[1].ret / a[1].bet * 100 : 0;
+      const roiB = b[1].bet > 0 ? b[1].ret / b[1].bet * 100 : 0;
+      return roiB - roiA;
+    });
+
+  if (!entries.length) return;
+
+  const labels = entries.map(([v]) => v);
+  const roiData = entries.map(([, v]) => v.bet > 0 ? +(v.ret / v.bet * 100).toFixed(0) : 0);
+  const colors = roiData.map(v => v >= 100 ? 'rgba(46,204,113,.7)' : 'rgba(231,76,60,.5)');
+
+  new Chart(document.getElementById('venue-roi-chart').getContext('2d'), {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{
+        label: '回収率 (%)',
+        data: roiData,
+        backgroundColor: colors,
+        borderRadius: 4,
+      }]
+    },
+    options: {
+      responsive: true,
+      indexAxis: 'y',
+      plugins: {
+        legend: { display: false },
+        tooltip: { backgroundColor: '#0f1a14', borderColor: '#1e3a28', borderWidth: 1, titleColor: '#2ecc71', bodyColor: '#e0f0e6',
+          callbacks: { label: ctx => {
+            const e = entries[ctx.dataIndex][1];
+            return `回収率 ${ctx.parsed.x}% (${e.n}戦 複勝${(e.fHit/e.n*100).toFixed(0)}%)`;
+          }}},
+        annotation: undefined,
+      },
+      scales: {
+        x: {
+          ticks: { color: '#7aaa8c', callback: v => v + '%', font: { size: 11 } },
+          grid: { color: 'rgba(255,255,255,.04)' },
+          suggestedMin: 0,
+        },
+        y: { ticks: { color: '#7aaa8c', font: { size: 12 } }, grid: { display: false } }
+      }
+    }
+  });
+}
+
+/* ================================================================
    タブ切り替え＋スワイプ
 ================================================================ */
 const TAB_IDS = ['predict', 'results', 'analysis', 'info'];
@@ -768,6 +879,8 @@ async function main() {
     renderWeeklyChart(rows);
     renderHistory(rows);
     renderRankings(rows);
+    renderHitRateChart(rows);
+    renderVenueRoiChart(rows);
   } catch (e) {
     document.getElementById('history-tbody').innerHTML =
       `<tr><td colspan="6" class="error-box" style="padding:20px;">履歴データの取得に失敗しました<br><small>${esc(e.message)}</small></td></tr>`;
