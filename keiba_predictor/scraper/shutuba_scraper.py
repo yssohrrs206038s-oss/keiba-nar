@@ -21,43 +21,62 @@ logger = logging.getLogger(__name__)
 SHUTUBA_URL = "https://nar.netkeiba.com/race/shutuba.html"
 
 
-def _get_html_with_playwright(url: str) -> Optional[str]:
-    """
-    Playwright (Chromium) で JS レンダリング後の HTML を返す。
-    playwright 未インストール時は None を返す。
-    """
-    try:
-        from playwright.sync_api import sync_playwright, TimeoutError as PWTimeout
-    except ImportError:
-        logger.warning("playwright 未インストール → requests にフォールバック")
-        return None
+class _PlaywrightSession:
+    """Playwright ブラウザインスタンスを使い回すセッション管理。"""
 
-    try:
-        with sync_playwright() as pw:
-            browser = pw.chromium.launch(headless=True)
-            ctx = browser.new_context(
-                user_agent=HEADERS["User-Agent"],
-                locale="ja-JP",
-                extra_http_headers={
-                    "Accept-Language": HEADERS["Accept-Language"],
-                    "Accept": HEADERS["Accept"],
-                },
-            )
-            page = ctx.new_page()
-            # トップページで Cookie を取得してから出馬表へ
-            page.goto("https://nar.netkeiba.com/", wait_until="domcontentloaded", timeout=20000)
-            time.sleep(1)
-            page.goto(url, wait_until="networkidle", timeout=30000)
+    def __init__(self):
+        self._pw = None
+        self._browser = None
+        self._ctx = None
+        self._page = None
+        self._cookie_done = False
+
+    def _ensure_browser(self):
+        """ブラウザが起動していなければ起動する。"""
+        if self._browser is not None:
+            return
+        from playwright.sync_api import sync_playwright
+        self._pw = sync_playwright().start()
+        self._browser = self._pw.chromium.launch(headless=True)
+        self._ctx = self._browser.new_context(
+            user_agent=HEADERS["User-Agent"],
+            locale="ja-JP",
+            extra_http_headers={
+                "Accept-Language": HEADERS["Accept-Language"],
+                "Accept": HEADERS["Accept"],
+            },
+        )
+        self._page = self._ctx.new_page()
+        logger.info("Playwright ブラウザセッション起動")
+
+    def get_html(self, url: str) -> Optional[str]:
+        """URL の HTML を取得して返す。失敗時は None。"""
+        try:
+            from playwright.sync_api import TimeoutError as PWTimeout
+        except ImportError:
+            logger.warning("playwright 未インストール → requests にフォールバック")
+            return None
+
+        try:
+            self._ensure_browser()
+            # 初回のみトップページで Cookie を取得
+            if not self._cookie_done:
+                self._page.goto(
+                    "https://nar.netkeiba.com/",
+                    wait_until="domcontentloaded", timeout=20000,
+                )
+                time.sleep(1)
+                self._cookie_done = True
+            self._page.goto(url, wait_until="domcontentloaded", timeout=60000)
             # 出馬表テーブルが描画されるまで最大10秒待機
             try:
-                page.wait_for_selector(
+                self._page.wait_for_selector(
                     "table.Shutuba_Table, tr.HorseList, td.Umaban",
                     timeout=10000,
                 )
             except PWTimeout:
                 logger.warning("Playwright: 出馬表セレクタのタイムアウト（HTML をそのまま使用）")
-            html = page.content()
-            browser.close()
+            html = self._page.content()
             # Playwright はブラウザ経由のため通常 UTF-8 変換済み。
             # 万が一 EUC-JP バイトが混在している場合のフォールバック
             try:
@@ -70,9 +89,38 @@ def _get_html_with_playwright(url: str) -> Optional[str]:
                     pass
             logger.info(f"Playwright 取得成功: {len(html)} bytes")
             return html
-    except Exception as e:
-        logger.warning(f"Playwright 取得失敗: {e}")
-        return None
+        except Exception as e:
+            logger.warning(f"Playwright 取得失敗: {e}")
+            self.close()
+            return None
+
+    def close(self):
+        """ブラウザセッションを明示的に閉じる。"""
+        try:
+            if self._browser:
+                self._browser.close()
+            if self._pw:
+                self._pw.stop()
+        except Exception:
+            pass
+        self._browser = None
+        self._pw = None
+        self._ctx = None
+        self._page = None
+        self._cookie_done = False
+
+
+# モジュールレベルのシングルトン（複数レース処理でブラウザを使い回す）
+_pw_session = _PlaywrightSession()
+
+
+def _get_html_with_playwright(url: str) -> Optional[str]:
+    """
+    Playwright (Chromium) で JS レンダリング後の HTML を返す。
+    playwright 未インストール時は None を返す。
+    ブラウザインスタンスはモジュール内で使い回す。
+    """
+    return _pw_session.get_html(url)
 
 # 性別エンコード（data_cleaner.py と合わせる）
 _SEX_ENC = {"牡": 0, "牝": 1, "セ": 2, "騸": 2}
