@@ -18,7 +18,7 @@ keiba_predictor/data/*.csv
 !keiba_predictor/data/results_history.csv
 keiba_predictor/data/*.png
 
-# Model (binary) - xgb_model.pkl はリポジトリで管理する
+# Model (binary) - xgb_model.pkl(130MB)はGoogle Drive管理、距離別モデルはgit管理
 # keiba_predictor/model/*.pkl
 
 # Jupyter
@@ -40,4 +40,4 @@ keiba_predictor/data/debug/
 keiba_predictor/data/cleaned_races.csv
 keiba_predictor/data/featured_races.csv
 keiba_predictor/data/raw_races.csv
-keiba_predictor/model/*.pkl
+keiba_predictor/model/xgb_model.pkl
