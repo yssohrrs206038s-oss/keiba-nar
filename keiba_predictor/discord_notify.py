@@ -1550,13 +1550,17 @@ def run_predict_notify(
             notified += 1
             logger.info(f"  送信完了: {race_name}")
 
-        # X（Twitter）に予想を投稿
+        # X（Twitter）に予想を投稿（特別レースのみ）
+        _X_POST_KEYWORDS = ("特別", "記念", "杯", "賞", "ステークス")
         if os.environ.get("ENABLE_X_POST", "false").lower() == "true":
-            try:
-                from keiba_predictor.x_post import post_predict_tweet
-                post_predict_tweet(race_name, cached_entry)
-            except Exception as e:
-                logger.warning(f"  [X] 予想投稿エラー: {e}")
+            if any(kw in race_name for kw in _X_POST_KEYWORDS):
+                try:
+                    from keiba_predictor.x_post import post_predict_tweet
+                    post_predict_tweet(race_name, cached_entry)
+                except Exception as e:
+                    logger.warning(f"  [X] 予想投稿エラー: {e}")
+            else:
+                logger.info(f"  [X] スキップ（特別レース以外）: {race_name}")
 
     send_discord(webhook_url, f"✅ {notified}/{len(grade_races)} レース送信完了")
 
@@ -1777,13 +1781,15 @@ def run_result_notify(
             except Exception as e:
                 logger.warning(f"  [history] 記録失敗 ({race_name}): {e}")
 
-        # X（Twitter）に結果を投稿
+        # X（Twitter）に結果を投稿（特別レースのみ）
+        _X_RESULT_KEYWORDS = ("特別", "記念", "杯", "賞", "ステークス")
         if os.environ.get("ENABLE_X_POST", "false").lower() == "true":
-            try:
-                from keiba_predictor.x_post import post_result_tweet
-                post_result_tweet(race_name, actual_df, pred, payouts)
-            except Exception as e:
-                logger.warning(f"  [X] 結果投稿エラー: {e}")
+            if any(kw in race_name for kw in _X_RESULT_KEYWORDS):
+                try:
+                    from keiba_predictor.x_post import post_result_tweet
+                    post_result_tweet(race_name, actual_df, pred, payouts)
+                except Exception as e:
+                    logger.warning(f"  [X] 結果投稿エラー: {e}")
 
     skip_msg = f"（{skipped}件通知済みスキップ）" if skipped else ""
     send_discord(webhook_url, f"✅ {notified}/{len(grade_races)} レース結果送信完了{skip_msg}")
