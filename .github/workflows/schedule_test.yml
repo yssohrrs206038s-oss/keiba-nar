@@ -1,0 +1,15 @@
+name: Schedule Test
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'  # 5分ごと（テスト用・確認後削除）
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print time
+        run: |
+          echo "Schedule triggered at $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          echo "This confirms cron scheduling works."
