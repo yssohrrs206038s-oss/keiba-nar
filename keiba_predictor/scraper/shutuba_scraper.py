@@ -58,6 +58,16 @@ def _get_html_with_playwright(url: str) -> Optional[str]:
                 logger.warning("Playwright: 出馬表セレクタのタイムアウト（HTML をそのまま使用）")
             html = page.content()
             browser.close()
+            # Playwright はブラウザ経由のため通常 UTF-8 変換済み。
+            # 万が一 EUC-JP バイトが混在している場合のフォールバック
+            try:
+                html.encode("utf-8")
+            except UnicodeEncodeError:
+                try:
+                    html = html.encode("latin-1").decode("euc-jp", errors="replace")
+                    logger.info("Playwright HTML を EUC-JP → UTF-8 に再変換しました")
+                except Exception:
+                    pass
             logger.info(f"Playwright 取得成功: {len(html)} bytes")
             return html
     except Exception as e:
@@ -331,7 +341,7 @@ def scrape_shutuba(race_id: str) -> Optional[dict]:
             time.sleep(random.uniform(0.5, 1.5))
         except Exception:
             pass
-        soup = _get(url, session)
+        soup = _get(url, session, encoding="euc-jp")
 
     if soup is None:
         logger.error(f"出馬表の取得に失敗: {race_id}")
