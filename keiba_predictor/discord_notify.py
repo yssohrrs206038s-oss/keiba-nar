@@ -1050,10 +1050,6 @@ def _build_hit_embed(
             detail += f"（配当{re.sub(r'[¥,]', '', str(sanren_pay))}円）"
         lines.append(detail)
 
-    yt_url = VENUE_YOUTUBE.get(venue, "")
-    if yt_url:
-        lines.append(f"\n📹 [レース動画]({yt_url})")
-
     # 3連複的中 = 金、馬連的中 = 緑、複勝のみ = 青
     if sanren_hit:
         color = 0xFFD700
@@ -1062,13 +1058,22 @@ def _build_hit_embed(
     else:
         color = 0x3498DB
 
-    return {
+    embed = {
         "title": "🎯 NAR的中！",
         "description": "\n".join(lines),
         "color": color,
         "image": {"url": random.choice(CELEBRATION_GIFS)},
         "footer": {"text": "KEIBA EDGE — AI地方競馬予想"},
     }
+
+    # YouTube動画リンクをfieldsに追加
+    yt_url = VENUE_YOUTUBE.get(venue, "")
+    if yt_url:
+        embed["fields"] = [
+            {"name": "📹 レース動画", "value": yt_url, "inline": False}
+        ]
+
+    return embed
 
 
 def _fmt_result(race_name: str, race_date: str,
