@@ -1554,7 +1554,14 @@ def run_result_notify(
     race_id: Optional[str] = None,
 ) -> None:
     """週末重賞の結果をスクレイピングし、予想との比較をDiscordに送信する。"""
-    webhook_url = _resolve_webhook(webhook_url)
+    # 結果全般 → DISCORD_RESULT_WEBHOOK_URL（未設定ならDISCORD_WEBHOOK_URLにフォールバック）
+    result_webhook = os.environ.get("DISCORD_RESULT_WEBHOOK_URL", "")
+    if not result_webhook:
+        result_webhook = _resolve_webhook(webhook_url)
+    # 的中専用 → DISCORD_HIT_WEBHOOK_URL
+    hit_webhook = os.environ.get("DISCORD_HIT_WEBHOOK_URL", "")
+    # 従来互換（webhook_url引数）
+    webhook_url = result_webhook
 
     session = requests.Session()
     cache   = _load_cache()
@@ -1731,14 +1738,12 @@ def run_result_notify(
                 _fh, _uh, _up, _sh, _sp,
             )
             if hit_msg:
-                hit_webhook = os.environ.get("DISCORD_HIT_WEBHOOK_URL", "")
                 if hit_webhook:
                     send_discord(hit_webhook, hit_msg)
                     logger.info(f"  的中通知送信（専用ch）: {race_name}")
                 else:
-                    # 専用チャンネル未設定時は通常チャンネルに送信
-                    send_discord(webhook_url, hit_msg)
-                    logger.info(f"  的中通知送信（通常ch）: {race_name}")
+                    send_discord(result_webhook, hit_msg)
+                    logger.info(f"  的中通知送信（結果ch）: {race_name}")
         except Exception as e:
             logger.warning(f"  的中通知エラー ({race_name}): {e}")
 
