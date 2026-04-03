@@ -1602,11 +1602,28 @@ def run_result_notify(
         except Exception as e:
             logger.warning(f"manual_results.json 読み込み失敗: {e}")
 
+    # 既に通知済み（results_history.csv に記録済み）のrace_idをスキップ
+    notified_ids: set[str] = set()
+    try:
+        hist_df = load_history()
+        if not hist_df.empty:
+            notified_ids = set(hist_df["race_id"].astype(str).unique())
+            logger.info(f"通知済みレース: {len(notified_ids)} 件")
+    except Exception:
+        pass
+
     notified = 0
+    skipped  = 0
     for race in grade_races:
         race_id   = race["race_id"]
         race_name = race.get("race_name", race_id)
         race_date = race.get("race_date", "")
+
+        # 既に結果通知済みならスキップ（2回目実行時の重複防止）
+        if race_id in notified_ids:
+            logger.info(f"  通知済みスキップ: {race_name} ({race_id})")
+            skipped += 1
+            continue
 
         # 手動結果があればスクレイピングをスキップ
         manual = manual_results.get(race_id)
@@ -1746,7 +1763,8 @@ def run_result_notify(
             except Exception as e:
                 logger.warning(f"  [X] 結果投稿エラー: {e}")
 
-    send_discord(webhook_url, f"✅ {notified}/{len(grade_races)} レース結果送信完了")
+    skip_msg = f"（{skipped}件通知済みスキップ）" if skipped else ""
+    send_discord(webhook_url, f"✅ {notified}/{len(grade_races)} レース結果送信完了{skip_msg}")
 
     # 週次・累計サマリーを Discord に送信
     try:

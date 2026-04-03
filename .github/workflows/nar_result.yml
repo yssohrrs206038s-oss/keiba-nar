@@ -2,7 +2,8 @@ name: NAR 結果通知（毎日）
 
 on:
   schedule:
-    - cron: '0 9 * * *'   # 毎日 18:00 JST
+    - cron: '0 9 * * *'    # 毎日 18:00 JST（昼間開催分）
+    - cron: '30 12 * * *'  # 毎日 21:30 JST（ナイター含む全レース）
   workflow_dispatch:
     inputs:
       race_id:
