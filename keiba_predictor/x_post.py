@@ -88,46 +88,64 @@ def _safe_post(client, text: str) -> bool:
         return False
 
 
-# ── 予想ツイート ──────────────────────────────────────────────────────
+# ── NAR予想ツイート ─────────────────────────────────────────────────────
+# ※ keiba-nar リポジトリ専用。Twitter API キーは keiba-predictor と同一の
+#    Secret を keiba-nar リポジトリの GitHub Secrets にも登録すること。
 
 def build_predict_tweet(race_name: str, cache_entry: dict) -> str:
-    grade = _grade_label(race_name)
+    """NAR（地方競馬）用の予想ツイートを構築する。"""
     short = _short_name(race_name)
+    venue = cache_entry.get("venue", "")
+    start_time = cache_entry.get("start_time", "")
+    course_info = cache_entry.get("course_info", "")
 
-    ev_map = {e["horse_number"]: e["ev_score"]
-              for e in cache_entry.get("ev_top3", [])}
+    # ヘッダー: 開催場と発走時刻
+    header_parts = []
+    if venue:
+        header_parts.append(venue)
+    if start_time:
+        header_parts.append(f"{start_time}発走")
+    header = " ".join(header_parts)
 
-    lines = [f"🏇【{short}{' ' + grade if grade else ''}】KEIBA EDGE予想"]
+    lines = [f"🏟️【地方競馬】{header}"]
+    lines.append(f"🏇 {short}" + (f" {course_info}" if course_info else ""))
+    lines.append("")
 
+    # ◎○▲ 3頭
     for role, mark in [("honmei", "◎"), ("taikou", "○"), ("ana", "▲")]:
         p = cache_entry.get(role, {})
         if not p or not p.get("horse_name"):
             continue
-        num   = p.get("horse_number", "?")
-        name  = p.get("horse_name", "")
-        ev    = ev_map.get(num, 0)
-        stars = _ev_stars(ev)
-        lines.append(f"{mark}{num}番{name}{stars}")
+        num = p.get("horse_number", "?")
+        name = p.get("horse_name", "")
+        prob = p.get("prob", 0) * 100
+        lines.append(f"{mark}{num}番 {name} {prob:.1f}%")
 
-    # 穴馬（ana_horse_num）
-    ana_num = cache_entry.get("ana_horse_num")
-    ana_info = cache_entry.get("ana_horse_info", {})
-    if ana_num and ana_info.get("horse_name"):
-        prob = ana_info.get("prob", 0) * 100
-        pop = ana_info.get("popularity", "?")
-        lines.append(f"★穴{ana_num}番{ana_info['horse_name']}（AI{prob:.0f}% {pop}人気）")
+    # 買い目
+    lines.append("")
+    top3 = cache_entry.get("predicted_top3_nums", [])
+    top5 = cache_entry.get("predicted_top5_nums", top3)
+    if top3:
+        lines.append(f"💰複勝 {top3[0]}番")
+        if len(top3) >= 2:
+            combos = []
+            for i in range(min(len(top3), 3)):
+                for j in range(i + 1, min(len(top3), 3)):
+                    combos.append(f"{top3[i]}-{top3[j]}")
+            lines.append(f"馬連 {'/'.join(combos)}")
+        if len(top5) >= 3:
+            aite = "/".join(str(n) for n in top5[1:])
+            lines.append(f"3連複 軸{top5[0]}×{aite}")
 
-    # 危険馬（1頭のみ）
-    for d in cache_entry.get("dangerous_horses", [])[:1]:
-        lines.append(f"⚠️{d['horse_number']}番{d['horse_name']}({d['popularity']}人気)")
-
-    lines.append(f"#競馬予想 #{short} #KEIBA_EDGE")
+    # ハッシュタグ
+    venue_tag = f"#{venue}競馬" if venue else ""
+    lines.append(f"\n#地方競馬 #KEIBA_EDGE {venue_tag}".rstrip())
 
     return "\n".join(lines)
 
 
 def post_predict_tweet(race_name: str, cache_entry: dict) -> bool:
-    """予想ツイートを X に投稿する。資格情報未設定時はスキップ（エラーなし）。"""
+    """NAR予想ツイートを X に投稿する。資格情報未設定時はスキップ（エラーなし）。"""
     client = _build_client()
     if client is None:
         return False
@@ -183,34 +201,34 @@ def build_result_tweet(
 
     any_hit = fukusho_hit or umaren_hit or sanren_hit
 
+    venue = pred.get("venue", "")
+    venue_tag = f"#{venue}競馬" if venue else ""
+
     if sanren_hit:
-        # 3連複的中: 特別フォーマット
         pay_str = re.sub(r"[¥,]", "", str(sanren_pay)) if sanren_pay else ""
         lines = [
-            "🎯💥 KEIBA EDGE 的中！",
+            "🎯💥【地方競馬】KEIBA EDGE 的中！",
             SEP,
-            f"【{short}{' ' + grade if grade else ''}】",
+            f"🏇 {short}" + (f"（{venue}）" if venue else ""),
             f"複勝{f_icon} 馬連{u_icon} 3連複{s_icon}",
             "",
             f"3連複 {pay_str}円的中！" if pay_str else "3連複 的中！",
             f"回収率 {roi_pct:.0f}%" if roi_pct > 0 else "",
             "",
             f"◎{honmei_num}番{honmei_name}" if honmei_num else "",
-            f"#競馬的中 #{short} #KEIBA_EDGE",
+            f"#地方競馬 #競馬的中 #KEIBA_EDGE {venue_tag}".rstrip(),
         ]
     elif any_hit:
-        # 複勝または馬連のみ的中
         lines = [
-            "🎯 KEIBA EDGE 的中！",
-            f"【{short}{' ' + grade if grade else ''}】",
+            "🎯【地方競馬】KEIBA EDGE 的中！",
+            f"🏇 {short}" + (f"（{venue}）" if venue else ""),
             f"複勝{f_icon} 馬連{u_icon} 3連複{s_icon}",
             f"回収率{roi_pct:.0f}%" if roi_pct > 0 else "",
-            f"#競馬的中 #{short} #KEIBA_EDGE",
+            f"#地方競馬 #競馬的中 #KEIBA_EDGE {venue_tag}".rstrip(),
         ]
     else:
-        # 全外れ: ハッシュタグなし
         lines = [
-            f"🏆【{short}{' ' + grade if grade else ''}】KEIBA EDGE結果",
+            f"🏆【地方競馬】{short} KEIBA EDGE結果",
             f"複勝{f_icon} 馬連{u_icon} 3連複{s_icon}",
             f"累計回収率{roi_pct:.0f}%" if roi_pct > 0 else "",
         ]
@@ -255,7 +273,7 @@ def build_weekly_summary_tweet(results: list[dict]) -> str:
     SEP = "━━━━━━━━━━━━━━━━"
 
     lines = [
-        "📊 今週のKEIBA EDGE成績",
+        "📊【地方競馬】今週のKEIBA EDGE成績",
         SEP,
     ]
 
@@ -283,8 +301,8 @@ def build_weekly_summary_tweet(results: list[dict]) -> str:
         f"複勝的中率: {fukusho_rate:.0f}%",
         f"回収率: {roi:.0f}%",
         SEP,
-        "来週も予想します👇",
-        "#KEIBA_EDGE #AI競馬予想",
+        "明日も予想します👇",
+        "#地方競馬 #KEIBA_EDGE",
     ]
 
     return "\n".join(lines)
