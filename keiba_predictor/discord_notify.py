@@ -19,6 +19,7 @@
 import json
 import logging
 import os
+import random
 import re
 import time
 from datetime import date, timedelta
@@ -984,7 +985,38 @@ def _record_manual_result(race_id: str, race_name: str, race_date: str,
     logger.info(f"  [history] 手動記録: {name} fukusho={fukusho_hit} umaren={umaren_hit} sanren={sanren_hit} return=¥{return_total:,}")
 
 
-def _build_hit_message(
+CELEBRATION_GIFS = [
+    "https://media.tenor.com/x8v1oNUOmg4AAAAC/celebrate.gif",
+    "https://media.tenor.com/ZEcGIEKMiZkAAAAC/horse-racing-win.gif",
+    "https://media.tenor.com/LkHCEimYMmEAAAAC/confetti.gif",
+    "https://media.tenor.com/vGMbFl7vdhAAAAAC/winning.gif",
+]
+
+
+def _send_hit_embed(webhook_url: str, embed: dict) -> bool:
+    """Discord Webhook に embed + GIF を送信する。"""
+    if not webhook_url:
+        return False
+    payload = json.dumps({"embeds": [embed]}, ensure_ascii=False).encode("utf-8")
+    try:
+        r = requests.post(
+            webhook_url,
+            data=payload,
+            headers={"Content-Type": "application/json; charset=utf-8"},
+            timeout=15,
+        )
+        if r.status_code in (200, 204):
+            logger.info(f"  的中embed送信OK")
+            return True
+        else:
+            logger.error(f"  的中embed送信失敗: {r.status_code} {r.text[:200]}")
+            return False
+    except requests.RequestException as e:
+        logger.error(f"  的中embed送信エラー: {e}")
+        return False
+
+
+def _build_hit_embed(
     venue: str,
     race_name: str,
     honmei_num: Optional[int],
@@ -994,43 +1026,49 @@ def _build_hit_message(
     umaren_pay: str,
     sanren_hit: bool,
     sanren_pay: str,
-) -> Optional[str]:
-    """的中時の特別通知メッセージを生成する。何も的中していなければ None。"""
+) -> Optional[dict]:
+    """的中時のembed辞書を生成する。何も的中していなければ None。"""
     if not (fukusho_hit or umaren_hit or sanren_hit):
         return None
 
-    RULE = "━" * 20
-    lines = [
-        "🎯 NAR的中！",
-        RULE,
-        f"🏇 {venue} {race_name}",
-    ]
+    # 説明テキスト
+    lines = [f"🏇 **{venue} {race_name}**"]
     if honmei_num is not None:
         lines.append(f"◎ {honmei_num}番 {honmei_name}")
-    lines.append(RULE)
+    lines.append("")
 
-    hit_details = []
     if fukusho_hit:
-        hit_details.append("複勝 ✅ 的中")
+        lines.append("複勝 ✅ 的中")
     if umaren_hit:
         detail = "馬連 ✅ 的中"
         if umaren_pay:
             detail += f"（配当{re.sub(r'[¥,]', '', str(umaren_pay))}円）"
-        hit_details.append(detail)
+        lines.append(detail)
     if sanren_hit:
         detail = "3連複 ✅ 的中"
         if sanren_pay:
             detail += f"（配当{re.sub(r'[¥,]', '', str(sanren_pay))}円）"
-        hit_details.append(detail)
-    lines.append("\n".join(hit_details))
-    lines.append(RULE)
+        lines.append(detail)
 
     yt_url = VENUE_YOUTUBE.get(venue, "")
     if yt_url:
-        lines.append(f"📹 レース動画 → {yt_url}")
-        lines.append(RULE)
+        lines.append(f"\n📹 [レース動画]({yt_url})")
 
-    return "\n".join(lines)
+    # 3連複的中 = 金、馬連的中 = 緑、複勝のみ = 青
+    if sanren_hit:
+        color = 0xFFD700
+    elif umaren_hit:
+        color = 0x00FF00
+    else:
+        color = 0x3498DB
+
+    return {
+        "title": "🎯 NAR的中！",
+        "description": "\n".join(lines),
+        "color": color,
+        "image": {"url": random.choice(CELEBRATION_GIFS)},
+        "footer": {"text": "KEIBA EDGE — AI地方競馬予想"},
+    }
 
 
 def _fmt_result(race_name: str, race_date: str,
@@ -1754,17 +1792,15 @@ def run_result_notify(
                 _sh, _sp = _check_sanrenpuku_raw(predicted_nums, _actual_top3_nums, payouts, _ana_num)
 
             _venue = pred.get("venue", "")
-            hit_msg = _build_hit_message(
+            hit_embed = _build_hit_embed(
                 _venue, race_name, _honmei_num, _honmei_name,
                 _fh, _uh, _up, _sh, _sp,
             )
-            if hit_msg:
-                if hit_webhook:
-                    send_discord(hit_webhook, hit_msg)
-                    logger.info(f"  的中通知送信（専用ch）: {race_name}")
-                else:
-                    send_discord(result_webhook, hit_msg)
-                    logger.info(f"  的中通知送信（結果ch）: {race_name}")
+            if hit_embed:
+                target_webhook = hit_webhook if hit_webhook else result_webhook
+                _send_hit_embed(target_webhook, hit_embed)
+                label = "専用ch" if hit_webhook else "結果ch"
+                logger.info(f"  的中GIF通知送信（{label}）: {race_name}")
         except Exception as e:
             logger.warning(f"  的中通知エラー ({race_name}): {e}")
 
