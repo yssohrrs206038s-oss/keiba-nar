@@ -613,7 +613,7 @@ function _renderRaceCard(raceId, r) {
     <div class="race-card-header">
       <div>
         <div class="race-name">${esc(shortName)} <span style="font-size:11px;color:var(--text-muted);">${esc(course)}</span></div>
-        <div class="race-meta">${esc(r.race_date || '')}${venue ? ' ' + esc(venue) : ''}${r.start_time ? ' ' + esc(r.start_time) + '発走' : ''}</div>
+        <div class="race-meta">${[venue ? '📍 ' + esc(venue) : '', r.start_time ? '🕐 ' + esc(r.start_time) + '発走' : '', esc(r.race_date || '')].filter(Boolean).join(' | ')}</div>
       </div>
       ${venue ? `<span class="venue-badge">${esc(venue)}</span>` : ''}
     </div>
