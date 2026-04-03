@@ -234,12 +234,15 @@ def record_result(
         "return_total":    return_total,
     }
 
-    # CSV 追記
+    # CSV 書き込み（既存race_idは上書き、新規は追記）
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     new_row_df = pd.DataFrame([row])
     if HISTORY_PATH.exists():
-        new_row_df.to_csv(HISTORY_PATH, mode="a", header=False,
-                          index=False, encoding="utf-8-sig")
+        existing = pd.read_csv(HISTORY_PATH, encoding="utf-8-sig", dtype=str)
+        # 同一race_idの既存行を削除してから追加（重複防止）
+        existing = existing[existing["race_id"] != str(race_id)]
+        combined = pd.concat([existing, new_row_df], ignore_index=True)
+        combined.to_csv(HISTORY_PATH, index=False, encoding="utf-8-sig")
     else:
         new_row_df.to_csv(HISTORY_PATH, mode="w", header=True,
                           index=False, encoding="utf-8-sig")

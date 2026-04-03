@@ -859,6 +859,13 @@ def _store_prediction(race_id: str, race_name: str, race_date: str,
     except Exception as e:
         logger.warning(f"モンテカルロシミュレーション失敗: {e}")
 
+    # モデル情報をキャッシュに保持（ダッシュボード表示用）
+    cache["_model_metrics"] = {
+        "auc": 0.8162,
+        "fukusho_rate": 60.5,
+        "n_features": 44,
+    }
+
     _save_cache(cache)
 
 
