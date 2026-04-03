@@ -1218,9 +1218,19 @@ def _format_prediction_from_cache(race_name: str, entry: dict) -> tuple[str, str
     ai_comments = entry.get("ai_comments", {})
 
     # ── Message 1: 予想 ───────────────────────────────────────
+    venue = entry.get("venue", "")
+    start_time = entry.get("start_time", "")
     lines1 = [sep, f"🏇 {race_name}"]
+    # 開催場・発走時刻・コース情報を1行にまとめる
+    meta_parts = []
+    if venue:
+        meta_parts.append(f"📍 {venue}")
+    if start_time:
+        meta_parts.append(f"🕐 {start_time}発走")
     if course_info:
-        lines1.append(course_info)
+        meta_parts.append(course_info)
+    if meta_parts:
+        lines1.append(" | ".join(meta_parts))
     lines1.append(sep)
 
     MARKS = ["◎", "○", "▲", "△", "　"]
