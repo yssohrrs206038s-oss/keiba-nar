@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(python:*)",
+      "Read(//c/Users/journ/AppData/Local/Programs/**)",
+      "Bash(ls /c/Python*/python.exe)",
+      "Bash(where python:*)",
+      "Bash(py -3 -c \"print\\(''hello''\\)\")",
+      "Bash(py:*)",
+      "Bash(ls -lh keiba_predictor/model/xgb_model*.pkl)",
+      "Bash(git pull:*)",
+      "Bash(gh secret:*)",
+      "Bash(where gh:*)",
+      "Bash(gh workflow:*)",
+      "Bash(curl -s -H \"Accept: application/vnd.github.v3+json\" https://api.github.com/repos/yssohrrs206038s-oss/keiba-nar)",
+      "Bash(curl -s \"https://raw.githubusercontent.com/yssohrrs206038s-oss/keiba-nar/main/.github/workflows/nar_predict.yml\")",
+      "Bash(curl -s -H \"Accept: application/vnd.github.v3+json\" \"https://api.github.com/repos/yssohrrs206038s-oss/keiba-nar/actions/workflows\")"
+    ]
+  }
+}
