@@ -481,11 +481,16 @@ def scrape_shutuba(race_id: str) -> Optional[dict]:
     race_grade_enc = _encode_race_grade(race_name)
 
     # ── 出馬表テーブル ──────────────────────────────────────
+    # NOTE: NAR の出馬表には2つの "Shutuba" テーブルが存在する:
+    #   table.ShutubaTable            → 本物の出馬表（HorseList 12〜14行）
+    #   table.Shutuba_Table.PredictRap_Table → 予想ラップ（HorseList 2行）
+    # PredictRap_Table を除外し、ShutubaTable を優先して選択する。
     table = (
-        soup.select_one("table.Shutuba_Table")
+        soup.select_one("table.ShutubaTable:not(.PredictRap_Table)")
+        or soup.select_one("table.Shutuba_Table:not(.PredictRap_Table)")
         or soup.select_one("table#shutuba_table")
         or soup.select_one("table.ShutubaTable")
-        or soup.select_one("table[class*='Shutuba']")
+        or soup.select_one("table[class*='Shutuba']:not(.PredictRap_Table)")
     )
 
     rows = []
