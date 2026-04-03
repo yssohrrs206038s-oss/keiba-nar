@@ -1,0 +1,7674 @@
+{
+  "202643040301": {
+    "race_name": "3ļ–ĹĹ",
+    "race_date": "",
+    "start_time": "",
+    "venue": "",
+    "course_info": "芝1200m",
+    "honmei": {
+      "horse_number": 5,
+      "horse_name": "•Ō•√•‘°ľ•«•§•ł°ľ",
+      "prob": 0.6889162659645081,
+      "odds": 3.0,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 1.1265,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3408,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5664,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 8,
+      "horse_name": "•≠•„•√•Ļ•Ž•ģ•’•»",
+      "prob": 0.5390174984931946,
+      "odds": 2.9,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 1.0271,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.0897,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.6359,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "ana": {
+      "horse_number": 2,
+      "horse_name": "•’•£•ę•Ļ•Í•ť°ľ•Ņ",
+      "prob": 0.411989688873291,
+      "odds": 7.9,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.256,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.1324,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5624,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      5,
+      8,
+      2
+    ],
+    "predicted_top5_nums": [
+      5,
+      8,
+      2,
+      1,
+      7
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 5,
+        "horse_name": "•Ō•√•‘°ľ•«•§•ł°ľ",
+        "prob": 0.6889,
+        "odds": 3.0
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "•≠•„•√•Ļ•Ž•ģ•’•»",
+        "prob": 0.539,
+        "odds": 2.9
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "•’•£•ę•Ļ•Í•ť°ľ•Ņ",
+        "prob": 0.412,
+        "odds": 7.9
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "•ś•¶•ś•¶•Ļ•Ņ°ľ",
+        "prob": 0.344,
+        "odds": 9.8
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "•™°ľ•Ž•§•ů•Ę•Í•Ļ",
+        "prob": 0.3076,
+        "odds": 5.6
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 6,
+        "horse_name": "•ť•į•”•Ž",
+        "ev_score": 5.42,
+        "prob": 0.0838,
+        "odds": 64.7
+      },
+      {
+        "horse_number": 9,
+        "horse_name": "•Ŗ•ő•∑•„•Ž•ŗ",
+        "ev_score": 4.85,
+        "prob": 0.1851,
+        "odds": 26.2
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "•Ę°ľ•Į•Ū°ľ•ļ",
+        "ev_score": 4.192,
+        "prob": 0.2871,
+        "odds": 14.6
+      }
+    ],
+    "dangerous_horses": [
+      {
+        "horse_number": 7,
+        "horse_name": "•™°ľ•Ž•§•ů•Ę•Í•Ļ",
+        "popularity": 3,
+        "prob": 0.3076,
+        "reasons": [
+          "AI確率31%（3番人気以内なのに低い）"
+        ]
+      }
+    ],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [
+        {
+          "num": 5,
+          "name": "•Ō•√•‘°ľ•«•§•ł°ľ"
+        }
+      ],
+      "umaren": [
+        {
+          "nums": [
+            5,
+            8
+          ]
+        },
+        {
+          "nums": [
+            5,
+            2
+          ]
+        },
+        {
+          "nums": [
+            8,
+            2
+          ]
+        }
+      ],
+      "wide": [],
+      "sanrenpuku": {
+        "jiku": [
+          5
+        ],
+        "aite": [
+          8,
+          2,
+          1,
+          7
+        ]
+      },
+      "total_points": 10,
+      "strategy_note": "複勝 + 馬連 + 3連複軸1×4",
+      "use_wide": false
+    },
+    "simulation": {
+      "5": {
+        "horse_name": "•Ō•√•‘°ľ•«•§•ł°ľ",
+        "top3_rate": 0.989,
+        "top3_std": 0.005,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.99,
+          "slow_pace": 0.99,
+          "normal": 0.99
+        }
+      },
+      "8": {
+        "horse_name": "•≠•„•√•Ļ•Ž•ģ•’•»",
+        "top3_rate": 0.878,
+        "top3_std": 0.014,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.89,
+          "slow_pace": 0.88,
+          "normal": 0.87
+        }
+      },
+      "2": {
+        "horse_name": "•’•£•ę•Ļ•Í•ť°ľ•Ņ",
+        "top3_rate": 0.509,
+        "top3_std": 0.022,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.51,
+          "slow_pace": 0.51,
+          "normal": 0.51
+        }
+      },
+      "1": {
+        "horse_name": "•ś•¶•ś•¶•Ļ•Ņ°ľ",
+        "top3_rate": 0.261,
+        "top3_std": 0.019,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.27,
+          "slow_pace": 0.26,
+          "normal": 0.26
+        }
+      },
+      "7": {
+        "horse_name": "•™°ľ•Ž•§•ů•Ę•Í•Ļ",
+        "top3_rate": 0.162,
+        "top3_std": 0.017,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.16,
+          "slow_pace": 0.16,
+          "normal": 0.17
+        }
+      }
+    }
+  },
+  "202643040302": {
+    "race_name": "3Ї–ґе",
+    "race_date": "",
+    "start_time": "",
+    "venue": "",
+    "course_info": "芝1200m",
+    "honmei": {
+      "horse_number": 5,
+      "horse_name": "•м•™•љ•л•Є•г°Љ",
+      "prob": 0.5647714138031006,
+      "odds": 3.1,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.977,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.0769,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.6359,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 6,
+      "horse_name": "•Є•™•—°Љ•ѓ•а°Љ•у",
+      "prob": 0.5395626425743103,
+      "odds": 4.1,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.7966,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3035,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5684,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "ana": {
+      "horse_number": 3,
+      "horse_name": "•’•м•§•а•≠•г•√•»",
+      "prob": 0.4681928753852844,
+      "odds": 5.7,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.4614,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.1201,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5905,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      5,
+      6,
+      3
+    ],
+    "predicted_top5_nums": [
+      5,
+      6,
+      3,
+      9,
+      4
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 5,
+        "horse_name": "•м•™•љ•л•Є•г°Љ",
+        "prob": 0.5648,
+        "odds": 3.1
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "•Є•™•—°Љ•ѓ•а°Љ•у",
+        "prob": 0.5396,
+        "odds": 4.1
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "•’•м•§•а•≠•г•√•»",
+        "prob": 0.4682,
+        "odds": 5.7
+      },
+      {
+        "horse_number": 9,
+        "horse_name": "•≥•у•Ј•І•л•«•£°Љ",
+        "prob": 0.4606,
+        "odds": 5.4
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "•л•я• •є•є•»°Љ•у",
+        "prob": 0.3622,
+        "odds": 8.9
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 1,
+        "horse_name": "•Ґ•§•«•£•у•й•ф•°°Љ",
+        "ev_score": 5.326,
+        "prob": 0.2346,
+        "odds": 22.7
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "•њ•Ђ•§•Ѕ•Ђ•м•у",
+        "ev_score": 5.042,
+        "prob": 0.096,
+        "odds": 52.5
+      },
+      {
+        "horse_number": 10,
+        "horse_name": "•я•ƒ•≤•ƒ",
+        "ev_score": 4.761,
+        "prob": 0.1817,
+        "odds": 26.2
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [
+        {
+          "nums": [
+            5,
+            6
+          ]
+        },
+        {
+          "nums": [
+            5,
+            3
+          ]
+        },
+        {
+          "nums": [
+            6,
+            3
+          ]
+        }
+      ],
+      "wide": [],
+      "sanrenpuku": {
+        "jiku": [
+          5
+        ],
+        "aite": [
+          6,
+          3,
+          9,
+          4
+        ]
+      },
+      "total_points": 9,
+      "strategy_note": "馬連 + 3連複軸1×4",
+      "use_wide": false
+    },
+    "simulation": {
+      "5": {
+        "horse_name": "•м•™•љ•л•Є•г°Љ",
+        "top3_rate": 0.845,
+        "top3_std": 0.018,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.83,
+          "slow_pace": 0.85,
+          "normal": 0.85
+        }
+      },
+      "6": {
+        "horse_name": "•Є•™•—°Љ•ѓ•а°Љ•у",
+        "top3_rate": 0.796,
+        "top3_std": 0.013,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.79,
+          "slow_pace": 0.8,
+          "normal": 0.79
+        }
+      },
+      "3": {
+        "horse_name": "•’•м•§•а•≠•г•√•»",
+        "top3_rate": 0.559,
+        "top3_std": 0.017,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.56,
+          "slow_pace": 0.56,
+          "normal": 0.55
+        }
+      },
+      "9": {
+        "horse_name": "•≥•у•Ј•І•л•«•£°Љ",
+        "top3_rate": 0.532,
+        "top3_std": 0.022,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.54,
+          "slow_pace": 0.53,
+          "normal": 0.53
+        }
+      },
+      "4": {
+        "horse_name": "•л•я• •є•є•»°Љ•у",
+        "top3_rate": 0.196,
+        "top3_std": 0.014,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.2,
+          "slow_pace": 0.19,
+          "normal": 0.2
+        }
+      }
+    }
+  },
+  "202643040303": {
+    "race_name": "C3∞Ï∆Û",
+    "race_date": "",
+    "start_time": "",
+    "venue": "",
+    "course_info": "芝1500m",
+    "honmei": {
+      "horse_number": 10,
+      "horse_name": "•∑•Û•≠•Û•∞•’•°°º•∂",
+      "prob": 0.3282794952392578,
+      "odds": 5.1,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.6318,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2906,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5839,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 2,
+      "horse_name": "•≠•„•È•·•Î•π•È•§•ý",
+      "prob": 0.31055301427841187,
+      "odds": 5.6,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.4939,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2359,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.582,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "ana": {
+      "horse_number": 5,
+      "horse_name": "•–°º•À•Û•∞•¶•§•Û•…",
+      "prob": 0.274029940366745,
+      "odds": 5.7,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.5126,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.1236,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5705,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      10,
+      2,
+      5
+    ],
+    "predicted_top5_nums": [
+      10,
+      2,
+      5,
+      6,
+      8
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 10,
+        "horse_name": "•∑•Û•≠•Û•∞•’•°°º•∂",
+        "prob": 0.3283,
+        "odds": 5.1
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "•≠•„•È•·•Î•π•È•§•ý",
+        "prob": 0.3106,
+        "odds": 5.6
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "•–°º•À•Û•∞•¶•§•Û•…",
+        "prob": 0.274,
+        "odds": 5.7
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "•÷•Î•√•Ø•Í•Û",
+        "prob": 0.2525,
+        "odds": 4.7
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "•µ°º•’•◊•È•¡• •ý",
+        "prob": 0.2233,
+        "odds": 8.0
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 7,
+        "horse_name": "•Í°º•Ù•Î•—•È•¿•§•π",
+        "ev_score": 2.043,
+        "prob": 0.0554,
+        "odds": 36.9
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "•®•√•»•»•••´•ý",
+        "ev_score": 2.027,
+        "prob": 0.0934,
+        "odds": 21.7
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "•Ï•§•Ô•®•ð•√•Ø",
+        "ev_score": 1.919,
+        "prob": 0.1054,
+        "odds": 18.2
+      }
+    ],
+    "dangerous_horses": [
+      {
+        "horse_number": 10,
+        "horse_name": "•∑•Û•≠•Û•∞•’•°°º•∂",
+        "popularity": 2,
+        "prob": 0.3283,
+        "reasons": [
+          "AI確率33%（3番人気以内なのに低い）"
+        ]
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "•≠•„•È•·•Î•π•È•§•ý",
+        "popularity": 3,
+        "prob": 0.3106,
+        "reasons": [
+          "AI確率31%（3番人気以内なのに低い）"
+        ]
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "•÷•Î•√•Ø•Í•Û",
+        "popularity": 1,
+        "prob": 0.2525,
+        "reasons": [
+          "AI確率25%（3番人気以内なのに低い）"
+        ]
+      }
+    ],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [
+        {
+          "num": 10,
+          "name": "•∑•Û•≠•Û•∞•’•°°º•∂"
+        }
+      ],
+      "umaren": [
+        {
+          "nums": [
+            10,
+            2
+          ]
+        },
+        {
+          "nums": [
+            10,
+            5
+          ]
+        },
+        {
+          "nums": [
+            2,
+            5
+          ]
+        }
+      ],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 4,
+      "strategy_note": "複勝 + 馬連",
+      "use_wide": false
+    },
+    "simulation": {
+      "10": {
+        "horse_name": "•∑•Û•≠•Û•∞•’•°°º•∂",
+        "top3_rate": 0.688,
+        "top3_std": 0.021,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.7,
+          "slow_pace": 0.68,
+          "normal": 0.69
+        }
+      },
+      "2": {
+        "horse_name": "•≠•„•È•·•Î•π•È•§•ý",
+        "top3_rate": 0.623,
+        "top3_std": 0.024,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.64,
+          "slow_pace": 0.62,
+          "normal": 0.62
+        }
+      },
+      "5": {
+        "horse_name": "•–°º•À•Û•∞•¶•§•Û•…",
+        "top3_rate": 0.494,
+        "top3_std": 0.021,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.5,
+          "slow_pace": 0.47,
+          "normal": 0.53
+        }
+      },
+      "6": {
+        "horse_name": "•÷•Î•√•Ø•Í•Û",
+        "top3_rate": 0.417,
+        "top3_std": 0.023,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.42,
+          "slow_pace": 0.4,
+          "normal": 0.43
+        }
+      },
+      "8": {
+        "horse_name": "•µ°º•’•◊•È•¡• •ý",
+        "top3_rate": 0.311,
+        "top3_std": 0.022,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.33,
+          "slow_pace": 0.29,
+          "normal": 0.32
+        }
+      }
+    }
+  },
+  "202643040304": {
+    "race_name": "C3ΑλΤσ",
+    "race_date": "",
+    "start_time": "",
+    "venue": "",
+    "course_info": "芝1200m",
+    "honmei": {
+      "horse_number": 7,
+      "horse_name": "Ξ·ΞιΞτΞΘΞΠΞΙ",
+      "prob": 0.37805336713790894,
+      "odds": 3.9,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.8442,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3024,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5874,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 11,
+      "horse_name": "ΞκΞΗΞεΞΠΞßΓΦΞκ",
+      "prob": 0.28269171714782715,
+      "odds": 3.5,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.9361,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "track_condition_enc",
+          "value": 0.0782,
+          "label": "馬場状態"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.6157,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "ana": {
+      "horse_number": 6,
+      "horse_name": "ΞτΞΘΞσΞ»ΞέΓΦΞΦ",
+      "prob": 0.23807001113891602,
+      "odds": 8.6,
+      "shap_top": [
+        {
+          "feature": "popularity",
+          "value": 0.2886,
+          "label": "人気"
+        },
+        {
+          "feature": "odds",
+          "value": 0.2481,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5799,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      7,
+      11,
+      6
+    ],
+    "predicted_top5_nums": [
+      7,
+      11,
+      6,
+      4,
+      3
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 7,
+        "horse_name": "Ξ·ΞιΞτΞΘΞΠΞΙ",
+        "prob": 0.3781,
+        "odds": 3.9
+      },
+      {
+        "horse_number": 11,
+        "horse_name": "ΞκΞΗΞεΞΠΞßΓΦΞκ",
+        "prob": 0.2827,
+        "odds": 3.5
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "ΞτΞΘΞσΞ»ΞέΓΦΞΦ",
+        "prob": 0.2381,
+        "odds": 8.6
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "Ξ«ΞκΞόΞΪΞΩΞΙΞΪΞΖ",
+        "prob": 0.1645,
+        "odds": 9.6
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "ΞόΞΗΞΪΞκΞλΞΛΞσΞήΓΦ",
+        "prob": 0.1456,
+        "odds": 11.2
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 6,
+        "horse_name": "ΞτΞΘΞσΞ»ΞέΓΦΞΦ",
+        "ev_score": 2.047,
+        "prob": 0.2381,
+        "odds": 8.6
+      },
+      {
+        "horse_number": 10,
+        "horse_name": "ΞΥΞΖΞΈΞ®ΞκΞΒ",
+        "ev_score": 1.735,
+        "prob": 0.0436,
+        "odds": 39.8
+      },
+      {
+        "horse_number": 9,
+        "horse_name": "Ξ’ΞΘΞΣΓΦΞλ",
+        "ev_score": 1.705,
+        "prob": 0.0937,
+        "odds": 18.2
+      }
+    ],
+    "dangerous_horses": [
+      {
+        "horse_number": 7,
+        "horse_name": "Ξ·ΞιΞτΞΘΞΠΞΙ",
+        "popularity": 2,
+        "prob": 0.3781,
+        "reasons": [
+          "AI確率38%（3番人気以内なのに低い）"
+        ]
+      },
+      {
+        "horse_number": 11,
+        "horse_name": "ΞκΞΗΞεΞΠΞßΓΦΞκ",
+        "popularity": 1,
+        "prob": 0.2827,
+        "reasons": [
+          "AI確率28%（3番人気以内なのに低い）"
+        ]
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "ΞτΞΘΞσΞ»ΞέΓΦΞΦ",
+        "popularity": 3,
+        "prob": 0.2381,
+        "reasons": [
+          "AI確率24%（3番人気以内なのに低い）"
+        ]
+      }
+    ],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [
+        {
+          "num": 7,
+          "name": "Ξ·ΞιΞτΞΘΞΠΞΙ"
+        }
+      ],
+      "umaren": [
+        {
+          "nums": [
+            7,
+            11
+          ]
+        },
+        {
+          "nums": [
+            7,
+            6
+          ]
+        },
+        {
+          "nums": [
+            11,
+            6
+          ]
+        }
+      ],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 4,
+      "strategy_note": "複勝 + 馬連",
+      "use_wide": false
+    },
+    "simulation": {
+      "7": {
+        "horse_name": "Ξ·ΞιΞτΞΘΞΠΞΙ",
+        "top3_rate": 0.871,
+        "top3_std": 0.016,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.88,
+          "slow_pace": 0.86,
+          "normal": 0.88
+        }
+      },
+      "11": {
+        "horse_name": "ΞκΞΗΞεΞΠΞßΓΦΞκ",
+        "top3_rate": 0.615,
+        "top3_std": 0.023,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.63,
+          "slow_pace": 0.6,
+          "normal": 0.62
+        }
+      },
+      "6": {
+        "horse_name": "ΞτΞΘΞσΞ»ΞέΓΦΞΦ",
+        "top3_rate": 0.458,
+        "top3_std": 0.022,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.47,
+          "slow_pace": 0.42,
+          "normal": 0.5
+        }
+      },
+      "4": {
+        "horse_name": "Ξ«ΞκΞόΞΪΞΩΞΙΞΪΞΖ",
+        "top3_rate": 0.222,
+        "top3_std": 0.018,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.22,
+          "slow_pace": 0.21,
+          "normal": 0.23
+        }
+      },
+      "3": {
+        "horse_name": "ΞόΞΗΞΪΞκΞλΞΛΞσΞήΓΦ",
+        "top3_rate": 0.174,
+        "top3_std": 0.016,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.19,
+          "slow_pace": 0.17,
+          "normal": 0.17
+        }
+      }
+    }
+  },
+  "202643040305": {
+    "race_name": "C2œªº∑»¨•¶(C2º∑)",
+    "race_date": "",
+    "start_time": "",
+    "venue": "",
+    "course_info": "芝1200m",
+    "honmei": {
+      "horse_number": 1,
+      "horse_name": "•”°º•”°º•◊•Í•·°º•Ì",
+      "prob": 0.3561350703239441,
+      "odds": 5.0,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.632,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3011,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5814,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 6,
+      "horse_name": "•«•Î•Þ•Î•…•È",
+      "prob": 0.27339884638786316,
+      "odds": 6.0,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.4691,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2394,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5799,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "ana": {
+      "horse_number": 10,
+      "horse_name": "•»•Ø•∑°º•™°º•«•£•Û",
+      "prob": 0.23474298417568207,
+      "odds": 4.6,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.6137,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "track_condition_enc",
+          "value": 0.0772,
+          "label": "馬場状態"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.6183,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      1,
+      6,
+      10
+    ],
+    "predicted_top5_nums": [
+      1,
+      6,
+      10,
+      4,
+      9
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 1,
+        "horse_name": "•”°º•”°º•◊•Í•·°º•Ì",
+        "prob": 0.3561,
+        "odds": 5.0
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "•«•Î•Þ•Î•…•È",
+        "prob": 0.2734,
+        "odds": 6.0
+      },
+      {
+        "horse_number": 10,
+        "horse_name": "•»•Ø•∑°º•™°º•«•£•Û",
+        "prob": 0.2347,
+        "odds": 4.6
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "•¢•þ•È•∏•™•Õ",
+        "prob": 0.2264,
+        "odds": 8.0
+      },
+      {
+        "horse_number": 9,
+        "horse_name": "•Í°º•Ù•Î•Ô•Û•¿°º",
+        "prob": 0.1514,
+        "odds": 9.9
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 4,
+        "horse_name": "•¢•þ•È•∏•™•Õ",
+        "ev_score": 1.811,
+        "prob": 0.2264,
+        "odds": 8.0
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "•”°º•”°º•◊•Í•·°º•Ì",
+        "ev_score": 1.781,
+        "prob": 0.3561,
+        "odds": 5.0
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "•Ω°º•Ù•≠•◊",
+        "ev_score": 1.777,
+        "prob": 0.0516,
+        "odds": 34.4
+      }
+    ],
+    "dangerous_horses": [
+      {
+        "horse_number": 1,
+        "horse_name": "•”°º•”°º•◊•Í•·°º•Ì",
+        "popularity": 2,
+        "prob": 0.3561,
+        "reasons": [
+          "AI確率36%（3番人気以内なのに低い）"
+        ]
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "•«•Î•Þ•Î•…•È",
+        "popularity": 3,
+        "prob": 0.2734,
+        "reasons": [
+          "AI確率27%（3番人気以内なのに低い）"
+        ]
+      },
+      {
+        "horse_number": 10,
+        "horse_name": "•»•Ø•∑°º•™°º•«•£•Û",
+        "popularity": 1,
+        "prob": 0.2347,
+        "reasons": [
+          "AI確率23%（3番人気以内なのに低い）"
+        ]
+      }
+    ],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [
+        {
+          "num": 1,
+          "name": "•”°º•”°º•◊•Í•·°º•Ì"
+        }
+      ],
+      "umaren": [
+        {
+          "nums": [
+            1,
+            6
+          ]
+        },
+        {
+          "nums": [
+            1,
+            10
+          ]
+        },
+        {
+          "nums": [
+            6,
+            10
+          ]
+        }
+      ],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 4,
+      "strategy_note": "複勝 + 馬連",
+      "use_wide": false
+    },
+    "simulation": {
+      "1": {
+        "horse_name": "•”°º•”°º•◊•Í•·°º•Ì",
+        "top3_rate": 0.811,
+        "top3_std": 0.016,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.82,
+          "slow_pace": 0.8,
+          "normal": 0.82
+        }
+      },
+      "6": {
+        "horse_name": "•«•Î•Þ•Î•…•È",
+        "top3_rate": 0.559,
+        "top3_std": 0.022,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.57,
+          "slow_pace": 0.55,
+          "normal": 0.56
+        }
+      },
+      "10": {
+        "horse_name": "•»•Ø•∑°º•™°º•«•£•Û",
+        "top3_rate": 0.42,
+        "top3_std": 0.021,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.43,
+          "slow_pace": 0.39,
+          "normal": 0.46
+        }
+      },
+      "4": {
+        "horse_name": "•¢•þ•È•∏•™•Õ",
+        "top3_rate": 0.392,
+        "top3_std": 0.022,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.4,
+          "slow_pace": 0.37,
+          "normal": 0.41
+        }
+      },
+      "9": {
+        "horse_name": "•Í°º•Ù•Î•Ô•Û•¿°º",
+        "top3_rate": 0.172,
+        "top3_std": 0.016,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.18,
+          "slow_pace": 0.17,
+          "normal": 0.17
+        }
+      }
+    }
+  },
+  "202643040306": {
+    "race_name": "ЅРЅѓЅЧЅщЅЄЅЊЅѓОо(C1)",
+    "race_date": "",
+    "start_time": "",
+    "venue": "",
+    "course_info": "芝1600m",
+    "honmei": {
+      "horse_number": 7,
+      "horse_name": "ЅИЁМЅЦЅЃЁМЅеЅЁЅщЅЊ",
+      "prob": 0.8807986378669739,
+      "odds": 1.0,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 3.3507,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2155,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.6213,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 4,
+      "horse_name": "ЅэЁМЅЩЅЂЅЙЅПЅъЅЙЅЏ",
+      "prob": 0.1795983910560608,
+      "odds": 19.4,
+      "shap_top": [
+        {
+          "feature": "popularity",
+          "value": 0.417,
+          "label": "人気"
+        },
+        {
+          "feature": "track_condition_enc",
+          "value": 0.0638,
+          "label": "馬場状態"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5776,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "ana": {
+      "horse_number": 6,
+      "horse_name": "ЅЙЅЦЅЃЁМЅыЅ­ЅуЅЮЅѓ",
+      "prob": 0.1526465117931366,
+      "odds": 26.7,
+      "shap_top": [
+        {
+          "feature": "popularity",
+          "value": 0.3781,
+          "label": "人気"
+        },
+        {
+          "feature": "track_condition_enc",
+          "value": 0.0659,
+          "label": "馬場状態"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5783,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      7,
+      4,
+      6
+    ],
+    "predicted_top5_nums": [
+      7,
+      4,
+      6,
+      2,
+      1
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 7,
+        "horse_name": "ЅИЁМЅЦЅЃЁМЅеЅЁЅщЅЊ",
+        "prob": 0.8808,
+        "odds": 1.0
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "ЅэЁМЅЩЅЂЅЙЅПЅъЅЙЅЏ",
+        "prob": 0.1796,
+        "odds": 19.4
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "ЅЙЅЦЅЃЁМЅыЅ­ЅуЅЮЅѓ",
+        "prob": 0.1526,
+        "odds": 26.7
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "ЅпЅУЅЩЅЪЅЄЅШЅлЁМЅЏ",
+        "prob": 0.0953,
+        "odds": 39.2
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "ЅАЅьЅУЅЏ",
+        "prob": 0.0876,
+        "odds": 48.3
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 1,
+        "horse_name": "ЅАЅьЅУЅЏ",
+        "ev_score": 4.23,
+        "prob": 0.0876,
+        "odds": 48.3
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "ЅЙЅЦЅЃЁМЅыЅ­ЅуЅЮЅѓ",
+        "ev_score": 4.076,
+        "prob": 0.1526,
+        "odds": 26.7
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "ЅпЅУЅЩЅЪЅЄЅШЅлЁМЅЏ",
+        "ev_score": 3.737,
+        "prob": 0.0953,
+        "odds": 39.2
+      }
+    ],
+    "dangerous_horses": [
+      {
+        "horse_number": 4,
+        "horse_name": "ЅэЁМЅЩЅЂЅЙЅПЅъЅЙЅЏ",
+        "popularity": 2,
+        "prob": 0.1796,
+        "reasons": [
+          "AI確率18%（3番人気以内なのに低い）"
+        ]
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "ЅЙЅЦЅЃЁМЅыЅ­ЅуЅЮЅѓ",
+        "popularity": 3,
+        "prob": 0.1526,
+        "reasons": [
+          "AI確率15%（3番人気以内なのに低い）"
+        ]
+      }
+    ],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [
+        {
+          "nums": [
+            7,
+            4
+          ]
+        },
+        {
+          "nums": [
+            7,
+            6
+          ]
+        },
+        {
+          "nums": [
+            4,
+            6
+          ]
+        }
+      ],
+      "wide": [],
+      "sanrenpuku": {
+        "jiku": [
+          7
+        ],
+        "aite": [
+          4,
+          6,
+          2,
+          1
+        ]
+      },
+      "total_points": 9,
+      "strategy_note": "馬連 + 3連複軸1×4",
+      "use_wide": false
+    },
+    "simulation": {
+      "7": {
+        "horse_name": "ЅИЁМЅЦЅЃЁМЅеЅЁЅщЅЊ",
+        "top3_rate": 1.0,
+        "top3_std": 0.0,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 1.0,
+          "slow_pace": 1.0,
+          "normal": 1.0
+        }
+      },
+      "4": {
+        "horse_name": "ЅэЁМЅЩЅЂЅЙЅПЅъЅЙЅЏ",
+        "top3_rate": 0.571,
+        "top3_std": 0.021,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.61,
+          "slow_pace": 0.51,
+          "normal": 0.61
+        }
+      },
+      "6": {
+        "horse_name": "ЅЙЅЦЅЃЁМЅыЅ­ЅуЅЮЅѓ",
+        "top3_rate": 0.479,
+        "top3_std": 0.019,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.52,
+          "slow_pace": 0.43,
+          "normal": 0.51
+        }
+      },
+      "2": {
+        "horse_name": "ЅпЅУЅЩЅЪЅЄЅШЅлЁМЅЏ",
+        "top3_rate": 0.293,
+        "top3_std": 0.02,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.3,
+          "slow_pace": 0.27,
+          "normal": 0.31
+        }
+      },
+      "1": {
+        "horse_name": "ЅАЅьЅУЅЏ",
+        "top3_rate": 0.289,
+        "top3_std": 0.015,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.29,
+          "slow_pace": 0.3,
+          "normal": 0.27
+        }
+      }
+    }
+  },
+  "202643040307": {
+    "race_name": "ダイヤモンドスプリント(A2)",
+    "race_date": "2026-04-03",
+    "start_time": "17:55",
+    "venue": "",
+    "course_info": "芝1200m",
+    "honmei": {
+      "horse_number": 9,
+      "horse_name": "アッカーマン",
+      "prob": 0.45226189494132996,
+      "odds": 2.1,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 1.5621,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.1544,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.6483,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 7,
+      "horse_name": "サンマルシップ",
+      "prob": 0.3063017725944519,
+      "odds": 4.4,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.7097,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2985,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.6307,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "ana": {
+      "horse_number": 3,
+      "horse_name": "ページェント",
+      "prob": 0.2551180124282837,
+      "odds": 6.5,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.394,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2563,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.6224,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      9,
+      7,
+      3
+    ],
+    "predicted_top5_nums": [
+      9,
+      7,
+      3,
+      5,
+      8
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 9,
+        "horse_name": "アッカーマン",
+        "prob": 0.4523,
+        "odds": 2.1
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "サンマルシップ",
+        "prob": 0.3063,
+        "odds": 4.4
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "ページェント",
+        "prob": 0.2551,
+        "odds": 6.5
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "レーザーショー",
+        "prob": 0.1959,
+        "odds": 7.9
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "グレートジャーニー",
+        "prob": 0.1279,
+        "odds": 11.7
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 1,
+        "horse_name": "アイゴールド",
+        "ev_score": 2.068,
+        "prob": 0.0373,
+        "odds": 55.5
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "ナイトオブバンド",
+        "ev_score": 1.752,
+        "prob": 0.0633,
+        "odds": 27.7
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "ページェント",
+        "ev_score": 1.658,
+        "prob": 0.2551,
+        "odds": 6.5
+      }
+    ],
+    "dangerous_horses": [
+      {
+        "horse_number": 7,
+        "horse_name": "サンマルシップ",
+        "popularity": 2,
+        "prob": 0.3063,
+        "reasons": [
+          "AI確率31%（3番人気以内なのに低い）"
+        ]
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "ページェント",
+        "popularity": 3,
+        "prob": 0.2551,
+        "reasons": [
+          "AI確率26%（3番人気以内なのに低い）"
+        ]
+      }
+    ],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [
+        {
+          "nums": [
+            9,
+            7
+          ]
+        },
+        {
+          "nums": [
+            9,
+            3
+          ]
+        },
+        {
+          "nums": [
+            7,
+            3
+          ]
+        }
+      ],
+      "wide": [],
+      "sanrenpuku": {
+        "jiku": [
+          9
+        ],
+        "aite": [
+          7,
+          3,
+          5,
+          8
+        ]
+      },
+      "total_points": 9,
+      "strategy_note": "馬連 + 3連複軸1×5",
+      "use_wide": false
+    },
+    "simulation": {
+      "9": {
+        "horse_name": "アッカーマン",
+        "top3_rate": 0.959,
+        "top3_std": 0.012,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.96,
+          "slow_pace": 0.95,
+          "normal": 0.96
+        }
+      },
+      "7": {
+        "horse_name": "サンマルシップ",
+        "top3_rate": 0.718,
+        "top3_std": 0.018,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.74,
+          "slow_pace": 0.7,
+          "normal": 0.72
+        }
+      },
+      "3": {
+        "horse_name": "ページェント",
+        "top3_rate": 0.534,
+        "top3_std": 0.022,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.55,
+          "slow_pace": 0.51,
+          "normal": 0.55
+        }
+      },
+      "5": {
+        "horse_name": "レーザーショー",
+        "top3_rate": 0.321,
+        "top3_std": 0.019,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.34,
+          "slow_pace": 0.3,
+          "normal": 0.33
+        }
+      },
+      "8": {
+        "horse_name": "グレートジャーニー",
+        "top3_rate": 0.143,
+        "top3_std": 0.015,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.13,
+          "slow_pace": 0.15,
+          "normal": 0.15
+        }
+      }
+    }
+  },
+  "202643040308": {
+    "race_name": "C2œªº∑»¨•¢(C2º∑)",
+    "race_date": "",
+    "start_time": "",
+    "venue": "",
+    "course_info": "芝1500m",
+    "honmei": {
+      "horse_number": 1,
+      "horse_name": "•µ•Û•ø•‚•À•´•”°º•¡",
+      "prob": 0.35795360803604126,
+      "odds": 5.2,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.6268,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2973,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5791,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 8,
+      "horse_name": "•¥°º•Î•…•—°º•»• °º",
+      "prob": 0.2837921977043152,
+      "odds": 4.3,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.7047,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "track_condition_enc",
+          "value": 0.0726,
+          "label": "馬場状態"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.6221,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "ana": {
+      "horse_number": 3,
+      "horse_name": "•◊•Ì•·•∆•…°º•Î",
+      "prob": 0.24581961333751678,
+      "odds": 7.9,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.2894,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.1308,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5738,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      1,
+      8,
+      3
+    ],
+    "predicted_top5_nums": [
+      1,
+      8,
+      3,
+      10,
+      9
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 1,
+        "horse_name": "•µ•Û•ø•‚•À•´•”°º•¡",
+        "prob": 0.358,
+        "odds": 5.2
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "•¥°º•Î•…•—°º•»• °º",
+        "prob": 0.2838,
+        "odds": 4.3
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "•◊•Ì•·•∆•…°º•Î",
+        "prob": 0.2458,
+        "odds": 7.9
+      },
+      {
+        "horse_number": 10,
+        "horse_name": "•»•••¢•™•¶•’",
+        "prob": 0.2436,
+        "odds": 7.1
+      },
+      {
+        "horse_number": 9,
+        "horse_name": "•¢•…•Þ•§•‰•≥°º•Ø",
+        "prob": 0.1776,
+        "odds": 9.3
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 3,
+        "horse_name": "•◊•Ì•·•∆•…°º•Î",
+        "ev_score": 1.942,
+        "prob": 0.2458,
+        "odds": 7.9
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "•µ•Û•ø•‚•À•´•”°º•¡",
+        "ev_score": 1.861,
+        "prob": 0.358,
+        "odds": 5.2
+      },
+      {
+        "horse_number": 10,
+        "horse_name": "•»•••¢•™•¶•’",
+        "ev_score": 1.73,
+        "prob": 0.2436,
+        "odds": 7.1
+      }
+    ],
+    "dangerous_horses": [
+      {
+        "horse_number": 1,
+        "horse_name": "•µ•Û•ø•‚•À•´•”°º•¡",
+        "popularity": 2,
+        "prob": 0.358,
+        "reasons": [
+          "AI確率36%（3番人気以内なのに低い）"
+        ]
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "•¥°º•Î•…•—°º•»• °º",
+        "popularity": 1,
+        "prob": 0.2838,
+        "reasons": [
+          "AI確率28%（3番人気以内なのに低い）"
+        ]
+      },
+      {
+        "horse_number": 10,
+        "horse_name": "•»•••¢•™•¶•’",
+        "popularity": 3,
+        "prob": 0.2436,
+        "reasons": [
+          "AI確率24%（3番人気以内なのに低い）"
+        ]
+      }
+    ],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [
+        {
+          "num": 1,
+          "name": "•µ•Û•ø•‚•À•´•”°º•¡"
+        }
+      ],
+      "umaren": [
+        {
+          "nums": [
+            1,
+            8
+          ]
+        },
+        {
+          "nums": [
+            1,
+            3
+          ]
+        },
+        {
+          "nums": [
+            8,
+            3
+          ]
+        }
+      ],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 4,
+      "strategy_note": "複勝 + 馬連",
+      "use_wide": false
+    },
+    "simulation": {
+      "1": {
+        "horse_name": "•µ•Û•ø•‚•À•´•”°º•¡",
+        "top3_rate": 0.789,
+        "top3_std": 0.017,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.8,
+          "slow_pace": 0.78,
+          "normal": 0.79
+        }
+      },
+      "8": {
+        "horse_name": "•¥°º•Î•…•—°º•»• °º",
+        "top3_rate": 0.56,
+        "top3_std": 0.023,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.57,
+          "slow_pace": 0.55,
+          "normal": 0.56
+        }
+      },
+      "3": {
+        "horse_name": "•◊•Ì•·•∆•…°º•Î",
+        "top3_rate": 0.422,
+        "top3_std": 0.023,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.42,
+          "slow_pace": 0.4,
+          "normal": 0.46
+        }
+      },
+      "10": {
+        "horse_name": "•»•••¢•™•¶•’",
+        "top3_rate": 0.415,
+        "top3_std": 0.023,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.41,
+          "slow_pace": 0.4,
+          "normal": 0.43
+        }
+      },
+      "9": {
+        "horse_name": "•¢•…•Þ•§•‰•≥°º•Ø",
+        "top3_rate": 0.206,
+        "top3_std": 0.018,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.22,
+          "slow_pace": 0.2,
+          "normal": 0.21
+        }
+      }
+    }
+  },
+  "202643040309": {
+    "race_name": "«Ō§§!ŐÓļŕ§Ņ§¨§š§Ļ∂ś≥ŕ…Ű(C2ľ∑)",
+    "race_date": "",
+    "start_time": "",
+    "venue": "",
+    "course_info": "芝1200m",
+    "honmei": {
+      "horse_number": 2,
+      "horse_name": "•ť•Ļ•»•∑•Á•√•»",
+      "prob": 0.5861648917198181,
+      "odds": 1.5,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 2.0527,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.1635,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.6191,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 7,
+      "horse_name": "•Ļ•ř•§•Ž•◊•ť•Ļ",
+      "prob": 0.35479220747947693,
+      "odds": 5.1,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.6359,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2966,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5874,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "ana": {
+      "horse_number": 5,
+      "horse_name": "•Ī•§•Ę•§•Ô•ę•›•ő",
+      "prob": 0.2113122195005417,
+      "odds": 9.7,
+      "shap_top": [
+        {
+          "feature": "popularity",
+          "value": 0.3085,
+          "label": "人気"
+        },
+        {
+          "feature": "odds",
+          "value": 0.163,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5799,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      2,
+      7,
+      5
+    ],
+    "predicted_top5_nums": [
+      2,
+      7,
+      5,
+      4,
+      6
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 2,
+        "horse_name": "•ť•Ļ•»•∑•Á•√•»",
+        "prob": 0.5862,
+        "odds": 1.5
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "•Ļ•ř•§•Ž•◊•ť•Ļ",
+        "prob": 0.3548,
+        "odds": 5.1
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "•Ī•§•Ę•§•Ô•ę•›•ő",
+        "prob": 0.2113,
+        "odds": 9.7
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "•ž•»•Ū•÷°ľ•ŗ",
+        "prob": 0.174,
+        "odds": 12.1
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "•≠°ľ•◊•Ę•…°ľ•ť•÷•Ž",
+        "prob": 0.1268,
+        "odds": 15.7
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 3,
+        "horse_name": "•“•Ņ•ŗ•≠",
+        "ev_score": 2.426,
+        "prob": 0.0515,
+        "odds": 47.1
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "•¶•§•ů•≥•ů•—•Ļ",
+        "ev_score": 2.342,
+        "prob": 0.0746,
+        "odds": 31.4
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "•ž•»•Ū•÷°ľ•ŗ",
+        "ev_score": 2.105,
+        "prob": 0.174,
+        "odds": 12.1
+      }
+    ],
+    "dangerous_horses": [
+      {
+        "horse_number": 7,
+        "horse_name": "•Ļ•ř•§•Ž•◊•ť•Ļ",
+        "popularity": 2,
+        "prob": 0.3548,
+        "reasons": [
+          "AI確率35%（3番人気以内なのに低い）"
+        ]
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "•Ī•§•Ę•§•Ô•ę•›•ő",
+        "popularity": 3,
+        "prob": 0.2113,
+        "reasons": [
+          "AI確率21%（3番人気以内なのに低い）"
+        ]
+      }
+    ],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [
+        {
+          "nums": [
+            2,
+            7
+          ]
+        },
+        {
+          "nums": [
+            2,
+            5
+          ]
+        },
+        {
+          "nums": [
+            7,
+            5
+          ]
+        }
+      ],
+      "wide": [],
+      "sanrenpuku": {
+        "jiku": [
+          2
+        ],
+        "aite": [
+          7,
+          5,
+          4,
+          6
+        ]
+      },
+      "total_points": 9,
+      "strategy_note": "馬連 + 3連複軸1×4",
+      "use_wide": false
+    },
+    "simulation": {
+      "2": {
+        "horse_name": "•ť•Ļ•»•∑•Á•√•»",
+        "top3_rate": 0.998,
+        "top3_std": 0.002,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 1.0,
+          "slow_pace": 1.0,
+          "normal": 1.0
+        }
+      },
+      "7": {
+        "horse_name": "•Ļ•ř•§•Ž•◊•ť•Ļ",
+        "top3_rate": 0.84,
+        "top3_std": 0.016,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.85,
+          "slow_pace": 0.82,
+          "normal": 0.85
+        }
+      },
+      "5": {
+        "horse_name": "•Ī•§•Ę•§•Ô•ę•›•ő",
+        "top3_rate": 0.382,
+        "top3_std": 0.02,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.41,
+          "slow_pace": 0.35,
+          "normal": 0.4
+        }
+      },
+      "4": {
+        "horse_name": "•ž•»•Ū•÷°ľ•ŗ",
+        "top3_rate": 0.268,
+        "top3_std": 0.013,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.28,
+          "slow_pace": 0.24,
+          "normal": 0.29
+        }
+      },
+      "6": {
+        "horse_name": "•≠°ľ•◊•Ę•…°ľ•ť•÷•Ž",
+        "top3_rate": 0.144,
+        "top3_std": 0.014,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.15,
+          "slow_pace": 0.14,
+          "normal": 0.15
+        }
+      }
+    }
+  },
+  "202643040310": {
+    "race_name": "Ä»ĀŌ·ī„¹„×„ź„ó„Č(B2)",
+    "race_date": "",
+    "start_time": "",
+    "venue": "",
+    "course_info": "芝1200m",
+    "honmei": {
+      "horse_number": 11,
+      "horse_name": "„»„ó„Č„é„ė„¬„Š„Ź”¼",
+      "prob": 0.40356090664863586,
+      "odds": 2.5,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 1.3903,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.1396,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.6157,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 4,
+      "horse_name": "„Ö„é„¤„Č„Õ„é„Ć„·„å",
+      "prob": 0.3229083716869354,
+      "odds": 4.8,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.699,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2449,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5799,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "ana": {
+      "horse_number": 7,
+      "horse_name": "„“”¼„ė„Ē„ó„¹„¤”¼„×",
+      "prob": 0.3217395842075348,
+      "odds": 4.5,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.6996,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2988,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5908,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      11,
+      4,
+      7
+    ],
+    "predicted_top5_nums": [
+      11,
+      4,
+      7,
+      5,
+      8
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 11,
+        "horse_name": "„»„ó„Č„é„ė„¬„Š„Ź”¼",
+        "prob": 0.4036,
+        "odds": 2.5
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "„Ö„é„¤„Č„Õ„é„Ć„·„å",
+        "prob": 0.3229,
+        "odds": 4.8
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "„“”¼„ė„Ē„ó„¹„¤”¼„×",
+        "prob": 0.3217,
+        "odds": 4.5
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "„«„²„Ž„ė",
+        "prob": 0.2153,
+        "odds": 8.4
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "„­„æ„µ„ó„Ø„ė„Ō„¹",
+        "prob": 0.1605,
+        "odds": 11.1
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 6,
+        "horse_name": "„Ņ”¼„ķ”¼„·„ē”¼",
+        "ev_score": 2.365,
+        "prob": 0.0585,
+        "odds": 40.4
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "„Ó„Ć„°„Š„ó„É",
+        "ev_score": 1.98,
+        "prob": 0.0365,
+        "odds": 54.3
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "„«„²„Ž„ė",
+        "ev_score": 1.808,
+        "prob": 0.2153,
+        "odds": 8.4
+      }
+    ],
+    "dangerous_horses": [
+      {
+        "horse_number": 4,
+        "horse_name": "„Ö„é„¤„Č„Õ„é„Ć„·„å",
+        "popularity": 3,
+        "prob": 0.3229,
+        "reasons": [
+          "AI確率32%（3番人気以内なのに低い）"
+        ]
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "„“”¼„ė„Ē„ó„¹„¤”¼„×",
+        "popularity": 2,
+        "prob": 0.3217,
+        "reasons": [
+          "AI確率32%（3番人気以内なのに低い）"
+        ]
+      }
+    ],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [
+        {
+          "nums": [
+            11,
+            4
+          ]
+        },
+        {
+          "nums": [
+            11,
+            7
+          ]
+        },
+        {
+          "nums": [
+            4,
+            7
+          ]
+        }
+      ],
+      "wide": [],
+      "sanrenpuku": {
+        "jiku": [
+          11
+        ],
+        "aite": [
+          4,
+          7,
+          5,
+          8
+        ]
+      },
+      "total_points": 9,
+      "strategy_note": "馬連 + 3連複軸1×5",
+      "use_wide": false
+    },
+    "simulation": {
+      "11": {
+        "horse_name": "„»„ó„Č„é„ė„¬„Š„Ź”¼",
+        "top3_rate": 0.877,
+        "top3_std": 0.015,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.88,
+          "slow_pace": 0.87,
+          "normal": 0.89
+        }
+      },
+      "4": {
+        "horse_name": "„Ö„é„¤„Č„Õ„é„Ć„·„å",
+        "top3_rate": 0.686,
+        "top3_std": 0.019,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.7,
+          "slow_pace": 0.67,
+          "normal": 0.69
+        }
+      },
+      "7": {
+        "horse_name": "„“”¼„ė„Ē„ó„¹„¤”¼„×",
+        "top3_rate": 0.679,
+        "top3_std": 0.019,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.7,
+          "slow_pace": 0.66,
+          "normal": 0.69
+        }
+      },
+      "5": {
+        "horse_name": "„«„²„Ž„ė",
+        "top3_rate": 0.294,
+        "top3_std": 0.017,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.31,
+          "slow_pace": 0.28,
+          "normal": 0.3
+        }
+      },
+      "8": {
+        "horse_name": "„­„æ„µ„ó„Ø„ė„Ō„¹",
+        "top3_rate": 0.152,
+        "top3_std": 0.016,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.16,
+          "slow_pace": 0.14,
+          "normal": 0.16
+        }
+      }
+    }
+  },
+  "202643040311": {
+    "race_name": "Ω’œ¬∑ Ã¿∆√ Ã(B1B2)",
+    "race_date": "",
+    "start_time": "",
+    "venue": "",
+    "course_info": "芝1600m",
+    "honmei": {
+      "horse_number": 5,
+      "horse_name": "•Õ•§•”°º•π•ø°º",
+      "prob": 0.3376033306121826,
+      "odds": 5.2,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.6296,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2926,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5774,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 1,
+      "horse_name": "•±•§•¢•§•·•”•¶•π",
+      "prob": 0.2843318283557892,
+      "odds": 7.1,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.3517,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2585,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5796,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "ana": {
+      "horse_number": 10,
+      "horse_name": "•π•Þ•§•Î•‚•¢",
+      "prob": 0.23958194255828857,
+      "odds": 4.6,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.6117,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "track_condition_enc",
+          "value": 0.078,
+          "label": "馬場状態"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.6165,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      5,
+      1,
+      10
+    ],
+    "predicted_top5_nums": [
+      5,
+      1,
+      10,
+      9,
+      7
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 5,
+        "horse_name": "•Õ•§•”°º•π•ø°º",
+        "prob": 0.3376,
+        "odds": 5.2
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "•±•§•¢•§•·•”•¶•π",
+        "prob": 0.2843,
+        "odds": 7.1
+      },
+      {
+        "horse_number": 10,
+        "horse_name": "•π•Þ•§•Î•‚•¢",
+        "prob": 0.2396,
+        "odds": 4.6
+      },
+      {
+        "horse_number": 9,
+        "horse_name": "•∏•ß•Û•»•Î•ø•√•¡",
+        "prob": 0.2376,
+        "odds": 7.3
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "•¢•·•π•»•Í•π",
+        "prob": 0.1418,
+        "odds": 9.9
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 1,
+        "horse_name": "•±•§•¢•§•·•”•¶•π",
+        "ev_score": 2.019,
+        "prob": 0.2843,
+        "odds": 7.1
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "•Õ•§•”°º•π•ø°º",
+        "ev_score": 1.756,
+        "prob": 0.3376,
+        "odds": 5.2
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "•‰•Æ•Í•±•œ•‰",
+        "ev_score": 1.735,
+        "prob": 0.0758,
+        "odds": 22.9
+      }
+    ],
+    "dangerous_horses": [
+      {
+        "horse_number": 5,
+        "horse_name": "•Õ•§•”°º•π•ø°º",
+        "popularity": 2,
+        "prob": 0.3376,
+        "reasons": [
+          "AI確率34%（3番人気以内なのに低い）"
+        ]
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "•±•§•¢•§•·•”•¶•π",
+        "popularity": 3,
+        "prob": 0.2843,
+        "reasons": [
+          "AI確率28%（3番人気以内なのに低い）"
+        ]
+      },
+      {
+        "horse_number": 10,
+        "horse_name": "•π•Þ•§•Î•‚•¢",
+        "popularity": 1,
+        "prob": 0.2396,
+        "reasons": [
+          "AI確率24%（3番人気以内なのに低い）"
+        ]
+      }
+    ],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [
+        {
+          "num": 5,
+          "name": "•Õ•§•”°º•π•ø°º"
+        }
+      ],
+      "umaren": [
+        {
+          "nums": [
+            5,
+            1
+          ]
+        },
+        {
+          "nums": [
+            5,
+            10
+          ]
+        },
+        {
+          "nums": [
+            1,
+            10
+          ]
+        }
+      ],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 4,
+      "strategy_note": "複勝 + 馬連",
+      "use_wide": false
+    },
+    "simulation": {
+      "5": {
+        "horse_name": "•Õ•§•”°º•π•ø°º",
+        "top3_rate": 0.753,
+        "top3_std": 0.023,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.75,
+          "slow_pace": 0.74,
+          "normal": 0.77
+        }
+      },
+      "1": {
+        "horse_name": "•±•§•¢•§•·•”•¶•π",
+        "top3_rate": 0.592,
+        "top3_std": 0.026,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.6,
+          "slow_pace": 0.59,
+          "normal": 0.59
+        }
+      },
+      "10": {
+        "horse_name": "•π•Þ•§•Î•‚•¢",
+        "top3_rate": 0.419,
+        "top3_std": 0.013,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.43,
+          "slow_pace": 0.42,
+          "normal": 0.41
+        }
+      },
+      "9": {
+        "horse_name": "•∏•ß•Û•»•Î•ø•√•¡",
+        "top3_rate": 0.418,
+        "top3_std": 0.018,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.43,
+          "slow_pace": 0.41,
+          "normal": 0.41
+        }
+      },
+      "7": {
+        "horse_name": "•¢•·•π•»•Í•π",
+        "top3_rate": 0.143,
+        "top3_std": 0.014,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.15,
+          "slow_pace": 0.14,
+          "normal": 0.15
+        }
+      }
+    }
+  },
+  "202643040312": {
+    "race_name": "„é„Ź„ó„­„å„é„¹ĘĆŹĢ(C2)",
+    "race_date": "",
+    "start_time": "",
+    "venue": "",
+    "course_info": "芝1800m",
+    "honmei": {
+      "horse_number": 1,
+      "horse_name": "„Ø„Æ„į„Ē„£„Ī„­„»„­",
+      "prob": 0.38093072175979614,
+      "odds": 4.3,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.785,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3029,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5871,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 9,
+      "horse_name": "„Ō”¼„¹„¦„©„ź„¢”¼",
+      "prob": 0.3038984537124634,
+      "odds": 5.1,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.6432,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2372,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5912,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "ana": {
+      "horse_number": 3,
+      "horse_name": "„Ę„£„Ź„Š„ķ”¼„ŗ",
+      "prob": 0.2470695972442627,
+      "odds": 8.3,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.2825,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.1309,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5792,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      1,
+      9,
+      3
+    ],
+    "predicted_top5_nums": [
+      1,
+      9,
+      3,
+      14,
+      4
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 1,
+        "horse_name": "„Ø„Æ„į„Ē„£„Ī„­„»„­",
+        "prob": 0.3809,
+        "odds": 4.3
+      },
+      {
+        "horse_number": 9,
+        "horse_name": "„Ō”¼„¹„¦„©„ź„¢”¼",
+        "prob": 0.3039,
+        "odds": 5.1
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "„Ę„£„Ź„Š„ķ”¼„ŗ",
+        "prob": 0.2471,
+        "odds": 8.3
+      },
+      {
+        "horse_number": 14,
+        "horse_name": "„¹„Č„é”¼„Ą„ģ„¢”¼„ģ",
+        "prob": 0.2315,
+        "odds": 2.7
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "„Ī„ó„ź„ß„æ„·„Ŗ„ó",
+        "prob": 0.1358,
+        "odds": 15.7
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 7,
+        "horse_name": "„ą„¾„é„·„«",
+        "ev_score": 2.238,
+        "prob": 0.045,
+        "odds": 49.7
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "„Ī„ó„ź„ß„æ„·„Ŗ„ó",
+        "ev_score": 2.132,
+        "prob": 0.1358,
+        "odds": 15.7
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "„Ę„£„Ź„Š„ķ”¼„ŗ",
+        "ev_score": 2.051,
+        "prob": 0.2471,
+        "odds": 8.3
+      }
+    ],
+    "dangerous_horses": [
+      {
+        "horse_number": 1,
+        "horse_name": "„Ø„Æ„į„Ē„£„Ī„­„»„­",
+        "popularity": 2,
+        "prob": 0.3809,
+        "reasons": [
+          "AI確率38%（3番人気以内なのに低い）"
+        ]
+      },
+      {
+        "horse_number": 9,
+        "horse_name": "„Ō”¼„¹„¦„©„ź„¢”¼",
+        "popularity": 3,
+        "prob": 0.3039,
+        "reasons": [
+          "AI確率30%（3番人気以内なのに低い）"
+        ]
+      },
+      {
+        "horse_number": 14,
+        "horse_name": "„¹„Č„é”¼„Ą„ģ„¢”¼„ģ",
+        "popularity": 1,
+        "prob": 0.2315,
+        "reasons": [
+          "AI確率23%（3番人気以内なのに低い）"
+        ]
+      }
+    ],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [
+        {
+          "num": 1,
+          "name": "„Ø„Æ„į„Ē„£„Ī„­„»„­"
+        }
+      ],
+      "umaren": [
+        {
+          "nums": [
+            1,
+            9
+          ]
+        },
+        {
+          "nums": [
+            1,
+            3
+          ]
+        },
+        {
+          "nums": [
+            9,
+            3
+          ]
+        }
+      ],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 4,
+      "strategy_note": "複勝 + 馬連",
+      "use_wide": false
+    },
+    "simulation": {
+      "1": {
+        "horse_name": "„Ø„Æ„į„Ē„£„Ī„­„»„­",
+        "top3_rate": 0.862,
+        "top3_std": 0.018,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.88,
+          "slow_pace": 0.84,
+          "normal": 0.88
+        }
+      },
+      "9": {
+        "horse_name": "„Ō”¼„¹„¦„©„ź„¢”¼",
+        "top3_rate": 0.663,
+        "top3_std": 0.019,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.68,
+          "slow_pace": 0.63,
+          "normal": 0.68
+        }
+      },
+      "3": {
+        "horse_name": "„Ę„£„Ź„Š„ķ”¼„ŗ",
+        "top3_rate": 0.462,
+        "top3_std": 0.023,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.49,
+          "slow_pace": 0.43,
+          "normal": 0.48
+        }
+      },
+      "14": {
+        "horse_name": "„¹„Č„é”¼„Ą„ģ„¢”¼„ģ",
+        "top3_rate": 0.409,
+        "top3_std": 0.023,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.44,
+          "slow_pace": 0.37,
+          "normal": 0.43
+        }
+      },
+      "4": {
+        "horse_name": "„Ī„ó„ź„ß„æ„·„Ŗ„ó",
+        "top3_rate": 0.143,
+        "top3_std": 0.015,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.16,
+          "slow_pace": 0.13,
+          "normal": 0.15
+        }
+      }
+    }
+  },
+  "202646040301": {
+    "race_name": "こざくら1周年記念競走(C1)",
+    "race_date": "2026-04-03",
+    "start_time": "14:05",
+    "venue": "",
+    "course_info": "芝1400m",
+    "honmei": {
+      "horse_number": 3,
+      "horse_name": "シャドウマッドネス",
+      "prob": 0.7436679601669312,
+      "odds": 2.6,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 1.3523,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.382,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5762,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 6,
+      "horse_name": "ミラコロカナーレ",
+      "prob": 0.6970112323760986,
+      "odds": 1.9,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 1.5616,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.1412,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.6356,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "ana": {
+      "horse_number": 4,
+      "horse_name": "マルカンマイヤー",
+      "prob": 0.6199139952659607,
+      "odds": 3.9,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.8097,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2481,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.605,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      3,
+      6,
+      4
+    ],
+    "predicted_top5_nums": [
+      3,
+      6,
+      4,
+      2,
+      5
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 3,
+        "horse_name": "シャドウマッドネス",
+        "prob": 0.7437,
+        "odds": 2.6
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "ミラコロカナーレ",
+        "prob": 0.697,
+        "odds": 1.9
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "マルカンマイヤー",
+        "prob": 0.6199,
+        "odds": 3.9
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "デルマガーネット",
+        "prob": 0.34,
+        "odds": 14.5
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "フタリセゾン",
+        "prob": 0.2841,
+        "odds": 27.6
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 5,
+        "horse_name": "フタリセゾン",
+        "ev_score": 7.841,
+        "prob": 0.2841,
+        "odds": 27.6
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "ワールドラブ",
+        "ev_score": 7.731,
+        "prob": 0.0604,
+        "odds": 127.9
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "デルマガーネット",
+        "ev_score": 4.93,
+        "prob": 0.34,
+        "odds": 14.5
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [
+        {
+          "num": 3,
+          "name": "シャドウマッドネス"
+        }
+      ],
+      "umaren": [
+        {
+          "nums": [
+            3,
+            6
+          ]
+        },
+        {
+          "nums": [
+            3,
+            4
+          ]
+        },
+        {
+          "nums": [
+            6,
+            4
+          ]
+        }
+      ],
+      "wide": [],
+      "sanrenpuku": {
+        "jiku": [
+          3
+        ],
+        "aite": [
+          6,
+          4,
+          2,
+          5
+        ]
+      },
+      "total_points": 10,
+      "strategy_note": "複勝 + 馬連 + 3連複軸1×4",
+      "use_wide": false
+    },
+    "simulation": {
+      "3": {
+        "horse_name": "シャドウマッドネス",
+        "top3_rate": 0.993,
+        "top3_std": 0.004,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.99,
+          "slow_pace": 0.99,
+          "normal": 0.99
+        }
+      },
+      "6": {
+        "horse_name": "ミラコロカナーレ",
+        "top3_rate": 0.982,
+        "top3_std": 0.004,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.98,
+          "slow_pace": 0.98,
+          "normal": 0.98
+        }
+      },
+      "4": {
+        "horse_name": "マルカンマイヤー",
+        "top3_rate": 0.942,
+        "top3_std": 0.011,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.94,
+          "slow_pace": 0.94,
+          "normal": 0.94
+        }
+      },
+      "2": {
+        "horse_name": "デルマガーネット",
+        "top3_rate": 0.059,
+        "top3_std": 0.01,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.06,
+          "slow_pace": 0.06,
+          "normal": 0.06
+        }
+      },
+      "5": {
+        "horse_name": "フタリセゾン",
+        "top3_rate": 0.025,
+        "top3_std": 0.009,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.02,
+          "slow_pace": 0.03,
+          "normal": 0.02
+        }
+      }
+    }
+  },
+  "202646040302": {
+    "race_name": "C110",
+    "race_date": "2026-04-03",
+    "start_time": "14:40",
+    "venue": "",
+    "course_info": "芝1400m",
+    "honmei": {
+      "horse_number": 4,
+      "horse_name": "ベルウッドブラボー",
+      "prob": 0.719846785068512,
+      "odds": 2.7,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 1.2452,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3531,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.6128,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 3,
+      "horse_name": "アレクレア",
+      "prob": 0.6817532777786255,
+      "odds": 2.0,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 1.4798,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.1614,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.596,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "ana": {
+      "horse_number": 6,
+      "horse_name": "ゴルティス",
+      "prob": 0.6681543588638306,
+      "odds": 3.6,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.9241,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2592,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5661,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      4,
+      3,
+      6
+    ],
+    "predicted_top5_nums": [
+      4,
+      3,
+      6,
+      2,
+      5
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 4,
+        "horse_name": "ベルウッドブラボー",
+        "prob": 0.7198,
+        "odds": 2.7
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "アレクレア",
+        "prob": 0.6818,
+        "odds": 2.0
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "ゴルティス",
+        "prob": 0.6682,
+        "odds": 3.6
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "イテザ",
+        "prob": 0.3895,
+        "odds": 10.4
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "カミヤガルーラ",
+        "prob": 0.213,
+        "odds": 37.5
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 1,
+        "horse_name": "ギオンプリンセス",
+        "ev_score": 8.186,
+        "prob": 0.0649,
+        "odds": 126.1
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "カミヤガルーラ",
+        "ev_score": 7.989,
+        "prob": 0.213,
+        "odds": 37.5
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "イテザ",
+        "ev_score": 4.051,
+        "prob": 0.3895,
+        "odds": 10.4
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [
+        {
+          "num": 4,
+          "name": "ベルウッドブラボー"
+        }
+      ],
+      "umaren": [
+        {
+          "nums": [
+            4,
+            3
+          ]
+        },
+        {
+          "nums": [
+            4,
+            6
+          ]
+        },
+        {
+          "nums": [
+            3,
+            6
+          ]
+        }
+      ],
+      "wide": [],
+      "sanrenpuku": {
+        "jiku": [
+          4
+        ],
+        "aite": [
+          3,
+          6,
+          2,
+          5
+        ]
+      },
+      "total_points": 10,
+      "strategy_note": "複勝 + 馬連 + 3連複軸1×4",
+      "use_wide": false
+    },
+    "simulation": {
+      "4": {
+        "horse_name": "ベルウッドブラボー",
+        "top3_rate": 0.981,
+        "top3_std": 0.006,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.98,
+          "slow_pace": 0.98,
+          "normal": 0.98
+        }
+      },
+      "3": {
+        "horse_name": "アレクレア",
+        "top3_rate": 0.966,
+        "top3_std": 0.005,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.97,
+          "slow_pace": 0.96,
+          "normal": 0.96
+        }
+      },
+      "6": {
+        "horse_name": "ゴルティス",
+        "top3_rate": 0.957,
+        "top3_std": 0.009,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.95,
+          "slow_pace": 0.96,
+          "normal": 0.96
+        }
+      },
+      "2": {
+        "horse_name": "イテザ",
+        "top3_rate": 0.092,
+        "top3_std": 0.011,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.09,
+          "slow_pace": 0.09,
+          "normal": 0.1
+        }
+      },
+      "5": {
+        "horse_name": "カミヤガルーラ",
+        "top3_rate": 0.004,
+        "top3_std": 0.002,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.0,
+          "slow_pace": 0.0,
+          "normal": 0.0
+        }
+      }
+    }
+  },
+  "202646040303": {
+    "race_name": "C19",
+    "race_date": "2026-04-03",
+    "start_time": "15:20",
+    "venue": "",
+    "course_info": "芝1400m",
+    "honmei": {
+      "horse_number": 2,
+      "horse_name": "プレストバローズ",
+      "prob": 0.5993204712867737,
+      "odds": 4.0,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.7678,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2952,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.6118,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 6,
+      "horse_name": "ユーバーウィンデン",
+      "prob": 0.5971024036407471,
+      "odds": 4.3,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.7415,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2365,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.6072,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "ana": {
+      "horse_number": 1,
+      "horse_name": "ブルートレーラー",
+      "prob": 0.5768288373947144,
+      "odds": 4.7,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.6636,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.1394,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5595,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      2,
+      6,
+      1
+    ],
+    "predicted_top5_nums": [
+      2,
+      6,
+      1,
+      3,
+      4
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 2,
+        "horse_name": "プレストバローズ",
+        "prob": 0.5993,
+        "odds": 4.0
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "ユーバーウィンデン",
+        "prob": 0.5971,
+        "odds": 4.3
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "ブルートレーラー",
+        "prob": 0.5768,
+        "odds": 4.7
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "オーデンオパール",
+        "prob": 0.5384,
+        "odds": 3.2
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "マオノブリージー",
+        "prob": 0.5069,
+        "odds": 5.2
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 5,
+        "horse_name": "ネオキャンディ",
+        "ev_score": 4.218,
+        "prob": 0.262,
+        "odds": 16.1
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "ブルートレーラー",
+        "ev_score": 2.711,
+        "prob": 0.5768,
+        "odds": 4.7
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "マオノブリージー",
+        "ev_score": 2.636,
+        "prob": 0.5069,
+        "odds": 5.2
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [
+        {
+          "num": 2,
+          "name": "プレストバローズ"
+        }
+      ],
+      "umaren": [],
+      "wide": [
+        {
+          "nums": [
+            2,
+            6
+          ]
+        },
+        {
+          "nums": [
+            2,
+            1
+          ]
+        },
+        {
+          "nums": [
+            6,
+            1
+          ]
+        }
+      ],
+      "sanrenpuku": {
+        "jiku": [
+          2
+        ],
+        "aite": [
+          6,
+          1,
+          3,
+          4
+        ]
+      },
+      "total_points": 10,
+      "strategy_note": "複勝 + ワイド（上位拮抗） + 3連複軸1×4",
+      "use_wide": true
+    },
+    "simulation": {
+      "2": {
+        "horse_name": "プレストバローズ",
+        "top3_rate": 0.725,
+        "top3_std": 0.017,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.72,
+          "slow_pace": 0.73,
+          "normal": 0.73
+        }
+      },
+      "6": {
+        "horse_name": "ユーバーウィンデン",
+        "top3_rate": 0.713,
+        "top3_std": 0.018,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.72,
+          "slow_pace": 0.7,
+          "normal": 0.72
+        }
+      },
+      "1": {
+        "horse_name": "ブルートレーラー",
+        "top3_rate": 0.645,
+        "top3_std": 0.021,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.64,
+          "slow_pace": 0.65,
+          "normal": 0.65
+        }
+      },
+      "3": {
+        "horse_name": "オーデンオパール",
+        "top3_rate": 0.508,
+        "top3_std": 0.019,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.51,
+          "slow_pace": 0.51,
+          "normal": 0.5
+        }
+      },
+      "4": {
+        "horse_name": "マオノブリージー",
+        "top3_rate": 0.398,
+        "top3_std": 0.02,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.4,
+          "slow_pace": 0.4,
+          "normal": 0.39
+        }
+      }
+    }
+  },
+  "202646040304": {
+    "race_name": "§Š§«§Ņ§Ļ§ģ§∆Ĺň!Ķ‹Ŗ∑Õ§§Ķ§ůņł√¬«’2026(C1)",
+    "race_date": "",
+    "start_time": "",
+    "venue": "",
+    "course_info": "芝1400m",
+    "honmei": {
+      "horse_number": 2,
+      "horse_name": "•≥•Ļ•‚•§•ů•ŕ•Í•¶•ŗ",
+      "prob": 0.8810358047485352,
+      "odds": 1.0,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 3.3417,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2108,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.6186,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 5,
+      "horse_name": "•«•Ž•ř•ť•Š°ľ•Ž",
+      "prob": 0.28113120794296265,
+      "odds": 8.8,
+      "shap_top": [
+        {
+          "feature": "popularity",
+          "value": 0.4016,
+          "label": "人気"
+        },
+        {
+          "feature": "odds",
+          "value": 0.2784,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5788,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "ana": {
+      "horse_number": 1,
+      "horse_name": "•Ô•ů•‚•Ę•Ń•„•ů•Ļ",
+      "prob": 0.17350997030735016,
+      "odds": 22.4,
+      "shap_top": [
+        {
+          "feature": "popularity",
+          "value": 0.363,
+          "label": "人気"
+        },
+        {
+          "feature": "track_condition_enc",
+          "value": 0.0646,
+          "label": "馬場状態"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.581,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      2,
+      5,
+      1
+    ],
+    "predicted_top5_nums": [
+      2,
+      5,
+      1,
+      3,
+      6
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 2,
+        "horse_name": "•≥•Ļ•‚•§•ů•ŕ•Í•¶•ŗ",
+        "prob": 0.881,
+        "odds": 1.0
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "•«•Ž•ř•ť•Š°ľ•Ž",
+        "prob": 0.2811,
+        "odds": 8.8
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "•Ô•ů•‚•Ę•Ń•„•ů•Ļ",
+        "prob": 0.1735,
+        "odds": 22.4
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "•ř°ľ•Į•™•÷•ĺ•Ū",
+        "prob": 0.1535,
+        "odds": 22.4
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "• •ń•Ŗ•ę•ů",
+        "prob": 0.1363,
+        "odds": 23.0
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 1,
+        "horse_name": "•Ô•ů•‚•Ę•Ń•„•ů•Ļ",
+        "ev_score": 3.887,
+        "prob": 0.1735,
+        "odds": 22.4
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "•ř°ľ•Į•™•÷•ĺ•Ū",
+        "ev_score": 3.439,
+        "prob": 0.1535,
+        "odds": 22.4
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "•ž•§•Ô•¨•ů•Ņ•ů",
+        "ev_score": 3.297,
+        "prob": 0.0791,
+        "odds": 41.7
+      }
+    ],
+    "dangerous_horses": [
+      {
+        "horse_number": 5,
+        "horse_name": "•«•Ž•ř•ť•Š°ľ•Ž",
+        "popularity": 2,
+        "prob": 0.2811,
+        "reasons": [
+          "AI確率28%（3番人気以内なのに低い）"
+        ]
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "•Ô•ů•‚•Ę•Ń•„•ů•Ļ",
+        "popularity": 3,
+        "prob": 0.1735,
+        "reasons": [
+          "AI確率17%（3番人気以内なのに低い）"
+        ]
+      }
+    ],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [
+        {
+          "nums": [
+            2,
+            5
+          ]
+        },
+        {
+          "nums": [
+            2,
+            1
+          ]
+        },
+        {
+          "nums": [
+            5,
+            1
+          ]
+        }
+      ],
+      "wide": [],
+      "sanrenpuku": {
+        "jiku": [
+          2
+        ],
+        "aite": [
+          5,
+          1,
+          3,
+          6
+        ]
+      },
+      "total_points": 9,
+      "strategy_note": "馬連 + 3連複軸1×4",
+      "use_wide": false
+    },
+    "simulation": {
+      "2": {
+        "horse_name": "•≥•Ļ•‚•§•ů•ŕ•Í•¶•ŗ",
+        "top3_rate": 1.0,
+        "top3_std": 0.0,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 1.0,
+          "slow_pace": 1.0,
+          "normal": 1.0
+        }
+      },
+      "5": {
+        "horse_name": "•«•Ž•ř•ť•Š°ľ•Ž",
+        "top3_rate": 0.759,
+        "top3_std": 0.022,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.77,
+          "slow_pace": 0.74,
+          "normal": 0.77
+        }
+      },
+      "1": {
+        "horse_name": "•Ô•ů•‚•Ę•Ń•„•ů•Ļ",
+        "top3_rate": 0.393,
+        "top3_std": 0.016,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.41,
+          "slow_pace": 0.37,
+          "normal": 0.41
+        }
+      },
+      "3": {
+        "horse_name": "•ř°ľ•Į•™•÷•ĺ•Ū",
+        "top3_rate": 0.312,
+        "top3_std": 0.017,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.33,
+          "slow_pace": 0.28,
+          "normal": 0.34
+        }
+      },
+      "6": {
+        "horse_name": "• •ń•Ŗ•ę•ů",
+        "top3_rate": 0.276,
+        "top3_std": 0.017,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.29,
+          "slow_pace": 0.27,
+          "normal": 0.27
+        }
+      }
+    }
+  },
+  "202646040305": {
+    "race_name": "3歳B5",
+    "race_date": "2026-04-03",
+    "start_time": "16:30",
+    "venue": "",
+    "course_info": "芝1500m",
+    "honmei": {
+      "horse_number": 8,
+      "horse_name": "ホワイトナイル",
+      "prob": 0.8093748092651367,
+      "odds": 1.3,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 2.6165,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.1847,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.6006,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 1,
+      "horse_name": "ロードキャリバー",
+      "prob": 0.3783824145793915,
+      "odds": 6.6,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.4398,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3729,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5709,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "ana": {
+      "horse_number": 2,
+      "horse_name": "オーシャンドリーム",
+      "prob": 0.3277026116847992,
+      "odds": 7.2,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.3512,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2642,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5733,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      8,
+      1,
+      2
+    ],
+    "predicted_top5_nums": [
+      8,
+      1,
+      2,
+      3,
+      4
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 8,
+        "horse_name": "ホワイトナイル",
+        "prob": 0.8094,
+        "odds": 1.3
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "ロードキャリバー",
+        "prob": 0.3784,
+        "odds": 6.6
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "オーシャンドリーム",
+        "prob": 0.3277,
+        "odds": 7.2
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "シンデレラヒメ",
+        "prob": 0.2404,
+        "odds": 10.9
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "リケアカッペリーニ",
+        "prob": 0.1907,
+        "odds": 11.2
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 7,
+        "horse_name": "ダズリングゲーム",
+        "ev_score": 3.214,
+        "prob": 0.1047,
+        "odds": 30.7
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "ヨドノクラウン",
+        "ev_score": 3.011,
+        "prob": 0.0801,
+        "odds": 37.6
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "シンデレラヒメ",
+        "ev_score": 2.62,
+        "prob": 0.2404,
+        "odds": 10.9
+      }
+    ],
+    "dangerous_horses": [
+      {
+        "horse_number": 1,
+        "horse_name": "ロードキャリバー",
+        "popularity": 2,
+        "prob": 0.3784,
+        "reasons": [
+          "AI確率38%（3番人気以内なのに低い）"
+        ]
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "オーシャンドリーム",
+        "popularity": 3,
+        "prob": 0.3277,
+        "reasons": [
+          "AI確率33%（3番人気以内なのに低い）"
+        ]
+      }
+    ],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [
+        {
+          "nums": [
+            8,
+            1
+          ]
+        },
+        {
+          "nums": [
+            8,
+            2
+          ]
+        },
+        {
+          "nums": [
+            1,
+            2
+          ]
+        }
+      ],
+      "wide": [],
+      "sanrenpuku": {
+        "jiku": [
+          8
+        ],
+        "aite": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "total_points": 9,
+      "strategy_note": "馬連 + 3連複軸1×4",
+      "use_wide": false
+    },
+    "simulation": {
+      "8": {
+        "horse_name": "ホワイトナイル",
+        "top3_rate": 1.0,
+        "top3_std": 0.001,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 1.0,
+          "slow_pace": 1.0,
+          "normal": 1.0
+        }
+      },
+      "1": {
+        "horse_name": "ロードキャリバー",
+        "top3_rate": 0.793,
+        "top3_std": 0.02,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.79,
+          "slow_pace": 0.79,
+          "normal": 0.8
+        }
+      },
+      "2": {
+        "horse_name": "オーシャンドリーム",
+        "top3_rate": 0.654,
+        "top3_std": 0.015,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.65,
+          "slow_pace": 0.66,
+          "normal": 0.65
+        }
+      },
+      "3": {
+        "horse_name": "シンデレラヒメ",
+        "top3_rate": 0.293,
+        "top3_std": 0.019,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.3,
+          "slow_pace": 0.28,
+          "normal": 0.31
+        }
+      },
+      "4": {
+        "horse_name": "リケアカッペリーニ",
+        "top3_rate": 0.172,
+        "top3_std": 0.013,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.18,
+          "slow_pace": 0.17,
+          "normal": 0.17
+        }
+      }
+    }
+  },
+  "202646040306": {
+    "race_name": "3ļ–B4",
+    "race_date": "",
+    "start_time": "",
+    "venue": "",
+    "course_info": "芝1500m",
+    "honmei": {
+      "horse_number": 8,
+      "horse_name": "•«•£•Ę•’•°•ň•Ļ",
+      "prob": 0.4317375123500824,
+      "odds": 2.8,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 1.218,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.1253,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.6213,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 2,
+      "horse_name": "•Ŕ•Ļ•»•ņ•ů•Ķ°ľ",
+      "prob": 0.3681004047393799,
+      "odds": 4.6,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.6944,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3023,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.584,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "ana": {
+      "horse_number": 4,
+      "horse_name": "•ī°ľ•Ž•…•Ĺ•∑•Ę•Ž",
+      "prob": 0.2885643243789673,
+      "odds": 5.6,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.4946,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2345,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5782,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      8,
+      2,
+      4
+    ],
+    "predicted_top5_nums": [
+      8,
+      2,
+      4,
+      5,
+      7
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 8,
+        "horse_name": "•«•£•Ę•’•°•ň•Ļ",
+        "prob": 0.4317,
+        "odds": 2.8
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "•Ŕ•Ļ•»•ņ•ů•Ķ°ľ",
+        "prob": 0.3681,
+        "odds": 4.6
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "•ī°ľ•Ž•…•Ĺ•∑•Ę•Ž",
+        "prob": 0.2886,
+        "odds": 5.6
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "•Ļ•ę•√•∑•Ś•‹°ľ•§",
+        "prob": 0.2072,
+        "odds": 9.1
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "•≠•Ť•Ļ•Ŗ",
+        "prob": 0.1775,
+        "odds": 9.6
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 3,
+        "horse_name": "•∆•£°ľ•ř•Ŕ°ľ•ť",
+        "ev_score": 1.964,
+        "prob": 0.0292,
+        "odds": 67.2
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "•Ļ•ę•√•∑•Ś•‹°ľ•§",
+        "ev_score": 1.886,
+        "prob": 0.2072,
+        "odds": 9.1
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "•≠•Ť•Ļ•Ŗ",
+        "ev_score": 1.704,
+        "prob": 0.1775,
+        "odds": 9.6
+      }
+    ],
+    "dangerous_horses": [
+      {
+        "horse_number": 2,
+        "horse_name": "•Ŕ•Ļ•»•ņ•ů•Ķ°ľ",
+        "popularity": 2,
+        "prob": 0.3681,
+        "reasons": [
+          "AI確率37%（3番人気以内なのに低い）"
+        ]
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "•ī°ľ•Ž•…•Ĺ•∑•Ę•Ž",
+        "popularity": 3,
+        "prob": 0.2886,
+        "reasons": [
+          "AI確率29%（3番人気以内なのに低い）"
+        ]
+      }
+    ],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [
+        {
+          "nums": [
+            8,
+            2
+          ]
+        },
+        {
+          "nums": [
+            8,
+            4
+          ]
+        },
+        {
+          "nums": [
+            2,
+            4
+          ]
+        }
+      ],
+      "wide": [],
+      "sanrenpuku": {
+        "jiku": [
+          8
+        ],
+        "aite": [
+          2,
+          4,
+          5,
+          7
+        ]
+      },
+      "total_points": 9,
+      "strategy_note": "馬連 + 3連複軸1×5",
+      "use_wide": false
+    },
+    "simulation": {
+      "8": {
+        "horse_name": "•«•£•Ę•’•°•ň•Ļ",
+        "top3_rate": 0.911,
+        "top3_std": 0.017,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.91,
+          "slow_pace": 0.91,
+          "normal": 0.92
+        }
+      },
+      "2": {
+        "horse_name": "•Ŕ•Ļ•»•ņ•ů•Ķ°ľ",
+        "top3_rate": 0.796,
+        "top3_std": 0.014,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.81,
+          "slow_pace": 0.79,
+          "normal": 0.79
+        }
+      },
+      "4": {
+        "horse_name": "•ī°ľ•Ž•…•Ĺ•∑•Ę•Ž",
+        "top3_rate": 0.534,
+        "top3_std": 0.025,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.54,
+          "slow_pace": 0.53,
+          "normal": 0.54
+        }
+      },
+      "5": {
+        "horse_name": "•Ļ•ę•√•∑•Ś•‹°ľ•§",
+        "top3_rate": 0.248,
+        "top3_std": 0.018,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.26,
+          "slow_pace": 0.24,
+          "normal": 0.25
+        }
+      },
+      "7": {
+        "horse_name": "•≠•Ť•Ļ•Ŗ",
+        "top3_rate": 0.169,
+        "top3_std": 0.017,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.16,
+          "slow_pace": 0.17,
+          "normal": 0.18
+        }
+      }
+    }
+  },
+  "202646040307": {
+    "race_name": "しゅう&ゆうなのウェディング杯(3歳)",
+    "race_date": "2026-04-03",
+    "start_time": "17:40",
+    "venue": "",
+    "course_info": "芝1400m",
+    "honmei": {
+      "horse_number": 5,
+      "horse_name": "ナックハーツ",
+      "prob": 0.5133346915245056,
+      "odds": 2.5,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 1.3607,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.1288,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.6076,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 3,
+      "horse_name": "ダディーズサンクス",
+      "prob": 0.46944761276245117,
+      "odds": 3.8,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.8834,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3091,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5712,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "ana": {
+      "horse_number": 6,
+      "horse_name": "ニャンキニーズ",
+      "prob": 0.4462309777736664,
+      "odds": 4.1,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.8723,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.258,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5719,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      5,
+      3,
+      6
+    ],
+    "predicted_top5_nums": [
+      5,
+      3,
+      6,
+      7,
+      8
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 5,
+        "horse_name": "ナックハーツ",
+        "prob": 0.5133,
+        "odds": 2.5
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "ダディーズサンクス",
+        "prob": 0.4694,
+        "odds": 3.8
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "ニャンキニーズ",
+        "prob": 0.4462,
+        "odds": 4.1
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "ノトフェニックス",
+        "prob": 0.3392,
+        "odds": 5.9
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "ファインブルー",
+        "prob": 0.2537,
+        "odds": 8.6
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 1,
+        "horse_name": "マイファイト",
+        "ev_score": 3.774,
+        "prob": 0.0597,
+        "odds": 63.2
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "サクライズ",
+        "ev_score": 2.5,
+        "prob": 0.1323,
+        "odds": 18.9
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "ファインブルー",
+        "ev_score": 2.182,
+        "prob": 0.2537,
+        "odds": 8.6
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [
+        {
+          "nums": [
+            5,
+            3
+          ]
+        },
+        {
+          "nums": [
+            5,
+            6
+          ]
+        },
+        {
+          "nums": [
+            3,
+            6
+          ]
+        }
+      ],
+      "wide": [],
+      "sanrenpuku": {
+        "jiku": [
+          5
+        ],
+        "aite": [
+          3,
+          6,
+          7,
+          8
+        ]
+      },
+      "total_points": 9,
+      "strategy_note": "馬連 + 3連複軸1×4",
+      "use_wide": false
+    },
+    "simulation": {
+      "5": {
+        "horse_name": "ナックハーツ",
+        "top3_rate": 0.897,
+        "top3_std": 0.011,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.9,
+          "slow_pace": 0.89,
+          "normal": 0.9
+        }
+      },
+      "3": {
+        "horse_name": "ダディーズサンクス",
+        "top3_rate": 0.816,
+        "top3_std": 0.017,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.81,
+          "slow_pace": 0.82,
+          "normal": 0.82
+        }
+      },
+      "6": {
+        "horse_name": "ニャンキニーズ",
+        "top3_rate": 0.776,
+        "top3_std": 0.017,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.78,
+          "slow_pace": 0.78,
+          "normal": 0.77
+        }
+      },
+      "7": {
+        "horse_name": "ノトフェニックス",
+        "top3_rate": 0.349,
+        "top3_std": 0.022,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.35,
+          "slow_pace": 0.34,
+          "normal": 0.36
+        }
+      },
+      "8": {
+        "horse_name": "ファインブルー",
+        "top3_rate": 0.137,
+        "top3_std": 0.015,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.14,
+          "slow_pace": 0.14,
+          "normal": 0.13
+        }
+      }
+    }
+  },
+  "202646040308": {
+    "race_name": "3歳B2",
+    "race_date": "2026-04-03",
+    "start_time": "18:15",
+    "venue": "",
+    "course_info": "芝1400m",
+    "honmei": {
+      "horse_number": 8,
+      "horse_name": "ルクスアンジュ",
+      "prob": 0.48364657163619995,
+      "odds": 4.1,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.8491,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3033,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5784,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 7,
+      "horse_name": "ローズピクチャー",
+      "prob": 0.44431063532829285,
+      "odds": 4.5,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.727,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2511,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5791,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "ana": {
+      "horse_number": 3,
+      "horse_name": "ディンキー",
+      "prob": 0.3861861526966095,
+      "odds": 5.3,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.634,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.1381,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5648,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      8,
+      7,
+      3
+    ],
+    "predicted_top5_nums": [
+      8,
+      7,
+      3,
+      4,
+      2
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 8,
+        "horse_name": "ルクスアンジュ",
+        "prob": 0.4836,
+        "odds": 4.1
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "ローズピクチャー",
+        "prob": 0.4443,
+        "odds": 4.5
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "ディンキー",
+        "prob": 0.3862,
+        "odds": 5.3
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "グスタフ",
+        "prob": 0.34,
+        "odds": 3.7
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "イザベラサンライズ",
+        "prob": 0.317,
+        "odds": 5.9
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 1,
+        "horse_name": "モルトカリーナ",
+        "ev_score": 3.149,
+        "prob": 0.0688,
+        "odds": 45.8
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "スマイルホップ",
+        "ev_score": 2.798,
+        "prob": 0.1018,
+        "odds": 27.5
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "ディンキー",
+        "ev_score": 2.047,
+        "prob": 0.3862,
+        "odds": 5.3
+      }
+    ],
+    "dangerous_horses": [
+      {
+        "horse_number": 4,
+        "horse_name": "グスタフ",
+        "popularity": 1,
+        "prob": 0.34,
+        "reasons": [
+          "AI確率34%（3番人気以内なのに低い）"
+        ]
+      }
+    ],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [
+        {
+          "num": 8,
+          "name": "ルクスアンジュ"
+        }
+      ],
+      "umaren": [
+        {
+          "nums": [
+            8,
+            7
+          ]
+        },
+        {
+          "nums": [
+            8,
+            3
+          ]
+        },
+        {
+          "nums": [
+            7,
+            3
+          ]
+        }
+      ],
+      "wide": [],
+      "sanrenpuku": {
+        "jiku": [
+          8
+        ],
+        "aite": [
+          7,
+          3,
+          4,
+          2
+        ]
+      },
+      "total_points": 10,
+      "strategy_note": "複勝 + 馬連 + 3連複軸1×5",
+      "use_wide": false
+    },
+    "simulation": {
+      "8": {
+        "horse_name": "ルクスアンジュ",
+        "top3_rate": 0.852,
+        "top3_std": 0.009,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.86,
+          "slow_pace": 0.85,
+          "normal": 0.85
+        }
+      },
+      "7": {
+        "horse_name": "ローズピクチャー",
+        "top3_rate": 0.752,
+        "top3_std": 0.015,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.76,
+          "slow_pace": 0.75,
+          "normal": 0.75
+        }
+      },
+      "3": {
+        "horse_name": "ディンキー",
+        "top3_rate": 0.574,
+        "top3_std": 0.025,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.57,
+          "slow_pace": 0.57,
+          "normal": 0.58
+        }
+      },
+      "4": {
+        "horse_name": "グスタフ",
+        "top3_rate": 0.405,
+        "top3_std": 0.024,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.4,
+          "slow_pace": 0.41,
+          "normal": 0.41
+        }
+      },
+      "2": {
+        "horse_name": "イザベラサンライズ",
+        "top3_rate": 0.309,
+        "top3_std": 0.021,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.31,
+          "slow_pace": 0.31,
+          "normal": 0.31
+        }
+      }
+    }
+  },
+  "202646040309": {
+    "race_name": "能登復興支援 九十九湾特別(3歳)",
+    "race_date": "2026-04-03",
+    "start_time": "18:50",
+    "venue": "",
+    "course_info": "芝1500m",
+    "honmei": {
+      "horse_number": 4,
+      "horse_name": "ダスオルケスタ",
+      "prob": 0.4418359100818634,
+      "odds": 4.2,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.7897,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3038,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5698,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 6,
+      "horse_name": "ムムターズショコラ",
+      "prob": 0.41311582922935486,
+      "odds": 5.0,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.6661,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2473,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5705,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "ana": {
+      "horse_number": 7,
+      "horse_name": "ボンヴィアッジョ",
+      "prob": 0.41028106212615967,
+      "odds": 5.1,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.693,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.144,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5696,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      4,
+      6,
+      7
+    ],
+    "predicted_top5_nums": [
+      4,
+      6,
+      7,
+      5,
+      9
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 4,
+        "horse_name": "ダスオルケスタ",
+        "prob": 0.4418,
+        "odds": 4.2
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "ムムターズショコラ",
+        "prob": 0.4131,
+        "odds": 5.0
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "ボンヴィアッジョ",
+        "prob": 0.4103,
+        "odds": 5.1
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "ライトアズフェザー",
+        "prob": 0.3498,
+        "odds": 3.8
+      },
+      {
+        "horse_number": 9,
+        "horse_name": "イヌボウノユウヒ",
+        "prob": 0.1906,
+        "odds": 10.2
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 1,
+        "horse_name": "コンチムサシ",
+        "ev_score": 2.64,
+        "prob": 0.0642,
+        "odds": 41.1
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "アロンジマンデ",
+        "ev_score": 2.186,
+        "prob": 0.1682,
+        "odds": 13.0
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "ボンヴィアッジョ",
+        "ev_score": 2.092,
+        "prob": 0.4103,
+        "odds": 5.1
+      }
+    ],
+    "dangerous_horses": [
+      {
+        "horse_number": 5,
+        "horse_name": "ライトアズフェザー",
+        "popularity": 1,
+        "prob": 0.3498,
+        "reasons": [
+          "AI確率35%（3番人気以内なのに低い）"
+        ]
+      }
+    ],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [
+        {
+          "num": 4,
+          "name": "ダスオルケスタ"
+        }
+      ],
+      "umaren": [],
+      "wide": [
+        {
+          "nums": [
+            4,
+            6
+          ]
+        },
+        {
+          "nums": [
+            4,
+            7
+          ]
+        },
+        {
+          "nums": [
+            6,
+            7
+          ]
+        }
+      ],
+      "sanrenpuku": {
+        "jiku": [
+          4
+        ],
+        "aite": [
+          6,
+          7,
+          5,
+          9
+        ]
+      },
+      "total_points": 10,
+      "strategy_note": "複勝 + ワイド（上位拮抗） + 3連複軸1×5",
+      "use_wide": true
+    },
+    "simulation": {
+      "4": {
+        "horse_name": "ダスオルケスタ",
+        "top3_rate": 0.802,
+        "top3_std": 0.022,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.8,
+          "slow_pace": 0.8,
+          "normal": 0.81
+        }
+      },
+      "6": {
+        "horse_name": "ムムターズショコラ",
+        "top3_rate": 0.73,
+        "top3_std": 0.019,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.74,
+          "slow_pace": 0.73,
+          "normal": 0.71
+        }
+      },
+      "7": {
+        "horse_name": "ボンヴィアッジョ",
+        "top3_rate": 0.712,
+        "top3_std": 0.017,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.71,
+          "slow_pace": 0.71,
+          "normal": 0.71
+        }
+      },
+      "5": {
+        "horse_name": "ライトアズフェザー",
+        "top3_rate": 0.509,
+        "top3_std": 0.021,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.51,
+          "slow_pace": 0.5,
+          "normal": 0.52
+        }
+      },
+      "9": {
+        "horse_name": "イヌボウノユウヒ",
+        "top3_rate": 0.076,
+        "top3_std": 0.012,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.07,
+          "slow_pace": 0.08,
+          "normal": 0.09
+        }
+      }
+    }
+  },
+  "202646040310": {
+    "race_name": "馬券を買うならSPAT4!特別(C1)",
+    "race_date": "2026-04-03",
+    "start_time": "19:30",
+    "venue": "",
+    "course_info": "芝900m",
+    "honmei": {
+      "horse_number": 4,
+      "horse_name": "ノースタンダード",
+      "prob": 0.408175528049469,
+      "odds": 4.0,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.8483,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3052,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5793,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 5,
+      "horse_name": "マヒオレ",
+      "prob": 0.3997166156768799,
+      "odds": 2.7,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 1.2244,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.1168,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.608,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "ana": {
+      "horse_number": 6,
+      "horse_name": "シェルターベルト",
+      "prob": 0.35319435596466064,
+      "odds": 4.6,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.7124,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2418,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5913,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      4,
+      5,
+      6
+    ],
+    "predicted_top5_nums": [
+      4,
+      5,
+      6,
+      1,
+      3
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 4,
+        "horse_name": "ノースタンダード",
+        "prob": 0.4082,
+        "odds": 4.0
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "マヒオレ",
+        "prob": 0.3997,
+        "odds": 2.7
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "シェルターベルト",
+        "prob": 0.3532,
+        "odds": 4.6
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "ミラクルベルン",
+        "prob": 0.2574,
+        "odds": 6.5
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "ナギサノバルコニー",
+        "prob": 0.222,
+        "odds": 7.7
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 3,
+        "horse_name": "ナギサノバルコニー",
+        "ev_score": 1.709,
+        "prob": 0.222,
+        "odds": 7.7
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "ミラクルベルン",
+        "ev_score": 1.673,
+        "prob": 0.2574,
+        "odds": 6.5
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "ノースタンダード",
+        "ev_score": 1.633,
+        "prob": 0.4082,
+        "odds": 4.0
+      }
+    ],
+    "dangerous_horses": [
+      {
+        "horse_number": 5,
+        "horse_name": "マヒオレ",
+        "popularity": 1,
+        "prob": 0.3997,
+        "reasons": [
+          "AI確率40%（3番人気以内なのに低い）"
+        ]
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "シェルターベルト",
+        "popularity": 3,
+        "prob": 0.3532,
+        "reasons": [
+          "AI確率35%（3番人気以内なのに低い）"
+        ]
+      }
+    ],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [
+        {
+          "num": 4,
+          "name": "ノースタンダード"
+        }
+      ],
+      "umaren": [
+        {
+          "nums": [
+            4,
+            5
+          ]
+        },
+        {
+          "nums": [
+            4,
+            6
+          ]
+        },
+        {
+          "nums": [
+            5,
+            6
+          ]
+        }
+      ],
+      "wide": [],
+      "sanrenpuku": {
+        "jiku": [
+          4
+        ],
+        "aite": [
+          5,
+          6,
+          1,
+          3
+        ]
+      },
+      "total_points": 10,
+      "strategy_note": "複勝 + 馬連 + 3連複軸1×5",
+      "use_wide": false
+    },
+    "simulation": {
+      "4": {
+        "horse_name": "ノースタンダード",
+        "top3_rate": 0.819,
+        "top3_std": 0.017,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.82,
+          "slow_pace": 0.82,
+          "normal": 0.82
+        }
+      },
+      "5": {
+        "horse_name": "マヒオレ",
+        "top3_rate": 0.795,
+        "top3_std": 0.017,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.8,
+          "slow_pace": 0.79,
+          "normal": 0.8
+        }
+      },
+      "6": {
+        "horse_name": "シェルターベルト",
+        "top3_rate": 0.66,
+        "top3_std": 0.021,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.66,
+          "slow_pace": 0.67,
+          "normal": 0.65
+        }
+      },
+      "1": {
+        "horse_name": "ミラクルベルン",
+        "top3_rate": 0.316,
+        "top3_std": 0.018,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.32,
+          "slow_pace": 0.31,
+          "normal": 0.32
+        }
+      },
+      "3": {
+        "horse_name": "ナギサノバルコニー",
+        "top3_rate": 0.211,
+        "top3_std": 0.015,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.22,
+          "slow_pace": 0.21,
+          "normal": 0.2
+        }
+      }
+    }
+  },
+  "202646040311": {
+    "race_name": "お家でネット投票!楽天競馬特別(A2)",
+    "race_date": "2026-04-03",
+    "start_time": "20:05",
+    "venue": "",
+    "course_info": "芝1400m",
+    "honmei": {
+      "horse_number": 1,
+      "horse_name": "フラップシグナス",
+      "prob": 0.49967440962791443,
+      "odds": 1.9,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 1.5754,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.1275,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.6305,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 2,
+      "horse_name": "ジューンノールック",
+      "prob": 0.32464107871055603,
+      "odds": 6.6,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.3925,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2514,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5824,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "ana": {
+      "horse_number": 5,
+      "horse_name": "フランコルシャン",
+      "prob": 0.3189656436443329,
+      "odds": 6.5,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.4272,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3557,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5902,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      1,
+      2,
+      5
+    ],
+    "predicted_top5_nums": [
+      1,
+      2,
+      5,
+      8,
+      7
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 1,
+        "horse_name": "フラップシグナス",
+        "prob": 0.4997,
+        "odds": 1.9
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "ジューンノールック",
+        "prob": 0.3246,
+        "odds": 6.6
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "フランコルシャン",
+        "prob": 0.319,
+        "odds": 6.5
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "ガルムキャット",
+        "prob": 0.2587,
+        "odds": 7.7
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "コルニリア",
+        "prob": 0.1731,
+        "odds": 10.0
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 2,
+        "horse_name": "ジューンノールック",
+        "ev_score": 2.143,
+        "prob": 0.3246,
+        "odds": 6.6
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "ダンナイ",
+        "ev_score": 2.106,
+        "prob": 0.1053,
+        "odds": 20.0
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "フランコルシャン",
+        "ev_score": 2.073,
+        "prob": 0.319,
+        "odds": 6.5
+      }
+    ],
+    "dangerous_horses": [
+      {
+        "horse_number": 2,
+        "horse_name": "ジューンノールック",
+        "popularity": 3,
+        "prob": 0.3246,
+        "reasons": [
+          "AI確率32%（3番人気以内なのに低い）"
+        ]
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "フランコルシャン",
+        "popularity": 2,
+        "prob": 0.319,
+        "reasons": [
+          "AI確率32%（3番人気以内なのに低い）"
+        ]
+      }
+    ],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [
+        {
+          "nums": [
+            1,
+            2
+          ]
+        },
+        {
+          "nums": [
+            1,
+            5
+          ]
+        },
+        {
+          "nums": [
+            2,
+            5
+          ]
+        }
+      ],
+      "wide": [],
+      "sanrenpuku": {
+        "jiku": [
+          1
+        ],
+        "aite": [
+          2,
+          5,
+          8,
+          7
+        ]
+      },
+      "total_points": 9,
+      "strategy_note": "馬連 + 3連複軸1×5",
+      "use_wide": false
+    },
+    "simulation": {
+      "1": {
+        "horse_name": "フラップシグナス",
+        "top3_rate": 0.963,
+        "top3_std": 0.009,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.96,
+          "slow_pace": 0.96,
+          "normal": 0.96
+        }
+      },
+      "2": {
+        "horse_name": "ジューンノールック",
+        "top3_rate": 0.633,
+        "top3_std": 0.02,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.65,
+          "slow_pace": 0.62,
+          "normal": 0.63
+        }
+      },
+      "5": {
+        "horse_name": "フランコルシャン",
+        "top3_rate": 0.612,
+        "top3_std": 0.033,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.61,
+          "slow_pace": 0.61,
+          "normal": 0.62
+        }
+      },
+      "8": {
+        "horse_name": "ガルムキャット",
+        "top3_rate": 0.393,
+        "top3_std": 0.026,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.39,
+          "slow_pace": 0.39,
+          "normal": 0.4
+        }
+      },
+      "7": {
+        "horse_name": "コルニリア",
+        "top3_rate": 0.139,
+        "top3_std": 0.015,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.13,
+          "slow_pace": 0.14,
+          "normal": 0.14
+        }
+      }
+    }
+  },
+  "202646040312": {
+    "race_name": "ł–∆Óĺř(B1)",
+    "race_date": "",
+    "start_time": "",
+    "venue": "",
+    "course_info": "芝1700m",
+    "honmei": {
+      "horse_number": 1,
+      "horse_name": "•∆•§•≥•Į",
+      "prob": 0.3374980688095093,
+      "odds": 5.5,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.5674,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2984,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5869,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 10,
+      "horse_name": "•’•°•§•Ű•ž•Ņ°ľ",
+      "prob": 0.33016955852508545,
+      "odds": 3.2,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 1.0426,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "track_condition_enc",
+          "value": 0.0793,
+          "label": "馬場状態"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.6245,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "ana": {
+      "horse_number": 9,
+      "horse_name": "•Ę•ů•Į•Ū°ľ•∑•Ś",
+      "prob": 0.2522362470626831,
+      "odds": 6.7,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.3937,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.244,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.59,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      1,
+      10,
+      9
+    ],
+    "predicted_top5_nums": [
+      1,
+      10,
+      9,
+      2,
+      5
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 1,
+        "horse_name": "•∆•§•≥•Į",
+        "prob": 0.3375,
+        "odds": 5.5
+      },
+      {
+        "horse_number": 10,
+        "horse_name": "•’•°•§•Ű•ž•Ņ°ľ",
+        "prob": 0.3302,
+        "odds": 3.2
+      },
+      {
+        "horse_number": 9,
+        "horse_name": "•Ę•ů•Į•Ū°ľ•∑•Ś",
+        "prob": 0.2522,
+        "odds": 6.7
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "•Ľ•ť•’•£• •§•»",
+        "prob": 0.2348,
+        "odds": 7.3
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "•Ľ•√•ę•Ń•Ī°ľ•ů",
+        "prob": 0.2155,
+        "odds": 7.3
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 6,
+        "horse_name": "•™•ů•Í°ľ•‚°ľ•¨•ů",
+        "ev_score": 2.123,
+        "prob": 0.0404,
+        "odds": 52.6
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "•∆•§•≥•Į",
+        "ev_score": 1.856,
+        "prob": 0.3375,
+        "odds": 5.5
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "•®•ň°ľ•Ķ•ů•ņ°ľ",
+        "ev_score": 1.754,
+        "prob": 0.1227,
+        "odds": 14.3
+      }
+    ],
+    "dangerous_horses": [
+      {
+        "horse_number": 1,
+        "horse_name": "•∆•§•≥•Į",
+        "popularity": 2,
+        "prob": 0.3375,
+        "reasons": [
+          "AI確率34%（3番人気以内なのに低い）"
+        ]
+      },
+      {
+        "horse_number": 10,
+        "horse_name": "•’•°•§•Ű•ž•Ņ°ľ",
+        "popularity": 1,
+        "prob": 0.3302,
+        "reasons": [
+          "AI確率33%（3番人気以内なのに低い）"
+        ]
+      },
+      {
+        "horse_number": 9,
+        "horse_name": "•Ę•ů•Į•Ū°ľ•∑•Ś",
+        "popularity": 3,
+        "prob": 0.2522,
+        "reasons": [
+          "AI確率25%（3番人気以内なのに低い）"
+        ]
+      }
+    ],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [
+        {
+          "num": 1,
+          "name": "•∆•§•≥•Į"
+        }
+      ],
+      "umaren": [
+        {
+          "nums": [
+            1,
+            10
+          ]
+        },
+        {
+          "nums": [
+            1,
+            9
+          ]
+        },
+        {
+          "nums": [
+            10,
+            9
+          ]
+        }
+      ],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 4,
+      "strategy_note": "複勝 + 馬連",
+      "use_wide": false
+    },
+    "simulation": {
+      "1": {
+        "horse_name": "•∆•§•≥•Į",
+        "top3_rate": 0.718,
+        "top3_std": 0.015,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.72,
+          "slow_pace": 0.71,
+          "normal": 0.72
+        }
+      },
+      "10": {
+        "horse_name": "•’•°•§•Ű•ž•Ņ°ľ",
+        "top3_rate": 0.691,
+        "top3_std": 0.019,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.7,
+          "slow_pace": 0.69,
+          "normal": 0.69
+        }
+      },
+      "9": {
+        "horse_name": "•Ę•ů•Į•Ū°ľ•∑•Ś",
+        "top3_rate": 0.428,
+        "top3_std": 0.022,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.44,
+          "slow_pace": 0.42,
+          "normal": 0.43
+        }
+      },
+      "2": {
+        "horse_name": "•Ľ•ť•’•£• •§•»",
+        "top3_rate": 0.372,
+        "top3_std": 0.016,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.37,
+          "slow_pace": 0.37,
+          "normal": 0.38
+        }
+      },
+      "5": {
+        "horse_name": "•Ľ•√•ę•Ń•Ī°ľ•ů",
+        "top3_rate": 0.3,
+        "top3_std": 0.017,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.31,
+          "slow_pace": 0.29,
+          "normal": 0.31
+        }
+      }
+    }
+  },
+  "202647040301": {
+    "race_name": "3∫–Ã§æ°Õ¯",
+    "race_date": "",
+    "start_time": "",
+    "venue": "",
+    "course_info": "芝800m",
+    "honmei": {
+      "horse_number": 3,
+      "horse_name": "•Í°º•∏•Á•Ô•Ê°º•∫",
+      "prob": 0.8791932463645935,
+      "odds": 1.3,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 2.5085,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.1925,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.6071,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 5,
+      "horse_name": "•¿•Û•π•»•Û•¡•¢°º•∫",
+      "prob": 0.4670628309249878,
+      "odds": 5.0,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.5951,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2985,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5661,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "ana": {
+      "horse_number": 6,
+      "horse_name": "•®•§•∑•Û•“•¢•´•‡•∫",
+      "prob": 0.46093571186065674,
+      "odds": 6.8,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.3546,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2483,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.566,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      3,
+      5,
+      6
+    ],
+    "predicted_top5_nums": [
+      3,
+      5,
+      6,
+      2,
+      4
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 3,
+        "horse_name": "•Í°º•∏•Á•Ô•Ê°º•∫",
+        "prob": 0.8792,
+        "odds": 1.3
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "•¿•Û•π•»•Û•¡•¢°º•∫",
+        "prob": 0.4671,
+        "odds": 5.0
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "•®•§•∑•Û•“•¢•´•‡•∫",
+        "prob": 0.4609,
+        "odds": 6.8
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "•Ÿ•È•∏•™•Œ•Ê•·",
+        "prob": 0.3405,
+        "odds": 13.8
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "•“•»•Í•ª•Ï•÷",
+        "prob": 0.2836,
+        "odds": 18.9
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 4,
+        "horse_name": "•“•»•Í•ª•Ï•÷",
+        "ev_score": 5.36,
+        "prob": 0.2836,
+        "odds": 18.9
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "•◊•Í•Û•ª•π•Í•√•´",
+        "ev_score": 5.201,
+        "prob": 0.1365,
+        "odds": 38.1
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "•Ÿ•È•∏•™•Œ•Ê•·",
+        "ev_score": 4.699,
+        "prob": 0.3405,
+        "odds": 13.8
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [
+        {
+          "nums": [
+            3,
+            5
+          ]
+        },
+        {
+          "nums": [
+            3,
+            6
+          ]
+        },
+        {
+          "nums": [
+            5,
+            6
+          ]
+        }
+      ],
+      "wide": [],
+      "sanrenpuku": {
+        "jiku": [
+          3
+        ],
+        "aite": [
+          5,
+          6,
+          2,
+          4
+        ]
+      },
+      "total_points": 9,
+      "strategy_note": "馬連 + 3連複軸1×4",
+      "use_wide": false
+    },
+    "simulation": {
+      "3": {
+        "horse_name": "•Í°º•∏•Á•Ô•Ê°º•∫",
+        "top3_rate": 1.0,
+        "top3_std": 0.001,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 1.0,
+          "slow_pace": 1.0,
+          "normal": 1.0
+        }
+      },
+      "5": {
+        "horse_name": "•¿•Û•π•»•Û•¡•¢°º•∫",
+        "top3_rate": 0.772,
+        "top3_std": 0.017,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.77,
+          "slow_pace": 0.77,
+          "normal": 0.78
+        }
+      },
+      "6": {
+        "horse_name": "•®•§•∑•Û•“•¢•´•‡•∫",
+        "top3_rate": 0.768,
+        "top3_std": 0.017,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.77,
+          "slow_pace": 0.77,
+          "normal": 0.76
+        }
+      },
+      "2": {
+        "horse_name": "•Ÿ•È•∏•™•Œ•Ê•·",
+        "top3_rate": 0.286,
+        "top3_std": 0.018,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.29,
+          "slow_pace": 0.28,
+          "normal": 0.3
+        }
+      },
+      "4": {
+        "horse_name": "•“•»•Í•ª•Ï•÷",
+        "top3_rate": 0.156,
+        "top3_std": 0.013,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.16,
+          "slow_pace": 0.15,
+          "normal": 0.15
+        }
+      }
+    }
+  },
+  "202647040302": {
+    "race_name": "3∫–4¡»",
+    "race_date": "",
+    "start_time": "",
+    "venue": "",
+    "course_info": "芝1400m",
+    "honmei": {
+      "horse_number": 9,
+      "horse_name": "•¢•’•Í•´•Û•÷•È•√•Ø",
+      "prob": 0.6556423306465149,
+      "odds": 3.0,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 1.1452,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3226,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5954,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 8,
+      "horse_name": "•«•£•¢•Æ•Ï•’",
+      "prob": 0.650874674320221,
+      "odds": 1.8,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 1.5979,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.1745,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.6366,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "ana": {
+      "horse_number": 2,
+      "horse_name": "•®•§•∑•Û•§°º•Õ•Û",
+      "prob": 0.5114142894744873,
+      "odds": 5.4,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.5424,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2337,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.6003,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      9,
+      8,
+      2
+    ],
+    "predicted_top5_nums": [
+      9,
+      8,
+      2,
+      1,
+      3
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 9,
+        "horse_name": "•¢•’•Í•´•Û•÷•È•√•Ø",
+        "prob": 0.6556,
+        "odds": 3.0
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "•«•£•¢•Æ•Ï•’",
+        "prob": 0.6509,
+        "odds": 1.8
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "•®•§•∑•Û•§°º•Õ•Û",
+        "prob": 0.5114,
+        "odds": 5.4
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "•Ÿ•π•»•Ì•Þ•Û•π",
+        "prob": 0.3039,
+        "odds": 12.8
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "•‰•Þ•∏•Â•Û•‰•Û•∞",
+        "prob": 0.2074,
+        "odds": 20.5
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 7,
+        "horse_name": "•≠•„•Û•∆•£",
+        "ev_score": 6.172,
+        "prob": 0.1917,
+        "odds": 32.2
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "•‰•Þ•∏•Â•Û•‰•Û•∞",
+        "ev_score": 4.252,
+        "prob": 0.2074,
+        "odds": 20.5
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "•§•Û•´°º",
+        "ev_score": 4.156,
+        "prob": 0.0604,
+        "odds": 68.8
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [
+        {
+          "num": 9,
+          "name": "•¢•’•Í•´•Û•÷•È•√•Ø"
+        }
+      ],
+      "umaren": [
+        {
+          "nums": [
+            9,
+            8
+          ]
+        },
+        {
+          "nums": [
+            9,
+            2
+          ]
+        },
+        {
+          "nums": [
+            8,
+            2
+          ]
+        }
+      ],
+      "wide": [],
+      "sanrenpuku": {
+        "jiku": [
+          9
+        ],
+        "aite": [
+          8,
+          2,
+          1,
+          3
+        ]
+      },
+      "total_points": 10,
+      "strategy_note": "複勝 + 馬連 + 3連複軸1×4",
+      "use_wide": false
+    },
+    "simulation": {
+      "9": {
+        "horse_name": "•¢•’•Í•´•Û•÷•È•√•Ø",
+        "top3_rate": 0.985,
+        "top3_std": 0.005,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.99,
+          "slow_pace": 0.98,
+          "normal": 0.99
+        }
+      },
+      "8": {
+        "horse_name": "•«•£•¢•Æ•Ï•’",
+        "top3_rate": 0.983,
+        "top3_std": 0.004,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.99,
+          "slow_pace": 0.98,
+          "normal": 0.98
+        }
+      },
+      "2": {
+        "horse_name": "•®•§•∑•Û•§°º•Õ•Û",
+        "top3_rate": 0.871,
+        "top3_std": 0.014,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.87,
+          "slow_pace": 0.87,
+          "normal": 0.87
+        }
+      },
+      "1": {
+        "horse_name": "•Ÿ•π•»•Ì•Þ•Û•π",
+        "top3_rate": 0.114,
+        "top3_std": 0.016,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.12,
+          "slow_pace": 0.11,
+          "normal": 0.11
+        }
+      },
+      "3": {
+        "horse_name": "•‰•Þ•∏•Â•Û•‰•Û•∞",
+        "top3_rate": 0.023,
+        "top3_std": 0.006,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.02,
+          "slow_pace": 0.02,
+          "normal": 0.03
+        }
+      }
+    }
+  },
+  "202647040303": {
+    "race_name": "C10Ѕ»",
+    "race_date": "",
+    "start_time": "",
+    "venue": "",
+    "course_info": "芝1400m",
+    "honmei": {
+      "horse_number": 4,
+      "horse_name": "•Ј•–•ќ•∆•у•∆•у",
+      "prob": 0.6670547127723694,
+      "odds": 3.4,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.9793,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3116,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5635,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 2,
+      "horse_name": "•б•Є•г°Љ•й•√•Ј•е",
+      "prob": 0.6598541140556335,
+      "odds": 2.3,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 1.3408,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.1503,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.6323,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "ana": {
+      "horse_number": 7,
+      "horse_name": "•≠•њ•ќ•“•≥•№•Ј",
+      "prob": 0.48673221468925476,
+      "odds": 5.0,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.6034,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2198,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5983,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      4,
+      2,
+      7
+    ],
+    "predicted_top5_nums": [
+      4,
+      2,
+      7,
+      6,
+      9
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 4,
+        "horse_name": "•Ј•–•ќ•∆•у•∆•у",
+        "prob": 0.6671,
+        "odds": 3.4
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "•б•Є•г°Љ•й•√•Ј•е",
+        "prob": 0.6599,
+        "odds": 2.3
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "•≠•њ•ќ•“•≥•№•Ј",
+        "prob": 0.4867,
+        "odds": 5.0
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "•я•я•≥•Ѕ•г•у",
+        "prob": 0.3536,
+        "odds": 10.2
+      },
+      {
+        "horse_number": 9,
+        "horse_name": "•Ѕ•е•¶•п•Ґ•є•≥•√•»",
+        "prob": 0.2999,
+        "odds": 7.9
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 8,
+        "horse_name": "•’•я•’•н°Љ•м•у•є",
+        "ev_score": 6.55,
+        "prob": 0.1284,
+        "odds": 51.0
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "•“•л•ќ•ф•£•ѓ•»•к•Ґ",
+        "ev_score": 6.116,
+        "prob": 0.0747,
+        "odds": 81.9
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "•ё•Є•з•к°Љ",
+        "ev_score": 5.464,
+        "prob": 0.2151,
+        "odds": 25.4
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [
+        {
+          "num": 4,
+          "name": "•Ј•–•ќ•∆•у•∆•у"
+        }
+      ],
+      "umaren": [
+        {
+          "nums": [
+            4,
+            2
+          ]
+        },
+        {
+          "nums": [
+            4,
+            7
+          ]
+        },
+        {
+          "nums": [
+            2,
+            7
+          ]
+        }
+      ],
+      "wide": [],
+      "sanrenpuku": {
+        "jiku": [
+          4
+        ],
+        "aite": [
+          2,
+          7,
+          6,
+          9
+        ]
+      },
+      "total_points": 10,
+      "strategy_note": "複勝 + 馬連 + 3連複軸1×4",
+      "use_wide": false
+    },
+    "simulation": {
+      "4": {
+        "horse_name": "•Ј•–•ќ•∆•у•∆•у",
+        "top3_rate": 0.977,
+        "top3_std": 0.008,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.98,
+          "slow_pace": 0.98,
+          "normal": 0.98
+        }
+      },
+      "2": {
+        "horse_name": "•б•Є•г°Љ•й•√•Ј•е",
+        "top3_rate": 0.972,
+        "top3_std": 0.006,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.98,
+          "slow_pace": 0.97,
+          "normal": 0.97
+        }
+      },
+      "7": {
+        "horse_name": "•≠•њ•ќ•“•≥•№•Ј",
+        "top3_rate": 0.707,
+        "top3_std": 0.021,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.7,
+          "slow_pace": 0.71,
+          "normal": 0.71
+        }
+      },
+      "6": {
+        "horse_name": "•я•я•≥•Ѕ•г•у",
+        "top3_rate": 0.188,
+        "top3_std": 0.018,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.2,
+          "slow_pace": 0.19,
+          "normal": 0.18
+        }
+      },
+      "9": {
+        "horse_name": "•Ѕ•е•¶•п•Ґ•є•≥•√•»",
+        "top3_rate": 0.086,
+        "top3_std": 0.011,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.08,
+          "slow_pace": 0.09,
+          "normal": 0.09
+        }
+      }
+    }
+  },
+  "202647040304": {
+    "race_name": "C9組",
+    "race_date": "2026-04-03",
+    "start_time": "12:25",
+    "venue": "",
+    "course_info": "芝1580m",
+    "honmei": {
+      "horse_number": 2,
+      "horse_name": "ゴージャスレディ",
+      "prob": 0.7991457581520081,
+      "odds": 1.5,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 1.9971,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.1744,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.6597,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 6,
+      "horse_name": "カプア",
+      "prob": 0.5109070539474487,
+      "odds": 5.3,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.5333,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2897,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.6201,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "ana": {
+      "horse_number": 5,
+      "horse_name": "レジョンデロル",
+      "prob": 0.4346226453781128,
+      "odds": 6.9,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.3497,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2522,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.6209,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      2,
+      6,
+      5
+    ],
+    "predicted_top5_nums": [
+      2,
+      6,
+      5,
+      4,
+      7
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 2,
+        "horse_name": "ゴージャスレディ",
+        "prob": 0.7991,
+        "odds": 1.5
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "カプア",
+        "prob": 0.5109,
+        "odds": 5.3
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "レジョンデロル",
+        "prob": 0.4346,
+        "odds": 6.9
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "リアルカイザー",
+        "prob": 0.4326,
+        "odds": 7.2
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "ヴァンガルダ",
+        "prob": 0.3512,
+        "odds": 7.4
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 3,
+        "horse_name": "ミスティックパワー",
+        "ev_score": 7.056,
+        "prob": 0.0703,
+        "odds": 100.3
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "ホウオウマリアン",
+        "ev_score": 5.08,
+        "prob": 0.032,
+        "odds": 158.5
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "スマートジュディ",
+        "ev_score": 4.34,
+        "prob": 0.0277,
+        "odds": 156.9
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [
+        {
+          "nums": [
+            2,
+            6
+          ]
+        },
+        {
+          "nums": [
+            2,
+            5
+          ]
+        },
+        {
+          "nums": [
+            6,
+            5
+          ]
+        }
+      ],
+      "wide": [],
+      "sanrenpuku": {
+        "jiku": [
+          2
+        ],
+        "aite": [
+          6,
+          5,
+          4,
+          7
+        ]
+      },
+      "total_points": 9,
+      "strategy_note": "馬連 + 3連複軸1×4",
+      "use_wide": false
+    },
+    "simulation": {
+      "2": {
+        "horse_name": "ゴージャスレディ",
+        "top3_rate": 0.998,
+        "top3_std": 0.002,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 1.0,
+          "slow_pace": 1.0,
+          "normal": 1.0
+        }
+      },
+      "6": {
+        "horse_name": "カプア",
+        "top3_rate": 0.765,
+        "top3_std": 0.014,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.77,
+          "slow_pace": 0.76,
+          "normal": 0.77
+        }
+      },
+      "5": {
+        "horse_name": "レジョンデロル",
+        "top3_rate": 0.511,
+        "top3_std": 0.023,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.51,
+          "slow_pace": 0.51,
+          "normal": 0.51
+        }
+      },
+      "4": {
+        "horse_name": "リアルカイザー",
+        "top3_rate": 0.506,
+        "top3_std": 0.026,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.5,
+          "slow_pace": 0.51,
+          "normal": 0.51
+        }
+      },
+      "7": {
+        "horse_name": "ヴァンガルダ",
+        "top3_rate": 0.216,
+        "top3_std": 0.023,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.22,
+          "slow_pace": 0.21,
+          "normal": 0.21
+        }
+      }
+    }
+  },
+  "202647040305": {
+    "race_name": "C8Ѕ»",
+    "race_date": "",
+    "start_time": "",
+    "venue": "",
+    "course_info": "芝1400m",
+    "honmei": {
+      "horse_number": 3,
+      "horse_name": "•џ•¶•™•¶•—•Ј•е°Љ•»",
+      "prob": 0.7201191186904907,
+      "odds": 2.0,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 1.5085,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.1581,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.6018,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 5,
+      "horse_name": "•¶•§•у•й•а•ї•є",
+      "prob": 0.6866450309753418,
+      "odds": 3.0,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 1.1272,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3276,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5649,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "ana": {
+      "horse_number": 2,
+      "horse_name": "•ѓ•н•§•Љ•л•у•∞",
+      "prob": 0.4678536653518677,
+      "odds": 7.0,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.313,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2518,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5986,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      3,
+      5,
+      2
+    ],
+    "predicted_top5_nums": [
+      3,
+      5,
+      2,
+      7,
+      6
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 3,
+        "horse_name": "•џ•¶•™•¶•—•Ј•е°Љ•»",
+        "prob": 0.7201,
+        "odds": 2.0
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "•¶•§•у•й•а•ї•є",
+        "prob": 0.6866,
+        "odds": 3.0
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "•ѓ•н•§•Љ•л•у•∞",
+        "prob": 0.4679,
+        "odds": 7.0
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "•Є•г•є•њ•—°Љ•∆•£°Љ",
+        "prob": 0.3931,
+        "odds": 9.5
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "•ƒ•§•у•м•§",
+        "prob": 0.2861,
+        "odds": 13.1
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 1,
+        "horse_name": "•њ•≠•ґ•ѓ•й",
+        "ev_score": 6.861,
+        "prob": 0.0292,
+        "odds": 235.2
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "•я•л•њ•у•…•м•є",
+        "ev_score": 5.942,
+        "prob": 0.047,
+        "odds": 126.5
+      },
+      {
+        "horse_number": 9,
+        "horse_name": "•Ј•е•‘•й°Љ•л",
+        "ev_score": 4.705,
+        "prob": 0.2503,
+        "odds": 18.8
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [
+        {
+          "nums": [
+            3,
+            5
+          ]
+        },
+        {
+          "nums": [
+            3,
+            2
+          ]
+        },
+        {
+          "nums": [
+            5,
+            2
+          ]
+        }
+      ],
+      "wide": [],
+      "sanrenpuku": {
+        "jiku": [
+          3
+        ],
+        "aite": [
+          5,
+          2,
+          7,
+          6
+        ]
+      },
+      "total_points": 9,
+      "strategy_note": "馬連 + 3連複軸1×4",
+      "use_wide": false
+    },
+    "simulation": {
+      "3": {
+        "horse_name": "•џ•¶•™•¶•—•Ј•е°Љ•»",
+        "top3_rate": 0.988,
+        "top3_std": 0.006,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.99,
+          "slow_pace": 0.99,
+          "normal": 0.99
+        }
+      },
+      "5": {
+        "horse_name": "•¶•§•у•й•а•ї•є",
+        "top3_rate": 0.977,
+        "top3_std": 0.007,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.98,
+          "slow_pace": 0.98,
+          "normal": 0.97
+        }
+      },
+      "2": {
+        "horse_name": "•ѓ•н•§•Љ•л•у•∞",
+        "top3_rate": 0.614,
+        "top3_std": 0.02,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.61,
+          "slow_pace": 0.62,
+          "normal": 0.61
+        }
+      },
+      "7": {
+        "horse_name": "•Є•г•є•њ•—°Љ•∆•£°Љ",
+        "top3_rate": 0.292,
+        "top3_std": 0.016,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.3,
+          "slow_pace": 0.29,
+          "normal": 0.29
+        }
+      },
+      "6": {
+        "horse_name": "•ƒ•§•у•м•§",
+        "top3_rate": 0.07,
+        "top3_std": 0.012,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.06,
+          "slow_pace": 0.07,
+          "normal": 0.08
+        }
+      }
+    }
+  },
+  "202647040306": {
+    "race_name": "C7Ѕ»",
+    "race_date": "",
+    "start_time": "",
+    "venue": "",
+    "course_info": "芝1400m",
+    "honmei": {
+      "horse_number": 8,
+      "horse_name": "•Є°Љ•∞•’•І•л•…",
+      "prob": 0.754228949546814,
+      "odds": 2.5,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 1.4082,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3743,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.6042,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 9,
+      "horse_name": "•ј•л•ё•п•у•µ",
+      "prob": 0.6649820804595947,
+      "odds": 2.1,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 1.5093,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.1565,
+          "label": "人気"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.6362,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "ana": {
+      "horse_number": 6,
+      "horse_name": "•н°Љ•…•»•п•§•й•§•»",
+      "prob": 0.4570218622684479,
+      "odds": 8.3,
+      "shap_top": [
+        {
+          "feature": "popularity",
+          "value": 0.2694,
+          "label": "人気"
+        },
+        {
+          "feature": "odds",
+          "value": 0.2579,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "last_3f",
+          "value": -0.5955,
+          "label": "上がり3Fやや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      8,
+      9,
+      6
+    ],
+    "predicted_top5_nums": [
+      8,
+      9,
+      6,
+      3,
+      7
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 8,
+        "horse_name": "•Є°Љ•∞•’•І•л•…",
+        "prob": 0.7542,
+        "odds": 2.5
+      },
+      {
+        "horse_number": 9,
+        "horse_name": "•ј•л•ё•п•у•µ",
+        "prob": 0.665,
+        "odds": 2.1
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "•н°Љ•…•»•п•§•й•§•»",
+        "prob": 0.457,
+        "odds": 8.3
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "•в°Љ•Ћ•у•∞•’•Є",
+        "prob": 0.4023,
+        "odds": 10.4
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "•∞•й•¶•ѓ•є",
+        "prob": 0.2965,
+        "odds": 14.8
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 1,
+        "horse_name": "•ё•√•Ѕ•г•у•’•°•§•»",
+        "ev_score": 7.361,
+        "prob": 0.1248,
+        "odds": 59.0
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "•Є•е•®•к°Љ•ѓ•н°Љ•а",
+        "ev_score": 5.259,
+        "prob": 0.1955,
+        "odds": 26.9
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "•∆°Љ•™°Љ•й•§•й",
+        "ev_score": 4.416,
+        "prob": 0.2467,
+        "odds": 17.9
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [
+        {
+          "num": 8,
+          "name": "•Є°Љ•∞•’•І•л•…"
+        }
+      ],
+      "umaren": [
+        {
+          "nums": [
+            8,
+            9
+          ]
+        },
+        {
+          "nums": [
+            8,
+            6
+          ]
+        },
+        {
+          "nums": [
+            9,
+            6
+          ]
+        }
+      ],
+      "wide": [],
+      "sanrenpuku": {
+        "jiku": [
+          8
+        ],
+        "aite": [
+          9,
+          6,
+          3,
+          7
+        ]
+      },
+      "total_points": 10,
+      "strategy_note": "複勝 + 馬連 + 3連複軸1×4",
+      "use_wide": false
+    },
+    "simulation": {
+      "8": {
+        "horse_name": "•Є°Љ•∞•’•І•л•…",
+        "top3_rate": 0.994,
+        "top3_std": 0.004,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.99,
+          "slow_pace": 0.99,
+          "normal": 0.99
+        }
+      },
+      "9": {
+        "horse_name": "•ј•л•ё•п•у•µ",
+        "top3_rate": 0.969,
+        "top3_std": 0.007,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.97,
+          "slow_pace": 0.97,
+          "normal": 0.96
+        }
+      },
+      "6": {
+        "horse_name": "•н°Љ•…•»•п•§•й•§•»",
+        "top3_rate": 0.565,
+        "top3_std": 0.019,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.57,
+          "slow_pace": 0.57,
+          "normal": 0.56
+        }
+      },
+      "3": {
+        "horse_name": "•в°Љ•Ћ•у•∞•’•Є",
+        "top3_rate": 0.331,
+        "top3_std": 0.018,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.34,
+          "slow_pace": 0.33,
+          "normal": 0.33
+        }
+      },
+      "7": {
+        "horse_name": "•∞•й•¶•ѓ•є",
+        "top3_rate": 0.083,
+        "top3_std": 0.012,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.07,
+          "slow_pace": 0.09,
+          "normal": 0.09
+        }
+      }
+    }
+  }
+}
