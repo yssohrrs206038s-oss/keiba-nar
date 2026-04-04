@@ -83,17 +83,17 @@ def _venue_webhook(venue: str, default_url: str) -> str:
 
 # ── 開催場 → YouTube チャンネル URL ─────────────────────────────
 VENUE_YOUTUBE: dict[str, str] = {
-    "大井":   "https://www.youtube.com/@oikeiba",
+    "大井":   "https://www.youtube.com/@tckkeiba",
     "川崎":   "https://www.youtube.com/@kawasakikeiba",
-    "船橋":   "https://www.youtube.com/@funabashikeiba",
-    "浦和":   "https://www.youtube.com/@urawakeiba",
+    "船橋":   "https://www.youtube.com/@funabashi-keiba",
+    "浦和":   "https://www.youtube.com/@urawa_keiba_official",
     "門別":   "https://www.youtube.com/@hokkaidokeiba",
     "名古屋": "https://www.youtube.com/@nagoyakeiba",
-    "園田":   "https://www.youtube.com/@sonodakeiba",
-    "笠松":   "https://www.youtube.com/@kasamatsukeiba",
-    "金沢":   "https://www.youtube.com/@kanazawakeiba",
-    "高知":   "https://www.youtube.com/@kochikeiba",
-    "佐賀":   "https://www.youtube.com/@sagakeiba",
+    "園田":   "https://www.youtube.com/@sonodahimejiweb",
+    "笠松":   "https://www.youtube.com/@kasamagogo",
+    "金沢":   "https://www.youtube.com/@kanazawakeiba_official",
+    "高知":   "https://www.youtube.com/@KeibaOrJp",
+    "佐賀":   "https://www.youtube.com/@sagakeibaofficial",
 }
 
 
