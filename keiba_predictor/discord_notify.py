@@ -51,16 +51,24 @@ MARK = {"honmei": "◎", "taikou": "○", "ana": "△", "hoshi": "☆"}
 
 # ── 開催場別 Discord Webhook マップ ─────────────────────────────
 # GitHub Secrets に各場の Webhook URL を登録:
-#   DISCORD_NAR_OI_WEBHOOK_URL       → 大井チャンネル
+#   DISCORD_NAR_OI_WEBHOOK_URL        → 大井チャンネル
 #   DISCORD_NAR_FUNABASHI_WEBHOOK_URL → 船橋チャンネル
 #   DISCORD_NAR_KAWASAKI_WEBHOOK_URL  → 川崎チャンネル
-#   DISCORD_NAR_URAWA_WEBHOOK_URL    → 浦和チャンネル
-#   DISCORD_WEBHOOK_URL              → その他NAR（デフォルト）
+#   DISCORD_NAR_URAWA_WEBHOOK_URL     → 浦和チャンネル
+#   DISCORD_NAR_MONBETSU_WEBHOOK_URL  → 門別チャンネル
+#   DISCORD_NAR_NAGOYA_WEBHOOK_URL    → 名古屋チャンネル
+#   DISCORD_NAR_KOCHI_WEBHOOK_URL     → 高知チャンネル
+#   DISCORD_NAR_SAGA_WEBHOOK_URL      → 佐賀チャンネル
+#   DISCORD_WEBHOOK_URL               → その他NAR（デフォルト）
 NAR_VENUE_WEBHOOK_MAP: dict[str, str] = {
-    "大井": "DISCORD_NAR_OI_WEBHOOK_URL",
-    "船橋": "DISCORD_NAR_FUNABASHI_WEBHOOK_URL",
-    "川崎": "DISCORD_NAR_KAWASAKI_WEBHOOK_URL",
-    "浦和": "DISCORD_NAR_URAWA_WEBHOOK_URL",
+    "大井":   "DISCORD_NAR_OI_WEBHOOK_URL",
+    "船橋":   "DISCORD_NAR_FUNABASHI_WEBHOOK_URL",
+    "川崎":   "DISCORD_NAR_KAWASAKI_WEBHOOK_URL",
+    "浦和":   "DISCORD_NAR_URAWA_WEBHOOK_URL",
+    "門別":   "DISCORD_NAR_MONBETSU_WEBHOOK_URL",
+    "名古屋": "DISCORD_NAR_NAGOYA_WEBHOOK_URL",
+    "高知":   "DISCORD_NAR_KOCHI_WEBHOOK_URL",
+    "佐賀":   "DISCORD_NAR_SAGA_WEBHOOK_URL",
 }
 
 
