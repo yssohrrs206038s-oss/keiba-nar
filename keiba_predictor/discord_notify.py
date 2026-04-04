@@ -1094,13 +1094,22 @@ def _build_hit_embed(
     umaren_pay: str,
     sanren_hit: bool,
     sanren_pay: str,
+    race_id: str = "",
 ) -> Optional[dict]:
     """的中時のembed辞書を生成する。何も的中していなければ None。"""
     if not (fukusho_hit or umaren_hit or sanren_hit):
         return None
 
+    # レース番号をrace_idから取得（末尾2桁）
+    race_num = ""
+    if race_id and len(race_id) >= 12:
+        try:
+            race_num = f"{int(race_id[10:12])}R "
+        except ValueError:
+            pass
+
     # 説明テキスト
-    lines = [f"🏇 **{venue} {race_name}**"]
+    lines = [f"🏇 **{venue} {race_num}{race_name}**"]
     if honmei_num is not None:
         lines.append(f"◎ {honmei_num}番 {honmei_name}")
     lines.append("")
@@ -1877,7 +1886,7 @@ def run_result_notify(
             _venue = pred.get("venue", "")
             hit_embed = _build_hit_embed(
                 _venue, race_name, _honmei_num, _honmei_name,
-                _fh, _uh, _up, _sh, _sp,
+                _fh, _uh, _up, _sh, _sp, race_id=race_id,
             )
             if hit_embed:
                 target_webhook = hit_webhook if hit_webhook else result_webhook
