@@ -1157,10 +1157,19 @@ def _fmt_result(race_name: str, race_date: str,
                 actual_df: pd.DataFrame,
                 pred: dict,
                 payouts: dict,
-                manual: Optional[dict] = None) -> str:
+                manual: Optional[dict] = None,
+                race_id: str = "") -> str:
     """日曜結果メッセージを生成する。"""
     RULE = "━" * 24
-    lines = [f"🏆 【KEIBA EDGE】{race_name} 結果  {race_date}", RULE]
+    venue = pred.get("venue", "")
+    race_num = ""
+    if race_id and len(race_id) >= 12:
+        try:
+            race_num = f"{int(race_id[10:12])}R "
+        except ValueError:
+            pass
+    header = f"{venue} {race_num}{race_name}".strip()
+    lines = [f"🏆 【KEIBA EDGE】{header} 結果  {race_date}", RULE]
 
     # 予想馬番→印 のマッピング
     pred_num_to_mark: dict[int, str] = {}
@@ -1331,7 +1340,7 @@ def _check_sanrenpuku_raw(
     return False, ""
 
 
-def _format_prediction_from_cache(race_name: str, entry: dict) -> tuple[str, str]:
+def _format_prediction_from_cache(race_name: str, entry: dict, race_id: str = "") -> tuple[str, str]:
     """predictions_cache.json のエントリからDiscord用メッセージ(予想・買い目)を生成する。"""
     sep = "━" * 20
     course_info = entry.get("course_info", "")
@@ -1340,7 +1349,14 @@ def _format_prediction_from_cache(race_name: str, entry: dict) -> tuple[str, str
     # ── Message 1: 予想 ───────────────────────────────────────
     venue = entry.get("venue", "")
     start_time = entry.get("start_time", "")
-    lines1 = [sep, f"🏇 {race_name}"]
+    # レース番号をrace_idから取得
+    race_num = ""
+    if race_id and len(race_id) >= 12:
+        try:
+            race_num = f"{int(race_id[10:12])}R "
+        except ValueError:
+            pass
+    lines1 = [sep, f"🏇 {venue} {race_num}{race_name}".strip()]
     # 開催場・発走時刻・コース情報を1行にまとめる
     meta_parts = []
     if venue:
@@ -1644,7 +1660,7 @@ def run_predict_notify(
                 except Exception as e:
                     logger.warning(f"  AI解説再生成失敗（続行）: {e}")
 
-            msg1, msg2 = _format_prediction_from_cache(race_name, cached_entry)
+            msg1, msg2 = _format_prediction_from_cache(race_name, cached_entry, race_id=race_id)
         else:
             # キャッシュになければ predict_live() で生成
             logger.info(f"  キャッシュなし → predict_live 実行: {race_name} ({race_id})")
@@ -1829,7 +1845,7 @@ def run_result_notify(
             if manual.get("predicted_top3_nums"):
                 pred["predicted_top3_nums"] = manual["predicted_top3_nums"]
 
-        msg = _fmt_result(race_name, race_date, actual_df, pred, payouts, manual=manual)
+        msg = _fmt_result(race_name, race_date, actual_df, pred, payouts, manual=manual, race_id=race_id)
         _result_venue = pred.get("venue", "")
         _result_target = _venue_webhook(_result_venue, result_webhook)
         if send_discord(_result_target, msg):
