@@ -145,19 +145,22 @@ def _get(url: str, session: requests.Session, encoding: str = "UTF-8") -> Option
         ct = resp.headers.get("Content-Type", "")
         m = re.search(r"charset=([^\s;,]+)", ct, re.I)
         ct_charset = m.group(1).strip().lower() if m else ""
-        # charset が有効な値（空でない・iso-8859-1でない）なら使用
-        # NAR は charset= が空、または iso-8859-1 を返すため引数を優先
-        if ct_charset and ct_charset not in ("", "iso-8859-1"):
-            detected = ct_charset
-        elif encoding.lower() != "utf-8":
-            # 明示的にエンコーディングが指定されている場合はそれを優先
+        # 明示的にエンコーディングが指定されている場合（euc-jp等）は常にそれを優先
+        # NAR は charset= が空、apparent_encoding が iso-8859-5 等の誤検出を返すため
+        if encoding.lower() != "utf-8":
             detected = encoding
-        elif resp.apparent_encoding and resp.apparent_encoding.lower() not in ("ascii", "windows-1252", "iso-8859-1"):
+        elif ct_charset and not ct_charset.startswith("iso-8859"):
+            detected = ct_charset
+        elif resp.apparent_encoding and resp.apparent_encoding.lower() not in ("ascii", "windows-1252") and not resp.apparent_encoding.lower().startswith("iso-8859"):
             detected = resp.apparent_encoding
         else:
             detected = encoding
-        # bytes + from_encoding: BS4 が <meta charset> も考慮して正しく解析する
-        return BeautifulSoup(resp.content, "html.parser", from_encoding=detected)
+        # bytesを明示的にデコードしてからBS4に渡す（from_encodingが無視されるケースの対策）
+        try:
+            html_text = resp.content.decode(detected, errors="replace")
+        except (UnicodeDecodeError, LookupError):
+            html_text = resp.content.decode("utf-8", errors="replace")
+        return BeautifulSoup(html_text, "html.parser")
     except requests.RequestException as e:
         logger.warning(f"Request failed: {url} -> {e}")
         return None
