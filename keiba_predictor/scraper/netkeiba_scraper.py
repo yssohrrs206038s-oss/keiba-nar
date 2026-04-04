@@ -141,12 +141,18 @@ def _get(url: str, session: requests.Session, encoding: str = "UTF-8") -> Option
     try:
         resp = session.get(url, headers=HEADERS, timeout=20)
         resp.raise_for_status()
-        # Content-Type ヘッダーから charset を取得（あればそちらを優先）
+        # Content-Type ヘッダーから charset を取得
         ct = resp.headers.get("Content-Type", "")
         m = re.search(r"charset=([^\s;,]+)", ct, re.I)
-        if m:
-            detected = m.group(1).strip()
-        elif resp.apparent_encoding and resp.apparent_encoding.lower() not in ("ascii", "windows-1252"):
+        ct_charset = m.group(1).strip().lower() if m else ""
+        # charset が有効な値（空でない・iso-8859-1でない）なら使用
+        # NAR は charset= が空、または iso-8859-1 を返すため引数を優先
+        if ct_charset and ct_charset not in ("", "iso-8859-1"):
+            detected = ct_charset
+        elif encoding.lower() != "utf-8":
+            # 明示的にエンコーディングが指定されている場合はそれを優先
+            detected = encoding
+        elif resp.apparent_encoding and resp.apparent_encoding.lower() not in ("ascii", "windows-1252", "iso-8859-1"):
             detected = resp.apparent_encoding
         else:
             detected = encoding
