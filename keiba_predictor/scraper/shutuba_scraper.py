@@ -5,6 +5,7 @@ netkeiba から出馬表を取得する。
   https://nar.netkeiba.com/race/shutuba.html?race_id={race_id}
 """
 
+import random
 import re
 import logging
 import time
