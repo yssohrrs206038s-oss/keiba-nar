@@ -953,6 +953,8 @@ def scrape_payouts(race_id: str, session: requests.Session) -> dict:
             return None
 
     # NAR: Payout_Detail_Table / JRA: pay_table_01
+    # NAR形式: 1行に複数エントリが連結される（例: combo="46", amount="130円190円"）
+    # td内のbr/spanで分割されている場合もある
     pay_tables = soup.select("table.Payout_Detail_Table, table.pay_table_01")
     for table in pay_tables:
         current_type = None
@@ -964,14 +966,39 @@ def scrape_payouts(race_id: str, session: requests.Session) -> dict:
             if not current_type or len(tds) < 2:
                 continue
 
-            combos  = tds[0].get_text(" ", strip=True)
-            amounts = tds[1].get_text(" ", strip=True)
+            # NAR: td内のbrやspanで分割されている → 個別に取得
+            combo_parts = []
+            for child in tds[0].children:
+                t = child.get_text(strip=True) if hasattr(child, 'get_text') else str(child).strip()
+                if t:
+                    combo_parts.append(t)
+            if not combo_parts:
+                combo_parts = [tds[0].get_text(strip=True)]
 
-            amt = _parse_yen(amounts)
-            payouts.setdefault(current_type, []).append({
-                "combo":  combos,
-                "amount": amt,
-            })
+            amount_parts = []
+            for child in tds[1].children:
+                t = child.get_text(strip=True) if hasattr(child, 'get_text') else str(child).strip()
+                if t:
+                    amount_parts.append(t)
+            if not amount_parts:
+                amount_parts = [tds[1].get_text(strip=True)]
+
+            # 「円」で分割してマッチング（例: "130円190円" → [130, 190]）
+            raw_amounts = tds[1].get_text(strip=True)
+            amt_list = [_parse_yen(a + "円") for a in raw_amounts.split("円") if a.strip()]
+
+            # combo_partsとamt_listの数が合えば1対1マッチ
+            if len(combo_parts) == len(amt_list):
+                for combo, amt in zip(combo_parts, amt_list):
+                    payouts.setdefault(current_type, []).append({
+                        "combo": combo, "amount": amt,
+                    })
+            elif amt_list:
+                # 数が合わない場合は全体をまとめて登録
+                combo_all = tds[0].get_text(strip=True)
+                payouts.setdefault(current_type, []).append({
+                    "combo": combo_all, "amount": amt_list[0],
+                })
 
     if payouts:
         logger.info(f"  払戻金取得: {race_id} → {list(payouts.keys())}")

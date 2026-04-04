@@ -200,6 +200,16 @@ def record_result(
     # 複勝的中: ◎（honmei = predicted_nums[0]）が 3 着以内に入ったか
     fukusho_hit = bool(predicted_nums) and (predicted_nums[0] in actual_nums)
 
+    # 複勝払戻金を取得
+    fukusho_payout = 0
+    if fukusho_hit and predicted_nums:
+        honmei_num = predicted_nums[0]
+        for entry in payouts.get("複勝", []):
+            combo_nums = set(re.findall(r"\d+", str(entry.get("combo", ""))))
+            if str(honmei_num) in combo_nums:
+                fukusho_payout = entry.get("amount") or 0
+                break
+
     # 馬連・ワイド・3連複
     umaren_hit, umaren_pay_str  = _check_umaren_raw(predicted_nums, actual_nums, payouts)
     wide_pairs                  = _check_wide_pairs_raw(predicted_nums, actual_nums, payouts)
@@ -213,7 +223,7 @@ def record_result(
     sanren_payout   = _payout_str_to_int(sanren_pay_str)
 
     bet_total    = UNIT_BET * BETS_PER_RACE
-    return_total = umaren_payout + wide_payout + sanren_payout
+    return_total = fukusho_payout + umaren_payout + wide_payout + sanren_payout
 
     row = {
         "date":       race_date,
