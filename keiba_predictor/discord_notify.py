@@ -966,26 +966,10 @@ def scrape_payouts(race_id: str, session: requests.Session) -> dict:
             if not current_type or len(tds) < 2:
                 continue
 
-            # NAR: td内のbrやspanで分割されている → 個別に取得
-            combo_parts = []
-            for child in tds[0].children:
-                t = child.get_text(strip=True) if hasattr(child, 'get_text') else str(child).strip()
-                if t:
-                    combo_parts.append(t)
-            if not combo_parts:
-                combo_parts = [tds[0].get_text(strip=True)]
-
-            amount_parts = []
-            for child in tds[1].children:
-                t = child.get_text(strip=True) if hasattr(child, 'get_text') else str(child).strip()
-                if t:
-                    amount_parts.append(t)
-            if not amount_parts:
-                amount_parts = [tds[1].get_text(strip=True)]
-
-            # 「円」で分割してマッチング（例: "130円190円" → [130, 190]）
-            raw_amounts = tds[1].get_text(strip=True)
-            amt_list = [_parse_yen(a + "円") for a in raw_amounts.split("円") if a.strip()]
+            # brタグを改行に変換して分割（JRA: <br>区切り / NAR: span区切り）
+            combo_parts = [p.strip() for p in tds[0].get_text("\n").split("\n") if p.strip()]
+            amt_parts   = [p.strip() for p in tds[1].get_text("\n").split("\n") if p.strip()]
+            amt_list = [_parse_yen(a) for a in amt_parts]
 
             # combo_partsとamt_listの数が合えば1対1マッチ
             if len(combo_parts) == len(amt_list):
