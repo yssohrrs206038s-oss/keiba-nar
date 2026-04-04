@@ -857,6 +857,31 @@ def _store_prediction(race_id: str, race_name: str, race_date: str,
             if k in mc_result:
                 top5_mc[k] = mc_result[k]
         cache[race_id]["simulation"] = top5_mc
+        # MC確率でキャッシュ内のprobを上書き（Discord・ダッシュボード表示用）
+        for role in ("honmei", "taikou", "ana"):
+            p = cache[race_id].get(role, {})
+            if p and p.get("horse_number") is not None:
+                mc = mc_result.get(str(p["horse_number"]), {})
+                if "top3_rate" in mc:
+                    p["prob"] = mc["top3_rate"]
+        for h in cache[race_id].get("predicted_top5", []):
+            if h.get("horse_number") is not None:
+                mc = mc_result.get(str(h["horse_number"]), {})
+                if "top3_rate" in mc:
+                    h["prob"] = mc["top3_rate"]
+        # MC確率ベースで危険馬を再判定
+        new_danger = []
+        for d in cache[race_id].get("dangerous_horses", []):
+            num = d.get("horse_number")
+            mc = mc_result.get(str(num), {})
+            mc_prob = mc.get("top3_rate")
+            pop = d.get("popularity")
+            if mc_prob is not None and pop is not None and pop <= 3 and mc_prob >= 0.40:
+                # MC確率40%以上なら危険解除
+                logger.info(f"  危険解除（MC {mc_prob*100:.0f}%）: {d.get('horse_name')} {pop}人気")
+                continue
+            new_danger.append(d)
+        cache[race_id]["dangerous_horses"] = new_danger
     except Exception as e:
         logger.warning(f"モンテカルロシミュレーション失敗: {e}")
 
@@ -1299,18 +1324,23 @@ def _format_prediction_from_cache(race_name: str, entry: dict) -> tuple[str, str
         if num is not None:
             ev_map[int(num)] = e
 
+    # モンテカルロ3着以内率マップ（あればXGBoostのprobより優先）
+    sim = entry.get("simulation", {})
+
     for rank, num in enumerate(top5_nums):
         mark = MARKS[rank] if rank < len(MARKS) else "　"
         info = top5_detail.get(num, ev_map.get(num, {}))
         name = info.get("horse_name", "")
         if not name:
             name = f"{num}番"
-        prob = info.get("prob", 0) * 100
+        # MC確率を優先、なければXGBoost prob
+        mc_data = sim.get(str(num), {})
+        mc_rate = mc_data.get("top3_rate")
+        prob = (mc_rate * 100) if mc_rate is not None else (info.get("prob", 0) * 100)
         ev_entry = ev_map.get(num, {})
         ev_val = ev_entry.get("ev_score")
         has_real_odds = ev_entry.get("odds") is not None
         ev_str = f" EV{ev_val:.2f}" if ev_val and has_real_odds else ""
-        # predicted_top5にデータがない馬は確率非表示（馬番のみ）
         if prob > 0.01:
             lines1.append(f"{mark} {num}番 {name}　{prob:.1f}%{ev_str}")
         else:
