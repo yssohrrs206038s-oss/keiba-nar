@@ -157,6 +157,10 @@
     .horse-stats { text-align: right; }
     .horse-prob { font-size: 14px; font-weight: 700; color: var(--accent); }
     .horse-ev   { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+    .horse-summary {
+      font-size: 11px; color: var(--accent-lt); margin-top: 3px;
+      line-height: 1.4; font-weight: 500;
+    }
     .bet-box {
       margin-top: 14px; background: rgba(46,204,113,.06);
       border: 1px solid rgba(46,204,113,.25); border-radius: 8px; padding: 12px 14px;
@@ -570,7 +574,9 @@ function _renderRaceCard(raceId, r) {
     const prob = ((p.prob || 0) * 100).toFixed(1);
     const ev = evMap[+p.horse_number];
     const evStr = ev ? `EV${ev.toFixed(2)}` : '';
-    const comment = aiComments[String(p.horse_number)] || '';
+    const pop = p.popularity ? `${p.popularity}人気` : '';
+
+    // SHAP値タグ（コンパクト）
     let shapHTML = '';
     if (p.shap_top && p.shap_top.length) {
       shapHTML = '<div class="horse-shap">' + p.shap_top.map(s => {
@@ -579,11 +585,34 @@ function _renderRaceCard(raceId, r) {
         return `<span class="shap-tag ${c2}">${esc(s.label)} ${sign}${s.value.toFixed(2)}</span>`;
       }).join('') + '</div>';
     }
+
+    // 3行サマリー: SHAP根拠 → 判定
+    let summaryHTML = '';
+    if (p.shap_top && p.shap_top.length) {
+      const pros = p.shap_top.filter(s => s.value > 0).map(s => s.label).slice(0, 2);
+      const cons = p.shap_top.filter(s => s.value < 0).map(s => s.label).slice(0, 1);
+      const parts = [];
+      if (pros.length) parts.push(pros.join('・'));
+      if (cons.length) parts.push(`⚠${cons[0]}`);
+      let verdict = '';
+      if (ev && ev >= 1.5) verdict = '妙味あり';
+      else if (prob >= 50) verdict = '安定軸';
+      else if (prob >= 30) verdict = '展開次第';
+      summaryHTML = `<div class="horse-summary">→ ${parts.join(' / ')}${verdict ? '。' + verdict : ''}</div>`;
+    }
+
     return `<div class="horse-item">
       <span class="horse-mark ${cls}">${mark}</span>
       <span class="horse-num">${esc(p.horse_number)}番</span>
-      <div><div class="horse-name">${esc(p.horse_name)}</div>${shapHTML}${comment ? `<div class="horse-comment">${esc(comment)}</div>` : ''}</div>
-      <div class="horse-stats"><div class="horse-prob">${prob}%</div>${evStr ? `<div class="horse-ev">${evStr}</div>` : ''}</div>
+      <div>
+        <div class="horse-name">${esc(p.horse_name)}</div>
+        ${shapHTML}
+        ${summaryHTML}
+      </div>
+      <div class="horse-stats">
+        <div class="horse-prob">${prob}%</div>
+        ${evStr ? `<div class="horse-ev">${evStr}</div>` : ''}
+      </div>
     </div>`;
   }).join('');
 
