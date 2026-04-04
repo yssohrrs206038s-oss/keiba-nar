@@ -49,6 +49,30 @@ GRADE_RE = re.compile(r"\(G[Ⅰ-Ⅲ1-3]\)|\(GI{1,3}\)")
 
 MARK = {"honmei": "◎", "taikou": "○", "ana": "△", "hoshi": "☆"}
 
+# ── 開催場別 Discord Webhook マップ ─────────────────────────────
+# GitHub Secrets に各場の Webhook URL を登録:
+#   DISCORD_NAR_OI_WEBHOOK_URL       → 大井チャンネル
+#   DISCORD_NAR_FUNABASHI_WEBHOOK_URL → 船橋チャンネル
+#   DISCORD_NAR_KAWASAKI_WEBHOOK_URL  → 川崎チャンネル
+#   DISCORD_NAR_URAWA_WEBHOOK_URL    → 浦和チャンネル
+#   DISCORD_WEBHOOK_URL              → その他NAR（デフォルト）
+NAR_VENUE_WEBHOOK_MAP: dict[str, str] = {
+    "大井": "DISCORD_NAR_OI_WEBHOOK_URL",
+    "船橋": "DISCORD_NAR_FUNABASHI_WEBHOOK_URL",
+    "川崎": "DISCORD_NAR_KAWASAKI_WEBHOOK_URL",
+    "浦和": "DISCORD_NAR_URAWA_WEBHOOK_URL",
+}
+
+
+def _venue_webhook(venue: str, default_url: str) -> str:
+    """開催場に対応するWebhook URLを返す。未設定ならdefaultにフォールバック。"""
+    env_key = NAR_VENUE_WEBHOOK_MAP.get(venue, "")
+    if env_key:
+        url = os.environ.get(env_key, "")
+        if url:
+            return url
+    return default_url
+
 # ── 開催場 → YouTube チャンネル URL ─────────────────────────────
 VENUE_YOUTUBE: dict[str, str] = {
     "大井":   "https://www.youtube.com/@oikeiba",
@@ -1616,12 +1640,15 @@ def run_predict_notify(
         print(msg1, flush=True)
         print(msg2, flush=True)
 
-        # Discord に送信
-        ok = send_discord(webhook_url, msg1)
+        # Discord に送信（開催場別チャンネル振り分け）
+        venue = cached_entry.get("venue", "")
+        target_url = _venue_webhook(venue, webhook_url)
+        ok = send_discord(target_url, msg1)
         if ok:
-            send_discord(webhook_url, msg2)
+            send_discord(target_url, msg2)
             notified += 1
-            logger.info(f"  送信完了: {race_name}")
+            ch_label = venue if target_url != webhook_url else "default"
+            logger.info(f"  送信完了: {race_name} → {ch_label}ch")
 
         # X（Twitter）に予想を投稿（特別レースのみ）
         _X_POST_KEYWORDS = ("特別", "記念", "杯", "賞", "ステークス")
@@ -1775,9 +1802,11 @@ def run_result_notify(
                 pred["predicted_top3_nums"] = manual["predicted_top3_nums"]
 
         msg = _fmt_result(race_name, race_date, actual_df, pred, payouts, manual=manual)
-        if send_discord(webhook_url, msg):
+        _result_venue = pred.get("venue", "")
+        _result_target = _venue_webhook(_result_venue, result_webhook)
+        if send_discord(_result_target, msg):
             notified += 1
-            logger.info(f"  送信: {race_name}")
+            logger.info(f"  送信: {race_name} → {_result_venue or 'default'}ch")
 
         # ── 的中時に専用チャンネルへ特別通知 ─────────────────────
         try:
