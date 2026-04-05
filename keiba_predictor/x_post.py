@@ -93,55 +93,25 @@ def _safe_post(client, text: str) -> bool:
 #    Secret を keiba-nar リポジトリの GitHub Secrets にも登録すること。
 
 def build_predict_tweet(race_name: str, cache_entry: dict) -> str:
-    """NAR（地方競馬）用の予想ツイートを構築する。"""
+    """NAR（地方競馬）用の予想ツイートを構築する（140字以内）。"""
     short = _short_name(race_name)
     venue = cache_entry.get("venue", "")
-    start_time = cache_entry.get("start_time", "")
-    course_info = cache_entry.get("course_info", "")
+    tag = f"#地方競馬 #KEIBA_EDGE"
 
-    # ヘッダー: 開催場と発走時刻
-    header_parts = []
-    if venue:
-        header_parts.append(venue)
-    if start_time:
-        header_parts.append(f"{start_time}発走")
-    header = " ".join(header_parts)
+    lines = [f"🏇{venue}{short} AI予想"]
 
-    lines = [f"🏟️【地方競馬】{header}"]
-    lines.append(f"🏇 {short}" + (f" {course_info}" if course_info else ""))
-    lines.append("")
-
-    # ◎○▲ 3頭
     for role, mark in [("honmei", "◎"), ("taikou", "○"), ("ana", "▲")]:
         p = cache_entry.get(role, {})
         if not p or not p.get("horse_name"):
             continue
-        num = p.get("horse_number", "?")
-        name = p.get("horse_name", "")
-        prob = p.get("prob", 0) * 100
-        lines.append(f"{mark}{num}番 {name} {prob:.1f}%")
+        lines.append(f"{mark}{p['horse_number']}番{p['horse_name']}")
 
-    # 買い目
-    lines.append("")
-    top3 = cache_entry.get("predicted_top3_nums", [])
-    top5 = cache_entry.get("predicted_top5_nums", top3)
-    if top3:
-        lines.append(f"💰複勝 {top3[0]}番")
-        if len(top3) >= 2:
-            combos = []
-            for i in range(min(len(top3), 3)):
-                for j in range(i + 1, min(len(top3), 3)):
-                    combos.append(f"{top3[i]}-{top3[j]}")
-            lines.append(f"馬連 {'/'.join(combos)}")
-        if len(top5) >= 3:
-            aite = "/".join(str(n) for n in top5[1:])
-            lines.append(f"3連複 軸{top5[0]}×{aite}")
-
-    # ハッシュタグ
-    venue_tag = f"#{venue}競馬" if venue else ""
-    lines.append(f"\n#地方競馬 #KEIBA_EDGE {venue_tag}".rstrip())
-
-    return "\n".join(lines)
+    text = "\n".join(lines) + "\n" + tag
+    if len(text) > _CHAR_LIMIT:
+        # ▲を削って収める
+        lines = [l for l in lines if not l.startswith("▲")]
+        text = "\n".join(lines) + "\n" + tag
+    return text
 
 
 def post_predict_tweet(race_name: str, cache_entry: dict) -> bool:
@@ -201,39 +171,30 @@ def build_result_tweet(
 
     any_hit = fukusho_hit or umaren_hit or sanren_hit
 
-    venue = pred.get("venue", "")
-    venue_tag = f"#{venue}競馬" if venue else ""
+    tag = "#地方競馬 #KEIBA_EDGE"
 
     if sanren_hit:
         pay_str = re.sub(r"[¥,]", "", str(sanren_pay)) if sanren_pay else ""
         lines = [
-            "🎯💥【地方競馬】KEIBA EDGE 的中！",
-            SEP,
-            f"🏇 {short}" + (f"（{venue}）" if venue else ""),
-            f"複勝{f_icon} 馬連{u_icon} 3連複{s_icon}",
-            "",
-            f"3連複 {pay_str}円的中！" if pay_str else "3連複 的中！",
-            f"回収率 {roi_pct:.0f}%" if roi_pct > 0 else "",
-            "",
-            f"◎{honmei_num}番{honmei_name}" if honmei_num else "",
-            f"#地方競馬 #競馬的中 #KEIBA_EDGE {venue_tag}".rstrip(),
+            f"🎯3連複的中！{short}",
+            f"{pay_str}円 回収率{roi_pct:.0f}%" if pay_str and roi_pct > 0
+                else (f"{pay_str}円的中！" if pay_str else ""),
+            tag,
         ]
     elif any_hit:
         lines = [
-            "🎯【地方競馬】KEIBA EDGE 的中！",
-            f"🏇 {short}" + (f"（{venue}）" if venue else ""),
-            f"複勝{f_icon} 馬連{u_icon} 3連複{s_icon}",
-            f"回収率{roi_pct:.0f}%" if roi_pct > 0 else "",
-            f"#地方競馬 #競馬的中 #KEIBA_EDGE {venue_tag}".rstrip(),
+            f"🎯的中！{short}",
+            f"複勝{f_icon} 馬連{u_icon}",
+            tag,
         ]
     else:
+        result_line = " ".join(f"{i+1}着{n}番" for i, n in enumerate(actual_nums[:3]))
         lines = [
-            f"🏆【地方競馬】{short} KEIBA EDGE結果",
-            f"複勝{f_icon} 馬連{u_icon} 3連複{s_icon}",
-            f"累計回収率{roi_pct:.0f}%" if roi_pct > 0 else "",
+            f"{short} 結果",
+            result_line,
+            f"複勝❌馬連❌3連複❌",
         ]
 
-    # 空行を除去
     return "\n".join(line for line in lines if line)
 
 
@@ -263,49 +224,42 @@ def post_result_tweet(
 # ── 週次サマリーツイート ─────────────────────────────────────────────────
 
 def build_weekly_summary_tweet(results: list[dict]) -> str:
-    """
-    週次サマリーツイートを構築する。
-
-    Args:
-        results: [{"race_name": "日経賞", "fukusho": True, "umaren": True,
-                    "sanren": False, "bet": 1400, "return_total": 1200}, ...]
-    """
-    SEP = "━━━━━━━━━━━━━━━━"
-
-    lines = [
-        "📊【地方競馬】今週のKEIBA EDGE成績",
-        SEP,
-    ]
-
-    hit_count = 0
-    for r in results:
-        name = _short_name(r.get("race_name", ""))
-        f_icon = "✅" if r.get("fukusho") else "❌"
-        u_icon = "✅" if r.get("umaren") else "❌"
-        s_icon = "✅" if r.get("sanren") else "❌"
-        if r.get("fukusho") or r.get("umaren") or r.get("sanren"):
-            hit_count += 1
-        lines.append(f"{name} {f_icon}{u_icon}{s_icon}")
-
+    """週次サマリーツイートを構築する（140字以内）。"""
     total = len(results)
+    if not total:
+        return ""
+
+    hit_count = sum(1 for r in results if r.get("fukusho") or r.get("umaren") or r.get("sanren"))
     fukusho_hits = sum(1 for r in results if r.get("fukusho"))
     fukusho_rate = (fukusho_hits / total * 100) if total else 0
-
     total_bet = sum(r.get("bet", 0) for r in results)
     total_ret = sum(r.get("return_total", 0) for r in results)
     roi = (total_ret / total_bet * 100) if total_bet > 0 else 0
 
-    lines += [
-        "",
-        f"{hit_count}/{total}レース的中",
-        f"複勝的中率: {fukusho_rate:.0f}%",
-        f"回収率: {roi:.0f}%",
-        SEP,
-        "明日も予想します👇",
-        "#地方競馬 #KEIBA_EDGE",
+    tag = "#地方競馬 #KEIBA_EDGE"
+    lines = [
+        f"📊地方AI成績 {hit_count}/{total}的中",
+        f"複勝{fukusho_rate:.0f}% 回収率{roi:.0f}%",
     ]
 
-    return "\n".join(lines)
+    # レース別（余裕がある分だけ）
+    race_lines = []
+    for r in results:
+        name = _short_name(r.get("race_name", ""))[:6]
+        f = "○" if r.get("fukusho") else "×"
+        u = "○" if r.get("umaren") else "×"
+        s = "○" if r.get("sanren") else "×"
+        race_lines.append(f"{name}{f}{u}{s}")
+
+    base = "\n".join(lines)
+    for rl in race_lines:
+        test = base + "\n" + rl + "\n" + tag
+        if len(test) <= _CHAR_LIMIT:
+            base = base + "\n" + rl
+        else:
+            break
+
+    return base + "\n" + tag
 
 
 def post_weekly_summary_tweet(results: list[dict]) -> bool:
