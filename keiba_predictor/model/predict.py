@@ -322,11 +322,12 @@ def _decide_bet_strategy(result_df: pd.DataFrame) -> dict:
     """
     NAR予測結果DataFrameから予算3000円以内で最適な買い目を自動決定する。
 
-    ◎○の組合せはオッズで自動判定:
-      ◎odds × ○odds <= 20 → ワイド1000円（両方人気=的中しやすい→厚く張る）
-      ◎odds × ○odds >  20 → 馬連100円（穴目=配当が高い→少額で狙う）
-    残りの組合せ（◎▲, ○▲）は馬連100円。
-    3連複は残り予算で。複勝は地方では配当が低すぎるため買わない。
+    構成（馬連なし・ワイド中心）:
+    1. ワイド 各300円 × 3点（◎○, ◎▲, ○▲）= 900円
+    2. 3連複 ◎1頭軸 × 相手N頭 各100円（残り予算で）
+       - 通常: 相手4頭+穴馬 = 最大10点 = 1,000円 → 合計1,900円
+       - 均衡時: 相手7頭まで拡大 = 21点 = 2,100円 → 合計3,000円
+    複勝・馬連は買わない。
     """
     from itertools import combinations as _comb
 
@@ -344,21 +345,21 @@ def _decide_bet_strategy(result_df: pd.DataFrame) -> dict:
     top5 = result_df.head(5)
     nums = [int(r["horse_number"]) for _, r in top5.iterrows()
             if pd.notna(r.get("horse_number"))]
-    names = {}
-    for _, r in result_df.iterrows():
-        n = r.get("horse_number")
-        if pd.notna(n):
-            names[int(n)] = str(r.get("horse_name", ""))
 
     hon = nums[0]
-    tai = nums[1] if len(nums) > 1 else None
 
-    hon_odds = pd.to_numeric(result_df.iloc[0].get("odds"), errors="coerce")
-    tai_odds = pd.to_numeric(result_df.iloc[1].get("odds"), errors="coerce") if len(result_df) > 1 else float("nan")
+    # オッズ均衡判定（上位3頭のオッズ差が小さい）
+    odds_list = []
+    for i in range(min(3, len(result_df))):
+        o = pd.to_numeric(result_df.iloc[i].get("odds"), errors="coerce")
+        if pd.notna(o):
+            odds_list.append(float(o))
+    is_tight = False
+    if len(odds_list) >= 3:
+        is_tight = max(odds_list) - min(odds_list) < 3.0
 
     # 穴馬
     ana_num = None
-    ana_ev = 0
     top5_set = set(nums)
     if len(result_df) > 5:
         rest = result_df.iloc[5:]
@@ -370,68 +371,48 @@ def _decide_bet_strategy(result_df: pd.DataFrame) -> dict:
             v = best.get("horse_number")
             if pd.notna(v) and int(v) not in top5_set:
                 ana_num = int(v)
-                ana_ev = float(best.get("ev_score", 0)) if pd.notna(best.get("ev_score")) else 0
 
     strategy = {
         "fukusho": [], "umaren": [], "wide": [],
         "sanrenpuku": {},
         "total_points": 0, "total_cost": 0,
-        "strategy_note": "", "use_wide": False,
+        "strategy_note": "", "use_wide": True,
     }
     notes = []
     remaining = BUDGET
 
-    # ── 優先1: ◎○の組合せ（オッズで自動判定） ──
-    # odds積 <= 20 → ワイド1000円（両方人気、的中期待値高）
-    # odds積 >  20 → 馬連100円（穴目、高配当狙い）
-    use_wide_for_honmei = False
-    if tai is not None:
-        odds_product = (hon_odds * tai_odds) if pd.notna(hon_odds) and pd.notna(tai_odds) else 0
-        if odds_product > 0 and odds_product <= 20 and remaining >= WIDE_UNIT:
-            # ワイド1000円
-            strategy["wide"] = [{"nums": [hon, tai]}]
-            strategy["use_wide"] = True
-            remaining -= WIDE_UNIT
-            use_wide_for_honmei = True
-            notes.append(f"◎○ワイド(odds積{odds_product:.0f})")
-        elif remaining >= UNIT:
-            # 馬連100円（◎○だけ）— 残りの組合せと一緒に下で処理
-            pass
-
-    # ── 優先2: 馬連（◎○以外の組合せ + 穴馬） ──
-    all_pairs = [list(p) for p in _comb(nums[:3], 2)]
-    if use_wide_for_honmei:
-        # ◎○はワイドで買い済み → 馬連は◎▲, ○▲のみ
-        pairs = [{"nums": p} for p in all_pairs if set(p) != {hon, tai}]
-    else:
-        # ◎○もワイド不採用 → 全組合せ馬連
-        pairs = [{"nums": p} for p in all_pairs]
-    if ana_num and ana_ev >= 5:
-        pairs.append({"nums": [hon, ana_num]})
-    cost = len(pairs) * UNIT
-    if remaining >= cost and pairs:
-        strategy["umaren"] = pairs
+    # ── 優先1: ワイド 各300円 × 3点（◎○, ◎▲, ○▲） ──
+    pairs = [{"nums": list(p)} for p in _comb(nums[:3], 2)]
+    cost = len(pairs) * WIDE_UNIT
+    if remaining >= cost:
+        strategy["wide"] = pairs
         remaining -= cost
-        notes.append("馬連" + ("+穴" if ana_num and ana_ev >= 5 else ""))
+        notes.append("ワイド3点")
 
-    # ── 優先3: 3連複（◎1頭軸 × 相手4頭+穴馬） ──
+    # ── 優先2: 3連複 ◎1頭軸 × 相手N頭 ──
+    # 均衡時は相手を7頭まで拡大（C(7,2)=21点=2,100円→合計3,000円）
     if remaining >= 3 * UNIT:
-        aite = list(nums[1:5])
+        max_aite = 7 if is_tight else 5
+        # 上位から相手候補を構築
+        aite = list(nums[1:max_aite + 1])
+        # 穴馬追加
         if ana_num and ana_num not in aite:
             aite.append(ana_num)
+        # 予算に収まるまで相手を減らす
         while len(aite) >= 2:
             n_pts = len(list(_comb(aite, 2)))
             if n_pts * UNIT <= remaining:
                 strategy["sanrenpuku"] = {"jiku": [hon], "aite": aite}
                 remaining -= n_pts * UNIT
                 ana_label = "+穴" if ana_num and ana_num in aite else ""
-                notes.append(f"3連複◎軸x{len(aite)}{ana_label}")
+                tight_label = "均衡" if is_tight else ""
+                notes.append(f"3連複◎軸x{len(aite)}{ana_label}{tight_label}")
                 break
             aite = aite[:-1]
 
     # 合計
     total_cost = BUDGET - remaining
-    total_points = len(strategy["wide"]) + len(strategy["umaren"])
+    total_points = len(strategy["wide"])
     sr = strategy["sanrenpuku"]
     if sr:
         total_points += len(list(_comb(sr.get("aite", []), 2)))
