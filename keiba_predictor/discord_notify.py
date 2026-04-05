@@ -1575,21 +1575,10 @@ def _format_prediction_from_cache(race_name: str, entry: dict, race_id: str = ""
     if bs and bs.get("total_points", 0) > 0:
         lines2 = ["💰 買い目"]
 
-        # 複勝
-        if bs.get("fukusho"):
-            f = bs["fukusho"][0]
-            lines2 += [
-                f"■ 複勝（{len(bs['fukusho'])}点）",
-                f"　{f['num']}番 {f.get('name', '')}",
-            ]
-
-        # 馬連 or ワイド
-        if bs.get("use_wide") and bs.get("wide"):
+        # ワイド
+        if bs.get("wide"):
             wide_str = " / ".join(f"{w['nums'][0]}-{w['nums'][1]}" for w in bs["wide"])
-            lines2 += [f"■ ワイド（{len(bs['wide'])}点）", f"　{wide_str}"]
-        if bs.get("umaren"):
-            umaren_str = " / ".join(f"{u['nums'][0]}-{u['nums'][1]}" for u in bs["umaren"])
-            lines2 += [f"■ 馬連（{len(bs['umaren'])}点）", f"　{umaren_str}"]
+            lines2.append(f"ワイド {wide_str}  各300円")
 
         # 3連複
         sr = bs.get("sanrenpuku", {})
@@ -1598,21 +1587,11 @@ def _format_prediction_from_cache(race_name: str, entry: dict, race_id: str = ""
             aite = sr.get("aite", [])
             if len(jiku) == 1:
                 sr_pt = len(list(combinations(aite, 2)))
-                lines2 += [
-                    f"■ 3連複（{sr_pt}点）",
-                    f"　軸 {jiku[0]}番",
-                    f"　× {'/'.join(str(n) for n in aite)}",
-                ]
-            elif len(jiku) == 2:
-                sr_pt = len(aite)
-                lines2 += [
-                    f"■ 3連複（{sr_pt}点）",
-                    f"　軸 {jiku[0]}-{jiku[1]}番",
-                    f"　× {'/'.join(str(n) for n in aite)}",
-                ]
+                lines2.append(f"3連複 軸{jiku[0]} × {'/'.join(str(n) for n in aite)}  各100円")
 
         total_cost = bs.get('total_cost', bs['total_points'] * 100)
-        lines2.append(f"計{bs['total_points']}点 / {total_cost:,}円")
+        lines2.append(f"────────────────")
+        lines2.append(f"合計投資額: {total_cost:,}円")
     else:
         # フォールバック: 従来の固定買い目
         nums = top5_nums

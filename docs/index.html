@@ -623,13 +623,14 @@ function _renderRaceCard(raceId, r) {
   let betHTML = '';
   if (bs && bs.total_points > 0) {
     const brows = [];
-    if (bs.fukusho && bs.fukusho.length) brows.push(`<div class="bet-row"><span class="bet-label">複勝</span>${bs.fukusho[0].num}番 ${esc(bs.fukusho[0].name || '')}<span style="color:var(--text-muted);margin-left:auto;font-size:11px;">1,000円</span></div>`);
-    if (bs.use_wide && bs.wide && bs.wide.length) brows.push(`<div class="bet-row"><span class="bet-label">ワイド</span>${bs.wide.map(w => `${w.nums[0]}-${w.nums[1]}`).join(' / ')}<span style="color:var(--text-muted);margin-left:auto;font-size:11px;">各300円</span></div>`);
-    if (bs.umaren && bs.umaren.length) brows.push(`<div class="bet-row"><span class="bet-label">馬連</span>${bs.umaren.map(u => `${u.nums[0]}-${u.nums[1]}`).join(' / ')}<span style="color:var(--text-muted);margin-left:auto;font-size:11px;">各100円</span></div>`);
+    if (bs.wide && bs.wide.length) {
+      const wideStr = bs.wide.map(w => `${w.nums[0]}-${w.nums[1]}`).join(' / ');
+      brows.push(`<div class="bet-row"><span class="bet-label">ワイド</span>${wideStr}<span style="color:var(--text-muted);margin-left:auto;font-size:11px;">各300円</span></div>`);
+    }
     const sr = bs.sanrenpuku;
     if (sr && sr.jiku && sr.aite) {
-      const jStr = sr.jiku.length === 1 ? `軸${sr.jiku[0]}` : `軸${sr.jiku[0]}-${sr.jiku[1]}`;
-      brows.push(`<div class="bet-row"><span class="bet-label">3連複</span>${jStr} x ${sr.aite.join('/')}<span style="color:var(--text-muted);margin-left:auto;font-size:11px;">各100円</span></div>`);
+      const jStr = `軸${sr.jiku[0]}`;
+      brows.push(`<div class="bet-row"><span class="bet-label">3連複</span>${jStr} × ${sr.aite.join('/')}<span style="color:var(--text-muted);margin-left:auto;font-size:11px;">各100円</span></div>`);
     }
     const totalCost = bs.total_cost || (bs.total_points * 100);
     betHTML = `<div class="bet-box"><div class="bet-box-title">💰 買い目（${bs.total_points}点）</div><div class="bet-rows" style="display:flex;flex-direction:column;gap:4px;">${brows.join('')}</div><div style="border-top:1px solid var(--border);margin-top:8px;padding-top:6px;font-size:12px;font-weight:700;">合計投資額: ${totalCost.toLocaleString()}円</div></div>`;
