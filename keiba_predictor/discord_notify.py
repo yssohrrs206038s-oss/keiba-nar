@@ -1878,11 +1878,10 @@ def run_result_notify(
                 pred["predicted_top3_nums"] = manual["predicted_top3_nums"]
 
         msg = _fmt_result(race_name, race_date, actual_df, pred, payouts, manual=manual, race_id=race_id)
-        _result_venue = pred.get("venue", "")
-        _result_target = _venue_webhook(_result_venue, result_webhook)
-        if send_discord(_result_target, msg):
+        # 結果はデフォルトチャンネルに集約（予想は会場別、結果は一覧で振り返り）
+        if send_discord(result_webhook, msg):
             notified += 1
-            logger.info(f"  送信: {race_name} → {_result_venue or 'default'}ch")
+            logger.info(f"  送信: {race_name} → 結果ch")
 
         # ── 的中時に専用チャンネルへ特別通知 ─────────────────────
         try:
