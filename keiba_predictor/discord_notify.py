@@ -1122,6 +1122,7 @@ def _build_hit_embed(
     sanren_hit: bool,
     sanren_pay: str,
     race_id: str = "",
+    fukusho_pay: str = "",
 ) -> Optional[dict]:
     """的中時のembed辞書を生成する。何も的中していなければ None。"""
     if not (fukusho_hit or umaren_hit or sanren_hit):
@@ -1142,7 +1143,10 @@ def _build_hit_embed(
     lines.append("")
 
     if fukusho_hit:
-        lines.append("複勝 ✅ 的中")
+        detail = "複勝 ✅ 的中"
+        if fukusho_pay:
+            detail += f"（配当{fukusho_pay}円）"
+        lines.append(detail)
     if umaren_hit:
         detail = "馬連 ✅ 的中"
         if umaren_pay:
@@ -1262,21 +1266,36 @@ def _fmt_result(race_name: str, race_date: str,
     honmei_name = num_to_name.get(honmei_num, "") if honmei_num else ""
 
     # manual_results.json のフラグがあればそちらを優先
+    fukusho_pay = ""
     if manual and "fukusho_hit" in manual:
         fukusho_hit = manual["fukusho_hit"]
         umaren_hit  = manual.get("umaren_hit", False)
         sanren_hit  = manual.get("sanrenpuku_hit", False)
         manual_pay  = manual.get("payouts", {})
+        if manual_pay.get("fukusho"):
+            fukusho_pay = f"{manual_pay['fukusho']:,}"
         umaren_pay  = f"¥{manual_pay['umaren']:,}" if manual_pay.get("umaren") else ""
         sanren_pay  = f"¥{manual_pay['sanrenpuku']:,}" if manual_pay.get("sanrenpuku") else ""
     else:
         # 自動判定
         fukusho_hit = (honmei_num is not None) and (int(honmei_num) in actual_top3_nums)
+        # 複勝配当を取得
+        if fukusho_hit and honmei_num:
+            for entry in payouts.get("複勝", []):
+                combo_nums = set(re.findall(r"\d+", str(entry.get("combo", ""))))
+                if str(honmei_num) in combo_nums:
+                    amt = entry.get("amount")
+                    if amt:
+                        fukusho_pay = f"{amt:,}" if isinstance(amt, int) else re.sub(r"[¥￥,円\s]", "", str(amt))
+                    break
         umaren_hit, umaren_pay = _check_umaren_raw(predicted_nums, actual_top3_nums, payouts)
         ana_horse_num = pred.get("ana_horse_num")
         sanren_hit, sanren_pay = _check_sanrenpuku_raw(predicted_nums, actual_top3_nums, payouts, ana_horse_num)
 
-    lines.append(f"複勝  {'✅ 的中' if fukusho_hit else '❌ ハズレ'}（◎{honmei_num}番{honmei_name}）")
+    fukusho_line = f"複勝  {'✅ 的中' if fukusho_hit else '❌ ハズレ'}（◎{honmei_num}番{honmei_name}）"
+    if fukusho_hit and fukusho_pay:
+        fukusho_line = f"複勝  ✅ 的中（◎{honmei_num}番{honmei_name} 配当{fukusho_pay}円）"
+    lines.append(fukusho_line)
 
     umaren_line = f"馬連  {'✅ 的中' if umaren_hit else '❌ ハズレ'}"
     if umaren_hit and umaren_pay:
@@ -1916,15 +1935,26 @@ def run_result_notify(
             _top3 = _df_copy[_df_copy["_fp"].isin([1, 2, 3])].sort_values("_fp").head(3)
             _actual_top3_nums = [int(r["horse_number"]) for _, r in _top3.iterrows() if pd.notna(r.get("horse_number"))]
 
+            _fp_pay = ""
             if manual and "fukusho_hit" in manual:
                 _fh = manual["fukusho_hit"]
                 _uh = manual.get("umaren_hit", False)
                 _sh = manual.get("sanrenpuku_hit", False)
                 _mp = manual.get("payouts", {})
+                if _mp.get("fukusho"):
+                    _fp_pay = f"{_mp['fukusho']:,}"
                 _up = f"¥{_mp['umaren']:,}" if _mp.get("umaren") else ""
                 _sp = f"¥{_mp['sanrenpuku']:,}" if _mp.get("sanrenpuku") else ""
             else:
                 _fh = (_honmei_num is not None) and (int(_honmei_num) in _actual_top3_nums)
+                if _fh and _honmei_num:
+                    for _entry in payouts.get("複勝", []):
+                        _cnums = set(re.findall(r"\d+", str(_entry.get("combo", ""))))
+                        if str(_honmei_num) in _cnums:
+                            _amt = _entry.get("amount")
+                            if _amt:
+                                _fp_pay = f"{_amt:,}" if isinstance(_amt, int) else re.sub(r"[¥￥,円\s]", "", str(_amt))
+                            break
                 _uh, _up = _check_umaren_raw(predicted_nums, _actual_top3_nums, payouts)
                 _ana_num = pred.get("ana_horse_num")
                 _sh, _sp = _check_sanrenpuku_raw(predicted_nums, _actual_top3_nums, payouts, _ana_num)
@@ -1933,6 +1963,7 @@ def run_result_notify(
             hit_embed = _build_hit_embed(
                 _venue, race_name, _honmei_num, _honmei_name,
                 _fh, _uh, _up, _sh, _sp, race_id=race_id,
+                fukusho_pay=_fp_pay,
             )
             if hit_embed:
                 target_webhook = hit_webhook if hit_webhook else result_webhook
