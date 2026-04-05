@@ -510,6 +510,7 @@ function renderWeeklyChart(rows) {
 let _predHtmlMap = {};
 let _allPredEntries = [];
 let _currentVenue = 'all';
+let _resultMap = {};
 
 function renderPredictions(cache) {
   const grid = document.getElementById('race-grid');
@@ -645,6 +646,51 @@ function _renderRaceCard(raceId, r) {
     }
   }
 
+  // 結果セクション（results_history に該当レースがあれば表示）
+  let resultHTML = '';
+  const res = _resultMap[raceId];
+  if (res) {
+    const a1 = res.actual1_num ? `${res.actual1_num}番 ${esc(res.actual1_name || '')}` : '';
+    const a2 = res.actual2_num ? `${res.actual2_num}番 ${esc(res.actual2_name || '')}` : '';
+    const a3 = res.actual3_num ? `${res.actual3_num}番 ${esc(res.actual3_name || '')}` : '';
+    const fHit = res.fukusho_hit === 'True';
+    const uHit = res.umaren_hit === 'True' || res.wide_hit === 'True';
+    const sHit = res.sanrenpuku_hit === 'True';
+    const fPay = +res.umaren_payout || 0;  // 複勝配当はCSVにないので省略
+    const uPay = +res.umaren_payout || 0;
+    const wPay = +res.wide_payout || 0;
+    const sPay = +res.sanrenpuku_payout || 0;
+    const uDisp = uHit ? (uPay ? `${uPay.toLocaleString()}円` : '—') : '';
+    const wDisp = uHit && wPay ? `${wPay.toLocaleString()}円` : '';
+    const sDisp = sHit ? (sPay ? `${sPay.toLocaleString()}円` : '—') : '';
+    const bet = +res.bet_total || 0;
+    const ret = +res.return_total || 0;
+    const roi = bet > 0 ? (ret / bet * 100).toFixed(0) + '%' : '—';
+    const roiColor = ret >= bet ? 'var(--green)' : 'var(--red)';
+
+    // 的中行: 馬連 or ワイド（どちらか的中した方を表示）
+    const hitParts = [];
+    hitParts.push(`複勝${fHit ? '✅' : '❌'}`);
+    if (res.wide_hit === 'True') {
+      hitParts.push(`ワイド✅${wPay ? ' ' + wPay.toLocaleString() + '円' : ''}`);
+    } else if (res.umaren_hit === 'True') {
+      hitParts.push(`馬連✅${uPay ? ' ' + uPay.toLocaleString() + '円' : ''}`);
+    } else {
+      hitParts.push(`馬連❌`);
+    }
+    hitParts.push(`3連複${sHit ? '✅' : '❌'}${sDisp ? ' ' + sDisp : ''}`);
+
+    resultHTML = `
+      <div style="border-top:1px solid var(--border);margin-top:12px;padding-top:10px;">
+        <div style="font-size:12px;font-weight:700;margin-bottom:6px;">🏁 レース結果</div>
+        <div style="font-size:12px;line-height:1.6;">
+          ${a1 ? `1着 ${a1}<br>` : ''}${a2 ? `2着 ${a2}<br>` : ''}${a3 ? `3着 ${a3}` : ''}
+        </div>
+        <div style="font-size:11px;margin-top:6px;">${hitParts.join(' / ')}</div>
+        <div style="font-size:12px;font-weight:700;margin-top:4px;color:${roiColor};">回収率 ${roi}</div>
+      </div>`;
+  }
+
   return `<div class="race-card">
     <div class="race-card-header">
       <div>
@@ -656,6 +702,7 @@ function _renderRaceCard(raceId, r) {
     <div class="race-card-body">
       <div class="horse-list">${horseHTML || '<div class="no-data" style="padding:12px;">予想生成中...</div>'}</div>
       ${betHTML}
+      ${resultHTML}
     </div>
   </div>`;
 }
@@ -914,6 +961,16 @@ async function main() {
   try {
     const csv = await fetchText(HIST_URL);
     const rows = parseCSV(csv);
+    // 結果マップ構築 → 予想カードに結果を反映
+    _resultMap = {};
+    rows.forEach(r => { if (r.race_id) _resultMap[r.race_id.trim()] = r; });
+    // 結果データが揃ったので予想カードを再描画
+    if (Object.keys(_resultMap).length && Object.keys(_predHtmlMap).length) {
+      const cache = predCache || {};
+      const entries = Object.entries(cache).filter(([k]) => !k.startsWith('_')).sort(([,a],[,b]) => (a.start_time||'99').localeCompare(b.start_time||'99'));
+      entries.forEach(([raceId, r]) => { _predHtmlMap[raceId] = _renderRaceCard(raceId, r); });
+      _renderFilteredPredictions();
+    }
     renderStats(rows);
     renderChart(rows);
     renderWeeklyChart(rows);
