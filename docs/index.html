@@ -678,9 +678,14 @@ function _renderFilteredPredictions() {
 ================================================================ */
 function renderHistory(rows) {
   const tbody = document.getElementById('history-tbody');
-  const recent = rows.slice(-15).reverse();
+  // 的中レースのみ抽出（複勝・馬連・ワイド・3連複のいずれか）
+  const hitRows = rows.filter(r =>
+    r.fukusho_hit === 'True' || r.umaren_hit === 'True' ||
+    r.wide_hit === 'True' || r.sanrenpuku_hit === 'True'
+  );
+  const recent = hitRows.slice(-15).reverse();
   if (!recent.length) {
-    tbody.innerHTML = '<tr><td colspan="6" class="no-data">履歴データがありません</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="6" class="no-data">的中レースがありません</td></tr>';
     return;
   }
   tbody.innerHTML = recent.map(r => {
