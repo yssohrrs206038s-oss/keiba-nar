@@ -1497,27 +1497,6 @@ def _format_prediction_from_cache(race_name: str, entry: dict, race_id: str = ""
         reason = reasons[0] if reasons else "要注意"
         lines1.append(f"⚠危険 {num}番{name}（{reason}）")
 
-    # 📊 モンテカルロ分析
-    sim = entry.get("simulation", {})
-    if sim:
-        MARKS_MC = ["◎", "○", "▲", "△", "　"]
-        lines1.append(sep)
-        lines1.append("📊 モンテカルロ分析（1万回）")
-        lines1.append(sep)
-        for rank, num in enumerate(top5_nums[:5]):
-            mc = sim.get(str(num))
-            if not mc:
-                continue
-            mark = MARKS_MC[rank] if rank < len(MARKS_MC) else "　"
-            rate = mc.get("top3_rate", 0) * 100
-            is_stable = mc.get("is_stable", False)
-            tag = "🔒安定軸" if is_stable else "⚡展開依存"
-            sc = mc.get("scenario", {})
-            hi = sc.get("high_pace", 0) * 100
-            sl = sc.get("slow_pace", 0) * 100
-            lines1.append(f"{mark}{num}番 3着以内{rate:.1f}% {tag}")
-            lines1.append(f"　ハイペース{hi:.0f}% / スロー{sl:.0f}%")
-
     lines1.append(sep)
     msg1 = "\n".join(lines1)
 
