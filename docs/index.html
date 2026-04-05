@@ -557,6 +557,8 @@ function _renderRaceCard(raceId, r) {
   const shortName = (r.race_name || raceId).replace(/[（(]G[^）)]*[）)]/g, '').trim();
   const course = r.course_info || '';
   const venue = r.venue || '';
+  const raceNum = raceId.length >= 12 ? parseInt(raceId.slice(10, 12), 10) + 'R' : '';
+  const raceTitle = (venue && raceNum ? venue + raceNum + ' ' : '') + shortName;
 
   const roles = [
     { key: 'honmei', mark: '◎', cls: 'mark-honmei' },
@@ -646,8 +648,8 @@ function _renderRaceCard(raceId, r) {
   return `<div class="race-card">
     <div class="race-card-header">
       <div>
-        <div class="race-name">${esc(shortName)} <span style="font-size:11px;color:var(--text-muted);">${esc(course)}</span></div>
-        <div class="race-meta">${[venue ? '📍 ' + esc(venue) : '', r.start_time ? '🕐 ' + esc(r.start_time) + '発走' : '', esc(r.race_date || '')].filter(Boolean).join(' | ')}</div>
+        <div class="race-name">${esc(raceTitle)} <span style="font-size:11px;color:var(--text-muted);">${esc(course)}</span></div>
+        <div class="race-meta">${[r.start_time ? '🕐 ' + esc(r.start_time) + '発走' : '', esc(r.race_date || '')].filter(Boolean).join(' | ')}</div>
       </div>
       ${venue ? `<span class="venue-badge">${esc(venue)}</span>` : ''}
     </div>
@@ -689,9 +691,14 @@ function renderHistory(rows) {
     const ret = +r.return_total || 0;
     const roi = bet > 0 ? (ret / bet * 100).toFixed(0) + '%' : '--';
     const roiColor = bet > 0 && ret >= bet ? 'color:var(--green)' : 'color:var(--red)';
+    const rid = (r.race_id || '').trim();
+    const hVenue = rid.length >= 12 ? (VENUE_MAP[rid.slice(4, 6)] || '') : '';
+    const hRaceNum = rid.length >= 12 ? parseInt(rid.slice(10, 12), 10) + 'R' : '';
+    const hPrefix = hVenue && hRaceNum ? hVenue + hRaceNum + ' ' : '';
+    const raceName = (r.race_name || '').trim();
     return `<tr>
       <td style="color:var(--text-muted);white-space:nowrap">${esc((r.date || '').slice(0, 10))}</td>
-      <td>${esc((r.race_name || '').trim())}</td>
+      <td>${esc(hPrefix + raceName)}</td>
       <td class="hit-icon">${fHit ? '✅' : '❌'}</td>
       <td class="hit-icon">${uHit ? '✅' : '❌'}</td>
       <td class="hit-icon">${sHit ? '✅' : '❌'}</td>
