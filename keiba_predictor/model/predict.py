@@ -332,7 +332,7 @@ def _decide_bet_strategy(result_df: pd.DataFrame) -> dict:
 
     BUDGET = 3000
     UNIT = 100
-    WIDE_UNIT = 1000
+    WIDE_UNIT = 300
 
     if len(result_df) < 3:
         return {
