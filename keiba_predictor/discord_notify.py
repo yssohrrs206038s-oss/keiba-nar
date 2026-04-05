@@ -1984,19 +1984,6 @@ def run_result_notify(
     if notified > 0:
         send_discord(webhook_url, f"✅ {notified}レース結果送信完了")
 
-    # 週次・累計サマリーを Discord に送信
-    try:
-        today   = _date.today()
-        hist_df = load_history()
-        w_stats = weekly_summary(hist_df, today)
-        c_stats = cumulative_summary(hist_df)
-        streak  = hit_streak(hist_df)
-        if w_stats["n_races"] > 0:
-            summary_msg = format_summary_message(w_stats, c_stats, streak)
-            send_discord(webhook_url, summary_msg)
-    except Exception as e:
-        logger.warning(f"  [history] サマリー送信失敗: {e}")
-
     # 日曜日に週次サマリーを X に投稿
     if os.environ.get("ENABLE_X_POST", "false").lower() == "true":
         try:
