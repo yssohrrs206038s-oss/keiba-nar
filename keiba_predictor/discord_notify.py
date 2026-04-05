@@ -78,7 +78,13 @@ def _venue_webhook(venue: str, default_url: str) -> str:
     if env_key:
         url = os.environ.get(env_key, "")
         if url:
+            logger.info(f"  [webhook] {venue} → {env_key} (設定済み)")
             return url
+        else:
+            logger.warning(f"  [webhook] {venue} → {env_key} が未設定 → デフォルトにフォールバック")
+    else:
+        if venue:
+            logger.info(f"  [webhook] {venue} → マップに未登録 → デフォルト")
     return default_url
 
 # ── 開催場 → YouTube チャンネル URL ─────────────────────────────
