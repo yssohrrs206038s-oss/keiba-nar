@@ -1497,7 +1497,6 @@ def _format_prediction_from_cache(race_name: str, entry: dict, race_id: str = ""
         reason = reasons[0] if reasons else "要注意"
         lines1.append(f"⚠危険 {num}番{name}（{reason}）")
 
-    lines1.append(sep)
     msg1 = "\n".join(lines1)
 
     # ── Message 2: 買い目（bet_strategy があれば使用）──────────
@@ -1505,8 +1504,7 @@ def _format_prediction_from_cache(race_name: str, entry: dict, race_id: str = ""
     bs = entry.get("bet_strategy")
 
     if bs and bs.get("total_points", 0) > 0:
-        header = f"💰 {race_name}  買い目（AI自動決定）" if race_name else "💰 買い目（AI自動決定）"
-        lines2 = [_SEP, header, _SEP]
+        lines2 = ["💰 買い目"]
 
         # 複勝
         if bs.get("fukusho"):
@@ -1544,9 +1542,8 @@ def _format_prediction_from_cache(race_name: str, entry: dict, race_id: str = ""
                     f"　× {'/'.join(str(n) for n in aite)}",
                 ]
 
-        lines2 += [_SEP, f"合計 {bs['total_points']}点", _SEP]
-        if bs.get("strategy_note"):
-            lines2.append(f"💡 {bs['strategy_note']}")
+        total_cost = bs.get('total_cost', bs['total_points'] * 100)
+        lines2.append(f"計{bs['total_points']}点 / {total_cost:,}円")
     else:
         # フォールバック: 従来の固定買い目
         nums = top5_nums
