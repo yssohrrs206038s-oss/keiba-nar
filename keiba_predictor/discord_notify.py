@@ -1719,11 +1719,12 @@ def run_predict_notify(
         print(msg2, flush=True)
 
         # Discord に送信（開催場別チャンネル振り分け）
+        # 予想+買い目を1メッセージに結合（レース間が区別しやすい）
         venue = cached_entry.get("venue", "")
         target_url = _venue_webhook(venue, webhook_url)
-        ok = send_discord(target_url, msg1)
+        combined = msg1 + "\n\n" + msg2 if msg2 else msg1
+        ok = send_discord(target_url, combined)
         if ok:
-            send_discord(target_url, msg2)
             notified += 1
             ch_label = venue if target_url != webhook_url else "default"
             logger.info(f"  送信完了: {race_name} → {ch_label}ch")
