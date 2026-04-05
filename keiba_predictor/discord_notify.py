@@ -1283,9 +1283,12 @@ def _fmt_result(race_name: str, race_date: str,
         umaren_pay  = f"¥{manual_pay['umaren']:,}" if manual_pay.get("umaren") else ""
         sanren_pay  = f"¥{manual_pay['sanrenpuku']:,}" if manual_pay.get("sanrenpuku") else ""
     else:
-        # 自動判定
+        # bet_strategy があればそれに基づいて判定
+        bs = pred.get("bet_strategy", {})
+        actual_set = set(actual_top3_nums[:3]) if len(actual_top3_nums) >= 3 else set()
+
+        # 複勝
         fukusho_hit = (honmei_num is not None) and (int(honmei_num) in actual_top3_nums)
-        # 複勝配当を取得
         if fukusho_hit and honmei_num:
             for entry in payouts.get("複勝", []):
                 combo_nums = set(re.findall(r"\d+", str(entry.get("combo", ""))))
@@ -1294,15 +1297,69 @@ def _fmt_result(race_name: str, race_date: str,
                     if amt:
                         fukusho_pay = f"{amt:,}" if isinstance(amt, int) else re.sub(r"[¥￥,円\s]", "", str(amt))
                     break
-        umaren_hit, umaren_pay = _check_umaren_raw(predicted_nums, actual_top3_nums, payouts)
-        ana_horse_num = pred.get("ana_horse_num")
-        sanren_hit, sanren_pay = _check_sanrenpuku_raw(predicted_nums, actual_top3_nums, payouts, ana_horse_num)
+
+        # 馬連（bet_strategy の umaren を使用）
+        umaren_hit = False
+        umaren_pay = ""
+        if bs.get("umaren"):
+            actual_12 = set(actual_top3_nums[:2]) if len(actual_top3_nums) >= 2 else set()
+            for u in bs["umaren"]:
+                if set(u["nums"]) == actual_12:
+                    combo = f"{u['nums'][0]}-{u['nums'][1]}"
+                    umaren_pay = _get_payout(payouts, "馬連", combo)
+                    umaren_hit = True
+                    break
+        if not umaren_hit:
+            umaren_hit, umaren_pay = _check_umaren_raw(predicted_nums, actual_top3_nums, payouts)
+
+        # ワイド（bet_strategy の wide を使用）
+        wide_hit = False
+        wide_pay = ""
+        if bs.get("wide"):
+            for w in bs["wide"]:
+                a, b = w["nums"]
+                if a in actual_set and b in actual_set:
+                    combo = f"{a}-{b}"
+                    wide_pay = _get_payout(payouts, "ワイド", combo)
+                    wide_hit = True
+                    break
+
+        # 3連複（bet_strategy の sanrenpuku を使用）
+        sanren_hit = False
+        sanren_pay = ""
+        sr = bs.get("sanrenpuku", {})
+        if sr and sr.get("jiku") and sr.get("aite") and len(actual_set) >= 3:
+            jiku = sr["jiku"]
+            aite = sr["aite"]
+            if len(jiku) == 1 and jiku[0] in actual_set:
+                for pair in combinations(aite, 2):
+                    if {jiku[0], pair[0], pair[1]} == actual_set:
+                        combo = "-".join(str(n) for n in sorted([jiku[0], pair[0], pair[1]]))
+                        sanren_pay = _get_payout(payouts, "三連複", combo)
+                        sanren_hit = True
+                        break
+            elif len(jiku) == 2 and jiku[0] in actual_set and jiku[1] in actual_set:
+                for a in aite:
+                    if {jiku[0], jiku[1], a} == actual_set:
+                        combo = "-".join(str(n) for n in sorted([jiku[0], jiku[1], a]))
+                        sanren_pay = _get_payout(payouts, "三連複", combo)
+                        sanren_hit = True
+                        break
+        if not sanren_hit:
+            # フォールバック
+            ana_horse_num = pred.get("ana_horse_num")
+            sanren_hit, sanren_pay = _check_sanrenpuku_raw(predicted_nums, actual_top3_nums, payouts, ana_horse_num)
 
     fukusho_line = f"複勝  {'✅ 的中' if fukusho_hit else '❌ ハズレ'}（◎{honmei_num}番{honmei_name}）"
     if fukusho_hit and fukusho_pay:
         fukusho_line = f"複勝  ✅ 的中（◎{honmei_num}番{honmei_name} 配当{fukusho_pay}円）"
     lines.append(fukusho_line)
 
+    if wide_hit:
+        wide_line = f"ワイド ✅ 的中"
+        if wide_pay:
+            wide_line += f"（配当{re.sub(r'[¥,]', '', str(wide_pay))}円）"
+        lines.append(wide_line)
     umaren_line = f"馬連  {'✅ 的中' if umaren_hit else '❌ ハズレ'}"
     if umaren_hit and umaren_pay:
         umaren_line += f"（配当{re.sub(r'[¥,]', '', str(umaren_pay))}円）"
