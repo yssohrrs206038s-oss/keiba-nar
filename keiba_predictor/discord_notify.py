@@ -565,9 +565,17 @@ def _save_upcoming_to_cache() -> None:
     dates = _weekend_dates()
 
     VENUE_MAP = {
+        # JRA
         "01": "札幌", "02": "函館", "03": "福島", "04": "新潟",
         "05": "東京", "06": "中山", "07": "中京", "08": "京都",
         "09": "阪神", "10": "小倉",
+        # NAR
+        "30": "門別", "31": "帯広",
+        "35": "盛岡", "36": "水沢",
+        "42": "浦和", "43": "船橋", "44": "大井", "45": "川崎",
+        "46": "金沢", "47": "笠松", "48": "名古屋",
+        "50": "園田", "51": "姫路",
+        "54": "高知", "55": "佐賀",
     }
 
     added = 0
@@ -1420,18 +1428,18 @@ def _format_prediction_from_cache(race_name: str, entry: dict, race_id: str = ""
         name = info.get("horse_name", "")
         if not name:
             name = f"{num}番"
-        # MC確率を優先、なければXGBoost prob
+        # MC確率を優先、なければ非表示（XGBoost生スコアは表示しない）
         mc_data = sim.get(str(num), {})
         mc_rate = mc_data.get("top3_rate")
-        prob = (mc_rate * 100) if mc_rate is not None else (info.get("prob", 0) * 100)
         ev_entry = ev_map.get(num, {})
         ev_val = ev_entry.get("ev_score")
         has_real_odds = ev_entry.get("odds") is not None
         ev_str = f" EV{ev_val:.2f}" if ev_val and has_real_odds else ""
-        if prob > 0.01:
+        if mc_rate is not None:
+            prob = mc_rate * 100
             lines1.append(f"{mark} {num}番 {name}　{prob:.1f}%{ev_str}")
         else:
-            lines1.append(f"{mark} {num}番 {name}")
+            lines1.append(f"{mark} {num}番 {name}{ev_str}")
 
     lines1.append(sep)
 
@@ -1440,18 +1448,21 @@ def _format_prediction_from_cache(race_name: str, entry: dict, race_id: str = ""
     ana_info = entry.get("ana_horse_info", {})
     if ana_num and ana_num not in top5_nums[:5]:
         name = ana_info.get("horse_name", "")
-        prob = ana_info.get("prob", 0) * 100
         pop = ana_info.get("popularity", "?")
         if not name:
-            # フォールバック: ev_top3 から取得
             for e in entry.get("ev_top3", []):
                 if e.get("horse_number") == ana_num:
                     name = e.get("horse_name", "")
-                    prob = e.get("prob", 0) * 100
                     break
         if name:
-            lines1.append(f"★穴 {ana_num}番{name}（AI確率{prob:.1f}% {pop}番人気）")
-            lines1.append(f"　→ AIが高評価も市場は低評価！")
+            # MC確率を優先
+            mc_ana = sim.get(str(ana_num), {})
+            mc_ana_rate = mc_ana.get("top3_rate")
+            if mc_ana_rate is not None:
+                prob = mc_ana_rate * 100
+                lines1.append(f"★穴 {ana_num}番{name}（{prob:.1f}% {pop}番人気）")
+            else:
+                lines1.append(f"★穴 {ana_num}番{name}（{pop}番人気）")
 
     # ⚠危険馬
     for d in entry.get("dangerous_horses", []):
