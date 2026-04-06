@@ -1663,6 +1663,16 @@ def run_predict_notify(
     """
     webhook_url = _resolve_webhook(webhook_url)
 
+    # 日付ベースの送信済みチェック（テスト時はスキップ）
+    notified_flag = DATA_DIR / "notified_date.txt"
+    if not test_race_id:
+        today_str = date.today().isoformat()
+        if notified_flag.exists():
+            saved = notified_flag.read_text(encoding="utf-8").strip()
+            if saved == today_str:
+                logger.info(f"本日（{today_str}）は送信済み → スキップ")
+                return
+
     if model_path is None:
         model_path = MODEL_PATH
 
@@ -1809,6 +1819,14 @@ def run_predict_notify(
                 logger.info(f"  [X] スキップ（特別レース以外）: {race_name}")
 
     send_discord(webhook_url, f"✅ {notified}/{len(grade_races)} レース送信完了")
+
+    # 送信済みフラグを書き込み
+    if not test_race_id and notified > 0:
+        try:
+            notified_flag.write_text(date.today().isoformat(), encoding="utf-8")
+            logger.info(f"送信済みフラグ書き込み: {notified_flag}")
+        except Exception as e:
+            logger.warning(f"送信済みフラグ書き込み失敗: {e}")
 
 
 # ══════════════════════════════════════════════════════════════
