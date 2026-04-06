@@ -1122,16 +1122,14 @@ def _build_hit_embed(
     race_name: str,
     honmei_num: Optional[int],
     honmei_name: str,
-    fukusho_hit: bool,
-    umaren_hit: bool,
-    umaren_pay: str,
+    wide_hit: bool,
+    wide_pay: str,
     sanren_hit: bool,
     sanren_pay: str,
     race_id: str = "",
-    fukusho_pay: str = "",
 ) -> Optional[dict]:
     """的中時のembed辞書を生成する。何も的中していなければ None。"""
-    if not (fukusho_hit or umaren_hit or sanren_hit):
+    if not (wide_hit or sanren_hit):
         return None
 
     # レース番号をrace_idから取得（末尾2桁）
@@ -1148,15 +1146,10 @@ def _build_hit_embed(
         lines.append(f"◎ {honmei_num}番 {honmei_name}")
     lines.append("")
 
-    if fukusho_hit:
-        detail = "複勝 ✅ 的中"
-        if fukusho_pay:
-            detail += f"（配当{fukusho_pay}円）"
-        lines.append(detail)
-    if umaren_hit:
-        detail = "馬連 ✅ 的中"
-        if umaren_pay:
-            detail += f"（配当{re.sub(r'[¥,]', '', str(umaren_pay))}円）"
+    if wide_hit:
+        detail = "ワイド ✅ 的中"
+        if wide_pay:
+            detail += f"（配当{re.sub(r'[¥,]', '', str(wide_pay))}円）"
         lines.append(detail)
     if sanren_hit:
         detail = "3連複 ✅ 的中"
@@ -1164,13 +1157,11 @@ def _build_hit_embed(
             detail += f"（配当{re.sub(r'[¥,]', '', str(sanren_pay))}円）"
         lines.append(detail)
 
-    # 3連複的中 = 金、馬連的中 = 緑、複勝のみ = 青
+    # 3連複的中 = 金、ワイド的中 = 緑
     if sanren_hit:
         color = 0xFFD700
-    elif umaren_hit:
-        color = 0x00FF00
     else:
-        color = 0x3498DB
+        color = 0x2ECC71
 
     embed = {
         "title": "🎯 NAR的中！",
@@ -1350,20 +1341,10 @@ def _fmt_result(race_name: str, race_date: str,
             ana_horse_num = pred.get("ana_horse_num")
             sanren_hit, sanren_pay = _check_sanrenpuku_raw(predicted_nums, actual_top3_nums, payouts, ana_horse_num, pred=pred)
 
-    fukusho_line = f"複勝  {'✅ 的中' if fukusho_hit else '❌ ハズレ'}（◎{honmei_num}番{honmei_name}）"
-    if fukusho_hit and fukusho_pay:
-        fukusho_line = f"複勝  ✅ 的中（◎{honmei_num}番{honmei_name} 配当{fukusho_pay}円）"
-    lines.append(fukusho_line)
-
-    if wide_hit:
-        wide_line = f"ワイド ✅ 的中"
-        if wide_pay:
-            wide_line += f"（配当{re.sub(r'[¥,]', '', str(wide_pay))}円）"
-        lines.append(wide_line)
-    umaren_line = f"馬連  {'✅ 的中' if umaren_hit else '❌ ハズレ'}"
-    if umaren_hit and umaren_pay:
-        umaren_line += f"（配当{re.sub(r'[¥,]', '', str(umaren_pay))}円）"
-    lines.append(umaren_line)
+    wide_line = f"ワイド {'✅ 的中' if wide_hit else '❌ ハズレ'}"
+    if wide_hit and wide_pay:
+        wide_line += f"（配当{re.sub(r'[¥,]', '', str(wide_pay))}円）"
+    lines.append(wide_line)
 
     sanren_line = f"3連複 {'✅ 的中' if sanren_hit else '❌ ハズレ'}"
     if sanren_hit and sanren_pay:
@@ -2008,35 +1989,40 @@ def run_result_notify(
             _top3 = _df_copy[_df_copy["_fp"].isin([1, 2, 3])].sort_values("_fp").head(3)
             _actual_top3_nums = [int(r["horse_number"]) for _, r in _top3.iterrows() if pd.notna(r.get("horse_number"))]
 
-            _fp_pay = ""
-            if manual and "fukusho_hit" in manual:
-                _fh = manual["fukusho_hit"]
-                _uh = manual.get("umaren_hit", False)
-                _sh = manual.get("sanrenpuku_hit", False)
-                _mp = manual.get("payouts", {})
-                if _mp.get("fukusho"):
-                    _fp_pay = f"{_mp['fukusho']:,}"
-                _up = f"¥{_mp['umaren']:,}" if _mp.get("umaren") else ""
-                _sp = f"¥{_mp['sanrenpuku']:,}" if _mp.get("sanrenpuku") else ""
-            else:
-                _fh = (_honmei_num is not None) and (int(_honmei_num) in _actual_top3_nums)
-                if _fh and _honmei_num:
-                    for _entry in payouts.get("複勝", []):
-                        _cnums = set(re.findall(r"\d+", str(_entry.get("combo", ""))))
-                        if str(_honmei_num) in _cnums:
-                            _amt = _entry.get("amount")
-                            if _amt:
-                                _fp_pay = f"{_amt:,}" if isinstance(_amt, int) else re.sub(r"[¥￥,円\s]", "", str(_amt))
+            # ワイド的中判定
+            _wh = False
+            _wp = ""
+            _actual_set = set(_actual_top3_nums[:3])
+            bs = pred.get("bet_strategy", {})
+            if bs.get("wide"):
+                for w in bs["wide"]:
+                    a, b = w["nums"]
+                    if a in _actual_set and b in _actual_set:
+                        _wp = _get_payout(payouts, "ワイド", f"{a}-{b}")
+                        _wh = True
+                        break
+            # 3連複的中判定
+            _sh = False
+            _sp = ""
+            sr = bs.get("sanrenpuku", {})
+            if sr and sr.get("jiku") and sr.get("aite") and len(_actual_set) >= 3:
+                jiku = sr["jiku"]
+                aite = sr["aite"]
+                if len(jiku) == 1 and jiku[0] in _actual_set:
+                    for pair in combinations(aite, 2):
+                        if {jiku[0], pair[0], pair[1]} == _actual_set:
+                            combo = "-".join(str(n) for n in sorted([jiku[0], pair[0], pair[1]]))
+                            _sp = _get_payout(payouts, "三連複", combo)
+                            _sh = True
                             break
-                _uh, _up = _check_umaren_raw(predicted_nums, _actual_top3_nums, payouts)
+            if not _sh:
                 _ana_num = pred.get("ana_horse_num")
                 _sh, _sp = _check_sanrenpuku_raw(predicted_nums, _actual_top3_nums, payouts, _ana_num, pred=pred)
 
             _venue = pred.get("venue", "")
             hit_embed = _build_hit_embed(
                 _venue, race_name, _honmei_num, _honmei_name,
-                _fh, _uh, _up, _sh, _sp, race_id=race_id,
-                fukusho_pay=_fp_pay,
+                _wh, _wp, _sh, _sp, race_id=race_id,
             )
             if hit_embed:
                 target_webhook = hit_webhook if hit_webhook else result_webhook
