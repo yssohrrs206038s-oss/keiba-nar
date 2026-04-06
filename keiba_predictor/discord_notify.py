@@ -1463,32 +1463,32 @@ def _check_sanrenpuku_raw(
 
 def _format_prediction_from_cache(race_name: str, entry: dict, race_id: str = "") -> tuple[str, str]:
     """predictions_cache.json のエントリからDiscord用メッセージ(予想・買い目)を生成する。"""
-    sep = "━" * 20
     course_info = entry.get("course_info", "")
     ai_comments = entry.get("ai_comments", {})
 
     # ── Message 1: 予想 ───────────────────────────────────────
     venue = entry.get("venue", "")
     start_time = entry.get("start_time", "")
-    # レース番号をrace_idから取得
     race_num = ""
     if race_id and len(race_id) >= 12:
         try:
-            race_num = f"{int(race_id[10:12])}R "
+            race_num = f"{int(race_id[10:12])}R"
         except ValueError:
             pass
-    lines1 = [sep, f"🏇 {venue} {race_num}{race_name}".strip()]
-    # 開催場・発走時刻・コース情報を1行にまとめる
+    flag_sep = "🏁━━━━━━━━━━━━━━━━━━🏁"
+    title = f"　　{venue} {race_num} {race_name}".rstrip()
     meta_parts = []
     if venue:
-        meta_parts.append(f"📍 {venue}")
+        meta_parts.append(f"📍{venue}")
     if start_time:
-        meta_parts.append(f"🕐 {start_time}発走")
+        meta_parts.append(f"🕐{start_time}発走")
     if course_info:
         meta_parts.append(course_info)
-    if meta_parts:
-        lines1.append(" | ".join(meta_parts))
-    lines1.append(sep)
+    meta_line = f"　　{' | '.join(meta_parts)}" if meta_parts else ""
+    lines1 = [flag_sep, title]
+    if meta_line:
+        lines1.append(meta_line)
+    lines1.append(flag_sep)
 
     MARKS = ["◎", "○", "▲", "△", "　"]
     top5_nums = entry.get("predicted_top5_nums", [])
