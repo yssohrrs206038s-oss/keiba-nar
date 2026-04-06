@@ -108,10 +108,24 @@ jobs:
           from keiba_predictor.model.predict import predict_live
           import requests
 
+          from keiba_predictor.discord_notify import _save_cache
+          from datetime import date
+
           session = requests.Session()
           nar_races = scrape_nar_race_ids_for_today(session)
           print(f'今日のNARレース: {len(nar_races)} 件')
           cache = _load_cache()
+
+          # 今日以外のキャッシュを削除（日付が変わったら再予想）
+          today_str = date.today().isoformat()
+          stale = [k for k, v in cache.items()
+                   if not k.startswith('_') and isinstance(v, dict)
+                   and v.get('race_date') and v['race_date'] != today_str]
+          if stale:
+              for k in stale:
+                  del cache[k]
+              _save_cache(cache)
+              print(f'  過去キャッシュ {len(stale)} 件削除')
 
           for race in nar_races:
               rid = race['race_id']
