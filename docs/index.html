@@ -625,6 +625,9 @@ function _renderRaceCard(raceId, r) {
     const w = bs.wide[0];
     const wideStr = `◎${w.nums[0]}-○${w.nums[1]}`;
     betHTML = `<div class="bet-box"><div class="bet-box-title">💰 買い目（1点）</div><div class="bet-rows" style="display:flex;flex-direction:column;gap:4px;"><div class="bet-row"><span class="bet-label">ワイド</span>${wideStr}<span style="color:var(--text-muted);margin-left:auto;font-size:11px;">1,000円</span></div></div><div style="border-top:1px solid var(--border);margin-top:8px;padding-top:6px;font-size:12px;font-weight:700;">合計投資額: 1,000円</div></div>`;
+  } else if (bs && bs.strategy_note && bs.strategy_note.includes('見送り')) {
+    // オッズフィルタで見送り
+    betHTML = `<div class="bet-box"><div class="bet-box-title">💰 買い目</div><div style="font-size:12px;color:var(--text-muted);">⏭️ ${esc(bs.strategy_note)}</div></div>`;
   } else {
     const pnums = (r.predicted_top3_nums || []).filter(n => n != null);
     if (pnums.length >= 2) {

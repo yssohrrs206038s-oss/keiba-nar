@@ -323,36 +323,53 @@ def _decide_bet_strategy(result_df: pd.DataFrame) -> dict:
     NAR予測結果DataFrameから買い目を決定する。
 
     構成: ワイド ◎-○ 1点 1,000円のみ
+    フィルタ: 推定ワイドオッズ < 1.5倍 の場合はスキップ（買い目なし）
     """
     BUDGET = 1000
     WIDE_UNIT = 1000
+    MIN_WIDE_ODDS = 1.5
 
-    if len(result_df) < 2:
+    def _empty(note: str) -> dict:
         return {
             "fukusho": [], "umaren": [], "wide": [],
             "sanrenpuku": {}, "total_points": 0, "total_cost": 0,
-            "strategy_note": "出走頭数不足", "use_wide": True,
+            "strategy_note": note, "use_wide": True,
         }
+
+    if len(result_df) < 2:
+        return _empty("出走頭数不足")
 
     top2 = result_df.head(2)
     nums = [int(r["horse_number"]) for _, r in top2.iterrows()
             if pd.notna(r.get("horse_number"))]
 
     if len(nums) < 2:
-        return {
-            "fukusho": [], "umaren": [], "wide": [],
-            "sanrenpuku": {}, "total_points": 0, "total_cost": 0,
-            "strategy_note": "出走頭数不足", "use_wide": True,
-        }
+        return _empty("出走頭数不足")
 
     hon = nums[0]
     tai = nums[1]
+
+    # ワイドオッズを単勝オッズから推定（経験式: ◎odds × ○odds / 4）
+    # 推定値が1.5倍未満なら買い目なし
+    hon_odds = pd.to_numeric(result_df.iloc[0].get("odds"), errors="coerce")
+    tai_odds = pd.to_numeric(result_df.iloc[1].get("odds"), errors="coerce")
+    estimated_wide_odds = None
+    if pd.notna(hon_odds) and pd.notna(tai_odds) and hon_odds > 0 and tai_odds > 0:
+        estimated_wide_odds = (float(hon_odds) * float(tai_odds)) / 4.0
+        if estimated_wide_odds < MIN_WIDE_ODDS:
+            return _empty(
+                f"見送り（推定ワイドオッズ{estimated_wide_odds:.1f}倍 < 1.5倍）"
+            )
+
+    note = "ワイド1点"
+    if estimated_wide_odds is not None:
+        note = f"ワイド1点（推定{estimated_wide_odds:.1f}倍）"
 
     strategy = {
         "fukusho": [], "umaren": [], "wide": [{"nums": [hon, tai]}],
         "sanrenpuku": {},
         "total_points": 1, "total_cost": WIDE_UNIT,
-        "strategy_note": "ワイド1点", "use_wide": True,
+        "strategy_note": note, "use_wide": True,
     }
 
     return strategy

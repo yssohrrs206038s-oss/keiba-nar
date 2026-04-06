@@ -1571,6 +1571,10 @@ def _format_prediction_from_cache(race_name: str, entry: dict, race_id: str = ""
 
         lines2.append(f"────────────────")
         lines2.append(f"合計投資額: 1,000円")
+    elif bs and "見送り" in str(bs.get("strategy_note", "")):
+        # オッズフィルタで見送り
+        note = bs.get("strategy_note", "見送り")
+        lines2 = ["💰 買い目", f"⏭️ {note}"]
     else:
         # フォールバック: ワイド ◎-○ 1点（bet_strategyがない場合）
         nums = top5_nums
