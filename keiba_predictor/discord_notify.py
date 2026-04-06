@@ -1949,7 +1949,7 @@ def run_result_notify(
             payouts = scrape_payouts(race_id, session) if actual_df is not None else {}
 
         if actual_df is None or actual_df.empty:
-            send_discord(webhook_url, f"⚠️ **{race_name}** の結果が取得できませんでした。")
+            logger.info(f"  結果未確定スキップ: {race_name} ({race_id})")
             continue
 
         # 予想キャッシュ取得
