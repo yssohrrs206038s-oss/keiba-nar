@@ -290,7 +290,7 @@
     <div class="section-title">📋 直近レース結果</div>
     <div style="overflow-x:auto;">
       <table class="history-table">
-        <thead><tr><th>日付</th><th>レース名</th><th>ワイド</th><th>3連複</th><th>回収率</th></tr></thead>
+        <thead><tr><th>日付</th><th>レース名</th><th>ワイド</th><th>回収率</th></tr></thead>
         <tbody id="history-tbody">
           <tr><td colspan="6" class="no-data">履歴データを読み込んでいます...</td></tr>
         </tbody>
@@ -412,8 +412,8 @@ function renderStats(rows) {
   if (!rows.length) return;
   const n     = rows.length;
   const fHits = rows.filter(r => r.fukusho_hit === 'True').length;
-  const uHits = rows.filter(r => r.umaren_hit === 'True' || r.wide_hit === 'True').length;
-  const sHits = rows.filter(r => r.sanrenpuku_hit === 'True').length;
+  const uHits = rows.filter(r => r.wide_hit === 'True').length;
+  const sHits = 0;
   const bet   = rows.reduce((s, r) => s + (+r.bet_total || 0), 0);
   const ret   = rows.reduce((s, r) => s + (+r.return_total || 0), 0);
   const roi   = bet > 0 ? ret / bet : 0;
@@ -483,8 +483,8 @@ function renderWeeklyChart(rows) {
   weeks.forEach(wk => {
     const wr = weekMap[wk]; const n = wr.length;
     fR.push(n ? +(wr.filter(r => r.fukusho_hit === 'True').length / n * 100).toFixed(0) : 0);
-    uR.push(n ? +(wr.filter(r => r.umaren_hit === 'True' || r.wide_hit === 'True').length / n * 100).toFixed(0) : 0);
-    sR.push(n ? +(wr.filter(r => r.sanrenpuku_hit === 'True').length / n * 100).toFixed(0) : 0);
+    uR.push(n ? +(wr.filter(r => r.wide_hit === 'True').length / n * 100).toFixed(0) : 0);
+    sR.push(0);
   });
   new Chart(document.getElementById('weekly-chart').getContext('2d'), {
     type: 'bar',
@@ -621,30 +621,16 @@ function _renderRaceCard(raceId, r) {
   // 買い目
   const bs = r.bet_strategy;
   let betHTML = '';
-  if (bs && bs.total_points > 0) {
-    const brows = [];
-    if (bs.wide && bs.wide.length) {
-      const wideStr = bs.wide.map(w => `${w.nums[0]}-${w.nums[1]}`).join(' / ');
-      brows.push(`<div class="bet-row"><span class="bet-label">ワイド</span>${wideStr}<span style="color:var(--text-muted);margin-left:auto;font-size:11px;">各300円</span></div>`);
-    }
-    const sr = bs.sanrenpuku;
-    if (sr && sr.jiku && sr.aite) {
-      const jStr = `軸${sr.jiku[0]}`;
-      brows.push(`<div class="bet-row"><span class="bet-label">3連複</span>${jStr} × ${sr.aite.join('/')}<span style="color:var(--text-muted);margin-left:auto;font-size:11px;">各100円</span></div>`);
-    }
-    const totalCost = bs.total_cost || (bs.total_points * 100);
-    betHTML = `<div class="bet-box"><div class="bet-box-title">💰 買い目（${bs.total_points}点）</div><div class="bet-rows" style="display:flex;flex-direction:column;gap:4px;">${brows.join('')}</div><div style="border-top:1px solid var(--border);margin-top:8px;padding-top:6px;font-size:12px;font-weight:700;">合計投資額: ${totalCost.toLocaleString()}円</div></div>`;
+  if (bs && bs.total_points > 0 && bs.wide && bs.wide.length) {
+    const w = bs.wide[0];
+    const wideStr = `◎${w.nums[0]}-○${w.nums[1]}`;
+    betHTML = `<div class="bet-box"><div class="bet-box-title">💰 買い目（1点）</div><div class="bet-rows" style="display:flex;flex-direction:column;gap:4px;"><div class="bet-row"><span class="bet-label">ワイド</span>${wideStr}<span style="color:var(--text-muted);margin-left:auto;font-size:11px;">1,000円</span></div></div><div style="border-top:1px solid var(--border);margin-top:8px;padding-top:6px;font-size:12px;font-weight:700;">合計投資額: 1,000円</div></div>`;
   } else {
     const pnums = (r.predicted_top3_nums || []).filter(n => n != null);
     if (pnums.length >= 2) {
-      const combos = [];
-      for (let i = 0; i < Math.min(pnums.length, 3); i++)
-        for (let j = i + 1; j < Math.min(pnums.length, 3); j++)
-          combos.push(`${pnums[i]}-${pnums[j]}`);
-      betHTML = `<div class="bet-box"><div class="bet-box-title">💰 推奨買い目</div><div class="bet-rows">
-        <div class="bet-row"><span class="bet-label">複勝</span>${pnums[0]}番</div>
-        <div class="bet-row"><span class="bet-label">馬連</span>${combos.join(' / ')}</div>
-      </div></div>`;
+      betHTML = `<div class="bet-box"><div class="bet-box-title">💰 買い目（1点）</div><div class="bet-rows">
+        <div class="bet-row"><span class="bet-label">ワイド</span>◎${pnums[0]}-○${pnums[1]}<span style="color:var(--text-muted);margin-left:auto;font-size:11px;">1,000円</span></div>
+      </div><div style="border-top:1px solid var(--border);margin-top:8px;padding-top:6px;font-size:12px;font-weight:700;">合計投資額: 1,000円</div></div>`;
     }
   }
 
@@ -655,32 +641,15 @@ function _renderRaceCard(raceId, r) {
     const a1 = res.actual1_num ? `${res.actual1_num}番 ${esc(res.actual1_name || '')}` : '';
     const a2 = res.actual2_num ? `${res.actual2_num}番 ${esc(res.actual2_name || '')}` : '';
     const a3 = res.actual3_num ? `${res.actual3_num}番 ${esc(res.actual3_name || '')}` : '';
-    const fHit = res.fukusho_hit === 'True';
-    const uHit = res.umaren_hit === 'True' || res.wide_hit === 'True';
-    const sHit = res.sanrenpuku_hit === 'True';
-    const fPay = +res.umaren_payout || 0;  // 複勝配当はCSVにないので省略
-    const uPay = +res.umaren_payout || 0;
+    const wHit = res.wide_hit === 'True';
     const wPay = +res.wide_payout || 0;
-    const sPay = +res.sanrenpuku_payout || 0;
-    const uDisp = uHit ? (uPay ? `${uPay.toLocaleString()}円` : '—') : '';
-    const wDisp = uHit && wPay ? `${wPay.toLocaleString()}円` : '';
-    const sDisp = sHit ? (sPay ? `${sPay.toLocaleString()}円` : '—') : '';
     const bet = +res.bet_total || 0;
     const ret = +res.return_total || 0;
     const roi = bet > 0 ? (ret / bet * 100).toFixed(0) + '%' : '—';
     const roiColor = ret >= bet ? 'var(--green)' : 'var(--red)';
 
-    // 的中行: 馬連 or ワイド（どちらか的中した方を表示）
     const hitParts = [];
-    hitParts.push(`複勝${fHit ? '✅' : '❌'}`);
-    if (res.wide_hit === 'True') {
-      hitParts.push(`ワイド✅${wPay ? ' ' + wPay.toLocaleString() + '円' : ''}`);
-    } else if (res.umaren_hit === 'True') {
-      hitParts.push(`馬連✅${uPay ? ' ' + uPay.toLocaleString() + '円' : ''}`);
-    } else {
-      hitParts.push(`馬連❌`);
-    }
-    hitParts.push(`3連複${sHit ? '✅' : '❌'}${sDisp ? ' ' + sDisp : ''}`);
+    hitParts.push(`ワイド${wHit ? '✅' : '❌'}${wHit && wPay ? ' ' + wPay.toLocaleString() + '円' : ''}`);
 
     resultHTML = `
       <div style="border-top:1px solid var(--border);margin-top:12px;padding-top:10px;">
@@ -727,18 +696,17 @@ function _renderFilteredPredictions() {
 ================================================================ */
 function renderHistory(rows) {
   const tbody = document.getElementById('history-tbody');
-  // 的中レースのみ抽出（ワイド・3連複のいずれか）
+  // 的中レースのみ抽出（ワイドが的中したもの）
   const hitRows = rows.filter(r =>
-    r.wide_hit === 'True' || r.sanrenpuku_hit === 'True'
+    r.wide_hit === 'True'
   );
   const recent = hitRows.slice(-15).reverse();
   if (!recent.length) {
-    tbody.innerHTML = '<tr><td colspan="5" class="no-data">的中レースがありません</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="4" class="no-data">的中レースがありません</td></tr>';
     return;
   }
   tbody.innerHTML = recent.map(r => {
     const wHit = r.wide_hit === 'True';
-    const sHit = r.sanrenpuku_hit === 'True';
     const bet = +r.bet_total || 0;
     const ret = +r.return_total || 0;
     const roi = bet > 0 ? (ret / bet * 100).toFixed(0) + '%' : '--';
@@ -752,7 +720,6 @@ function renderHistory(rows) {
       <td style="color:var(--text-muted);white-space:nowrap">${esc((r.date || '').slice(0, 10))}</td>
       <td>${esc(hPrefix + raceName)}</td>
       <td class="hit-icon">${wHit ? '✅' : '❌'}</td>
-      <td class="hit-icon">${sHit ? '✅' : '❌'}</td>
       <td style="${roiColor};font-weight:700;">${esc(roi)}</td>
     </tr>`;
   }).join('');
@@ -772,7 +739,7 @@ function renderRankings(rows) {
     if (!horseMap[name]) horseMap[name] = { f: 0, u: 0, n: 0 };
     horseMap[name].n++;
     if (r.fukusho_hit === 'True') horseMap[name].f++;
-    if (r.umaren_hit === 'True' || r.wide_hit === 'True') horseMap[name].u++;
+    if (r.wide_hit === 'True') horseMap[name].u++;
   });
   const horseArr = Object.entries(horseMap)
     .filter(([, v]) => v.n >= 2)
@@ -798,7 +765,7 @@ function renderRankings(rows) {
     if (!courseMap[venue]) courseMap[venue] = { f: 0, u: 0, n: 0 };
     courseMap[venue].n++;
     if (r.fukusho_hit === 'True') courseMap[venue].f++;
-    if (r.umaren_hit === 'True' || r.wide_hit === 'True') courseMap[venue].u++;
+    if (r.wide_hit === 'True') courseMap[venue].u++;
   });
   const courseArr = Object.entries(courseMap)
     .map(([c, v]) => ({ course: c, fr: v.f / v.n, ur: v.u / v.n, n: v.n }))
@@ -820,18 +787,16 @@ function renderRankings(rows) {
 function renderHitRateChart(rows) {
   if (!rows.length) return;
   const n = rows.length;
-  const fRate = +(rows.filter(r => r.fukusho_hit === 'True').length / n * 100).toFixed(1);
-  const uRate = +(rows.filter(r => r.umaren_hit === 'True' || r.wide_hit === 'True').length / n * 100).toFixed(1);
-  const sRate = +(rows.filter(r => r.sanrenpuku_hit === 'True').length / n * 100).toFixed(1);
+  const wRate = +(rows.filter(r => r.wide_hit === 'True').length / n * 100).toFixed(1);
 
   new Chart(document.getElementById('hit-rate-chart').getContext('2d'), {
     type: 'bar',
     data: {
-      labels: ['複勝', '馬連/ワイド', '3連複'],
+      labels: ['ワイド'],
       datasets: [{
         label: '的中率 (%)',
-        data: [fRate, uRate, sRate],
-        backgroundColor: ['rgba(46,204,113,.7)', 'rgba(52,152,219,.7)', 'rgba(243,156,18,.7)'],
+        data: [wRate],
+        backgroundColor: ['rgba(46,204,113,.7)'],
         borderRadius: 6,
         barThickness: 60,
       }]

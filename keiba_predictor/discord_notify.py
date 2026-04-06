@@ -1124,12 +1124,12 @@ def _build_hit_embed(
     honmei_name: str,
     wide_hit: bool,
     wide_pay: str,
-    sanren_hit: bool,
-    sanren_pay: str,
+    sanren_hit: bool = False,
+    sanren_pay: str = "",
     race_id: str = "",
 ) -> Optional[dict]:
     """的中時のembed辞書を生成する。何も的中していなければ None。"""
-    if not (wide_hit or sanren_hit):
+    if not wide_hit:
         return None
 
     # レース番号をrace_idから取得（末尾2桁）
@@ -1151,17 +1151,8 @@ def _build_hit_embed(
         if wide_pay:
             detail += f"（配当{re.sub(r'[¥,]', '', str(wide_pay))}円）"
         lines.append(detail)
-    if sanren_hit:
-        detail = "3連複 ✅ 的中"
-        if sanren_pay:
-            detail += f"（配当{re.sub(r'[¥,]', '', str(sanren_pay))}円）"
-        lines.append(detail)
 
-    # 3連複的中 = 金、ワイド的中 = 緑
-    if sanren_hit:
-        color = 0xFFD700
-    else:
-        color = 0x2ECC71
+    color = 0x2ECC71
 
     embed = {
         "title": "🎯 NAR的中！",
@@ -1345,11 +1336,6 @@ def _fmt_result(race_name: str, race_date: str,
     if wide_hit and wide_pay:
         wide_line += f"（配当{re.sub(r'[¥,]', '', str(wide_pay))}円）"
     lines.append(wide_line)
-
-    sanren_line = f"3連複 {'✅ 的中' if sanren_hit else '❌ ハズレ'}"
-    if sanren_hit and sanren_pay:
-        sanren_line += f"（配当{re.sub(r'[¥,]', '', str(sanren_pay))}円）"
-    lines.append(sanren_line)
 
     return "\n".join(lines)
 
@@ -1578,46 +1564,25 @@ def _format_prediction_from_cache(race_name: str, entry: dict, race_id: str = ""
     if bs and bs.get("total_points", 0) > 0:
         lines2 = ["💰 買い目"]
 
-        # ワイド
+        # ワイド ◎-○ 1点
         if bs.get("wide"):
-            wide_str = " / ".join(f"{w['nums'][0]}-{w['nums'][1]}" for w in bs["wide"])
-            lines2.append(f"ワイド {wide_str}  各300円")
+            w = bs["wide"][0]
+            lines2.append(f"ワイド ◎{w['nums'][0]}-○{w['nums'][1]}  1,000円")
 
-        # 3連複
-        sr = bs.get("sanrenpuku", {})
-        if sr:
-            jiku = sr.get("jiku", [])
-            aite = sr.get("aite", [])
-            if len(jiku) == 1:
-                sr_pt = len(list(combinations(aite, 2)))
-                lines2.append(f"3連複 軸{jiku[0]} × {'/'.join(str(n) for n in aite)}  各100円")
-
-        total_cost = bs.get('total_cost', bs['total_points'] * 100)
         lines2.append(f"────────────────")
-        lines2.append(f"合計投資額: {total_cost:,}円")
+        lines2.append(f"合計投資額: 1,000円")
     else:
-        # フォールバック: ワイド3点 + 3連複（bet_strategyがない場合）
+        # フォールバック: ワイド ◎-○ 1点（bet_strategyがない場合）
         nums = top5_nums
         if len(nums) < 2:
             return msg1, ""
         hon = nums[0]
-        wide_pairs = list(combinations(nums[:3], 2))
-        wide_str = " / ".join(f"{a}-{b}" for a, b in wide_pairs)
-        partners = nums[1:5]
-        ana_buy = entry.get("ana_horse_num")
-        if ana_buy and ana_buy not in partners:
-            partners = partners + [ana_buy]
-        sanren_pt = len(list(combinations(partners, 2)))
-        partners_str = "/".join(str(n) for n in partners)
-        wide_cost = len(wide_pairs) * 300
-        sanren_cost = sanren_pt * 100
-        total_cost = wide_cost + sanren_cost
+        tai = nums[1]
         lines2 = [
             "💰 買い目",
-            f"ワイド {wide_str}  各300円",
-            f"3連複 軸{hon} × {partners_str}  各100円",
+            f"ワイド ◎{hon}-○{tai}  1,000円",
             f"────────────────",
-            f"合計投資額: {total_cost:,}円",
+            f"合計投資額: 1,000円",
         ]
 
     msg2 = "\n".join(lines2)
@@ -2001,28 +1966,10 @@ def run_result_notify(
                         _wp = _get_payout(payouts, "ワイド", f"{a}-{b}")
                         _wh = True
                         break
-            # 3連複的中判定
-            _sh = False
-            _sp = ""
-            sr = bs.get("sanrenpuku", {})
-            if sr and sr.get("jiku") and sr.get("aite") and len(_actual_set) >= 3:
-                jiku = sr["jiku"]
-                aite = sr["aite"]
-                if len(jiku) == 1 and jiku[0] in _actual_set:
-                    for pair in combinations(aite, 2):
-                        if {jiku[0], pair[0], pair[1]} == _actual_set:
-                            combo = "-".join(str(n) for n in sorted([jiku[0], pair[0], pair[1]]))
-                            _sp = _get_payout(payouts, "三連複", combo)
-                            _sh = True
-                            break
-            if not _sh:
-                _ana_num = pred.get("ana_horse_num")
-                _sh, _sp = _check_sanrenpuku_raw(predicted_nums, _actual_top3_nums, payouts, _ana_num, pred=pred)
-
             _venue = pred.get("venue", "")
             hit_embed = _build_hit_embed(
                 _venue, race_name, _honmei_num, _honmei_name,
-                _wh, _wp, _sh, _sp, race_id=race_id,
+                _wh, _wp, race_id=race_id,
             )
             if hit_embed:
                 target_webhook = hit_webhook if hit_webhook else result_webhook

@@ -320,104 +320,40 @@ def predict_race(
 
 def _decide_bet_strategy(result_df: pd.DataFrame) -> dict:
     """
-    NAR予測結果DataFrameから予算3000円以内で最適な買い目を自動決定する。
+    NAR予測結果DataFrameから買い目を決定する。
 
-    構成（ワイド＋3連複のみ、複勝・馬連なし）:
-    1. ワイド 各300円 × 3点（◎○, ◎▲, ○▲）= 900円
-    2. 3連複 ◎1頭軸 × 相手N頭 各100円
-       - 通常: 相手5頭 C(5,2)=10点 = 1,000円 → 合計1,900円
-       - 均衡時(オッズ差3倍未満): 相手7頭 C(7,2)=21点 = 2,100円 → 合計3,000円
+    構成: ワイド ◎-○ 1点 1,000円のみ
     """
-    from itertools import combinations as _comb
+    BUDGET = 1000
+    WIDE_UNIT = 1000
 
-    BUDGET = 3000
-    UNIT = 100
-    WIDE_UNIT = 300
-
-    if len(result_df) < 3:
+    if len(result_df) < 2:
         return {
             "fukusho": [], "umaren": [], "wide": [],
             "sanrenpuku": {}, "total_points": 0, "total_cost": 0,
             "strategy_note": "出走頭数不足", "use_wide": True,
         }
 
-    top5 = result_df.head(5)
-    nums = [int(r["horse_number"]) for _, r in top5.iterrows()
+    top2 = result_df.head(2)
+    nums = [int(r["horse_number"]) for _, r in top2.iterrows()
             if pd.notna(r.get("horse_number"))]
 
+    if len(nums) < 2:
+        return {
+            "fukusho": [], "umaren": [], "wide": [],
+            "sanrenpuku": {}, "total_points": 0, "total_cost": 0,
+            "strategy_note": "出走頭数不足", "use_wide": True,
+        }
+
     hon = nums[0]
-
-    # オッズ均衡判定（上位3頭のオッズ差が小さい）
-    odds_list = []
-    for i in range(min(3, len(result_df))):
-        o = pd.to_numeric(result_df.iloc[i].get("odds"), errors="coerce")
-        if pd.notna(o):
-            odds_list.append(float(o))
-    is_tight = False
-    if len(odds_list) >= 3:
-        is_tight = max(odds_list) - min(odds_list) < 3.0
-
-    # 穴馬
-    ana_num = None
-    top5_set = set(nums)
-    if len(result_df) > 5:
-        rest = result_df.iloc[5:]
-        rest_prob = pd.to_numeric(rest.get("prob_top3", pd.Series(dtype=float)), errors="coerce")
-        rest_pop = pd.to_numeric(rest.get("popularity", pd.Series(dtype=float)), errors="coerce")
-        cands = rest[(rest_prob >= 0.30) & (rest_pop >= 6)]
-        if not cands.empty:
-            best = cands.nlargest(1, "prob_top3").iloc[0]
-            v = best.get("horse_number")
-            if pd.notna(v) and int(v) not in top5_set:
-                ana_num = int(v)
+    tai = nums[1]
 
     strategy = {
-        "fukusho": [], "umaren": [], "wide": [],
+        "fukusho": [], "umaren": [], "wide": [{"nums": [hon, tai]}],
         "sanrenpuku": {},
-        "total_points": 0, "total_cost": 0,
-        "strategy_note": "", "use_wide": True,
+        "total_points": 1, "total_cost": WIDE_UNIT,
+        "strategy_note": "ワイド1点", "use_wide": True,
     }
-    notes = []
-    remaining = BUDGET
-
-    # ── 優先1: ワイド 各300円 × 3点（◎○, ◎▲, ○▲） ──
-    pairs = [{"nums": list(p)} for p in _comb(nums[:3], 2)]
-    cost = len(pairs) * WIDE_UNIT
-    if remaining >= cost:
-        strategy["wide"] = pairs
-        remaining -= cost
-        notes.append("ワイド3点")
-
-    # ── 優先2: 3連複 ◎1頭軸 × 相手N頭 ──
-    # 均衡時は相手を7頭まで拡大（C(7,2)=21点=2,100円→合計3,000円）
-    if remaining >= 3 * UNIT:
-        max_aite = 7 if is_tight else 5
-        # 上位から相手候補を構築
-        aite = list(nums[1:max_aite + 1])
-        # 穴馬追加
-        if ana_num and ana_num not in aite:
-            aite.append(ana_num)
-        # 予算に収まるまで相手を減らす
-        while len(aite) >= 2:
-            n_pts = len(list(_comb(aite, 2)))
-            if n_pts * UNIT <= remaining:
-                strategy["sanrenpuku"] = {"jiku": [hon], "aite": aite}
-                remaining -= n_pts * UNIT
-                ana_label = "+穴" if ana_num and ana_num in aite else ""
-                tight_label = "均衡" if is_tight else ""
-                notes.append(f"3連複◎軸x{len(aite)}{ana_label}{tight_label}")
-                break
-            aite = aite[:-1]
-
-    # 合計
-    total_cost = BUDGET - remaining
-    total_points = len(strategy["wide"])
-    sr = strategy["sanrenpuku"]
-    if sr:
-        total_points += len(list(_comb(sr.get("aite", []), 2)))
-    strategy["total_points"] = total_points
-    strategy["total_cost"] = total_cost
-    strategy["strategy_note"] = " + ".join(notes) if notes else "見送り"
 
     return strategy
 
