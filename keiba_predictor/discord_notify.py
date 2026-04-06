@@ -1615,28 +1615,28 @@ def _format_prediction_from_cache(race_name: str, entry: dict, race_id: str = ""
         lines2.append(f"────────────────")
         lines2.append(f"合計投資額: {total_cost:,}円")
     else:
-        # フォールバック: 従来の固定買い目
+        # フォールバック: ワイド3点 + 3連複（bet_strategyがない場合）
         nums = top5_nums
         if len(nums) < 2:
             return msg1, ""
         hon = nums[0]
-        hon_name = entry.get("honmei", {}).get("horse_name", "")
-        umaren_pairs = list(combinations(nums[:3], 2))
-        umaren_str = " / ".join(f"{a}-{b}" for a, b in umaren_pairs)
+        wide_pairs = list(combinations(nums[:3], 2))
+        wide_str = " / ".join(f"{a}-{b}" for a, b in wide_pairs)
         partners = nums[1:5]
         ana_buy = entry.get("ana_horse_num")
         if ana_buy and ana_buy not in partners:
             partners = partners + [ana_buy]
         sanren_pt = len(list(combinations(partners, 2)))
         partners_str = "/".join(str(n) for n in partners)
-        total = 1 + len(umaren_pairs) + sanren_pt
-        header = f"💰 {race_name}  買い目" if race_name else "💰 買い目"
+        wide_cost = len(wide_pairs) * 300
+        sanren_cost = sanren_pt * 100
+        total_cost = wide_cost + sanren_cost
         lines2 = [
-            _SEP, header, _SEP,
-            "■ 複勝（1点）", f"　{hon}番 {hon_name}",
-            f"■ 馬連（{len(umaren_pairs)}点）", f"　{umaren_str}",
-            f"■ 3連複（{sanren_pt}点）", f"　軸 {hon}番", f"　× {partners_str}",
-            _SEP, f"合計 {total}点", _SEP,
+            "💰 買い目",
+            f"ワイド {wide_str}  各300円",
+            f"3連複 軸{hon} × {partners_str}  各100円",
+            f"────────────────",
+            f"合計投資額: {total_cost:,}円",
         ]
 
     msg2 = "\n".join(lines2)
