@@ -158,7 +158,7 @@ jobs:
 
       # ── 通知（14時JST） ──────────────────────────────────────
       - name: Discord にNAR予想を送信
-        if: steps.mode.outputs.mode == 'notify' || steps.mode.outputs.mode == 'both'
+        if: always()
         continue-on-error: true
         run: |
           echo "📤 NAR予想通知を送信..."
