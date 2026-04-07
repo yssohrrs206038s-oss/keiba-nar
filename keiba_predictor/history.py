@@ -187,6 +187,12 @@ def record_result(
         _check_umaren_raw, _check_wide_pairs_raw, _check_sanrenpuku_raw,
     )
 
+    # 見送りレース（オッズフィルタ等でbet_strategyが空）はCSVに記録しない
+    bs = pred.get("bet_strategy", {})
+    if bs and bs.get("total_points", 0) == 0:
+        logger.info(f"  [history] 見送りスキップ: {race_name} ({race_id})")
+        return {}
+
     grade = _grade_label(race_name)
 
     # 予想馬
