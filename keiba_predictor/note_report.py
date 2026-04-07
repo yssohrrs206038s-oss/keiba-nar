@@ -355,27 +355,13 @@ def _build_note_race_markdown(race_id: str, r: dict, analysis: dict) -> str:
     # ── 買い目テーブル ───────────────────────────────────────
     if len(pnums) >= 2:
         hon = pnums[0]
-        umaren_pairs = list(combinations(pnums[:3], 2))
-        umaren_str = " / ".join(f"{a}-{b}" for a, b in umaren_pairs)
-
-        # 3連複
-        partners = pnums[1:5]
-        cached_ana_num = r.get("ana_horse_num")
-        if cached_ana_num and cached_ana_num not in partners:
-            partners = partners + [cached_ana_num]
-        sanren_pt = len(list(combinations(partners, 2)))
-        partners_str = "/".join(str(n) for n in partners)
-
-        total = 1 + len(umaren_pairs) + sanren_pt
-
+        tai = pnums[1]
         lines += [
-            f"## 💰 推奨買い目（合計{total}点）",
+            "## 💰 推奨買い目（合計1点）",
             "",
-            "| 券種 | 買い目 | 点数 |",
-            "|---|---|---|",
-            f"| 複勝 | {hon}番 | 1点 |",
-            f"| 馬連 | {umaren_str} | {len(umaren_pairs)}点 |",
-            f"| 3連複 | 軸{hon} × {partners_str} | {sanren_pt}点 |",
+            "| 券種 | 買い目 | 点数 | 金額 |",
+            "|---|---|---|---|",
+            f"| ワイド | ◎{hon}-○{tai} | 1点 | 1,000円 |",
             "",
         ]
 
@@ -390,7 +376,7 @@ def _build_note_race_markdown(race_id: str, r: dict, analysis: dict) -> str:
         if ev_val:
             lines.append(
                 f"EVスコア{ev_val:.2f}は期待値投資として成立。"
-                f"AI確率{prob:.1f}%の信頼度から、複勝・馬連での安定回収が見込める。"
+                f"AI確率{prob:.1f}%の信頼度から、ワイド◎-○での安定回収が見込める。"
             )
         else:
             lines.append("（期待値分析データなし）")
@@ -530,25 +516,13 @@ def _build_race_discord_message(race_id: str, r: dict) -> str:
     pnums = [n for n in (r.get("predicted_top5_nums") or r.get("predicted_top3_nums", [])) if n is not None]
     if len(pnums) >= 2:
         hon = pnums[0]
-        umaren_pairs = list(_comb(pnums[:3], 2))
-        umaren_str = " / ".join(f"{a}-{b}" for a, b in umaren_pairs)
-
-        partners = pnums[1:5]
-        cached_ana_num = r.get("ana_horse_num")
-        if cached_ana_num and cached_ana_num not in partners:
-            partners = partners + [cached_ana_num]
-        sanren_pt = len(list(_comb(partners, 2)))
-        partners_str = "/".join(str(n) for n in partners)
-        total = 1 + len(umaren_pairs) + sanren_pt
-
+        tai = pnums[1]
         lines += [
-            f"## 💰 推奨買い目（合計{total}点）",
+            "## 💰 推奨買い目（合計1点）",
             "",
-            "| 券種 | 買い目 | 点数 |",
-            "|---|---|---|",
-            f"| 複勝 | {hon}番 | 1点 |",
-            f"| 馬連 | {umaren_str} | {len(umaren_pairs)}点 |",
-            f"| 3連複 | 軸{hon} × {partners_str} | {sanren_pt}点 |",
+            "| 券種 | 買い目 | 点数 | 金額 |",
+            "|---|---|---|---|",
+            f"| ワイド | ◎{hon}-○{tai} | 1点 | 1,000円 |",
             "",
         ]
 

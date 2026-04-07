@@ -77,17 +77,10 @@ def _format_prediction(entry: dict) -> str:
         prob = p.get("prob", 0) * 100
         lines.append(f"{mark}{num}番 {name} {prob:.1f}%")
 
-    # 買い目
+    # 買い目（ワイド ◎-○ 1点 1,000円のみ）
     top3 = entry.get("predicted_top3_nums", [])
-    if top3:
-        buy_parts = [f"💰複勝{top3[0]}番"]
-        if len(top3) >= 2:
-            combos = []
-            for i in range(min(len(top3), 3)):
-                for j in range(i + 1, min(len(top3), 3)):
-                    combos.append(f"{top3[i]}-{top3[j]}")
-            buy_parts.append(f"馬連{'/'.join(combos)}")
-        lines.append(" / ".join(buy_parts))
+    if len(top3) >= 2:
+        lines.append(f"💰ワイド ◎{top3[0]}-○{top3[1]}（1点 1,000円）")
 
     return "\n".join(lines)
 
@@ -109,21 +102,15 @@ def _format_result_summary() -> str:
     lines = [f"🏆 本日のNAR結果 ({today_str})", sep]
 
     total = len(today_df)
-    f_hits = (today_df["fukusho_hit"] == "True").sum()
-    u_hits = ((today_df["umaren_hit"] == "True") | (today_df.get("wide_hit", "False") == "True")).sum()
-    s_hits = (today_df["sanrenpuku_hit"] == "True").sum()
+    w_hits = (today_df.get("wide_hit", "False") == "True").sum()
 
     for _, r in today_df.iterrows():
         name = str(r.get("race_name", ""))[:20]
-        f_icon = "✅" if r.get("fukusho_hit") == "True" else "❌"
-        u_icon = "✅" if r.get("umaren_hit") == "True" else "❌"
-        s_icon = "✅" if r.get("sanrenpuku_hit") == "True" else "❌"
-        lines.append(f"{name} {f_icon}{u_icon}{s_icon}")
+        w_icon = "✅" if r.get("wide_hit") == "True" else "❌"
+        lines.append(f"{name} {w_icon}")
 
     lines.append(sep)
-    lines.append(f"複勝 {f_hits}/{total} ({f_hits/total*100:.0f}%)")
-    lines.append(f"連対 {u_hits}/{total} ({u_hits/total*100:.0f}%)")
-    lines.append(f"3連複 {s_hits}/{total} ({s_hits/total*100:.0f}%)")
+    lines.append(f"ワイド {w_hits}/{total} ({w_hits/total*100:.0f}%)")
 
     bet = pd.to_numeric(today_df["bet_total"], errors="coerce").sum()
     ret = pd.to_numeric(today_df["return_total"], errors="coerce").sum()

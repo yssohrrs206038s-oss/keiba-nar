@@ -307,6 +307,7 @@ def weekly_summary(df: pd.DataFrame, week_end: date) -> dict:
     if wdf.empty:
         return {"n_races": 0, "fukusho_rate": 0.0, "umaren_rate": 0.0,
                 "wide_rate": 0.0, "sanrenpuku_rate": 0.0,
+                "wide_payout_total": 0,
                 "bet_total": 0, "return_total": 0, "roi": 0.0}
 
     n = len(wdf)
@@ -314,9 +315,10 @@ def weekly_summary(df: pd.DataFrame, week_end: date) -> dict:
     ret   = int(wdf["return_total"].sum())
     return {
         "n_races":         n,
+        "wide_rate":       float(wdf["wide_hit"].sum() / n),
+        "wide_payout_total": int(wdf["wide_payout"].sum()) * 10,
         "fukusho_rate":    float(wdf["fukusho_hit"].sum() / n),
         "umaren_rate":     float(wdf["umaren_hit"].sum() / n),
-        "wide_rate":       float(wdf["wide_hit"].sum() / n),
         "sanrenpuku_rate": float(wdf["sanrenpuku_hit"].sum() / n),
         "bet_total":       bet,
         "return_total":    ret,
@@ -329,15 +331,17 @@ def cumulative_summary(df: pd.DataFrame) -> dict:
     if df.empty:
         return {"n_races": 0, "fukusho_rate": 0.0, "umaren_rate": 0.0,
                 "wide_rate": 0.0, "sanrenpuku_rate": 0.0,
+                "wide_payout_total": 0,
                 "bet_total": 0, "return_total": 0, "roi": 0.0}
     n   = len(df)
     bet = int(df["bet_total"].sum())
     ret = int(df["return_total"].sum())
     return {
         "n_races":         n,
+        "wide_rate":       float(df["wide_hit"].sum() / n),
+        "wide_payout_total": int(df["wide_payout"].sum()) * 10,
         "fukusho_rate":    float(df["fukusho_hit"].sum() / n),
         "umaren_rate":     float(df["umaren_hit"].sum() / n),
-        "wide_rate":       float(df["wide_hit"].sum() / n),
         "sanrenpuku_rate": float(df["sanrenpuku_hit"].sum() / n),
         "bet_total":       bet,
         "return_total":    ret,
@@ -372,17 +376,17 @@ def format_summary_message(
     w = week_stats
     c = cum_stats
 
-    # 今週の複勝的中数
-    week_wins = int(round(w["fukusho_rate"] * w["n_races"]))
+    # 今週のワイド的中数
+    week_wins = int(round(w["wide_rate"] * w["n_races"]))
 
     lines = [
         RULE,
         f"📊 今週成績  {w['n_races']}戦{week_wins}勝",
-        f"📈 累計複勝的中率  {c['fukusho_rate'] * 100:.0f}%",
+        f"📈 累計ワイド的中率  {c['wide_rate'] * 100:.0f}%",
         f"💰 累計回収率  {c['roi'] * 100:.0f}%",
     ]
     if streak >= 2:
-        lines.append(f"🔥 {streak}週連続複勝的中中！")
+        lines.append(f"🔥 {streak}週連続的中中！")
     return "\n".join(lines)
 
 

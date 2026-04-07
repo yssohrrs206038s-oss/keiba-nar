@@ -151,14 +151,11 @@ def _build_article_body(race_id: str, entry: dict) -> str:
 
     # ── 買い目 ────────────────────────────────────────────────
     if len(pred_nums) >= 2:
-        axis   = pred_nums[0]
-        umaren = pred_nums[1:4]
-        sanren = pred_nums[1:6]
+        axis = pred_nums[0]
+        tai  = pred_nums[1]
         lines += [
             "【買い目】",
-            f"■ 複勝：{axis}番",
-            f"■ 馬連：{' / '.join(f'{axis}-{n}' for n in umaren)}",
-            f"■ 3連複：軸{axis}番 × {'/'.join(str(n) for n in sanren)}",
+            f"■ ワイド：◎{axis}-○{tai}（1点 1,000円）",
             "",
         ]
 

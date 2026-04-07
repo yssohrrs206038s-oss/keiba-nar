@@ -560,19 +560,15 @@ function renderWeeklyChart(rows) {
   });
   const weeks = Object.keys(weekMap).slice(-4);
   if (!weeks.length) return;
-  const fR = [], uR = [], sR = [];
+  const wR = [];
   weeks.forEach(wk => {
     const wr = weekMap[wk]; const n = wr.length;
-    fR.push(n ? +(wr.filter(r => r.fukusho_hit === 'True').length / n * 100).toFixed(0) : 0);
-    uR.push(n ? +(wr.filter(r => r.wide_hit === 'True').length / n * 100).toFixed(0) : 0);
-    sR.push(0);
+    wR.push(n ? +(wr.filter(r => r.wide_hit === 'True').length / n * 100).toFixed(0) : 0);
   });
   new Chart(document.getElementById('weekly-chart').getContext('2d'), {
     type: 'bar',
     data: { labels: weeks, datasets: [
-      { label: '複勝的中率', data: fR, backgroundColor: 'rgba(46,204,113,.7)', borderRadius: 4 },
-      { label: '連対的中率', data: uR, backgroundColor: 'rgba(52,152,219,.7)', borderRadius: 4 },
-      { label: '3連複的中率', data: sR, backgroundColor: 'rgba(243,156,18,.7)', borderRadius: 4 },
+      { label: 'ワイド的中率', data: wR, backgroundColor: 'rgba(46,204,113,.7)', borderRadius: 4 },
     ]},
     options: {
       responsive: true,
@@ -872,14 +868,13 @@ function renderRankings(rows) {
   rows.forEach(r => {
     const name = (r.pred1_name || '').trim();
     if (!name) return;
-    if (!horseMap[name]) horseMap[name] = { f: 0, u: 0, n: 0 };
+    if (!horseMap[name]) horseMap[name] = { w: 0, n: 0 };
     horseMap[name].n++;
-    if (r.fukusho_hit === 'True') horseMap[name].f++;
-    if (r.wide_hit === 'True') horseMap[name].u++;
+    if (r.wide_hit === 'True') horseMap[name].w++;
   });
   const horseArr = Object.entries(horseMap)
     .filter(([, v]) => v.n >= 2)
-    .map(([name, v]) => ({ name, fr: v.f / v.n, ur: v.u / v.n, n: v.n }))
+    .map(([name, v]) => ({ name, fr: v.w / v.n, ur: v.w / v.n, n: v.n }))
     .sort((a, b) => b.fr - a.fr);
   const jtbody = document.getElementById('jockey-tbody');
   if (horseArr.length) {
@@ -898,13 +893,12 @@ function renderRankings(rows) {
     if (rid.length < 6) return;
     const venue = VENUE_MAP[rid.slice(4, 6)] || '';
     if (!venue) return;
-    if (!courseMap[venue]) courseMap[venue] = { f: 0, u: 0, n: 0 };
+    if (!courseMap[venue]) courseMap[venue] = { w: 0, n: 0 };
     courseMap[venue].n++;
-    if (r.fukusho_hit === 'True') courseMap[venue].f++;
-    if (r.wide_hit === 'True') courseMap[venue].u++;
+    if (r.wide_hit === 'True') courseMap[venue].w++;
   });
   const courseArr = Object.entries(courseMap)
-    .map(([c, v]) => ({ course: c, fr: v.f / v.n, ur: v.u / v.n, n: v.n }))
+    .map(([c, v]) => ({ course: c, fr: v.w / v.n, ur: v.w / v.n, n: v.n }))
     .sort((a, b) => b.fr - a.fr);
   const ctbody = document.getElementById('course-tbody');
   if (courseArr.length) {

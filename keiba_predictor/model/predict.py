@@ -163,34 +163,24 @@ def format_buy_patterns(result_df: pd.DataFrame, indent: str = "  ") -> list[str
     """
     推奨買い目を生成して行リストで返す。
 
-    - 複勝: ◎本命1頭（1点）
-    - 馬連: ◎ → ○☆△への流し（3点）
-    - 3連複: ◎軸 × ○☆△4番手5番手の5頭流し（10点）
-    合計14点
+    - ワイド: ◎-○ 1点 1,000円
     """
-    top6 = result_df.head(6)
+    top2 = result_df.head(2)
     nums = [
         int(r["horse_number"])
-        for _, r in top6.iterrows()
+        for _, r in top2.iterrows()
         if pd.notna(r.get("horse_number"))
     ]
     if len(nums) < 2:
         return []
 
-    axis      = nums[0]
-    umaren    = nums[1:4]           # ○☆△ (3頭)
-    sanren    = nums[1:6]           # ○☆△4番手5番手 (最大5頭)
-
-    fukusho_name = str(top6.iloc[0].get("horse_name", "")) if len(top6) >= 1 else ""
-    umaren_str   = " / ".join(f"{axis}-{n}" for n in umaren) if umaren else ""
-    sanren_str   = "/".join(str(n) for n in sanren)
+    axis = nums[0]
+    tai  = nums[1]
 
     lines = [
         "",
-        f"■ 推奨買い目（14点）",
-        f"{indent}複勝:  {axis}番（{fukusho_name}）",
-        f"{indent}馬連:  {umaren_str}",
-        f"{indent}3連複: 軸{axis}番 × {sanren_str}",
+        f"■ 推奨買い目（1点 1,000円）",
+        f"{indent}ワイド: ◎{axis}-○{tai}",
     ]
     return lines
 
@@ -378,72 +368,38 @@ def _decide_bet_strategy(result_df: pd.DataFrame) -> dict:
 def _build_buy_lines(result_df: pd.DataFrame, race_name: str = "") -> list[str]:
     """
     買い目リストを返す。
-    3連複: 軸（◎）× 相手（2〜5位 + 穴馬）
-    穴馬=AI確率35%以上&6番人気以下&TOP5外。穴馬あり→10点、穴馬なし→6点。
+    ワイド: ◎-○ 1点 1,000円のみ
     """
-    from itertools import combinations as _comb
-
     SEP = "━" * 20
 
-    # 上位5頭の馬番
-    top5 = result_df.head(5)
-    nums = [int(r["horse_number"]) for _, r in top5.iterrows()
+    top2 = result_df.head(2)
+    nums = [int(r["horse_number"]) for _, r in top2.iterrows()
             if pd.notna(r.get("horse_number"))]
 
     if len(nums) < 2:
         return []
 
-    hon = nums[0]  # 軸（◎）
+    hon = nums[0]
+    tai = nums[1]
 
-    # 複勝: 本命馬名
     hon_name = ""
     hon_row = result_df.iloc[0]
     if pd.notna(hon_row.get("horse_name")):
         hon_name = str(hon_row["horse_name"])
-
-    # 馬連: top3の組み合わせ
-    umaren_pairs = list(_comb(nums[:3], 2))
-    umaren_str   = " / ".join(f"{a}-{b}" for a, b in umaren_pairs)
-
-    # 穴馬: AI確率35%以上 & 6番人気以下 & TOP5外 → AI確率最高の1頭
-    ana_num = None
-    top5_set = set(nums)
-    if len(result_df) > 5:
-        rest = result_df.iloc[5:]
-        rest_prob = pd.to_numeric(rest.get("prob_top3", pd.Series(dtype=float)), errors="coerce")
-        rest_pop = pd.to_numeric(rest.get("popularity", pd.Series(dtype=float)), errors="coerce")
-        cands = rest[(rest_prob >= 0.35) & (rest_pop >= 6)]
-        if not cands.empty:
-            best = cands.nlargest(1, "prob_top3").iloc[0]
-            v = best.get("horse_number")
-            if pd.notna(v) and int(v) not in top5_set:
-                ana_num = int(v)
-
-    # 3連複: 軸1頭 × 相手（2〜5位 + 穴馬）
-    partners = nums[1:5]  # 2〜5位
-    if ana_num and ana_num not in partners:
-        partners = partners + [ana_num]
-    sanren_pt    = len(list(_comb(partners, 2)))  # C(n,2)
-    partners_str = "/".join(
-        f"{n}（穴）" if n == ana_num else str(n) for n in partners
-    )
-
-    total = 1 + len(umaren_pairs) + sanren_pt
+    tai_name = ""
+    tai_row = result_df.iloc[1]
+    if pd.notna(tai_row.get("horse_name")):
+        tai_name = str(tai_row["horse_name"])
 
     header = f"💰 {race_name}  買い目" if race_name else "💰 買い目"
     lines = [
         SEP,
         header,
         SEP,
-        "■ 複勝（1点）",
-        f"　{hon}番 {hon_name}",
-        f"■ 馬連（{len(umaren_pairs)}点）",
-        f"　{umaren_str}",
-        f"■ 3連複（{sanren_pt}点）",
-        f"　軸 {hon}番",
-        f"　× {partners_str}",
+        "■ ワイド（1点 1,000円）",
+        f"　◎{hon}番 {hon_name} - ○{tai}番 {tai_name}",
         SEP,
-        f"合計 {total}点",
+        "合計 1点 / 1,000円",
         SEP,
     ]
     return lines
