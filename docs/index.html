@@ -118,6 +118,47 @@
       transform: translateY(-3px);
       box-shadow: 0 8px 32px rgba(46,204,113,.15);
     }
+    /* アコーディオン形式のレースカード */
+    .race-accordion {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 10px; margin-bottom: 8px;
+      box-shadow: var(--shadow); overflow: hidden;
+      animation: fadeUp .4s ease both;
+    }
+    .race-accordion[open] {
+      box-shadow: 0 8px 24px rgba(46,204,113,.15);
+      border-color: rgba(46,204,113,.3);
+    }
+    .race-summary {
+      padding: 14px 16px;
+      cursor: pointer;
+      list-style: none;
+      display: flex; align-items: center; gap: 10px;
+      background: linear-gradient(135deg, #0f1f14, #081510);
+      transition: background .2s;
+      user-select: none;
+    }
+    .race-summary::-webkit-details-marker { display: none; }
+    .race-summary:hover { background: linear-gradient(135deg, #122815, #0a1a12); }
+    .race-summary-icon {
+      font-size: 18px; flex-shrink: 0;
+    }
+    .race-summary-title {
+      flex: 1; font-size: 14px; font-weight: 700; color: var(--text);
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .race-summary-time {
+      font-size: 12px; color: var(--text-muted); flex-shrink: 0;
+      font-variant-numeric: tabular-nums;
+    }
+    .race-accordion[open] .race-summary {
+      border-bottom: 1px solid var(--border);
+    }
+    @media (max-width: 480px) {
+      .race-summary { padding: 12px 14px; gap: 8px; }
+      .race-summary-title { font-size: 13px; }
+      .race-summary-time { font-size: 11px; }
+    }
     .race-card-header {
       background: linear-gradient(135deg, #0f1f14, #081510);
       border-bottom: 1px solid var(--border);
@@ -683,20 +724,26 @@ function _renderRaceCard(raceId, r) {
       </div>`;
   }
 
-  return `<div class="race-card">
-    <div class="race-card-header">
-      <div>
-        <div class="race-name">${esc(raceTitle)} <span style="font-size:11px;color:var(--text-muted);">${esc(course)}</span></div>
-        <div class="race-meta">${[r.start_time ? '🕐 ' + esc(r.start_time) + '発走' : '', esc(r.race_date || '')].filter(Boolean).join(' | ')}</div>
-      </div>
-      ${venue ? `<span class="venue-badge">${esc(venue)}</span>` : ''}
-    </div>
+  // 結果アイコン: ✅的中 / ❌不的中 / 🕐未確定
+  const res2 = _resultMap[raceId];
+  let statusIcon = '🕐';
+  if (res2) {
+    statusIcon = res2.wide_hit === 'True' ? '✅' : '❌';
+  }
+  const startTime = r.start_time ? esc(r.start_time) : '';
+
+  return `<details class="race-accordion">
+    <summary class="race-summary">
+      <span class="race-summary-icon">${statusIcon}</span>
+      <span class="race-summary-title">${esc(raceTitle)}</span>
+      <span class="race-summary-time">${startTime}</span>
+    </summary>
     <div class="race-card-body">
       <div class="horse-list">${horseHTML || '<div class="no-data" style="padding:12px;">予想生成中...</div>'}</div>
       ${betHTML}
       ${resultHTML}
     </div>
-  </div>`;
+  </details>`;
 }
 
 function _renderFilteredPredictions() {
