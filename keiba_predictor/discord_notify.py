@@ -1524,7 +1524,7 @@ def _format_prediction_from_cache(race_name: str, entry: dict, race_id: str = ""
         else:
             lines1.append(f"{mark} {num}番 {name}{ev_str}")
 
-    lines1.append(sep)
+    lines1.append(flag_sep)
 
     # ★穴馬
     ana_num = entry.get("ana_horse_num")
