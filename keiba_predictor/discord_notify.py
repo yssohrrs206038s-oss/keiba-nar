@@ -1688,6 +1688,11 @@ def run_predict_notify(
             logger.info(f"  スキップ（{effective_date} ≠ {today_str}）: {race_name}")
             continue
 
+        # 通知済みチェック（レース単位）
+        if cache.get(race_id, {}).get("notified_predict"):
+            logger.info(f"  通知済みスキップ: {race_name} ({race_id})")
+            continue
+
         # ── キャッシュ優先: predictions_cache.json にデータがあればそれを使う ──
         # predict_live() を再実行するとcleaned_races.csvが無い環境で確率が壊れるため、
         # キャッシュに予想データがあれば常にそちらを使う
@@ -1755,6 +1760,10 @@ def run_predict_notify(
             notified += 1
             ch_label = venue if target_url != webhook_url else "default"
             logger.info(f"  送信完了: {race_name} → {ch_label}ch")
+            # 通知済みフラグをキャッシュに保存
+            if race_id in cache:
+                cache[race_id]["notified_predict"] = True
+                _save_cache(cache)
 
     send_discord(webhook_url, f"✅ {notified}/{len(grade_races)} レース送信完了")
 
