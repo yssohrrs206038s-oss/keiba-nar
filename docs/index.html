@@ -776,11 +776,14 @@ function _renderRaceCard(raceId, r) {
       </div>`;
   }
 
-  // 結果アイコン: ✅的中 / ❌不的中 / 🕐未確定
+  // 結果アイコン: ✅的中 / ❌不的中 / 🚫見送り / 🕐未確定
   const res2 = _resultMap[raceId];
+  const isSkipped = bs && bs.strategy_note && bs.strategy_note.includes('見送り');
   let statusIcon = '🕐';
   if (res2) {
     statusIcon = res2.wide_hit === 'True' ? '✅' : '❌';
+  } else if (isSkipped) {
+    statusIcon = '🚫';
   }
   const startTime = r.start_time ? esc(r.start_time) : '';
   const isNext = raceId === _nextRaceId;
