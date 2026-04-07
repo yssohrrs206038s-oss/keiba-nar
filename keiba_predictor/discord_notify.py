@@ -1756,19 +1756,16 @@ def run_predict_notify(
             ch_label = venue if target_url != webhook_url else "default"
             logger.info(f"  送信完了: {race_name} → {ch_label}ch")
 
-        # X（Twitter）に予想を投稿（特別レースのみ）
-        _X_POST_KEYWORDS = ("特別", "記念", "杯", "賞", "ステークス")
-        if os.environ.get("ENABLE_X_POST", "false").lower() == "true":
-            if any(kw in race_name for kw in _X_POST_KEYWORDS):
-                try:
-                    from keiba_predictor.x_post import post_predict_tweet
-                    post_predict_tweet(race_name, cached_entry)
-                except Exception as e:
-                    logger.warning(f"  [X] 予想投稿エラー: {e}")
-            else:
-                logger.info(f"  [X] スキップ（特別レース以外）: {race_name}")
-
     send_discord(webhook_url, f"✅ {notified}/{len(grade_races)} レース送信完了")
+
+    # X（Twitter）会場まとめ投稿（買い目があるレースのみ集約）
+    if os.environ.get("ENABLE_X_POST", "false").lower() == "true":
+        try:
+            from keiba_predictor.x_post import post_venue_summary_tweets
+            posted = post_venue_summary_tweets(_load_cache())
+            logger.info(f"[X] 会場まとめ投稿: {posted}件")
+        except Exception as e:
+            logger.warning(f"[X] 会場まとめ投稿エラー: {e}")
 
     # 送信済みフラグを書き込み
     if not test_race_id and notified > 0:

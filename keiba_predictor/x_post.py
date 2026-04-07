@@ -93,35 +93,127 @@ def _safe_post(client, text: str) -> bool:
 #    Secret を keiba-nar リポジトリの GitHub Secrets にも登録すること。
 
 def build_predict_tweet(race_name: str, cache_entry: dict) -> str:
-    """NAR（地方競馬）用の予想ツイートを構築する（140字以内）。"""
+    """旧API互換: 1レース分の予想ツイート（非推奨、会場まとめ版を推奨）。"""
     short = _short_name(race_name)
     venue = cache_entry.get("venue", "")
     tag = f"#地方競馬 #KEIBA_EDGE"
-
     lines = [f"🏇{venue}{short} AI予想"]
-
     for role, mark in [("honmei", "◎"), ("taikou", "○"), ("ana", "▲")]:
         p = cache_entry.get(role, {})
         if not p or not p.get("horse_name"):
             continue
         lines.append(f"{mark}{p['horse_number']}番{p['horse_name']}")
-
     text = "\n".join(lines) + "\n" + tag
     if len(text) > _CHAR_LIMIT:
-        # ▲を削って収める
         lines = [l for l in lines if not l.startswith("▲")]
         text = "\n".join(lines) + "\n" + tag
     return text
 
 
+def build_venue_summary_tweet(venue: str, race_entries: list[tuple[str, dict]]) -> str:
+    """会場まとめツイートを構築する（140字以内）。
+
+    買い目があるレース（bet_strategy.total_points > 0）のみ表示。
+    オッズフィルタで見送りになったレースは除外。
+
+    Args:
+        venue: 開催場名（例: "大井"）
+        race_entries: [(race_id, cache_entry), ...] 同じ会場の全レース
+
+    Returns:
+        ツイート本文。買い目0件なら空文字列。
+    """
+    from datetime import date
+    today = date.today().strftime("%-m/%-d") if hasattr(date.today(), "strftime") else date.today().isoformat()
+    try:
+        today = date.today().strftime("%-m/%-d")
+    except ValueError:
+        today = date.today().strftime("%#m/%#d")  # Windows
+
+    tag = f"#KEIBA_EDGE #{venue}競馬"
+    header = f"🏇{venue} {today} AI注目買い目"
+
+    # 買い目があるレースだけ抽出（race_idでソート）
+    valid: list[tuple[int, str]] = []  # (race_num, line)
+    for rid, entry in sorted(race_entries, key=lambda x: x[0]):
+        bs = entry.get("bet_strategy", {})
+        if not bs or bs.get("total_points", 0) == 0:
+            continue  # 見送り or 買い目なしはスキップ
+        wide = bs.get("wide", [])
+        if not wide:
+            continue
+        w = wide[0]
+        # レース番号
+        try:
+            race_num = int(rid[10:12])
+        except (ValueError, IndexError):
+            continue
+        race_name = entry.get("race_name", "")
+        # 重賞・特別レース判定
+        is_special = any(kw in race_name for kw in ("重賞", "特別", "杯", "賞", "ステークス", "(G"))
+        suffix = "(重賞)" if "重賞" in race_name else ("★" if is_special else "")
+        line = f"{race_num}R ◎{w['nums'][0]}-○{w['nums'][1]}{suffix}"
+        valid.append((race_num, line))
+
+    if not valid:
+        return ""
+
+    lines = [header]
+    for _, line in valid:
+        test = "\n".join(lines + [line]) + "\n" + tag
+        if len(test) <= _CHAR_LIMIT:
+            lines.append(line)
+        else:
+            break
+
+    return "\n".join(lines) + "\n" + tag
+
+
 def post_predict_tweet(race_name: str, cache_entry: dict) -> bool:
-    """NAR予想ツイートを X に投稿する。資格情報未設定時はスキップ（エラーなし）。"""
+    """旧API互換: 1レース分の予想ツイートを投稿（非推奨）。"""
     client = _build_client()
     if client is None:
         return False
     text = build_predict_tweet(race_name, cache_entry)
     print(f"[X予想ツイート]\n{text}", flush=True)
     return _safe_post(client, text)
+
+
+def post_venue_summary_tweets(cache: dict) -> int:
+    """会場ごとにまとめツイートを投稿する。
+
+    Args:
+        cache: predictions_cache.json 全体
+
+    Returns:
+        投稿成功件数
+    """
+    client = _build_client()
+    if client is None:
+        return 0
+
+    # 会場別にレースをグループ化
+    venue_groups: dict[str, list[tuple[str, dict]]] = {}
+    for rid, entry in cache.items():
+        if rid.startswith("_") or not isinstance(entry, dict):
+            continue
+        venue = entry.get("venue", "")
+        if not venue:
+            continue
+        venue_groups.setdefault(venue, []).append((rid, entry))
+
+    posted = 0
+    for venue, entries in sorted(venue_groups.items()):
+        text = build_venue_summary_tweet(venue, entries)
+        if not text:
+            logger.info(f"  [X] {venue}: 買い目なしスキップ")
+            continue
+        print(f"[X会場まとめ {venue}]\n{text}", flush=True)
+        if _safe_post(client, text):
+            posted += 1
+            import time
+            time.sleep(2)  # API制限対策
+    return posted
 
 
 # ── 結果ツイート ──────────────────────────────────────────────────────
