@@ -225,20 +225,8 @@ def build_result_tweet(
     payouts: dict,
     roi_pct: float,
 ) -> str:
-    from keiba_predictor.discord_notify import (
-        _check_sanrenpuku_raw, _check_umaren_raw,
-    )
-
-    grade = _grade_label(race_name)
+    """ワイド1点1,000円戦略の結果ツイート."""
     short = _short_name(race_name)
-
-    predicted_nums = pred.get("predicted_top3_nums", [])
-    ana_horse_num = pred.get("ana_horse_num")
-
-    # 本命情報
-    honmei = pred.get("honmei", {})
-    honmei_num = honmei.get("horse_number")
-    honmei_name = honmei.get("horse_name", "")
 
     # 実際の3着以内
     df = actual_df.copy()
@@ -249,34 +237,34 @@ def build_result_tweet(
         num = int(r["horse_number"]) if pd.notna(r.get("horse_number")) else 0
         actual_nums.append(num)
 
-    # 的中判定
-    fukusho_hit = honmei_num is not None and int(honmei_num) in actual_nums
-    umaren_hit, umaren_pay = _check_umaren_raw(predicted_nums, actual_nums, payouts)
-    sanren_hit, sanren_pay = _check_sanrenpuku_raw(
-        predicted_nums, actual_nums, payouts, ana_horse_num)
-
-    f_icon = "✅" if fukusho_hit else "❌"
-    u_icon = "✅" if umaren_hit else "❌"
-    s_icon = "✅" if sanren_hit else "❌"
-
-    SEP = "━━━━━━━━━━━━━━━━"
-
-    any_hit = fukusho_hit or umaren_hit or sanren_hit
+    # ワイド的中判定（bet_strategy.wide）
+    bs = pred.get("bet_strategy", {})
+    wide_hit = False
+    wide_pay = ""
+    actual_set = set(actual_nums[:3]) if len(actual_nums) >= 3 else set()
+    if bs.get("wide"):
+        for w in bs["wide"]:
+            a, b = w["nums"]
+            if a in actual_set and b in actual_set:
+                from keiba_predictor.discord_notify import _get_payout
+                wide_pay = _get_payout(payouts, "ワイド", f"{a}-{b}")
+                wide_hit = True
+                break
 
     tag = "#地方競馬 #KEIBA_EDGE"
 
-    if sanren_hit:
-        pay_str = re.sub(r"[¥,]", "", str(sanren_pay)) if sanren_pay else ""
+    if wide_hit:
+        # 100円ベース配当 × 10 = 1,000円購入時の払戻
+        pay_int = 0
+        if wide_pay:
+            try:
+                pay_int = int(re.sub(r"[¥¥,円\s]", "", str(wide_pay))) * 10
+            except ValueError:
+                pass
         lines = [
-            f"🎯3連複的中！{short}",
-            f"{pay_str}円 回収率{roi_pct:.0f}%" if pay_str and roi_pct > 0
-                else (f"{pay_str}円的中！" if pay_str else ""),
-            tag,
-        ]
-    elif any_hit:
-        lines = [
-            f"🎯的中！{short}",
-            f"複勝{f_icon} 馬連{u_icon}",
+            f"🎯ワイド的中！{short}",
+            f"{pay_int:,}円 回収率{roi_pct:.0f}%" if pay_int and roi_pct > 0
+                else (f"{pay_int:,}円的中！" if pay_int else "ワイド的中！"),
             tag,
         ]
     else:
@@ -284,7 +272,8 @@ def build_result_tweet(
         lines = [
             f"{short} 結果",
             result_line,
-            f"複勝❌馬連❌3連複❌",
+            "ワイド❌",
+            tag,
         ]
 
     return "\n".join(line for line in lines if line)
@@ -316,42 +305,32 @@ def post_result_tweet(
 # ── 週次サマリーツイート ─────────────────────────────────────────────────
 
 def build_weekly_summary_tweet(results: list[dict]) -> str:
-    """週次サマリーツイートを構築する（140字以内）。"""
+    """週次サマリーツイートを構築する（140字以内）。
+
+    現戦略: ワイド1点1,000円
+    bet=1,000円固定、ret=wide_payout×10で計算
+    """
+    BET = 1000
     total = len(results)
     if not total:
         return ""
 
-    hit_count = sum(1 for r in results if r.get("fukusho") or r.get("umaren") or r.get("sanren"))
-    fukusho_hits = sum(1 for r in results if r.get("fukusho"))
-    fukusho_rate = (fukusho_hits / total * 100) if total else 0
-    total_bet = sum(r.get("bet", 0) for r in results)
-    total_ret = sum(r.get("return_total", 0) for r in results)
+    wide_hits = sum(1 for r in results if r.get("wide"))
+    wide_rate = (wide_hits / total * 100) if total else 0
+    total_bet = total * BET
+    total_ret = sum((int(r.get("wide_payout", 0)) * 10) for r in results if r.get("wide"))
     roi = (total_ret / total_bet * 100) if total_bet > 0 else 0
+    profit = total_ret - total_bet
+    profit_sign = "+" if profit >= 0 else ""
 
     tag = "#地方競馬 #KEIBA_EDGE"
     lines = [
-        f"📊地方AI成績 {hit_count}/{total}的中",
-        f"複勝{fukusho_rate:.0f}% 回収率{roi:.0f}%",
+        f"📊地方AI成績 {wide_hits}/{total}的中",
+        f"ワイド的中率{wide_rate:.0f}% 回収率{roi:.0f}%",
+        f"損益 {profit_sign}{profit:,}円",
     ]
 
-    # レース別（余裕がある分だけ）
-    race_lines = []
-    for r in results:
-        name = _short_name(r.get("race_name", ""))[:6]
-        f = "○" if r.get("fukusho") else "×"
-        u = "○" if r.get("umaren") else "×"
-        s = "○" if r.get("sanren") else "×"
-        race_lines.append(f"{name}{f}{u}{s}")
-
-    base = "\n".join(lines)
-    for rl in race_lines:
-        test = base + "\n" + rl + "\n" + tag
-        if len(test) <= _CHAR_LIMIT:
-            base = base + "\n" + rl
-        else:
-            break
-
-    return base + "\n" + tag
+    return "\n".join(lines) + "\n" + tag
 
 
 def post_weekly_summary_tweet(results: list[dict]) -> bool:
