@@ -129,6 +129,30 @@
       box-shadow: 0 8px 24px rgba(46,204,113,.15);
       border-color: rgba(46,204,113,.3);
     }
+    .race-accordion.next-race {
+      border: 2px solid var(--gold, #d4af37);
+      box-shadow: 0 0 16px rgba(212,175,55,.35);
+      animation: pulse-gold 2s ease-in-out infinite;
+    }
+    @keyframes pulse-gold {
+      0%, 100% { box-shadow: 0 0 16px rgba(212,175,55,.35); }
+      50% { box-shadow: 0 0 24px rgba(212,175,55,.6); }
+    }
+    .race-accordion.next-race .race-summary {
+      background: linear-gradient(135deg, #2a1f0a, #1a1408);
+    }
+    .next-race-badge {
+      display: inline-block;
+      margin-left: 8px;
+      padding: 2px 8px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #1a1408;
+      background: linear-gradient(135deg, #f0d060, #d4af37);
+      border-radius: 10px;
+      vertical-align: middle;
+      letter-spacing: .03em;
+    }
     .race-summary {
       padding: 14px 16px;
       cursor: pointer;
@@ -569,6 +593,33 @@ let _allPredEntries = [];
 let _currentVenue = 'all';
 let _resultMap = {};
 
+// 「次のレース」(現在時刻に最も近い未来のレース)のrace_id
+let _nextRaceId = '';
+
+function _findNextRaceId(entries) {
+  const now = new Date();
+  const today = now.toISOString().slice(0, 10);
+  // 今日のレースで、結果未確定 & 発走時刻が現在より後 のうち最も早いもの
+  let nextId = '';
+  let nextTime = '99:99';
+  for (const [rid, r] of entries) {
+    if ((r.race_date || '') !== today) continue;
+    if (_resultMap[rid]) continue;  // 結果ありはスキップ
+    const st = r.start_time || '';
+    if (!st || !/^\d{1,2}:\d{2}$/.test(st)) continue;
+    // 現在時刻と比較
+    const [h, m] = st.split(':').map(Number);
+    const raceTime = new Date(now);
+    raceTime.setHours(h, m, 0, 0);
+    if (raceTime < now) continue;  // 過去の発走はスキップ
+    if (st < nextTime) {
+      nextTime = st;
+      nextId = rid;
+    }
+  }
+  return nextId;
+}
+
 function renderPredictions(cache) {
   const grid = document.getElementById('race-grid');
   const entries = Object.entries(cache)
@@ -578,6 +629,7 @@ function renderPredictions(cache) {
       const db = (b[1].race_date || '') + ' ' + (b[1].start_time || '99:99');
       return da.localeCompare(db);
     });
+  _nextRaceId = _findNextRaceId(entries);
   _allPredEntries = entries;
 
   // 開催場タブを動的生成
@@ -731,11 +783,15 @@ function _renderRaceCard(raceId, r) {
     statusIcon = res2.wide_hit === 'True' ? '✅' : '❌';
   }
   const startTime = r.start_time ? esc(r.start_time) : '';
+  const isNext = raceId === _nextRaceId;
+  const nextBadge = isNext ? '<span class="next-race-badge">⏭ 次のレース</span>' : '';
+  const accordionClass = isNext ? 'race-accordion next-race' : 'race-accordion';
+  const openAttr = isNext ? ' open' : '';
 
-  return `<details class="race-accordion">
+  return `<details class="${accordionClass}"${openAttr}>
     <summary class="race-summary">
       <span class="race-summary-icon">${statusIcon}</span>
-      <span class="race-summary-title">${esc(raceTitle)}</span>
+      <span class="race-summary-title">${esc(raceTitle)}${nextBadge}</span>
       <span class="race-summary-time">${startTime}</span>
     </summary>
     <div class="race-card-body">
@@ -756,7 +812,16 @@ function _renderFilteredPredictions() {
     grid.innerHTML = '<div class="no-data">該当レースがありません</div>';
     return;
   }
-  grid.innerHTML = filtered.map(([id]) => _predHtmlMap[id] || '').join('');
+  // 「次のレース」を最上位に固定
+  const sorted = [...filtered];
+  if (_nextRaceId) {
+    const idx = sorted.findIndex(([id]) => id === _nextRaceId);
+    if (idx > 0) {
+      const [next] = sorted.splice(idx, 1);
+      sorted.unshift(next);
+    }
+  }
+  grid.innerHTML = sorted.map(([id]) => _predHtmlMap[id] || '').join('');
 }
 
 /* ================================================================
