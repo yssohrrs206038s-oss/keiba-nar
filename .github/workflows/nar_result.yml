@@ -85,21 +85,32 @@ jobs:
           fi
           echo "✅ notify コマンド終了"
 
-      - name: 日次レポート（毎日）
+      - name: 日次レポート（22時台のみ・1日1回）
         continue-on-error: true
         run: |
-          echo "📊 本日の成績レポートを送信"
-          python -m keiba_predictor.analysis.loss_analysis
+          # JST時刻を取得
+          JST_HOUR=$(TZ=Asia/Tokyo date +%H)
+          if [ "$JST_HOUR" = "22" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "📊 本日の成績レポートを送信 (JST ${JST_HOUR}時)"
+            python -m keiba_predictor.analysis.loss_analysis
+          else
+            echo "ℹ️ JST ${JST_HOUR}時 → 日次レポートスキップ（22時のみ送信）"
+          fi
 
-      - name: 週次レポート（日曜のみ）
+      - name: 週次レポート（日曜22時のみ）
         continue-on-error: true
         run: |
-          DOW=$(date -u +%u)  # 1=月 ... 7=日
-          if [ "$DOW" = "7" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "📊 日曜日 → 週次レポートを送信"
+          # JST基準の曜日（1=月 ... 7=日）と時刻
+          JST_DOW=$(TZ=Asia/Tokyo date +%u)
+          JST_HOUR=$(TZ=Asia/Tokyo date +%H)
+          if [ "$JST_DOW" = "7" ] && [ "$JST_HOUR" = "22" ]; then
+            echo "📊 日曜22時 → 週次レポートを送信"
+            python -m keiba_predictor.analysis.loss_analysis --weekly
+          elif [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "$JST_DOW" = "7" ]; then
+            echo "📊 日曜手動実行 → 週次レポートを送信"
             python -m keiba_predictor.analysis.loss_analysis --weekly
           else
-            echo "ℹ️ 日曜以外 → 週次スキップ"
+            echo "ℹ️ JST ${JST_DOW}曜${JST_HOUR}時 → 週次スキップ"
           fi
 
       - name: 結果履歴をコミット
