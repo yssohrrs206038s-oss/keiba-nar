@@ -94,7 +94,9 @@ def _rakuten_race_url(race_id: str, race_date: str = "") -> str:
     """netkeiba race_id から楽天競馬のレースURLを生成する。
 
     netkeiba race_id: YYYY + 場(2) + MM + DD + RR (12桁)
-    楽天 race_id:    YYYYMMDD + 00 + 場(2) + RR (14桁)
+    楽天URL: https://bet.keiba.rakuten.co.jp/sp/normal/shikibetu/RACEID/{18桁ID}
+    18桁ID: YYYYMMDD(8) + 楽天場コード(2) + 000000(6) + RR(2)
+    例: 川崎12R 2026-04-07 → 202604072100000012
     """
     if not race_id or len(race_id) < 12:
         return ""
@@ -106,10 +108,10 @@ def _rakuten_race_url(race_id: str, race_date: str = "") -> str:
     if race_date and len(race_date) >= 10:
         ymd = race_date.replace("-", "")[:8]
     else:
-        # フォールバック: race_id から構築（YYYY + MMDD）
         ymd = race_id[:4] + race_id[6:10]
     race_num = race_id[10:12]
-    return f"https://keiba.rakuten.co.jp/race_card/list/{ymd}00{rakuten_venue}{race_num}/"
+    rakuten_id = f"{ymd}{rakuten_venue}000000{race_num}"
+    return f"https://bet.keiba.rakuten.co.jp/sp/normal/shikibetu/RACEID/{rakuten_id}"
 
 
 def _venue_webhook(venue: str, default_url: str) -> str:
