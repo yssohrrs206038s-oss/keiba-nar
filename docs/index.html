@@ -276,12 +276,10 @@
   <div class="tab-panel" id="panel-results">
     <div class="section-title">📊 累計実績</div>
     <div class="stats-grid" id="stats-grid">
-      <div class="stat-card"><div class="stat-value" id="s-races">--</div><div class="stat-label">通算レース数</div></div>
-      <div class="stat-card green"><div class="stat-value" id="s-fukusho">--</div><div class="stat-label">複勝的中率</div></div>
-      <div class="stat-card blue"><div class="stat-value" id="s-umaren">--</div><div class="stat-label">連対的中率</div></div>
-      <div class="stat-card blue"><div class="stat-value" id="s-sanren">--</div><div class="stat-label">3連複的中率</div></div>
-      <div class="stat-card gold"><div class="stat-value" id="s-roi">--</div><div class="stat-label">累計回収率</div></div>
-      <div class="stat-card green"><div class="stat-value" id="s-streak">--</div><div class="stat-label">直近10戦 複勝</div></div>
+      <div class="stat-card"><div class="stat-value" id="s-races">--</div><div class="stat-label">通算</div></div>
+      <div class="stat-card green"><div class="stat-value" id="s-fukusho">--</div><div class="stat-label">本命的中率</div></div>
+      <div class="stat-card gold"><div class="stat-value" id="s-roi">--</div><div class="stat-label">回収率</div></div>
+      <div class="stat-card blue"><div class="stat-value" id="s-streak">--</div><div class="stat-label">直近的中率</div></div>
     </div>
     <div class="section-title">📈 回収率推移</div>
     <div class="chart-wrap"><canvas id="roi-chart"></canvas></div>
@@ -426,25 +424,22 @@ function calcRet(r) {
 
 function renderStats(rows) {
   if (!rows.length) return;
-  // 現戦略以降のデータのみ集計（旧データは集計対象外）
   const currentRows = rows.filter(isCurrentStrategy);
   const useRows = currentRows.length > 0 ? currentRows : rows;
   const n     = useRows.length;
-  const fHits = useRows.filter(r => r.fukusho_hit === 'True').length;
-  const uHits = useRows.filter(r => r.wide_hit === 'True').length;
-  const sHits = 0;
+  // 本命的中率 = ◎が3着以内（fukusho_hit）
+  const honmeiHits = useRows.filter(r => r.fukusho_hit === 'True').length;
   const bet   = n * BET_PER_RACE;
   const ret   = useRows.reduce((s, r) => s + calcRet(r), 0);
   const roi   = bet > 0 ? ret / bet : 0;
-  // 直近10戦
+  // 直近10戦的中率（ワイドベース）
   const recent10 = useRows.slice(-10);
   const recent10Hits = recent10.filter(r => r.wide_hit === 'True').length;
+  const recentRate = recent10.length > 0 ? recent10Hits / recent10.length : 0;
   document.getElementById('s-races').textContent   = n + ' 戦';
-  document.getElementById('s-fukusho').textContent = pct(fHits / n);
-  document.getElementById('s-umaren').textContent  = pct(uHits / n);
-  document.getElementById('s-sanren').textContent  = pct(sHits / n);
+  document.getElementById('s-fukusho').textContent = pct(honmeiHits / n);
   document.getElementById('s-roi').textContent     = pct(roi);
-  document.getElementById('s-streak').textContent  = `${recent10Hits}/${recent10.length}`;
+  document.getElementById('s-streak').textContent  = pct(recentRate);
 }
 
 /* ================================================================
