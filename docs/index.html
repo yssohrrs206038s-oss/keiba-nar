@@ -408,14 +408,26 @@ function pct(v) { return isNaN(v) ? '--' : (v * 100).toFixed(0) + '%'; }
 /* ================================================================
    実績セクション
 ================================================================ */
+// 現戦略: ワイド1点1,000円固定で投資・回収を再計算
+const BET_PER_RACE = 1000;
+function calcBet(r) { return BET_PER_RACE; }
+function calcRet(r) {
+  // wide_payoutは100円ベース配当 → 1,000円購入なので×10
+  // ただし旧データはワイド300円購入(×3)・900円分(各300×3点)などが混在
+  // wide_hit=True かつ wide_payout>0 なら配当×10で再計算
+  if (r.wide_hit !== 'True') return 0;
+  const wp = +r.wide_payout || 0;
+  return wp * 10;
+}
+
 function renderStats(rows) {
   if (!rows.length) return;
   const n     = rows.length;
   const fHits = rows.filter(r => r.fukusho_hit === 'True').length;
   const uHits = rows.filter(r => r.wide_hit === 'True').length;
   const sHits = 0;
-  const bet   = rows.reduce((s, r) => s + (+r.bet_total || 0), 0);
-  const ret   = rows.reduce((s, r) => s + (+r.return_total || 0), 0);
+  const bet   = n * BET_PER_RACE;
+  const ret   = rows.reduce((s, r) => s + calcRet(r), 0);
   const roi   = bet > 0 ? ret / bet : 0;
   // 直近10戦の複勝的中数
   const recent10 = rows.slice(-10);
@@ -436,8 +448,8 @@ function renderChart(rows) {
   const labels = [], roiData = [];
   let cumBet = 0, cumRet = 0;
   rows.forEach(r => {
-    cumBet += +r.bet_total || 0;
-    cumRet += +r.return_total || 0;
+    cumBet += BET_PER_RACE;
+    cumRet += calcRet(r);
     const roi = cumBet > 0 ? (cumRet / cumBet * 100) : 0;
     labels.push((r.date || '').slice(0, 10));
     roiData.push(+roi.toFixed(1));
@@ -646,13 +658,15 @@ function _renderRaceCard(raceId, r) {
     const a3 = res.actual3_num ? `${res.actual3_num}番 ${esc(res.actual3_name || '')}` : '';
     const wHit = res.wide_hit === 'True';
     const wPay = +res.wide_payout || 0;
-    const bet = +res.bet_total || 0;
-    const ret = +res.return_total || 0;
-    const roi = bet > 0 ? (ret / bet * 100).toFixed(0) + '%' : '—';
+    const bet = BET_PER_RACE;
+    const ret = calcRet(res);
+    const roi = (ret / bet * 100).toFixed(0) + '%';
     const roiColor = ret >= bet ? 'var(--green)' : 'var(--red)';
 
     const hitParts = [];
-    hitParts.push(`ワイド${wHit ? '✅' : '❌'}${wHit && wPay ? ' ' + wPay.toLocaleString() + '円' : ''}`);
+    // 1,000円購入時の払戻額（100円ベース配当×10）
+    const wPayActual = wPay * 10;
+    hitParts.push(`ワイド${wHit ? '✅' : '❌'}${wHit && wPay ? ' ' + wPayActual.toLocaleString() + '円' : ''}`);
 
     resultHTML = `
       <div style="border-top:1px solid var(--border);margin-top:12px;padding-top:10px;">
@@ -710,10 +724,10 @@ function renderHistory(rows) {
   }
   tbody.innerHTML = recent.map(r => {
     const wHit = r.wide_hit === 'True';
-    const bet = +r.bet_total || 0;
-    const ret = +r.return_total || 0;
-    const roi = bet > 0 ? (ret / bet * 100).toFixed(0) + '%' : '--';
-    const roiColor = bet > 0 && ret >= bet ? 'color:var(--green)' : 'color:var(--red)';
+    const bet = BET_PER_RACE;
+    const ret = calcRet(r);
+    const roi = (ret / bet * 100).toFixed(0) + '%';
+    const roiColor = ret >= bet ? 'color:var(--green)' : 'color:var(--red)';
     const rid = (r.race_id || '').trim();
     const hVenue = rid.length >= 12 ? (VENUE_MAP[rid.slice(4, 6)] || '') : '';
     const hRaceNum = rid.length >= 12 ? parseInt(rid.slice(10, 12), 10) + 'R' : '';
@@ -832,10 +846,10 @@ function renderVenueRoiChart(rows) {
     const venue = VENUE_MAP[rid.slice(4, 6)] || '';
     if (!venue) return;
     if (!venueData[venue]) venueData[venue] = { bet: 0, ret: 0, n: 0, fHit: 0 };
-    venueData[venue].bet += +r.bet_total || 0;
-    venueData[venue].ret += +r.return_total || 0;
+    venueData[venue].bet += BET_PER_RACE;
+    venueData[venue].ret += calcRet(r);
     venueData[venue].n++;
-    if (r.fukusho_hit === 'True') venueData[venue].fHit++;
+    if (r.wide_hit === 'True') venueData[venue].fHit++;
   });
 
   const entries = Object.entries(venueData)
