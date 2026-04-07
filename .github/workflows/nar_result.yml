@@ -85,16 +85,21 @@ jobs:
           fi
           echo "✅ notify コマンド終了"
 
-      - name: 週次分析（日曜のみ）
-        if: contains('0', github.event.schedule && '0' || '') || github.event_name == 'workflow_dispatch'
+      - name: 日次レポート（毎日）
+        continue-on-error: true
+        run: |
+          echo "📊 本日の成績レポートを送信"
+          python -m keiba_predictor.analysis.loss_analysis
+
+      - name: 週次レポート（日曜のみ）
         continue-on-error: true
         run: |
           DOW=$(date -u +%u)  # 1=月 ... 7=日
           if [ "$DOW" = "7" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "📊 日曜日 → 週次分析を実行"
-            python -m keiba_predictor.analysis.loss_analysis
+            echo "📊 日曜日 → 週次レポートを送信"
+            python -m keiba_predictor.analysis.loss_analysis --weekly
           else
-            echo "ℹ️ 日曜以外 → スキップ"
+            echo "ℹ️ 日曜以外 → 週次スキップ"
           fi
 
       - name: 結果履歴をコミット
