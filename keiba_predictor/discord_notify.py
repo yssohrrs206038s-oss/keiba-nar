@@ -237,7 +237,7 @@ def _dump_html_for_debug(soup, kaisai_date: str) -> None:
 
 
 def scrape_nar_race_ids_for_today(session: requests.Session) -> list[dict]:
-    """今日のNARレース一覧を取得する（最大30レース）。
+    """今日のNARレース一覧を取得する（全会場・全レース）。
 
     Returns:
         [{"race_id", "race_name", "race_date"}, ...]
@@ -274,7 +274,7 @@ def scrape_nar_race_ids_for_today(session: requests.Session) -> list[dict]:
                     if n:
                         name_map[rid] = n.get_text(strip=True)
 
-    for rid in race_ids[:30]:  # 最大30レース
+    for rid in race_ids:  # 全レース（会場制限なし）
         found.append({
             "race_id": rid,
             "race_name": name_map.get(rid, rid),
