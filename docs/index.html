@@ -409,12 +409,16 @@ function pct(v) { return isNaN(v) ? '--' : (v * 100).toFixed(0) + '%'; }
    実績セクション
 ================================================================ */
 // 現戦略: ワイド1点1,000円固定で投資・回収を再計算
+// 戦略変更日: 2026-04-07 以降のデータのみ集計（旧データはワイド3点合算で計算が異なる）
 const BET_PER_RACE = 1000;
+const STRATEGY_START = '2026-04-07';
+function isCurrentStrategy(r) {
+  const d = (r.date || '').slice(0, 10);
+  return d >= STRATEGY_START;
+}
 function calcBet(r) { return BET_PER_RACE; }
 function calcRet(r) {
   // wide_payoutは100円ベース配当 → 1,000円購入なので×10
-  // ただし旧データはワイド300円購入(×3)・900円分(各300×3点)などが混在
-  // wide_hit=True かつ wide_payout>0 なら配当×10で再計算
   if (r.wide_hit !== 'True') return 0;
   const wp = +r.wide_payout || 0;
   return wp * 10;
@@ -422,16 +426,19 @@ function calcRet(r) {
 
 function renderStats(rows) {
   if (!rows.length) return;
-  const n     = rows.length;
-  const fHits = rows.filter(r => r.fukusho_hit === 'True').length;
-  const uHits = rows.filter(r => r.wide_hit === 'True').length;
+  // 現戦略以降のデータのみ集計（旧データは集計対象外）
+  const currentRows = rows.filter(isCurrentStrategy);
+  const useRows = currentRows.length > 0 ? currentRows : rows;
+  const n     = useRows.length;
+  const fHits = useRows.filter(r => r.fukusho_hit === 'True').length;
+  const uHits = useRows.filter(r => r.wide_hit === 'True').length;
   const sHits = 0;
   const bet   = n * BET_PER_RACE;
-  const ret   = rows.reduce((s, r) => s + calcRet(r), 0);
+  const ret   = useRows.reduce((s, r) => s + calcRet(r), 0);
   const roi   = bet > 0 ? ret / bet : 0;
-  // 直近10戦の複勝的中数
-  const recent10 = rows.slice(-10);
-  const recent10Hits = recent10.filter(r => r.fukusho_hit === 'True').length;
+  // 直近10戦
+  const recent10 = useRows.slice(-10);
+  const recent10Hits = recent10.filter(r => r.wide_hit === 'True').length;
   document.getElementById('s-races').textContent   = n + ' 戦';
   document.getElementById('s-fukusho').textContent = pct(fHits / n);
   document.getElementById('s-umaren').textContent  = pct(uHits / n);
@@ -445,9 +452,11 @@ function renderStats(rows) {
 ================================================================ */
 function renderChart(rows) {
   if (!rows.length) return;
+  const currentRows = rows.filter(isCurrentStrategy);
+  const useRows = currentRows.length > 0 ? currentRows : rows;
   const labels = [], roiData = [];
   let cumBet = 0, cumRet = 0;
-  rows.forEach(r => {
+  useRows.forEach(r => {
     cumBet += BET_PER_RACE;
     cumRet += calcRet(r);
     const roi = cumBet > 0 ? (cumRet / cumBet * 100) : 0;
@@ -713,10 +722,10 @@ function _renderFilteredPredictions() {
 ================================================================ */
 function renderHistory(rows) {
   const tbody = document.getElementById('history-tbody');
-  // 的中レースのみ抽出（ワイドが的中したもの）
-  const hitRows = rows.filter(r =>
-    r.wide_hit === 'True'
-  );
+  // 現戦略以降 + 的中レースのみ抽出
+  const currentRows = rows.filter(isCurrentStrategy);
+  const baseRows = currentRows.length > 0 ? currentRows : rows;
+  const hitRows = baseRows.filter(r => r.wide_hit === 'True');
   const recent = hitRows.slice(-15).reverse();
   if (!recent.length) {
     tbody.innerHTML = '<tr><td colspan="4" class="no-data">的中レースがありません</td></tr>';
@@ -839,8 +848,10 @@ function renderHitRateChart(rows) {
 ================================================================ */
 function renderVenueRoiChart(rows) {
   if (!rows.length) return;
+  const currentRows = rows.filter(isCurrentStrategy);
+  const useRows = currentRows.length > 0 ? currentRows : rows;
   const venueData = {};
-  rows.forEach(r => {
+  useRows.forEach(r => {
     const rid = (r.race_id || '').trim();
     if (rid.length < 6) return;
     const venue = VENUE_MAP[rid.slice(4, 6)] || '';
