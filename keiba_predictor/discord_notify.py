@@ -71,6 +71,46 @@ NAR_VENUE_WEBHOOK_MAP: dict[str, str] = {
     "佐賀":   "DISCORD_NAR_SAGA_WEBHOOK_URL",
 }
 
+# 楽天競馬 場コード（netkeiba race_id[4:6] → 楽天場コード2桁）
+RAKUTEN_VENUE_CODE: dict[str, str] = {
+    "30": "36",  # 門別
+    "35": "10",  # 盛岡
+    "36": "11",  # 水沢
+    "42": "18",  # 浦和
+    "43": "19",  # 船橋
+    "44": "20",  # 大井
+    "45": "21",  # 川崎
+    "46": "22",  # 金沢
+    "47": "23",  # 笠松
+    "48": "24",  # 名古屋
+    "50": "27",  # 園田
+    "51": "28",  # 姫路
+    "54": "31",  # 高知
+    "55": "32",  # 佐賀
+}
+
+
+def _rakuten_race_url(race_id: str, race_date: str = "") -> str:
+    """netkeiba race_id から楽天競馬のレースURLを生成する。
+
+    netkeiba race_id: YYYY + 場(2) + MM + DD + RR (12桁)
+    楽天 race_id:    YYYYMMDD + 00 + 場(2) + RR (14桁)
+    """
+    if not race_id or len(race_id) < 12:
+        return ""
+    venue_code = race_id[4:6]
+    rakuten_venue = RAKUTEN_VENUE_CODE.get(venue_code)
+    if not rakuten_venue:
+        return ""
+    # race_date から YYYYMMDD を取得
+    if race_date and len(race_date) >= 10:
+        ymd = race_date.replace("-", "")[:8]
+    else:
+        # フォールバック: race_id から構築（YYYY + MMDD）
+        ymd = race_id[:4] + race_id[6:10]
+    race_num = race_id[10:12]
+    return f"https://keiba.rakuten.co.jp/race_card/list/{ymd}00{rakuten_venue}{race_num}/"
+
 
 def _venue_webhook(venue: str, default_url: str) -> str:
     """開催場に対応するWebhook URLを返す。未設定ならdefaultにフォールバック。"""
@@ -1588,6 +1628,11 @@ def _format_prediction_from_cache(race_name: str, entry: dict, race_id: str = ""
             f"────────────────",
             f"合計投資額: 1,000円",
         ]
+
+    # 楽天競馬URL追加
+    rakuten_url = _rakuten_race_url(race_id, entry.get("race_date", ""))
+    if rakuten_url:
+        lines2.append(f"🔗 {rakuten_url}")
 
     msg2 = "\n".join(lines2)
     return msg1, msg2
