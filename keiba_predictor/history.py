@@ -34,12 +34,9 @@ REPORTS_DIR   = DATA_DIR / "reports"
 
 # 1レースあたりの投資額
 # 複勝: 1000円×1口 + 馬連: 100円×3口 + 3連複: 100円×10口 = 2300円
-UNIT_BET          = 100   # 馬連・ワイド・3連複の1口単価
-FUKUSHO_BET       = 1000  # 複勝の1口単価
-BETS_FUKUSHO      = 1     # 複勝の口数
-BETS_UMAREN       = 3     # 馬連の口数
-BETS_SANREN       = 10    # 3連複の口数
-BETS_PER_RACE_TOTAL = FUKUSHO_BET * BETS_FUKUSHO + UNIT_BET * (BETS_UMAREN + BETS_SANREN)  # 2300円
+UNIT_BET            = 100   # （旧）100円単位
+FUKUSHO_BET         = 1000  # （旧）複勝1口
+BETS_PER_RACE_TOTAL = 1000  # 現戦略: ワイド◎-○ 1点 1,000円
 
 HISTORY_COLS = [
     "date", "race_id", "race_name", "race_grade",
@@ -221,22 +218,28 @@ def record_result(
                 fukusho_payout = entry.get("amount") or 0
                 break
 
-    # 馬連・ワイド・3連複
-    umaren_hit, umaren_pay_str  = _check_umaren_raw(predicted_nums, actual_nums, payouts)
-    wide_pairs                  = _check_wide_pairs_raw(predicted_nums, actual_nums, payouts)
-    ana_horse_num = pred.get("ana_horse_num")
-    sanren_hit, sanren_pay_str  = _check_sanrenpuku_raw(predicted_nums, actual_nums, payouts, ana_horse_num)
+    # ワイド判定: bet_strategyの実際の買い目（◎-○ 1点）で判定
+    from keiba_predictor.discord_notify import _get_payout
+    wide_hit = False
+    wide_payout = 0
+    actual_top3_set = set(actual_nums[:3]) if len(actual_nums) >= 3 else set()
+    if bs.get("wide"):
+        for w in bs["wide"]:
+            a, b = w["nums"]
+            if a in actual_top3_set and b in actual_top3_set:
+                pay_str = _get_payout(payouts, "ワイド", f"{a}-{b}")
+                wide_payout = _payout_str_to_int(pay_str)
+                wide_hit = True
+                break
 
-    wide_hit    = any(h for _, h, _ in wide_pairs)
-    wide_payout = sum(_payout_str_to_int(p) for _, h, p in wide_pairs if h)
+    umaren_hit = False
+    umaren_payout = 0
+    sanren_hit = False
+    sanren_payout = 0
 
-    umaren_payout   = _payout_str_to_int(umaren_pay_str)
-    sanren_payout   = _payout_str_to_int(sanren_pay_str)
-
-    bet_total    = BETS_PER_RACE_TOTAL  # 2300円（複勝1000+馬連300+3連複1000）
-    # 複勝配当は1000円購入なので10倍換算（100円ベースの配当×10）
-    fukusho_return = fukusho_payout * (FUKUSHO_BET // 100) if fukusho_payout else 0
-    return_total = fukusho_return + umaren_payout + wide_payout + sanren_payout
+    bet_total = BETS_PER_RACE_TOTAL  # 1,000円（ワイド1点）
+    # 100円ベース配当 × 10 = 1,000円購入時の払戻
+    return_total = wide_payout * 10 if wide_hit else 0
 
     row = {
         "date":       race_date,
