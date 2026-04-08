@@ -16,7 +16,7 @@ results_history.csv から的中率・回収率を集計し Discord に送信す
 import logging
 import os
 import sys
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 import pandas as pd
@@ -29,6 +29,10 @@ HISTORY_PATH = DATA_DIR / "results_history.csv"
 # 戦略変更日: ワイド1点1,000円固定
 STRATEGY_START = "2026-04-07"
 BET_PER_RACE = 1000
+
+# JST基準の今日の日付を取得
+def _today_jst() -> date:
+    return datetime.now(timezone(timedelta(hours=9))).date()
 
 
 def _calc_return(row: dict) -> int:
@@ -76,7 +80,7 @@ def _load_rows() -> list[dict]:
 def analyze_daily(target_date: str = None) -> str:
     """日次レポート: 当日分の成績."""
     if target_date is None:
-        target_date = date.today().isoformat()
+        target_date = _today_jst().isoformat()
 
     rows = _load_rows()
     daily_rows = [
@@ -105,7 +109,7 @@ def analyze_daily(target_date: str = None) -> str:
 def analyze_weekly(target_date: str = None) -> str:
     """週次レポート: 月曜〜日曜の集計."""
     if target_date is None:
-        target_date = date.today()
+        target_date = _today_jst()
     elif isinstance(target_date, str):
         target_date = date.fromisoformat(target_date)
 

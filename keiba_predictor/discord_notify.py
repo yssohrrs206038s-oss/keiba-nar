@@ -1298,15 +1298,19 @@ def _fmt_result(race_name: str, race_date: str,
 
     # manual_results.json のフラグがあればそちらを優先
     fukusho_pay = ""
+    wide_hit = False
+    wide_pay = ""
     if manual and "fukusho_hit" in manual:
         fukusho_hit = manual["fukusho_hit"]
         umaren_hit  = manual.get("umaren_hit", False)
         sanren_hit  = manual.get("sanrenpuku_hit", False)
+        wide_hit    = manual.get("wide_hit", False)
         manual_pay  = manual.get("payouts", {})
         if manual_pay.get("fukusho"):
             fukusho_pay = f"{manual_pay['fukusho']:,}"
         umaren_pay  = f"¥{manual_pay['umaren']:,}" if manual_pay.get("umaren") else ""
         sanren_pay  = f"¥{manual_pay['sanrenpuku']:,}" if manual_pay.get("sanrenpuku") else ""
+        wide_pay    = f"¥{manual_pay['wide']:,}" if manual_pay.get("wide") else ""
     else:
         # bet_strategy があればそれに基づいて判定
         bs = pred.get("bet_strategy", {})
