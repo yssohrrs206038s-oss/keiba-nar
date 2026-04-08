@@ -1565,9 +1565,18 @@ def _format_prediction_from_cache(race_name: str, entry: dict, race_id: str = ""
         ev_val = ev_entry.get("ev_score")
         has_real_odds = ev_entry.get("odds") is not None
         ev_str = f" EV{ev_val:.2f}" if ev_val and has_real_odds else ""
+        prob_val = None
         if mc_rate is not None:
-            prob = mc_rate * 100
-            lines1.append(f"{mark} {num}番 {name}　{prob:.1f}%{ev_str}")
+            prob_val = float(mc_rate)
+        else:
+            xgb_prob = info.get("prob")
+            if xgb_prob is not None:
+                try:
+                    prob_val = float(xgb_prob)
+                except (TypeError, ValueError):
+                    prob_val = None
+        if prob_val is not None:
+            lines1.append(f"{mark} {num}番 {name}　{prob_val*100:.1f}%{ev_str}")
         else:
             lines1.append(f"{mark} {num}番 {name}{ev_str}")
 
@@ -1588,9 +1597,23 @@ def _format_prediction_from_cache(race_name: str, entry: dict, race_id: str = ""
             # MC確率を優先
             mc_ana = sim.get(str(ana_num), {})
             mc_ana_rate = mc_ana.get("top3_rate")
+            prob_val = None
             if mc_ana_rate is not None:
-                prob = mc_ana_rate * 100
-                lines1.append(f"★穴 {ana_num}番{name}（{prob:.1f}% {pop}番人気）")
+                prob_val = float(mc_ana_rate)
+            else:
+                xgb_prob = ana_info.get("prob")
+                if xgb_prob is None:
+                    for e in entry.get("ev_top3", []):
+                        if e.get("horse_number") == ana_num:
+                            xgb_prob = e.get("prob")
+                            break
+                if xgb_prob is not None:
+                    try:
+                        prob_val = float(xgb_prob)
+                    except (TypeError, ValueError):
+                        prob_val = None
+            if prob_val is not None:
+                lines1.append(f"★穴 {ana_num}番{name}（{prob_val*100:.1f}% {pop}番人気）")
             else:
                 lines1.append(f"★穴 {ana_num}番{name}（{pop}番人気）")
 
