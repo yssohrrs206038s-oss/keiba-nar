@@ -98,6 +98,12 @@ jobs:
           NAR_MODEL_GDRIVE_ID: ${{ secrets.NAR_MODEL_GDRIVE_ID }}
         run: python keiba_predictor/scripts/download_model.py
 
+      - name: cleaned_races.csv を Google Drive からダウンロード
+        continue-on-error: true
+        env:
+          CLEANED_RACES_GDRIVE_ID: ${{ secrets.CLEANED_RACES_GDRIVE_ID }}
+        run: python keiba_predictor/scripts/download_cleaned_races.py
+
       - name: モデルファイルを確認（バンドモデルにフォールバック）
         run: |
           MODEL_PATH="keiba_predictor/model/xgb_model.pkl"
