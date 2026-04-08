@@ -178,7 +178,11 @@ jobs:
             echo "ℹ️ 変更なし"
           else
             git commit -m "chore: NAR予想キャッシュ更新 [skip ci]"
-            git push
+            for i in 1 2 3; do
+              git pull --rebase origin ${{ github.ref_name }} && git push && break
+              echo "push retry $i"
+              sleep 3
+            done
             echo "✅ コミット・プッシュ完了"
           fi
 
@@ -202,7 +206,11 @@ jobs:
             echo "ℹ️ 変更なし"
           else
             git commit -m "chore: NAR予想キャッシュ・レポート更新 [skip ci]"
-            git push
+            for i in 1 2 3; do
+              git pull --rebase origin ${{ github.ref_name }} && git push && break
+              echo "push retry $i"
+              sleep 3
+            done
           fi
 
       - name: ❌ エラーを Discord に通知
