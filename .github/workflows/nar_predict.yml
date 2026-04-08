@@ -93,18 +93,26 @@ jobs:
           python -m playwright install-deps chromium
 
       - name: モデルをGoogle Driveからダウンロード
+        continue-on-error: true
         env:
           NAR_MODEL_GDRIVE_ID: ${{ secrets.NAR_MODEL_GDRIVE_ID }}
         run: python keiba_predictor/scripts/download_model.py
 
-      - name: モデルファイルを確認
+      - name: モデルファイルを確認（バンドモデルにフォールバック）
         run: |
           MODEL_PATH="keiba_predictor/model/xgb_model.pkl"
-          if [ ! -f "$MODEL_PATH" ]; then
-            echo "::error::モデルファイルが見つかりません: $MODEL_PATH"
-            exit 1
+          if [ -f "$MODEL_PATH" ]; then
+            echo "✅ メインモデル確認OK"
+          else
+            echo "⚠️ メインモデル(xgb_model.pkl)なし → 距離帯別モデルにフォールバック"
+            BAND_COUNT=$(ls keiba_predictor/model/xgb_model_*.pkl 2>/dev/null | wc -l)
+            if [ "$BAND_COUNT" -gt 0 ]; then
+              echo "✅ バンドモデル ${BAND_COUNT} 個利用可能"
+            else
+              echo "::error::モデルファイルが一切見つかりません"
+              exit 1
+            fi
           fi
-          echo "✅ モデルファイル確認OK"
 
       # ── 予想生成（11時JST） ──────────────────────────────────
       - name: NAR予想を生成（predict_live）

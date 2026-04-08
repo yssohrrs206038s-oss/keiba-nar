@@ -57,14 +57,42 @@ jobs:
           print(f'NAR取得完了: {len(df)} rows')
           "
 
-      - name: データクリーニング
+      - name: 過去の cleaned_races.csv.gz を解凍（既存データとマージ用）
+        run: |
+          if [ -f keiba_predictor/data/cleaned_races.csv.gz ]; then
+            gunzip -k -f keiba_predictor/data/cleaned_races.csv.gz
+            ROWS=$(wc -l < keiba_predictor/data/cleaned_races.csv)
+            echo "✅ 過去 cleaned_races.csv 解凍完了: ${ROWS} 行"
+          else
+            echo "ℹ️ 過去 cleaned_races.csv.gz なし → 新規作成"
+          fi
+
+      - name: データクリーニング（過去データとマージ）
         run: |
           if [ ! -f keiba_predictor/data/raw_races.csv ]; then
             echo "⚠️ raw_races.csv が見つかりません → 以降のステップをスキップ"
             echo "DATA_READY=false" >> $GITHUB_ENV
           else
+            # 過去 cleaned_races.csv を退避
+            if [ -f keiba_predictor/data/cleaned_races.csv ]; then
+              mv keiba_predictor/data/cleaned_races.csv keiba_predictor/data/cleaned_races_old.csv
+            fi
             python -m keiba_predictor.main clean
-            echo "✅ クリーニング完了"
+            # 新旧をマージ（race_id重複は新しい方を優先）
+            if [ -f keiba_predictor/data/cleaned_races_old.csv ]; then
+              python -c "
+              import pandas as pd
+              old = pd.read_csv('keiba_predictor/data/cleaned_races_old.csv', encoding='utf-8-sig', dtype=str)
+              new = pd.read_csv('keiba_predictor/data/cleaned_races.csv', encoding='utf-8-sig', dtype=str)
+              merged = pd.concat([old, new], ignore_index=True).drop_duplicates(subset=['race_id', 'horse_number'], keep='last')
+              merged.to_csv('keiba_predictor/data/cleaned_races.csv', index=False, encoding='utf-8-sig')
+              print(f'マージ完了: 旧{len(old)} + 新{len(new)} → {len(merged)} 行')
+              "
+              rm keiba_predictor/data/cleaned_races_old.csv
+            fi
+            # gzip 再生成
+            gzip -k -9 -f keiba_predictor/data/cleaned_races.csv
+            echo "✅ クリーニング+マージ+圧縮完了"
             echo "DATA_READY=true" >> $GITHUB_ENV
           fi
 
@@ -128,6 +156,9 @@ jobs:
           git config pull.rebase true
           git config rebase.autoStash true
           git add keiba_predictor/data/predictions_cache.json 2>/dev/null || true
+          git add keiba_predictor/data/cleaned_races.csv.gz 2>/dev/null || true
+          # 解凍した .csv は除外（.gitignoreで管理）
+          rm -f keiba_predictor/data/cleaned_races.csv
           if git diff --staged --quiet; then
             echo "ℹ️ 変更なし"
           else
