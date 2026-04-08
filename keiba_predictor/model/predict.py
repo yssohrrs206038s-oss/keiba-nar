@@ -454,11 +454,17 @@ def format_prediction(
         name     = str(row.get("horse_name", "-"))
         ev       = row.get("ev_score")
         ev_str   = f" EV{ev:.2f}" if pd.notna(ev) else ""
-        # MC確率を優先（この時点では未実行のため非表示がデフォルト）
+        # MC確率を優先、なければ XGBoost prob_top3 を表示
         mc_rate  = row.get("mc_top3_rate")
-        if pd.notna(mc_rate) if hasattr(mc_rate, '__class__') else mc_rate is not None:
-            prob = float(mc_rate) * 100
-            lines1.append(f"{mark} {num}番 {name}　{prob:.1f}%{ev_str}")
+        prob_val = None
+        if mc_rate is not None and pd.notna(mc_rate):
+            prob_val = float(mc_rate)
+        else:
+            xgb_prob = row.get("prob_top3")
+            if xgb_prob is not None and pd.notna(xgb_prob):
+                prob_val = float(xgb_prob)
+        if prob_val is not None:
+            lines1.append(f"{mark} {num}番 {name}　{prob_val*100:.1f}%{ev_str}")
         else:
             lines1.append(f"{mark} {num}番 {name}{ev_str}")
 
@@ -477,9 +483,15 @@ def format_prediction(
         name     = str(row.get("horse_name", ""))
         pop      = str(int(row["popularity"])) if pd.notna(row.get("popularity")) else "-"
         mc_rate  = row.get("mc_top3_rate")
-        if pd.notna(mc_rate) if hasattr(mc_rate, '__class__') else mc_rate is not None:
-            prob = float(mc_rate) * 100
-            lines1.append(f"★穴 {num}番{name}（{prob:.1f}% {pop}番人気）")
+        prob_val = None
+        if mc_rate is not None and pd.notna(mc_rate):
+            prob_val = float(mc_rate)
+        else:
+            xgb_prob = row.get("prob_top3")
+            if xgb_prob is not None and pd.notna(xgb_prob):
+                prob_val = float(xgb_prob)
+        if prob_val is not None:
+            lines1.append(f"★穴 {num}番{name}（{prob_val*100:.1f}% {pop}番人気）")
         else:
             lines1.append(f"★穴 {num}番{name}（{pop}番人気）")
 
