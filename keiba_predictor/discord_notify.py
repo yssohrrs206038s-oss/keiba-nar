@@ -97,6 +97,8 @@ def _rakuten_race_url(race_id: str, race_date: str = "") -> str:
     楽天URL: https://bet.keiba.rakuten.co.jp/sp/normal/shikibetu/RACEID/{18桁ID}
     18桁ID: YYYYMMDD(8) + 楽天場コード(2) + 000000(6) + RR(2)
     例: 川崎12R 2026-04-07 → 202604072100000012
+
+    日付は実行日（JST）を使用する。キャッシュのrace_dateは古い可能性があるため。
     """
     if not race_id or len(race_id) < 12:
         return ""
@@ -104,11 +106,10 @@ def _rakuten_race_url(race_id: str, race_date: str = "") -> str:
     rakuten_venue = RAKUTEN_VENUE_CODE.get(venue_code)
     if not rakuten_venue:
         return ""
-    # race_date から YYYYMMDD を取得
-    if race_date and len(race_date) >= 10:
-        ymd = race_date.replace("-", "")[:8]
-    else:
-        ymd = race_id[:4] + race_id[6:10]
+    # 実行日（JST）の YYYYMMDD を使用
+    from datetime import datetime, timezone, timedelta
+    jst = timezone(timedelta(hours=9))
+    ymd = datetime.now(jst).strftime("%Y%m%d")
     race_num = race_id[10:12]
     rakuten_id = f"{ymd}{rakuten_venue}000000{race_num}"
     return f"https://bet.keiba.rakuten.co.jp/sp/normal/shikibetu/RACEID/{rakuten_id}"
