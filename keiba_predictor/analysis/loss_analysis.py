@@ -180,6 +180,17 @@ def main():
     else:
         print("DISCORD_WEBHOOK_URL 未設定 → Discord送信スキップ")
 
+    # X（Twitter）に当日の結果まとめを投稿（日次のみ）
+    if not weekly and os.environ.get("ENABLE_X_POST", "false").lower() == "true":
+        try:
+            from keiba_predictor.x_post import post_daily_result_summary
+            today_str = _today_jst().isoformat()
+            today_rows = [r for r in _load_rows() if str(r.get("date", "")).startswith(today_str)]
+            posted = post_daily_result_summary(today_rows)
+            print(f"X結果まとめ投稿: {posted}件")
+        except Exception as e:
+            print(f"X結果まとめ投稿失敗: {e}")
+
 
 if __name__ == "__main__":
     main()

@@ -1842,14 +1842,14 @@ def run_predict_notify(
 
     send_discord(webhook_url, f"✅ {notified}/{len(grade_races)} レース送信完了")
 
-    # X（Twitter）会場まとめ投稿（買い目があるレースのみ集約）
+    # X（Twitter）日次まとめ投稿（全会場の買い目を1ツイート/スレッドに集約）
     if os.environ.get("ENABLE_X_POST", "false").lower() == "true":
         try:
-            from keiba_predictor.x_post import post_venue_summary_tweets
-            posted = post_venue_summary_tweets(_load_cache())
-            logger.info(f"[X] 会場まとめ投稿: {posted}件")
+            from keiba_predictor.x_post import post_daily_bet_summary
+            posted = post_daily_bet_summary(_load_cache())
+            logger.info(f"[X] 買い目まとめ投稿: {posted}件")
         except Exception as e:
-            logger.warning(f"[X] 会場まとめ投稿エラー: {e}")
+            logger.warning(f"[X] 買い目まとめ投稿エラー: {e}")
 
     # 送信済みフラグを書き込み
     if not test_race_id and notified > 0:
@@ -2077,15 +2077,8 @@ def run_result_notify(
             except Exception as e:
                 logger.warning(f"  [history] 記録失敗 ({race_name}): {e}")
 
-        # X（Twitter）に結果を投稿（特別レースのみ）
-        _X_RESULT_KEYWORDS = ("特別", "記念", "杯", "賞", "ステークス")
-        if os.environ.get("ENABLE_X_POST", "false").lower() == "true":
-            if any(kw in race_name for kw in _X_RESULT_KEYWORDS):
-                try:
-                    from keiba_predictor.x_post import post_result_tweet
-                    post_result_tweet(race_name, actual_df, pred, payouts)
-                except Exception as e:
-                    logger.warning(f"  [X] 結果投稿エラー: {e}")
+        # X（Twitter）への個別レース結果投稿は廃止
+        # → 日次まとめに集約（loss_analysis.py main で post_daily_result_summary を呼ぶ）
 
     if notified > 0:
         send_discord(webhook_url, f"✅ {notified}レース結果送信完了")
