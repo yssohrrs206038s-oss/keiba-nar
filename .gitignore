@@ -41,4 +41,6 @@ keiba_predictor/data/notified_date.txt
 keiba_predictor/data/cleaned_races.csv
 keiba_predictor/data/featured_races.csv
 keiba_predictor/data/raw_races.csv
+# 圧縮版の cleaned_races.csv.gz はリポジトリに含める（Actions実行時に解凍）
+!keiba_predictor/data/cleaned_races.csv.gz
 keiba_predictor/model/xgb_model.pkl

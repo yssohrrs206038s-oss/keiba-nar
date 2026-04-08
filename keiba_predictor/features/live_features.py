@@ -29,11 +29,19 @@ DATA_DIR = Path(__file__).parent.parent / "data"
 def _load_history(cleaned_path: Optional[Path] = None) -> pd.DataFrame:
     if cleaned_path is None:
         cleaned_path = DATA_DIR / "cleaned_races.csv"
-    if not cleaned_path.exists():
-        logger.warning(f"過去成績CSVが見つかりません: {cleaned_path} → 過去成績なしで予想を実行します")
-        return pd.DataFrame()
+    # 通常版がなければ圧縮版(.gz)を試す
+    actual_path = cleaned_path
+    if not actual_path.exists():
+        gz_path = cleaned_path.with_suffix(".csv.gz")
+        if gz_path.exists():
+            actual_path = gz_path
+            logger.info(f"圧縮版を使用: {gz_path}")
+        else:
+            logger.warning(f"過去成績CSVが見つかりません: {cleaned_path} → 過去成績なしで予想を実行します")
+            return pd.DataFrame()
     try:
-        df = pd.read_csv(cleaned_path, encoding="utf-8-sig")
+        # pandas は .gz を自動解凍する
+        df = pd.read_csv(actual_path, encoding="utf-8-sig")
         if "race_date" in df.columns:
             df["race_date"] = pd.to_datetime(df["race_date"], errors="coerce")
         else:
