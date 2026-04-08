@@ -594,7 +594,8 @@ let _nextRaceId = '';
 
 function _findNextRaceId(entries) {
   const now = new Date();
-  const today = now.toISOString().slice(0, 10);
+  // JST基準で今日の日付を取得（UTCだと09時前後でずれる）
+  const today = new Date(now.getTime() + 9 * 3600 * 1000).toISOString().slice(0, 10);
   // 今日のレースで、結果未確定 & 発走時刻が現在より後 のうち最も早いもの
   let nextId = '';
   let nextTime = '99:99';
