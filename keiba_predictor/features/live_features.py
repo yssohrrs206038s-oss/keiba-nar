@@ -119,8 +119,11 @@ def _horse_hist_features(
     # 平均タイム（同コース / 全コース）
     time_sec_all = past["time_sec"] if "time_sec" in past.columns else pd.Series(dtype=float)
     times_all  = pd.to_numeric(time_sec_all, errors="coerce").dropna()
-    same_course = past[pd.to_numeric(past.get("course_type_enc", pd.Series(dtype=float)),
-                                     errors="coerce") == course_type_enc]
+    if "course_type_enc" in past.columns:
+        ct_enc = pd.to_numeric(past["course_type_enc"], errors="coerce")
+        same_course = past[ct_enc == course_type_enc]
+    else:
+        same_course = past.iloc[0:0]
     time_sec_same = same_course["time_sec"] if "time_sec" in same_course.columns else pd.Series(dtype=float)
     times_same  = pd.to_numeric(time_sec_same, errors="coerce").dropna()
 
@@ -200,7 +203,7 @@ def _jockey_course_rate(
     """騎手×コース（venue+course_type）の過去複勝率を返す。"""
     if not jockey_id or history.empty or "race_date" not in history.columns:
         return np.nan
-    if "venue" not in history.columns:
+    if "venue" not in history.columns or "course_type_enc" not in history.columns:
         return np.nan
     past = history[
         (history["jockey_id"].astype(str) == jockey_id) &
