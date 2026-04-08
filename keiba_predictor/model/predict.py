@@ -137,7 +137,9 @@ def calc_ev_and_flags(result_df: pd.DataFrame) -> pd.DataFrame:
     df = result_df.copy()
 
     # 期待値: 3着以内確率 × 複勝オッズ（単勝オッズで近似）
+    # オッズが取得できない場合（NaN/0）はEVをNoneのまま残す（0埋めしない）
     odds_num = pd.to_numeric(df["odds"], errors="coerce")
+    odds_num = odds_num.where(odds_num > 0)  # 0以下はNaN扱い
     df["ev_score"] = df["prob_top3"] * odds_num
 
     def _reasons(row: pd.Series) -> list[str]:
@@ -338,6 +340,17 @@ def _decide_bet_strategy(result_df: pd.DataFrame) -> dict:
 
     hon = nums[0]
     tai = nums[1]
+
+    # AI確率チェック（◎○の確率が低すぎる場合は見送り）
+    MIN_PROB = 0.05  # 5%未満は信頼性なし
+    hon_prob = pd.to_numeric(result_df.iloc[0].get("prob_top3"), errors="coerce")
+    tai_prob = pd.to_numeric(result_df.iloc[1].get("prob_top3"), errors="coerce")
+    if pd.isna(hon_prob) or pd.isna(tai_prob):
+        return _empty("見送り（AI確率取得失敗）")
+    if float(hon_prob) < MIN_PROB or float(tai_prob) < MIN_PROB:
+        return _empty(
+            f"見送り（AI確率不足: ◎{float(hon_prob)*100:.1f}% ○{float(tai_prob)*100:.1f}%）"
+        )
 
     # ワイドオッズを単勝オッズから推定（経験式: ◎odds × ○odds / 4）
     # 推定値が1.5倍未満なら買い目なし
