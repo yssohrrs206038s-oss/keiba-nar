@@ -173,6 +173,9 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config rebase.autoStash true
+          # 解凍済みCSVは追跡対象外なので削除して unstaged 化を回避
+          rm -f keiba_predictor/data/cleaned_races.csv
           git add keiba_predictor/data/predictions_cache.json 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "ℹ️ 変更なし"
@@ -200,6 +203,9 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config rebase.autoStash true
+          # 解凍済みCSVは追跡対象外なので削除して unstaged 化を回避
+          rm -f keiba_predictor/data/cleaned_races.csv
           git add keiba_predictor/data/predictions_cache.json 2>/dev/null || true
           git add keiba_predictor/data/note_report_*.md 2>/dev/null || true
           if git diff --staged --quiet; then
