@@ -182,7 +182,9 @@ jobs:
           else
             git commit -m "chore: NAR予想キャッシュ更新 [skip ci]"
             for i in 1 2 3; do
-              git pull --rebase origin ${{ github.ref_name }} && git push && break
+              git stash -u || true
+              git pull --rebase --autostash origin ${{ github.ref_name }} && git push && { git stash pop || true; break; }
+              git stash pop || true
               echo "push retry $i"
               sleep 3
             done
@@ -213,7 +215,9 @@ jobs:
           else
             git commit -m "chore: NAR予想キャッシュ・レポート更新 [skip ci]"
             for i in 1 2 3; do
-              git pull --rebase origin ${{ github.ref_name }} && git push && break
+              git stash -u || true
+              git pull --rebase --autostash origin ${{ github.ref_name }} && git push && { git stash pop || true; break; }
+              git stash pop || true
               echo "push retry $i"
               sleep 3
             done
