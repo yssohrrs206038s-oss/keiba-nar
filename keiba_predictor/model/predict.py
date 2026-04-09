@@ -344,6 +344,7 @@ def _decide_bet_strategy(result_df: pd.DataFrame) -> dict:
     # AI確率チェック（◎○の確率が低すぎる場合は見送り）
     MIN_PROB = 0.05  # 5%未満は信頼性なし
     MIN_TAI_PROB = 0.30  # ○30%未満は見送り（実績: ROI 95%→166%改善）
+    MAX_PROB_DIFF = 0.15  # ◎○差15%超は見送り（実績: ROI 166%→176%改善）
     hon_prob = pd.to_numeric(result_df.iloc[0].get("prob_top3"), errors="coerce")
     tai_prob = pd.to_numeric(result_df.iloc[1].get("prob_top3"), errors="coerce")
     if pd.isna(hon_prob) or pd.isna(tai_prob):
@@ -355,6 +356,11 @@ def _decide_bet_strategy(result_df: pd.DataFrame) -> dict:
     if float(tai_prob) < MIN_TAI_PROB:
         return _empty(
             f"見送り（○確率{float(tai_prob)*100:.1f}% < 30%）"
+        )
+    prob_diff = float(hon_prob) - float(tai_prob)
+    if prob_diff > MAX_PROB_DIFF:
+        return _empty(
+            f"見送り（◎○差{prob_diff*100:.1f}% > 15%）"
         )
 
     # ワイドオッズを単勝オッズから推定（経験式: ◎odds × ○odds / 4）
