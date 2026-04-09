@@ -518,6 +518,31 @@ function prettyLabel(label) {
   return label;
 }
 
+/* netkeiba場コード → 楽天競馬場コード */
+const RAKUTEN_VENUE = {
+  '30':'36','35':'10','36':'11',
+  '42':'18','43':'19','44':'20','45':'21',
+  '46':'22','47':'23','48':'24',
+  '50':'27','51':'28',
+  '54':'31','55':'32',
+};
+
+/**
+ * netkeiba 12桁 race_id → 楽天競馬 URL
+ * netkeiba: YYYY(4)+場(2)+MMDD(4)+RR(2) = 12桁
+ * 楽天:     YYYYMMDD(8)+楽天場(2)+000000(6)+RR(2) = 18桁
+ */
+function toRakutenUrl(raceId) {
+  if (!raceId || raceId.length < 12) return '';
+  const year  = raceId.slice(0, 4);
+  const venue = raceId.slice(4, 6);
+  const mmdd  = raceId.slice(6, 10);
+  const rr    = raceId.slice(10, 12);
+  const rv = RAKUTEN_VENUE[venue];
+  if (!rv) return '';
+  return `https://bet.keiba.rakuten.co.jp/sp/normal/shikibetu/RACEID/${year}${mmdd}${rv}000000${rr}`;
+}
+
 async function fetchJSON(url) {
   const r = await fetch(url + '?t=' + Date.now());
   if (!r.ok) throw new Error(`HTTP ${r.status}: ${url}`);
@@ -816,8 +841,8 @@ function _renderRaceCard(raceId, r) {
     }
   }
 
-  // 楽天競馬リンク
-  const rakutenUrl = r.rakuten_url || `https://bet.keiba.rakuten.co.jp/sp/normal/shikibetu/RACEID/${raceId}`;
+  // 楽天競馬リンク（netkeiba 12桁 → 楽天 18桁 ID に変換）
+  const rakutenUrl = r.rakuten_url || toRakutenUrl(raceId);
   const rakutenHTML = `<div style="margin-top:8px;"><a href="${esc(rakutenUrl)}" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:8px 14px;background:#bf0000;color:#fff;border-radius:6px;font-size:12px;font-weight:700;text-decoration:none;">🔗 楽天競馬で購入</a></div>`;
 
   // 結果セクション（results_history に該当レースがあれば表示）
