@@ -814,6 +814,10 @@ function _renderRaceCard(raceId, r) {
     }
   }
 
+  // 楽天競馬リンク
+  const rakutenUrl = r.rakuten_url || `https://bet.keiba.rakuten.co.jp/sp/normal/shikibetu/RACEID/${raceId}`;
+  const rakutenHTML = `<div style="margin-top:8px;"><a href="${esc(rakutenUrl)}" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:8px 14px;background:#bf0000;color:#fff;border-radius:6px;font-size:12px;font-weight:700;text-decoration:none;">🔗 楽天競馬で購入</a></div>`;
+
   // 結果セクション（results_history に該当レースがあれば表示）
   let resultHTML = '';
   const res = _resultMap[raceId];
@@ -868,6 +872,7 @@ function _renderRaceCard(raceId, r) {
     <div class="race-card-body">
       <div class="horse-list">${horseHTML || '<div class="no-data" style="padding:12px;">予想生成中...</div>'}</div>
       ${betHTML}
+      ${rakutenHTML}
       ${resultHTML}
     </div>
   </details>`;
