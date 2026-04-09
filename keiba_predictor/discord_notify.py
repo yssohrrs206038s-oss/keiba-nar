@@ -22,7 +22,12 @@ import os
 import random
 import re
 import time
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta, timezone
+
+
+def _today_jst() -> date:
+    """JST 基準の今日の日付を返す（Actions の UTC ランナー対策）。"""
+    return (datetime.now(timezone.utc) + timedelta(hours=9)).date()
 from itertools import combinations
 from pathlib import Path
 from typing import Optional
@@ -187,7 +192,7 @@ def send_discord(webhook_url: str, content: str) -> bool:
 
 def _weekend_dates() -> list[str]:
     """今週末（土・日）の YYYYMMDD リストを返す。月〜土曜実行を想定。"""
-    today   = date.today()
+    today   = _today_jst()
     wd      = today.weekday()          # 0=月 … 5=土 6=日
     if   wd == 5: d = 0                # 土 → 当日
     elif wd == 6: d = -1               # 日 → 昨日=土
@@ -289,7 +294,7 @@ def scrape_nar_race_ids_for_today(session: requests.Session) -> list[dict]:
         scrape_nar_race_ids_for_date, NAR_RACE_LIST_URL, _get,
     )
 
-    today = date.today()
+    today = _today_jst()
     kaisai_date = today.strftime("%Y%m%d")
     race_date_str = today.isoformat()
 
@@ -741,7 +746,7 @@ def _load_featured_race_ids_for_weekend(
 
 def _load_cache() -> dict:
     """予想キャッシュを読み込む。当日のスナップショットがあればそちらを優先する。"""
-    snapshot_path = DATA_DIR / f"predictions_snapshot_{date.today().strftime('%Y%m%d')}.json"
+    snapshot_path = DATA_DIR / f"predictions_snapshot_{_today_jst().strftime('%Y%m%d')}.json"
     if snapshot_path.exists():
         logger.info(f"スナップショットを使用: {snapshot_path.name}")
         try:
@@ -1691,7 +1696,7 @@ def run_predict_notify(
     # 日付ベースの送信済みチェック（テスト時はスキップ）
     notified_flag = DATA_DIR / "notified_date.txt"
     if not test_race_id:
-        today_str = date.today().isoformat()
+        today_str = _today_jst().isoformat()
         if notified_flag.exists():
             saved = notified_flag.read_text(encoding="utf-8").strip()
             if saved == today_str:
@@ -1722,17 +1727,17 @@ def run_predict_notify(
         logger.info("今日のNARレースを検索中...")
         grade_races = scrape_nar_race_ids_for_today(session)
         if not grade_races:
-            today_str = date.today().isoformat()
+            today_str = _today_jst().isoformat()
             send_discord(webhook_url, f"🐴 本日（{today_str}）のNARレースが見つかりませんでした。")
             return
         send_discord(webhook_url,
-            f"🐴 **本日のNAR予想** ({date.today().isoformat()})  全{len(grade_races)}レース")
+            f"🐴 **本日のNAR予想** ({_today_jst().isoformat()})  全{len(grade_races)}レース")
 
     notified = 0
     cache = _load_cache()
 
     # 昨日以前のレースをキャッシュから除外（NAR: 毎日開催のため当日分のみ保持）
-    today_str = date.today().isoformat()
+    today_str = _today_jst().isoformat()
     stale_ids = [
         rid for rid, entry in cache.items()
         if not rid.startswith("_") and entry.get("race_date") and entry["race_date"] < today_str
@@ -1854,7 +1859,7 @@ def run_predict_notify(
     # 送信済みフラグを書き込み
     if not test_race_id and notified > 0:
         try:
-            notified_flag.write_text(date.today().isoformat(), encoding="utf-8")
+            notified_flag.write_text(_today_jst().isoformat(), encoding="utf-8")
             logger.info(f"送信済みフラグ書き込み: {notified_flag}")
         except Exception as e:
             logger.warning(f"送信済みフラグ書き込み失敗: {e}")
@@ -1892,7 +1897,7 @@ def run_result_notify(
     else:
         # NAR: キャッシュ内の当日レースを結果照合対象にする
         logger.info("キャッシュから本日のNARレースを取得中...")
-        today_str = date.today().isoformat()
+        today_str = _today_jst().isoformat()
         grade_races = []
         for rid, entry in cache.items():
             if rid.startswith("_"):
@@ -2086,7 +2091,7 @@ def run_result_notify(
     # 日曜日に週次サマリーを X に投稿
     if os.environ.get("ENABLE_X_POST", "false").lower() == "true":
         try:
-            today = _date.today()
+            today = _today_jst()
             if today.weekday() == 6:  # 日曜日
                 from datetime import timedelta
                 hist_df = load_history()
