@@ -117,28 +117,47 @@ def _horse_hist_features(
         feats["finish_pos_trend"] = (float(fp1) - float(fp3)) / 2.0
 
     # 平均タイム（同コース / 全コース）
-    time_sec_all = past["time_sec"] if "time_sec" in past.columns else pd.Series(dtype=float)
-    times_all  = pd.to_numeric(time_sec_all, errors="coerce").dropna()
-    if "course_type_enc" in past.columns:
-        ct_enc = pd.to_numeric(past["course_type_enc"], errors="coerce")
-        same_course = past[ct_enc == course_type_enc]
-    else:
-        same_course = past.iloc[0:0]
-    time_sec_same = same_course["time_sec"] if "time_sec" in same_course.columns else pd.Series(dtype=float)
-    times_same  = pd.to_numeric(time_sec_same, errors="coerce").dropna()
+    # cleaned_races.csv が無い/列欠損な環境でも落ちないように防御的に処理
+    try:
+        if "time_sec" in past.columns:
+            time_sec_all = past["time_sec"]
+        else:
+            time_sec_all = pd.Series(dtype=float)
+        times_all = pd.to_numeric(time_sec_all, errors="coerce").dropna()
 
-    feats["avg_time_3"]     = float(times_same.tail(3).mean()) if len(times_same) >= 1 else np.nan
-    feats["avg_time_5"]     = float(times_same.tail(5).mean()) if len(times_same) >= 1 else np.nan
-    feats["avg_time_3_any"] = float(times_all.tail(3).mean())  if len(times_all)  >= 1 else np.nan
-    feats["avg_time_5_any"] = float(times_all.tail(5).mean())  if len(times_all)  >= 1 else np.nan
+        if "course_type_enc" in past.columns:
+            ct_enc = pd.to_numeric(past["course_type_enc"], errors="coerce")
+            same_course = past[ct_enc == course_type_enc]
+        else:
+            same_course = past.iloc[0:0]
+
+        if "time_sec" in same_course.columns:
+            time_sec_same = same_course["time_sec"]
+        else:
+            time_sec_same = pd.Series(dtype=float)
+        times_same = pd.to_numeric(time_sec_same, errors="coerce").dropna()
+
+        feats["avg_time_3"]     = float(times_same.tail(3).mean()) if len(times_same) >= 1 else np.nan
+        feats["avg_time_5"]     = float(times_same.tail(5).mean()) if len(times_same) >= 1 else np.nan
+        feats["avg_time_3_any"] = float(times_all.tail(3).mean())  if len(times_all)  >= 1 else np.nan
+        feats["avg_time_5_any"] = float(times_all.tail(5).mean())  if len(times_all)  >= 1 else np.nan
+    except KeyError as e:
+        logger.warning(f"time_sec関連の特徴量計算をスキップ（列欠損）: {e}")
+        feats["avg_time_3"] = np.nan
+        feats["avg_time_5"] = np.nan
+        feats["avg_time_3_any"] = np.nan
+        feats["avg_time_5_any"] = np.nan
 
     # 同コース複勝率
-    top3_same = pd.to_numeric(same_course["top3"], errors="coerce").dropna()
-    feats["horse_course_fukusho_rate"] = float(top3_same.mean()) if len(top3_same) >= 1 else np.nan
+    if "top3" in same_course.columns:
+        top3_same = pd.to_numeric(same_course["top3"], errors="coerce").dropna()
+        feats["horse_course_fukusho_rate"] = float(top3_same.mean()) if len(top3_same) >= 1 else np.nan
+    else:
+        feats["horse_course_fukusho_rate"] = np.nan
 
     # 同距離帯複勝率（400m幅ビン）
     dist_band = (distance // 400) * 400
-    if "distance" in past.columns:
+    if "distance" in past.columns and "top3" in past.columns:
         same_dist = past[(pd.to_numeric(past["distance"], errors="coerce") // 400 * 400) == dist_band]
         top3_dist = pd.to_numeric(same_dist["top3"], errors="coerce").dropna()
         feats["horse_dist_fukusho_rate"] = float(top3_dist.mean()) if len(top3_dist) >= 1 else np.nan
@@ -151,6 +170,8 @@ def _horse_hist_features(
 def _jockey_rate(jockey_id: str, history: pd.DataFrame, race_date: pd.Timestamp) -> float:
     """騎手の直近90日複勝率を返す。"""
     if not jockey_id or history.empty or "race_date" not in history.columns:
+        return np.nan
+    if "jockey_id" not in history.columns or "top3" not in history.columns:
         return np.nan
     cutoff = race_date - pd.Timedelta(days=90)
     jh = history[
@@ -165,6 +186,8 @@ def _jockey_rate(jockey_id: str, history: pd.DataFrame, race_date: pd.Timestamp)
 def _trainer_rate(trainer_id: str, history: pd.DataFrame, race_date: pd.Timestamp) -> float:
     """調教師の直近90日複勝率を返す。"""
     if not trainer_id or history.empty or "race_date" not in history.columns:
+        return np.nan
+    if "trainer_id" not in history.columns or "top3" not in history.columns:
         return np.nan
     cutoff = race_date - pd.Timedelta(days=90)
     th = history[
@@ -185,6 +208,8 @@ def _jockey_horse_rate(
     """騎手×馬コンビの複勝率（3回未満なら騎手全体で補完）。"""
     if horse_hist.empty or not jockey_id or "race_date" not in horse_hist.columns:
         return fallback
+    if "jockey_id" not in horse_hist.columns or "top3" not in horse_hist.columns:
+        return fallback
     combo = horse_hist[
         (horse_hist["jockey_id"].astype(str) == jockey_id) &
         (horse_hist["race_date"] < race_date)
@@ -204,6 +229,8 @@ def _jockey_course_rate(
     if not jockey_id or history.empty or "race_date" not in history.columns:
         return np.nan
     if "venue" not in history.columns or "course_type_enc" not in history.columns:
+        return np.nan
+    if "jockey_id" not in history.columns or "top3" not in history.columns:
         return np.nan
     past = history[
         (history["jockey_id"].astype(str) == jockey_id) &
@@ -228,6 +255,8 @@ def _jockey_dist_rate(
     if not jockey_id or history.empty or "race_date" not in history.columns:
         return np.nan
     if "distance" not in history.columns:
+        return np.nan
+    if "jockey_id" not in history.columns or "top3" not in history.columns:
         return np.nan
 
     hist_dist = pd.to_numeric(history["distance"], errors="coerce")
@@ -258,6 +287,9 @@ def _jockey_trainer_rate(
     """騎手×調教師コンビの過去複勝率（5走以上）を返す。"""
     if not jockey_id or not trainer_id or history.empty or "race_date" not in history.columns:
         return np.nan
+    for c in ("jockey_id", "trainer_id", "top3"):
+        if c not in history.columns:
+            return np.nan
     past = history[
         (history["jockey_id"].astype(str) == jockey_id) &
         (history["trainer_id"].astype(str) == trainer_id) &
@@ -275,7 +307,7 @@ def _horse_track_rate(
     """この馬の指定馬場状態での複勝率を返す。"""
     if horse_hist.empty or "race_date" not in horse_hist.columns:
         return np.nan
-    if "track_condition_enc" not in horse_hist.columns:
+    if "track_condition_enc" not in horse_hist.columns or "top3" not in horse_hist.columns:
         return np.nan
     past = horse_hist[
         (horse_hist["race_date"] < race_date) &

@@ -670,10 +670,31 @@ def predict_live(
         raise ValueError(f"出馬表に馬が見つかりませんでした: race_id={race_id}")
 
 
-    # 特徴量を生成
-    race_df = build_live_features(shutuba_info, cleaned_path=cleaned_path)
+    # 特徴量を生成（cleaned_races.csv がない/列欠損な環境でも動くよう KeyError を握る）
+    try:
+        race_df = build_live_features(shutuba_info, cleaned_path=cleaned_path)
+    except KeyError as e:
+        missing = str(e).strip("'\"")
+        logger.warning(
+            f"特徴量生成で KeyError ({missing}) → 該当列は NaN として再試行します"
+        )
+        # 空 DataFrame で再試行（過去成績なしモード）
+        from keiba_predictor.features.live_features import _load_history
+        try:
+            race_df = build_live_features(
+                {**shutuba_info, "_skip_history": True},
+                cleaned_path=cleaned_path,
+            )
+        except Exception:
+            race_df = pd.DataFrame()
     if race_df.empty:
         raise ValueError("特徴量の生成に失敗しました")
+
+    # FEATURE_COLS の欠損列を NaN で埋めてモデルが落ちないようにする
+    from keiba_predictor.features.feature_engineering import FEATURE_COLS as _FC
+    for _col in _FC:
+        if _col not in race_df.columns:
+            race_df[_col] = np.nan
 
     # 予測（距離帯別モデルを優先使用）
     band_bundle = None
