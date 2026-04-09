@@ -51,15 +51,19 @@ def _aggregate(rows: list[dict]) -> dict:
     if n == 0:
         return {"n": 0}
     honmei_hits = sum(1 for r in rows if r.get("fukusho_hit") == "True")
+    wide_hits = sum(1 for r in rows if r.get("wide_hit") == "True")
     bet = n * BET_PER_RACE
     ret = sum(_calc_return(r) for r in rows)
     profit = ret - bet
     roi = (ret / bet * 100) if bet > 0 else 0
     honmei_rate = honmei_hits / n * 100 if n > 0 else 0
+    wide_rate = wide_hits / n * 100 if n > 0 else 0
     return {
         "n": n,
         "honmei_hits": honmei_hits,
         "honmei_rate": honmei_rate,
+        "wide_hits": wide_hits,
+        "wide_rate": wide_rate,
         "bet": bet,
         "ret": ret,
         "profit": profit,
@@ -100,6 +104,7 @@ def analyze_daily(target_date: str = None) -> str:
         sep,
         f"対象レース: {s['n']}戦",
         f"本命的中率: {s['honmei_rate']:.0f}%（{s['honmei_hits']}/{s['n']}）",
+        f"ワイド的中率: {s['wide_rate']:.0f}%（{s['wide_hits']}/{s['n']}）",
         f"回収率: {s['roi']:.0f}%",
         sep,
     ]
@@ -137,6 +142,7 @@ def analyze_weekly(target_date: str = None) -> str:
         sep,
         f"対象レース: {s['n']}戦",
         f"本命的中率: {s['honmei_rate']:.0f}%（{s['honmei_hits']}/{s['n']}）",
+        f"ワイド的中率: {s['wide_rate']:.0f}%（{s['wide_hits']}/{s['n']}）",
         f"回収率: {s['roi']:.0f}%",
         sep,
         f"週間投資額: {s['bet']:,}円",
