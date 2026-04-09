@@ -168,6 +168,10 @@ jobs:
           "
           echo "✅ NAR予想生成完了"
 
+      - name: 通知済みフラグをリセット（predict後に残さない）
+        if: steps.mode.outputs.mode == 'predict'
+        run: rm -f keiba_predictor/data/notified_date.txt
+
       - name: 予想キャッシュをコミット・プッシュ
         if: steps.mode.outputs.mode == 'predict' || steps.mode.outputs.mode == 'both'
         run: |
@@ -193,7 +197,7 @@ jobs:
 
       # ── 通知（14時JST） ──────────────────────────────────────
       - name: Discord にNAR予想を送信
-        if: always()
+        if: steps.mode.outputs.mode == 'notify' || steps.mode.outputs.mode == 'both'
         continue-on-error: true
         run: |
           echo "📤 NAR予想通知を送信..."
