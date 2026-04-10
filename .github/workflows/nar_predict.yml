@@ -169,10 +169,6 @@ jobs:
           "
           echo "✅ NAR予想生成完了"
 
-      - name: 通知済みフラグをリセット（predict後に残さない）
-        if: steps.mode.outputs.mode == 'predict'
-        run: rm -f keiba_predictor/data/notified_date.txt
-
       - name: 予想キャッシュをコミット・プッシュ
         if: steps.mode.outputs.mode == 'predict' || steps.mode.outputs.mode == 'both'
         run: |
