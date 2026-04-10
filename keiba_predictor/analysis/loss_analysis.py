@@ -35,29 +35,71 @@ def _today_jst() -> date:
     return datetime.now(timezone(timedelta(hours=9))).date()
 
 
-def _calc_return(row: dict) -> int:
-    """ワイド100円ベース配当 × 10 = 1,000円購入時の払戻"""
+def _load_cache() -> dict:
+    """predictions_cache.json を読み込む。"""
+    cache_path = HISTORY_PATH.parent / "predictions_cache.json"
+    if not cache_path.exists():
+        return {}
+    try:
+        import json
+        return json.loads(cache_path.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+
+
+def _calc_return(row: dict, bet_amount: int = 1000) -> int:
+    """ワイド100円ベース配当 × (bet_amount/100) = 購入時の払戻"""
     if row.get("wide_hit") != "True":
         return 0
     try:
-        return int(row.get("wide_payout") or 0) * 10
+        return int(row.get("wide_payout") or 0) * (bet_amount // 100)
     except (ValueError, TypeError):
         return 0
 
 
-def _aggregate(rows: list[dict]) -> dict:
-    """的中率・投資・回収・回収率を集計"""
+def _aggregate(rows: list[dict], cache: dict = None) -> dict:
+    """的中率・投資・回収・回収率を集計（ストリーク増額対応）"""
     n = len(rows)
     if n == 0:
         return {"n": 0}
+
+    if cache is None:
+        cache = {}
+
     honmei_hits = sum(1 for r in rows if r.get("fukusho_hit") == "True")
     wide_hits = sum(1 for r in rows if r.get("wide_hit") == "True")
-    bet = n * BET_PER_RACE
-    ret = sum(_calc_return(r) for r in rows)
+
+    # ストリーク増額を反映した投資・回収を計算
+    bet = 0
+    ret = 0
+    bet_flat = 0
+    ret_flat = 0
+    boosted_races = 0
+    boosted_venues: dict[str, int] = {}
+
+    for r in rows:
+        rid = str(r.get("race_id", ""))
+        entry = cache.get(rid, {})
+        bs = entry.get("bet_strategy", {})
+        cost = bs.get("total_cost", BET_PER_RACE)
+        streak = bs.get("streak", 0)
+
+        bet += cost
+        ret += _calc_return(r, cost)
+        bet_flat += BET_PER_RACE
+        ret_flat += _calc_return(r, BET_PER_RACE)
+
+        if streak >= 2:
+            boosted_races += 1
+            venue = entry.get("venue", "?")
+            boosted_venues[venue] = boosted_venues.get(venue, 0) + 1
+
     profit = ret - bet
     roi = (ret / bet * 100) if bet > 0 else 0
     honmei_rate = honmei_hits / n * 100 if n > 0 else 0
     wide_rate = wide_hits / n * 100 if n > 0 else 0
+    boost_effect = (ret - ret_flat) - (bet - bet_flat)  # 増額による純利益差
+
     return {
         "n": n,
         "honmei_hits": honmei_hits,
@@ -68,6 +110,10 @@ def _aggregate(rows: list[dict]) -> dict:
         "ret": ret,
         "profit": profit,
         "roi": roi,
+        "bet_flat": bet_flat,
+        "boosted_races": boosted_races,
+        "boosted_venues": boosted_venues,
+        "boost_effect": boost_effect,
     }
 
 
@@ -96,7 +142,8 @@ def analyze_daily(target_date: str = None) -> str:
     if not daily_rows:
         return ""
 
-    s = _aggregate(daily_rows)
+    cache = _load_cache()
+    s = _aggregate(daily_rows, cache)
     sep = "━" * 16
     lines = [
         "📊 **【KEIBA EDGE】本日の成績**",
@@ -108,6 +155,19 @@ def analyze_daily(target_date: str = None) -> str:
         f"回収率: {s['roi']:.0f}%",
         sep,
     ]
+
+    # ストリーク増額情報
+    if s.get("boosted_races", 0) > 0:
+        bv = "・".join(f"{v}{c}" for v, c in sorted(s["boosted_venues"].items()))
+        effect = s["boost_effect"]
+        sign = "+" if effect >= 0 else ""
+        lines.extend([
+            f"🔥 増額レース: {s['boosted_races']}戦（{bv}）",
+            f"通常投資: {s['bet_flat']:,}円 → 実投資: {s['bet']:,}円",
+            f"増額効果: {sign}{effect:,}円",
+            sep,
+        ])
+
     return "\n".join(lines)
 
 
@@ -133,7 +193,8 @@ def analyze_weekly(target_date: str = None) -> str:
     if not week_rows:
         return ""
 
-    s = _aggregate(week_rows)
+    cache = _load_cache()
+    s = _aggregate(week_rows, cache)
     sep = "━" * 16
     profit_sign = "+" if s["profit"] >= 0 else ""
     lines = [
@@ -150,6 +211,17 @@ def analyze_weekly(target_date: str = None) -> str:
         f"週間損益: {profit_sign}{s['profit']:,}円",
         sep,
     ]
+
+    if s.get("boosted_races", 0) > 0:
+        bv = "・".join(f"{v}{c}" for v, c in sorted(s["boosted_venues"].items()))
+        effect = s["boost_effect"]
+        sign = "+" if effect >= 0 else ""
+        lines.extend([
+            f"🔥 増額レース: {s['boosted_races']}戦（{bv}）",
+            f"増額効果: {sign}{effect:,}円",
+            sep,
+        ])
+
     return "\n".join(lines)
 
 
