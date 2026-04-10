@@ -37,7 +37,7 @@
       "horse_number": 2,
       "horse_name": "ブライトメロディー",
       "prob": 0.829,
-      "odds": 3.4,
+      "odds": 3.7,
       "shap_top": [
         {
           "feature": "odds",
@@ -60,7 +60,7 @@
       "horse_number": 8,
       "horse_name": "アンプリフィ",
       "prob": 0.095,
-      "odds": 13.9,
+      "odds": 16.7,
       "shap_top": [
         {
           "feature": "jockey_district_fukusho_rate",
@@ -91,7 +91,7 @@
       5,
       9
     ],
-    "ana_horse_num": 8,
+    "ana_horse_num": 6,
     "ana_horse_info": {
       "horse_number": 8,
       "horse_name": "アンプリフィ",
@@ -134,23 +134,26 @@
       {
         "horse_number": 6,
         "horse_name": "アンフォーギヴン",
-        "ev_score": 9.412,
+        "ev_score": 10.979,
         "prob": 0.2413,
-        "odds": 39.0
+        "odds": 45.5,
+        "popularity": 10
       },
       {
         "horse_number": 4,
         "horse_name": "アファーマティヴ",
-        "ev_score": 9.152,
+        "ev_score": 7.232,
         "prob": 0.263,
-        "odds": 34.8
+        "odds": 27.5,
+        "popularity": 9
       },
       {
         "horse_number": 1,
         "horse_name": "シイズダイヤモンド",
-        "ev_score": 6.583,
+        "ev_score": 5.811,
         "prob": 0.3678,
-        "odds": 17.9
+        "odds": 15.8,
+        "popularity": 6
       }
     ],
     "dangerous_horses": [],
@@ -229,7 +232,8 @@
         }
       }
     },
-    "notified_predict": true
+    "notified_predict": true,
+    "odds_updated_at": "2026-04-10 14:01"
   },
   "202645041002": {
     "race_name": "3歳9",
@@ -241,7 +245,7 @@
       "horse_number": 5,
       "horse_name": "ファインティアラ",
       "prob": 0.981,
-      "odds": 2.1,
+      "odds": 3.9,
       "shap_top": [
         {
           "feature": "odds",
@@ -264,7 +268,7 @@
       "horse_number": 8,
       "horse_name": "シェナマーブル",
       "prob": 0.825,
-      "odds": 5.9,
+      "odds": 2.8,
       "shap_top": [
         {
           "feature": "odds",
@@ -287,7 +291,7 @@
       "horse_number": 9,
       "horse_name": "クツシタオトシタ",
       "prob": 0.164,
-      "odds": 14.7,
+      "odds": 11.0,
       "shap_top": [
         {
           "feature": "jockey_district_fukusho_rate",
@@ -318,7 +322,7 @@
       6,
       9
     ],
-    "ana_horse_num": 2,
+    "ana_horse_num": 4,
     "ana_horse_info": {
       "horse_number": 2,
       "horse_name": "ミュークティアラ",
@@ -361,23 +365,26 @@
       {
         "horse_number": 4,
         "horse_name": "タイトノット",
-        "ev_score": 8.527,
+        "ev_score": 14.772,
         "prob": 0.317,
-        "odds": 26.9
+        "odds": 46.6,
+        "popularity": 10
       },
       {
         "horse_number": 10,
         "horse_name": "シェブロンウーマン",
-        "ev_score": 8.1,
+        "ev_score": 10.249,
         "prob": 0.3306,
-        "odds": 24.5
+        "odds": 31.0,
+        "popularity": 9
       },
       {
         "horse_number": 7,
         "horse_name": "ラブイネヴィタブル",
-        "ev_score": 6.912,
+        "ev_score": 5.598,
         "prob": 0.2856,
-        "odds": 24.2
+        "odds": 19.6,
+        "popularity": 7
       }
     ],
     "dangerous_horses": [],
@@ -456,7 +463,8 @@
         }
       }
     },
-    "notified_predict": true
+    "notified_predict": true,
+    "odds_updated_at": "2026-04-10 14:01"
   },
   "202645041003": {
     "race_name": "3歳8",
@@ -678,7 +686,8 @@
         }
       }
     },
-    "notified_predict": true
+    "notified_predict": true,
+    "odds_updated_at": "2026-04-10 14:01"
   },
   "202645041004": {
     "race_name": "鳥語花香賞(3歳)",
@@ -690,7 +699,7 @@
       "horse_number": 2,
       "horse_name": "コタダブル",
       "prob": 0.896,
-      "odds": 3.1,
+      "odds": 4.9,
       "shap_top": [
         {
           "feature": "odds",
@@ -713,7 +722,7 @@
       "horse_number": 1,
       "horse_name": "スペースセイラー",
       "prob": 0.878,
-      "odds": 2.9,
+      "odds": 1.9,
       "shap_top": [
         {
           "feature": "odds",
@@ -736,7 +745,7 @@
       "horse_number": 5,
       "horse_name": "カナールレイナ",
       "prob": 0.117,
-      "odds": 13.1,
+      "odds": 17.6,
       "shap_top": [
         {
           "feature": "jockey_dist_fukusho_rate",
@@ -803,25 +812,28 @@
     ],
     "ev_top3": [
       {
-        "horse_number": 5,
-        "horse_name": "カナールレイナ",
-        "ev_score": 5.972,
-        "prob": 0.4559,
-        "odds": 13.1
-      },
-      {
         "horse_number": 6,
         "horse_name": "ベアアスムイ",
-        "ev_score": 4.755,
+        "ev_score": 8.497,
         "prob": 0.5058,
-        "odds": 9.4
+        "odds": 16.8,
+        "popularity": 5
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "カナールレイナ",
+        "ev_score": 8.024,
+        "prob": 0.4559,
+        "odds": 17.6,
+        "popularity": 6
       },
       {
         "horse_number": 3,
         "horse_name": "ロックシュガー",
-        "ev_score": 3.02,
+        "ev_score": 2.08,
         "prob": 0.671,
-        "odds": 4.5
+        "odds": 3.1,
+        "popularity": 2
       }
     ],
     "dangerous_horses": [],
@@ -900,7 +912,8 @@
         }
       }
     },
-    "notified_predict": true
+    "notified_predict": true,
+    "odds_updated_at": "2026-04-10 14:02"
   },
   "202645041005": {
     "race_name": "C3一二",
@@ -912,7 +925,7 @@
       "horse_number": 9,
       "horse_name": "モズミコシ",
       "prob": 0.997,
-      "odds": 1.6,
+      "odds": 1.9,
       "shap_top": [
         {
           "feature": "odds",
@@ -935,7 +948,7 @@
       "horse_number": 2,
       "horse_name": "ベニノレーヴ",
       "prob": 0.599,
-      "odds": 8.8,
+      "odds": 10.6,
       "shap_top": [
         {
           "feature": "popularity",
@@ -958,7 +971,7 @@
       "horse_number": 10,
       "horse_name": "リッキオ",
       "prob": 0.101,
-      "odds": 17.0,
+      "odds": 16.2,
       "shap_top": [
         {
           "feature": "jockey_district_fukusho_rate",
@@ -989,7 +1002,7 @@
       1,
       5
     ],
-    "ana_horse_num": 10,
+    "ana_horse_num": 7,
     "ana_horse_info": {
       "horse_number": 10,
       "horse_name": "リッキオ",
@@ -1030,25 +1043,28 @@
     ],
     "ev_top3": [
       {
+        "horse_number": 7,
+        "horse_name": "ティンドラ",
+        "ev_score": 10.15,
+        "prob": 0.3123,
+        "odds": 32.5,
+        "popularity": 9
+      },
+      {
         "horse_number": 11,
         "horse_name": "レディハナコ",
-        "ev_score": 18.144,
+        "ev_score": 7.641,
         "prob": 0.109,
-        "odds": 166.4
+        "odds": 70.1,
+        "popularity": 12
       },
       {
         "horse_number": 4,
         "horse_name": "エーテルノカゼ",
-        "ev_score": 11.022,
+        "ev_score": 6.963,
         "prob": 0.1376,
-        "odds": 80.1
-      },
-      {
-        "horse_number": 7,
-        "horse_name": "ティンドラ",
-        "ev_score": 10.026,
-        "prob": 0.3123,
-        "odds": 32.1
+        "odds": 50.6,
+        "popularity": 10
       }
     ],
     "dangerous_horses": [],
@@ -1120,7 +1136,8 @@
         }
       }
     },
-    "notified_predict": true
+    "notified_predict": true,
+    "odds_updated_at": "2026-04-10 14:02"
   },
   "202645041006": {
     "race_name": "C3一二",
@@ -1132,7 +1149,7 @@
       "horse_number": 2,
       "horse_name": "ミレニアムブリッジ",
       "prob": 0.766,
-      "odds": 5.4,
+      "odds": 9.9,
       "shap_top": [
         {
           "feature": "odds",
@@ -1155,7 +1172,7 @@
       "horse_number": 1,
       "horse_name": "ジンガブリッツ",
       "prob": 0.708,
-      "odds": 3.6,
+      "odds": 3.5,
       "shap_top": [
         {
           "feature": "odds",
@@ -1178,7 +1195,7 @@
       "horse_number": 8,
       "horse_name": "イノ",
       "prob": 0.16,
-      "odds": 11.7,
+      "odds": 14.0,
       "shap_top": [
         {
           "feature": "jockey_district_fukusho_rate",
@@ -1209,7 +1226,7 @@
       12,
       11
     ],
-    "ana_horse_num": 8,
+    "ana_horse_num": 6,
     "ana_horse_info": {
       "horse_number": 8,
       "horse_name": "イノ",
@@ -1250,25 +1267,28 @@
     ],
     "ev_top3": [
       {
-        "horse_number": 10,
-        "horse_name": "ホシプリンセス",
-        "ev_score": 9.284,
-        "prob": 0.2544,
-        "odds": 36.5
+        "horse_number": 6,
+        "horse_name": "ガルヴァニック",
+        "ev_score": 8.971,
+        "prob": 0.1343,
+        "odds": 66.8,
+        "popularity": 12
       },
       {
         "horse_number": 5,
         "horse_name": "セイウンヤタガラス",
-        "ev_score": 8.77,
+        "ev_score": 2.787,
         "prob": 0.2266,
-        "odds": 38.7
+        "odds": 12.3,
+        "popularity": 6
       },
       {
-        "horse_number": 6,
-        "horse_name": "ガルヴァニック",
-        "ev_score": 7.711,
-        "prob": 0.1343,
-        "odds": 57.4
+        "horse_number": 10,
+        "horse_name": "ホシプリンセス",
+        "ev_score": 0.967,
+        "prob": 0.2544,
+        "odds": 3.8,
+        "popularity": 2
       }
     ],
     "dangerous_horses": [],
@@ -1347,7 +1367,8 @@
         }
       }
     },
-    "notified_predict": true
+    "notified_predict": true,
+    "odds_updated_at": "2026-04-10 14:02"
   },
   "202645041007": {
     "race_name": "界雷賞(C2)",
@@ -1359,7 +1380,7 @@
       "horse_number": 2,
       "horse_name": "ナキムシヒカル",
       "prob": 0.999,
-      "odds": 1.3,
+      "odds": 1.6,
       "shap_top": [
         {
           "feature": "odds",
@@ -1382,7 +1403,7 @@
       "horse_number": 3,
       "horse_name": "フェアーメロディ",
       "prob": 0.756,
-      "odds": 7.3,
+      "odds": 20.1,
       "shap_top": [
         {
           "feature": "popularity",
@@ -1405,7 +1426,7 @@
       "horse_number": 5,
       "horse_name": "ダッシングマン",
       "prob": 0.198,
-      "odds": 31.1,
+      "odds": 95.7,
       "shap_top": [
         {
           "feature": "jockey_district_fukusho_rate",
@@ -1436,7 +1457,7 @@
       5,
       10
     ],
-    "ana_horse_num": null,
+    "ana_horse_num": 8,
     "ana_horse_info": {},
     "predicted_top5": [
       {
@@ -1474,23 +1495,26 @@
       {
         "horse_number": 5,
         "horse_name": "ダッシングマン",
-        "ev_score": 11.981,
+        "ev_score": 36.864,
         "prob": 0.3852,
-        "odds": 31.1
+        "odds": 95.7,
+        "popularity": 11
       },
       {
         "horse_number": 8,
         "horse_name": "カルストンオリビア",
-        "ev_score": 10.49,
+        "ev_score": 10.11,
         "prob": 0.2115,
-        "odds": 49.6
+        "odds": 47.8,
+        "popularity": 10
       },
       {
         "horse_number": 1,
         "horse_name": "レガシーオブエリザ",
-        "ev_score": 10.438,
+        "ev_score": 0.845,
         "prob": 0.1386,
-        "odds": 75.3
+        "odds": 6.1,
+        "popularity": 3
       }
     ],
     "dangerous_horses": [],
@@ -1562,7 +1586,8 @@
         }
       }
     },
-    "notified_predict": true
+    "notified_predict": true,
+    "odds_updated_at": "2026-04-10 14:02"
   },
   "202645041008": {
     "race_name": "C1一二",
@@ -1574,7 +1599,7 @@
       "horse_number": 10,
       "horse_name": "ブラッドライン",
       "prob": 0.823,
-      "odds": 2.8,
+      "odds": 8.0,
       "shap_top": [
         {
           "feature": "odds",
@@ -1597,7 +1622,7 @@
       "horse_number": 4,
       "horse_name": "パイロデキセキ",
       "prob": 0.753,
-      "odds": 4.9,
+      "odds": 2.6,
       "shap_top": [
         {
           "feature": "odds",
@@ -1620,7 +1645,7 @@
       "horse_number": 6,
       "horse_name": "ノーブルウィスパー",
       "prob": 0.058,
-      "odds": 13.2,
+      "odds": 7.2,
       "shap_top": [
         {
           "feature": "jockey_district_fukusho_rate",
@@ -1651,7 +1676,7 @@
       8,
       1
     ],
-    "ana_horse_num": 6,
+    "ana_horse_num": 12,
     "ana_horse_info": {
       "horse_number": 6,
       "horse_name": "ノーブルウィスパー",
@@ -1692,25 +1717,28 @@
     ],
     "ev_top3": [
       {
-        "horse_number": 7,
-        "horse_name": "ミスサン",
-        "ev_score": 12.019,
-        "prob": 0.0784,
-        "odds": 153.3
-      },
-      {
         "horse_number": 12,
         "horse_name": "アオイラン",
-        "ev_score": 10.283,
+        "ev_score": 4.447,
         "prob": 0.2391,
-        "odds": 43.0
+        "odds": 18.6,
+        "popularity": 10
       },
       {
         "horse_number": 3,
         "horse_name": "ボルドーティラミス",
-        "ev_score": 9.384,
+        "ev_score": 3.374,
         "prob": 0.3515,
-        "odds": 26.7
+        "odds": 9.6,
+        "popularity": 5
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "ミスサン",
+        "ev_score": 1.333,
+        "prob": 0.0784,
+        "odds": 17.0,
+        "popularity": 9
       }
     ],
     "dangerous_horses": [],
@@ -1789,7 +1817,8 @@
         }
       }
     },
-    "notified_predict": true
+    "notified_predict": true,
+    "odds_updated_at": "2026-04-10 14:02"
   },
   "202645041009": {
     "race_name": "C1一二",
@@ -1801,7 +1830,7 @@
       "horse_number": 10,
       "horse_name": "デルマプルシャ",
       "prob": 0.978,
-      "odds": 3.3,
+      "odds": 5.4,
       "shap_top": [
         {
           "feature": "odds",
@@ -1824,7 +1853,7 @@
       "horse_number": 1,
       "horse_name": "ベルエアキング",
       "prob": 0.956,
-      "odds": 2.2,
+      "odds": 3.4,
       "shap_top": [
         {
           "feature": "odds",
@@ -1847,7 +1876,7 @@
       "horse_number": 3,
       "horse_name": "アイノシャンティー",
       "prob": 0.361,
-      "odds": 13.2,
+      "odds": 12.8,
       "shap_top": [
         {
           "feature": "jockey_district_fukusho_rate",
@@ -1878,7 +1907,7 @@
       3,
       7
     ],
-    "ana_horse_num": null,
+    "ana_horse_num": 4,
     "ana_horse_info": {},
     "predicted_top5": [
       {
@@ -1914,25 +1943,28 @@
     ],
     "ev_top3": [
       {
-        "horse_number": 11,
-        "horse_name": "アルティメット",
-        "ev_score": 19.436,
-        "prob": 0.1057,
-        "odds": 183.8
+        "horse_number": 4,
+        "horse_name": "スターアドミラル",
+        "ev_score": 4.036,
+        "prob": 0.217,
+        "odds": 18.6,
+        "popularity": 8
       },
       {
         "horse_number": 6,
         "horse_name": "リコーターター",
-        "ev_score": 12.878,
+        "ev_score": 3.471,
         "prob": 0.1866,
-        "odds": 69.0
+        "odds": 18.6,
+        "popularity": 9
       },
       {
-        "horse_number": 4,
-        "horse_name": "スターアドミラル",
-        "ev_score": 10.981,
-        "prob": 0.217,
-        "odds": 50.6
+        "horse_number": 11,
+        "horse_name": "アルティメット",
+        "ev_score": 1.67,
+        "prob": 0.1057,
+        "odds": 15.8,
+        "popularity": 7
       }
     ],
     "dangerous_horses": [
@@ -2021,7 +2053,8 @@
         }
       }
     },
-    "notified_predict": true
+    "notified_predict": true,
+    "odds_updated_at": "2026-04-10 14:02"
   },
   "202645041010": {
     "race_name": "神速賞(C1)",
@@ -2033,7 +2066,7 @@
       "horse_number": 9,
       "horse_name": "モズアンドモズ",
       "prob": 0.993,
-      "odds": 2.1,
+      "odds": 2.7,
       "shap_top": [
         {
           "feature": "odds",
@@ -2056,7 +2089,7 @@
       "horse_number": 8,
       "horse_name": "マナコア",
       "prob": 0.867,
-      "odds": 4.7,
+      "odds": 3.7,
       "shap_top": [
         {
           "feature": "odds",
@@ -2079,7 +2112,7 @@
       "horse_number": 10,
       "horse_name": "シナツヒメ",
       "prob": 0.149,
-      "odds": 13.5,
+      "odds": 24.6,
       "shap_top": [
         {
           "feature": "jockey_district_fukusho_rate",
@@ -2110,7 +2143,7 @@
       12,
       3
     ],
-    "ana_horse_num": 10,
+    "ana_horse_num": 2,
     "ana_horse_info": {
       "horse_number": 10,
       "horse_name": "シナツヒメ",
@@ -2153,23 +2186,26 @@
       {
         "horse_number": 2,
         "horse_name": "サンファウンテン",
-        "ev_score": 12.223,
+        "ev_score": 9.395,
         "prob": 0.2617,
-        "odds": 46.7
+        "odds": 35.9,
+        "popularity": 9
       },
       {
         "horse_number": 5,
         "horse_name": "クラパッション",
-        "ev_score": 10.98,
+        "ev_score": 8.62,
         "prob": 0.1968,
-        "odds": 55.8
+        "odds": 43.8,
+        "popularity": 11
       },
       {
         "horse_number": 1,
         "horse_name": "アンエクスプロード",
-        "ev_score": 10.317,
+        "ev_score": 1.773,
         "prob": 0.1037,
-        "odds": 99.5
+        "odds": 17.1,
+        "popularity": 6
       }
     ],
     "dangerous_horses": [],
@@ -2241,7 +2277,8 @@
         }
       }
     },
-    "notified_predict": true
+    "notified_predict": true,
+    "odds_updated_at": "2026-04-10 14:02"
   },
   "202645041011": {
     "race_name": "桜吹雪特別(B1B2)",
@@ -2253,7 +2290,7 @@
       "horse_number": 2,
       "horse_name": "ドリームジャパン",
       "prob": 0.952,
-      "odds": 2.3,
+      "odds": 3.7,
       "shap_top": [
         {
           "feature": "odds",
@@ -2276,7 +2313,7 @@
       "horse_number": 4,
       "horse_name": "グーヴェルナイユ",
       "prob": 0.93,
-      "odds": 3.1,
+      "odds": 4.3,
       "shap_top": [
         {
           "feature": "odds",
@@ -2299,7 +2336,7 @@
       "horse_number": 1,
       "horse_name": "ホッコーソムニウム",
       "prob": 0.684,
-      "odds": 3.9,
+      "odds": 4.7,
       "shap_top": [
         {
           "feature": "odds",
@@ -2330,7 +2367,7 @@
       3,
       10
     ],
-    "ana_horse_num": null,
+    "ana_horse_num": 6,
     "ana_horse_info": {},
     "predicted_top5": [
       {
@@ -2366,25 +2403,28 @@
     ],
     "ev_top3": [
       {
-        "horse_number": 5,
-        "horse_name": "マインドユアミモザ",
-        "ev_score": 24.787,
-        "prob": 0.1211,
-        "odds": 204.7
-      },
-      {
         "horse_number": 6,
         "horse_name": "サヨノフィールド",
-        "ev_score": 11.408,
+        "ev_score": 9.169,
         "prob": 0.3151,
-        "odds": 36.2
+        "odds": 29.1,
+        "popularity": 8
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "マインドユアミモザ",
+        "ev_score": 7.242,
+        "prob": 0.1211,
+        "odds": 59.8,
+        "popularity": 10
       },
       {
         "horse_number": 8,
         "horse_name": "ランドマックス",
-        "ev_score": 9.767,
+        "ev_score": 4.899,
         "prob": 0.3043,
-        "odds": 32.1
+        "odds": 16.1,
+        "popularity": 6
       }
     ],
     "dangerous_horses": [],
@@ -2463,7 +2503,8 @@
         }
       }
     },
-    "notified_predict": true
+    "notified_predict": true,
+    "odds_updated_at": "2026-04-10 14:02"
   },
   "202645041012": {
     "race_name": "ファイナルアンサー賞(B3)",
@@ -2475,7 +2516,7 @@
       "horse_number": 3,
       "horse_name": "ヴィルミーキスミー",
       "prob": 0.941,
-      "odds": 1.9,
+      "odds": 6.4,
       "shap_top": [
         {
           "feature": "odds",
@@ -2498,7 +2539,7 @@
       "horse_number": 2,
       "horse_name": "エムティワイザー",
       "prob": 0.936,
-      "odds": 4.3,
+      "odds": 7.8,
       "shap_top": [
         {
           "feature": "odds",
@@ -2521,7 +2562,7 @@
       "horse_number": 5,
       "horse_name": "アーサ",
       "prob": 0.811,
-      "odds": 8.2,
+      "odds": 7.0,
       "shap_top": [
         {
           "feature": "popularity",
@@ -2552,7 +2593,7 @@
       6,
       11
     ],
-    "ana_horse_num": null,
+    "ana_horse_num": 1,
     "ana_horse_info": {},
     "predicted_top5": [
       {
@@ -2590,23 +2631,26 @@
       {
         "horse_number": 1,
         "horse_name": "テディージュエリー",
-        "ev_score": 14.205,
+        "ev_score": 11.407,
         "prob": 0.3499,
-        "odds": 40.6
-      },
-      {
-        "horse_number": 9,
-        "horse_name": "コパノマロン",
-        "ev_score": 13.052,
-        "prob": 0.2973,
-        "odds": 43.9
+        "odds": 32.6,
+        "popularity": 11
       },
       {
         "horse_number": 4,
         "horse_name": "ゴールドモーニン",
-        "ev_score": 7.729,
+        "ev_score": 6.644,
         "prob": 0.2647,
-        "odds": 29.2
+        "odds": 25.1,
+        "popularity": 10
+      },
+      {
+        "horse_number": 9,
+        "horse_name": "コパノマロン",
+        "ev_score": 5.946,
+        "prob": 0.2973,
+        "odds": 20.0,
+        "popularity": 9
       }
     ],
     "dangerous_horses": [],
@@ -2685,7 +2729,8 @@
         }
       }
     },
-    "notified_predict": true
+    "notified_predict": true,
+    "odds_updated_at": "2026-04-10 14:02"
   },
   "202646041001": {
     "race_name": "C29",
@@ -2697,7 +2742,7 @@
       "horse_number": 8,
       "horse_name": "ユナパール",
       "prob": 0.948,
-      "odds": 2.2,
+      "odds": 2.5,
       "shap_top": [
         {
           "feature": "odds",
@@ -2720,7 +2765,7 @@
       "horse_number": 5,
       "horse_name": "ブランクシート",
       "prob": 0.931,
-      "odds": 2.7,
+      "odds": 2.2,
       "shap_top": [
         {
           "feature": "odds",
@@ -2743,7 +2788,7 @@
       "horse_number": 3,
       "horse_name": "クリノヒビキ",
       "prob": 0.025,
-      "odds": 55.1,
+      "odds": 42.7,
       "shap_top": [
         {
           "feature": "avg_time_5",
@@ -2774,7 +2819,7 @@
       2,
       4
     ],
-    "ana_horse_num": 3,
+    "ana_horse_num": 1,
     "ana_horse_info": {
       "horse_number": 3,
       "horse_name": "クリノヒビキ",
@@ -2815,25 +2860,28 @@
     ],
     "ev_top3": [
       {
-        "horse_number": 3,
-        "horse_name": "クリノヒビキ",
-        "ev_score": 19.362,
-        "prob": 0.3514,
-        "odds": 55.1
-      },
-      {
         "horse_number": 1,
         "horse_name": "アマソナ",
-        "ev_score": 14.799,
+        "ev_score": 31.52,
         "prob": 0.2114,
-        "odds": 70.0
+        "odds": 149.1,
+        "popularity": 8
       },
       {
         "horse_number": 4,
         "horse_name": "カットビホッキマン",
-        "ev_score": 13.445,
+        "ev_score": 23.393,
         "prob": 0.4215,
-        "odds": 31.9
+        "odds": 55.5,
+        "popularity": 7
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "クリノヒビキ",
+        "ev_score": 15.005,
+        "prob": 0.3514,
+        "odds": 42.7,
+        "popularity": 6
       }
     ],
     "dangerous_horses": [],
@@ -2905,7 +2953,8 @@
         }
       }
     },
-    "notified_predict": true
+    "notified_predict": true,
+    "odds_updated_at": "2026-04-10 14:02"
   },
   "202646041002": {
     "race_name": "守史&由香里☆結婚1周年☆おめでとう記念(C2)",
@@ -2917,7 +2966,7 @@
       "horse_number": 1,
       "horse_name": "ハットメリリー",
       "prob": 0.999,
-      "odds": 1.4,
+      "odds": 1.1,
       "shap_top": [
         {
           "feature": "odds",
@@ -2940,7 +2989,7 @@
       "horse_number": 8,
       "horse_name": "タワークライマー",
       "prob": 0.991,
-      "odds": 5.9,
+      "odds": 5.7,
       "shap_top": [
         {
           "feature": "odds",
@@ -2963,7 +3012,7 @@
       "horse_number": 3,
       "horse_name": "シュンレツ",
       "prob": 0.655,
-      "odds": 6.2,
+      "odds": 19.3,
       "shap_top": [
         {
           "feature": "odds",
@@ -2994,7 +3043,7 @@
       7,
       6
     ],
-    "ana_horse_num": null,
+    "ana_horse_num": 5,
     "ana_horse_info": {},
     "predicted_top5": [
       {
@@ -3030,25 +3079,28 @@
     ],
     "ev_top3": [
       {
+        "horse_number": 6,
+        "horse_name": "ムーンライトアリア",
+        "ev_score": 38.021,
+        "prob": 0.3179,
+        "odds": 119.6,
+        "popularity": 8
+      },
+      {
         "horse_number": 5,
         "horse_name": "ナムラジャクソン",
-        "ev_score": 15.947,
+        "ev_score": 13.446,
         "prob": 0.2813,
-        "odds": 56.7
+        "odds": 47.8,
+        "popularity": 5
       },
       {
         "horse_number": 2,
         "horse_name": "クイーンオブロード",
-        "ev_score": 9.551,
+        "ev_score": 3.113,
         "prob": 0.3052,
-        "odds": 31.3
-      },
-      {
-        "horse_number": 6,
-        "horse_name": "ムーンライトアリア",
-        "ev_score": 8.201,
-        "prob": 0.3179,
-        "odds": 25.8
+        "odds": 10.2,
+        "popularity": 3
       }
     ],
     "dangerous_horses": [],
@@ -3127,7 +3179,8 @@
         }
       }
     },
-    "notified_predict": true
+    "notified_predict": true,
+    "odds_updated_at": "2026-04-10 14:02"
   },
   "202646041003": {
     "race_name": "C27",
@@ -3139,7 +3192,7 @@
       "horse_number": 9,
       "horse_name": "ロングサクセション",
       "prob": 0.958,
-      "odds": 2.6,
+      "odds": 5.1,
       "shap_top": [
         {
           "feature": "odds",
@@ -3162,7 +3215,7 @@
       "horse_number": 4,
       "horse_name": "エイシンセラフィム",
       "prob": 0.792,
-      "odds": 4.8,
+      "odds": 5.1,
       "shap_top": [
         {
           "feature": "odds",
@@ -3185,7 +3238,7 @@
       "horse_number": 8,
       "horse_name": "ギャクテンオー",
       "prob": 0.105,
-      "odds": 18.9,
+      "odds": 23.0,
       "shap_top": [
         {
           "feature": "jockey_district_fukusho_rate",
@@ -3216,7 +3269,7 @@
       2,
       8
     ],
-    "ana_horse_num": null,
+    "ana_horse_num": 6,
     "ana_horse_info": {},
     "predicted_top5": [
       {
@@ -3254,23 +3307,26 @@
       {
         "horse_number": 8,
         "horse_name": "ギャクテンオー",
-        "ev_score": 8.466,
+        "ev_score": 10.304,
         "prob": 0.448,
-        "odds": 18.9
-      },
-      {
-        "horse_number": 1,
-        "horse_name": "ハートリープ",
-        "ev_score": 6.955,
-        "prob": 0.4267,
-        "odds": 16.3
+        "odds": 23.0,
+        "popularity": 8
       },
       {
         "horse_number": 6,
         "horse_name": "ルーナ",
-        "ev_score": 6.664,
+        "ev_score": 6.608,
         "prob": 0.2873,
-        "odds": 23.2
+        "odds": 23.0,
+        "popularity": 7
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "ハートリープ",
+        "ev_score": 0.981,
+        "prob": 0.4267,
+        "odds": 2.3,
+        "popularity": 1
       }
     ],
     "dangerous_horses": [],
@@ -3349,7 +3405,8 @@
         }
       }
     },
-    "notified_predict": true
+    "notified_predict": true,
+    "odds_updated_at": "2026-04-10 14:02"
   },
   "202646041004": {
     "race_name": "C26",
@@ -3361,7 +3418,7 @@
       "horse_number": 6,
       "horse_name": "コーパスクリスティ",
       "prob": 0.995,
-      "odds": 1.4,
+      "odds": 2.7,
       "shap_top": [
         {
           "feature": "odds",
@@ -3384,7 +3441,7 @@
       "horse_number": 5,
       "horse_name": "ミスキャサリン",
       "prob": 0.711,
-      "odds": 5.5,
+      "odds": 19.4,
       "shap_top": [
         {
           "feature": "odds",
@@ -3407,7 +3464,7 @@
       "horse_number": 7,
       "horse_name": "ビービービルダー",
       "prob": 0.056,
-      "odds": 20.7,
+      "odds": 2.0,
       "shap_top": [
         {
           "feature": "prev_finish_pos",
@@ -3438,7 +3495,7 @@
       8,
       2
     ],
-    "ana_horse_num": 7,
+    "ana_horse_num": 4,
     "ana_horse_info": {
       "horse_number": 7,
       "horse_name": "ビービービルダー",
@@ -3481,23 +3538,26 @@
       {
         "horse_number": 4,
         "horse_name": "プリティドヌーヴ",
-        "ev_score": 10.956,
+        "ev_score": 11.159,
         "prob": 0.3361,
-        "odds": 32.6
+        "odds": 33.2,
+        "popularity": 8
       },
       {
         "horse_number": 1,
         "horse_name": "ジャッカルズサン",
-        "ev_score": 8.444,
+        "ev_score": 8.192,
         "prob": 0.2815,
-        "odds": 30.0
+        "odds": 29.1,
+        "popularity": 7
       },
       {
         "horse_number": 7,
         "horse_name": "ビービービルダー",
-        "ev_score": 8.227,
+        "ev_score": 0.795,
         "prob": 0.3975,
-        "odds": 20.7
+        "odds": 2.0,
+        "popularity": 1
       }
     ],
     "dangerous_horses": [],
@@ -3569,7 +3629,8 @@
         }
       }
     },
-    "notified_predict": true
+    "notified_predict": true,
+    "odds_updated_at": "2026-04-10 14:02"
   },
   "202646041005": {
     "race_name": "泰輝☆祐香結婚式記念杯(C2)",
@@ -3581,7 +3642,7 @@
       "horse_number": 2,
       "horse_name": "ワカムシャ",
       "prob": 0.996,
-      "odds": 1.4,
+      "odds": 4.6,
       "shap_top": [
         {
           "feature": "odds",
@@ -3604,7 +3665,7 @@
       "horse_number": 5,
       "horse_name": "ボルサリーノ",
       "prob": 0.861,
-      "odds": 4.1,
+      "odds": 8.9,
       "shap_top": [
         {
           "feature": "odds",
@@ -3627,7 +3688,7 @@
       "horse_number": 6,
       "horse_name": "ニューレトロ",
       "prob": 0.79,
-      "odds": 4.3,
+      "odds": 8.2,
       "shap_top": [
         {
           "feature": "odds",
@@ -3658,7 +3719,7 @@
       4,
       3
     ],
-    "ana_horse_num": null,
+    "ana_horse_num": 1,
     "ana_horse_info": {},
     "predicted_top5": [
       {
@@ -3696,23 +3757,26 @@
       {
         "horse_number": 3,
         "horse_name": "ウインフェリーチェ",
-        "ev_score": 15.224,
+        "ev_score": 4.53,
         "prob": 0.2117,
-        "odds": 71.9
+        "odds": 21.4,
+        "popularity": 6
       },
       {
         "horse_number": 4,
         "horse_name": "トップキング",
-        "ev_score": 12.071,
+        "ev_score": 2.294,
         "prob": 0.5462,
-        "odds": 22.1
+        "odds": 4.2,
+        "popularity": 2
       },
       {
         "horse_number": 1,
         "horse_name": "ビックハート",
-        "ev_score": 6.063,
+        "ev_score": 0.33,
         "prob": 0.1737,
-        "odds": 34.9
+        "odds": 1.9,
+        "popularity": 1
       }
     ],
     "dangerous_horses": [],
@@ -3784,7 +3848,8 @@
         }
       }
     },
-    "notified_predict": true
+    "notified_predict": true,
+    "odds_updated_at": "2026-04-10 14:02"
   },
   "202646041006": {
     "race_name": "C24",
@@ -3796,7 +3861,7 @@
       "horse_number": 2,
       "horse_name": "マードラド",
       "prob": 0.925,
-      "odds": 4.7,
+      "odds": 6.7,
       "shap_top": [
         {
           "feature": "odds",
@@ -3819,7 +3884,7 @@
       "horse_number": 3,
       "horse_name": "アルマイナンナ",
       "prob": 0.91,
-      "odds": 2.5,
+      "odds": 11.3,
       "shap_top": [
         {
           "feature": "odds",
@@ -3842,7 +3907,7 @@
       "horse_number": 5,
       "horse_name": "ビックゲート",
       "prob": 0.037,
-      "odds": 16.0,
+      "odds": 7.5,
       "shap_top": [
         {
           "feature": "jockey_dist_fukusho_rate",
@@ -3873,7 +3938,7 @@
       1,
       6
     ],
-    "ana_horse_num": 5,
+    "ana_horse_num": 7,
     "ana_horse_info": {
       "horse_number": 5,
       "horse_name": "ビックゲート",
@@ -3914,25 +3979,28 @@
     ],
     "ev_top3": [
       {
-        "horse_number": 8,
-        "horse_name": "ナムラパール",
-        "ev_score": 10.708,
-        "prob": 0.363,
-        "odds": 29.5
-      },
-      {
         "horse_number": 7,
         "horse_name": "マイネルトワイス",
-        "ev_score": 7.936,
+        "ev_score": 9.474,
         "prob": 0.3137,
-        "odds": 25.3
+        "odds": 30.2,
+        "popularity": 9
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "ナムラパール",
+        "ev_score": 9.402,
+        "prob": 0.363,
+        "odds": 25.9,
+        "popularity": 8
       },
       {
         "horse_number": 9,
         "horse_name": "コンパウンダー",
-        "ev_score": 6.285,
+        "ev_score": 0.578,
         "prob": 0.3612,
-        "odds": 17.4
+        "odds": 1.6,
+        "popularity": 1
       }
     ],
     "dangerous_horses": [],
@@ -4011,7 +4079,8 @@
         }
       }
     },
-    "notified_predict": true
+    "notified_predict": true,
+    "odds_updated_at": "2026-04-10 14:02"
   },
   "202646041007": {
     "race_name": "C23",
@@ -4023,7 +4092,7 @@
       "horse_number": 4,
       "horse_name": "フィエールガール",
       "prob": 0.973,
-      "odds": 2.0,
+      "odds": 5.2,
       "shap_top": [
         {
           "feature": "odds",
@@ -4046,7 +4115,7 @@
       "horse_number": 8,
       "horse_name": "シェーンシュタット",
       "prob": 0.884,
-      "odds": 5.3,
+      "odds": 18.9,
       "shap_top": [
         {
           "feature": "odds",
@@ -4069,7 +4138,7 @@
       "horse_number": 7,
       "horse_name": "ネモフィラ",
       "prob": 0.039,
-      "odds": 15.1,
+      "odds": 11.6,
       "shap_top": [
         {
           "feature": "jockey_district_fukusho_rate",
@@ -4100,7 +4169,7 @@
       9,
       1
     ],
-    "ana_horse_num": 7,
+    "ana_horse_num": 5,
     "ana_horse_info": {
       "horse_number": 7,
       "horse_name": "ネモフィラ",
@@ -4141,25 +4210,28 @@
     ],
     "ev_top3": [
       {
-        "horse_number": 2,
-        "horse_name": "ソルセルリ",
-        "ev_score": 9.456,
-        "prob": 0.3216,
-        "odds": 29.4
-      },
-      {
         "horse_number": 5,
         "horse_name": "ヘリオシース",
-        "ev_score": 8.855,
+        "ev_score": 28.985,
         "prob": 0.3834,
-        "odds": 23.1
+        "odds": 75.6,
+        "popularity": 9
       },
       {
         "horse_number": 6,
         "horse_name": "ルビープリンセス",
-        "ev_score": 8.124,
+        "ev_score": 8.53,
         "prob": 0.3385,
-        "odds": 24.0
+        "odds": 25.2,
+        "popularity": 8
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "ソルセルリ",
+        "ev_score": 0.45,
+        "prob": 0.3216,
+        "odds": 1.4,
+        "popularity": 1
       }
     ],
     "dangerous_horses": [],
@@ -4238,7 +4310,8 @@
         }
       }
     },
-    "notified_predict": true
+    "notified_predict": true,
+    "odds_updated_at": "2026-04-10 14:02"
   },
   "202646041008": {
     "race_name": "にゃりステ記念(C2)",
@@ -4250,7 +4323,7 @@
       "horse_number": 9,
       "horse_name": "エイユーサブリナ",
       "prob": 0.99,
-      "odds": 2.0,
+      "odds": 8.2,
       "shap_top": [
         {
           "feature": "odds",
@@ -4273,7 +4346,7 @@
       "horse_number": 7,
       "horse_name": "マリアディオーサ",
       "prob": 0.973,
-      "odds": 3.7,
+      "odds": 5.3,
       "shap_top": [
         {
           "feature": "odds",
@@ -4296,7 +4369,7 @@
       "horse_number": 4,
       "horse_name": "プライムライン",
       "prob": 0.948,
-      "odds": 2.7,
+      "odds": 5.8,
       "shap_top": [
         {
           "feature": "odds",
@@ -4327,7 +4400,7 @@
       1,
       2
     ],
-    "ana_horse_num": null,
+    "ana_horse_num": 3,
     "ana_horse_info": {},
     "predicted_top5": [
       {
@@ -4363,25 +4436,28 @@
     ],
     "ev_top3": [
       {
+        "horse_number": 2,
+        "horse_name": "マノンルージュ",
+        "ev_score": 7.895,
+        "prob": 0.3478,
+        "odds": 22.7,
+        "popularity": 5
+      },
+      {
         "horse_number": 3,
         "horse_name": "チャックイーズラブ",
-        "ev_score": 14.343,
+        "ev_score": 6.867,
         "prob": 0.1135,
-        "odds": 126.4
+        "odds": 60.5,
+        "popularity": 8
       },
       {
         "horse_number": 8,
         "horse_name": "ベストベルシック",
-        "ev_score": 14.184,
+        "ev_score": 5.457,
         "prob": 0.2404,
-        "odds": 59.0
-      },
-      {
-        "horse_number": 2,
-        "horse_name": "マノンルージュ",
-        "ev_score": 14.086,
-        "prob": 0.3478,
-        "odds": 40.5
+        "odds": 22.7,
+        "popularity": 6
       }
     ],
     "dangerous_horses": [],
@@ -4460,7 +4536,8 @@
         }
       }
     },
-    "notified_predict": true
+    "notified_predict": true,
+    "odds_updated_at": "2026-04-10 14:02"
   },
   "202646041009": {
     "race_name": "B26",
@@ -4472,7 +4549,7 @@
       "horse_number": 10,
       "horse_name": "イモータルソウル",
       "prob": 0.977,
-      "odds": 2.0,
+      "odds": 4.6,
       "shap_top": [
         {
           "feature": "odds",
@@ -4495,7 +4572,7 @@
       "horse_number": 9,
       "horse_name": "チョボナイノ",
       "prob": 0.762,
-      "odds": 4.8,
+      "odds": 29.9,
       "shap_top": [
         {
           "feature": "odds",
@@ -4518,7 +4595,7 @@
       "horse_number": 2,
       "horse_name": "ジェネロジテ",
       "prob": 0.152,
-      "odds": 14.2,
+      "odds": 37.4,
       "shap_top": [
         {
           "feature": "jockey_district_fukusho_rate",
@@ -4549,7 +4626,7 @@
       1,
       3
     ],
-    "ana_horse_num": 2,
+    "ana_horse_num": 7,
     "ana_horse_info": {
       "horse_number": 2,
       "horse_name": "ジェネロジテ",
@@ -4592,23 +4669,26 @@
       {
         "horse_number": 7,
         "horse_name": "ロケットバディー",
-        "ev_score": 11.472,
+        "ev_score": 28.559,
         "prob": 0.1909,
-        "odds": 60.1
+        "odds": 149.6,
+        "popularity": 10
       },
       {
         "horse_number": 6,
         "horse_name": "ベストイズアスク",
-        "ev_score": 10.736,
+        "ev_score": 10.443,
         "prob": 0.2097,
-        "odds": 51.2
+        "odds": 49.8,
+        "popularity": 9
       },
       {
         "horse_number": 4,
         "horse_name": "ギンザターゲット",
-        "ev_score": 7.649,
+        "ev_score": 6.901,
         "prob": 0.4157,
-        "odds": 18.4
+        "odds": 16.6,
+        "popularity": 4
       }
     ],
     "dangerous_horses": [],
@@ -4680,7 +4760,8 @@
         }
       }
     },
-    "notified_predict": true
+    "notified_predict": true,
+    "odds_updated_at": "2026-04-10 14:02"
   },
   "202646041010": {
     "race_name": "地方競馬の馬券はSPAT4で!賞(B2)",
@@ -4692,7 +4773,7 @@
       "horse_number": 1,
       "horse_name": "シンリミテス",
       "prob": 0.999,
-      "odds": 1.4,
+      "odds": 3.0,
       "shap_top": [
         {
           "feature": "odds",
@@ -4715,7 +4796,7 @@
       "horse_number": 3,
       "horse_name": "ハイエストポイント",
       "prob": 0.874,
-      "odds": 6.9,
+      "odds": 18.1,
       "shap_top": [
         {
           "feature": "odds",
@@ -4738,7 +4819,7 @@
       "horse_number": 2,
       "horse_name": "ソウルユニバンス",
       "prob": 0.174,
-      "odds": 23.0,
+      "odds": 1.8,
       "shap_top": [
         {
           "feature": "avg_time_5",
@@ -4769,7 +4850,7 @@
       9,
       2
     ],
-    "ana_horse_num": 7,
+    "ana_horse_num": 5,
     "ana_horse_info": {
       "horse_number": 7,
       "horse_name": "ハートロック",
@@ -4810,25 +4891,28 @@
     ],
     "ev_top3": [
       {
+        "horse_number": 5,
+        "horse_name": "ラースアルアイン",
+        "ev_score": 11.74,
+        "prob": 0.1174,
+        "odds": 100.0,
+        "popularity": 9
+      },
+      {
         "horse_number": 4,
         "horse_name": "フォーユーランラン",
-        "ev_score": 15.58,
+        "ev_score": 1.84,
         "prob": 0.046,
-        "odds": 338.4
+        "odds": 40.0,
+        "popularity": 8
       },
       {
         "horse_number": 2,
         "horse_name": "ソウルユニバンス",
-        "ev_score": 9.76,
+        "ev_score": 0.764,
         "prob": 0.4243,
-        "odds": 23.0
-      },
-      {
-        "horse_number": 5,
-        "horse_name": "ラースアルアイン",
-        "ev_score": 8.368,
-        "prob": 0.1174,
-        "odds": 71.3
+        "odds": 1.8,
+        "popularity": 1
       }
     ],
     "dangerous_horses": [],
@@ -4900,7 +4984,8 @@
         }
       }
     },
-    "notified_predict": true
+    "notified_predict": true,
+    "odds_updated_at": "2026-04-10 14:02"
   },
   "202646041011": {
     "race_name": "楽天競馬で馬券を買おう!楽天競馬特別(A1)",
@@ -4912,7 +4997,7 @@
       "horse_number": 1,
       "horse_name": "キュムロンニンバス",
       "prob": 0.93,
-      "odds": 2.8,
+      "odds": 1.7,
       "shap_top": [
         {
           "feature": "odds",
@@ -4935,7 +5020,7 @@
       "horse_number": 9,
       "horse_name": "ローズピリオド",
       "prob": 0.806,
-      "odds": 2.9,
+      "odds": 4.9,
       "shap_top": [
         {
           "feature": "odds",
@@ -4958,7 +5043,7 @@
       "horse_number": 6,
       "horse_name": "デルマアートマン",
       "prob": 0.357,
-      "odds": 14.0,
+      "odds": 19.7,
       "shap_top": [
         {
           "feature": "prev_odds",
@@ -4989,7 +5074,7 @@
       6,
       2
     ],
-    "ana_horse_num": 5,
+    "ana_horse_num": 7,
     "ana_horse_info": {
       "horse_number": 5,
       "horse_name": "シスターアクト",
@@ -5030,25 +5115,28 @@
     ],
     "ev_top3": [
       {
+        "horse_number": 7,
+        "horse_name": "エコロブレード",
+        "ev_score": 14.705,
+        "prob": 0.3396,
+        "odds": 43.3,
+        "popularity": 9
+      },
+      {
         "horse_number": 5,
         "horse_name": "シスターアクト",
-        "ev_score": 9.775,
+        "ev_score": 8.312,
         "prob": 0.3848,
-        "odds": 25.4
+        "odds": 21.6,
+        "popularity": 7
       },
       {
         "horse_number": 2,
         "horse_name": "ハクサンアルタイル",
-        "ev_score": 9.483,
+        "ev_score": 3.59,
         "prob": 0.5358,
-        "odds": 17.7
-      },
-      {
-        "horse_number": 7,
-        "horse_name": "エコロブレード",
-        "ev_score": 8.728,
-        "prob": 0.3396,
-        "odds": 25.7
+        "odds": 6.7,
+        "popularity": 3
       }
     ],
     "dangerous_horses": [],
@@ -5127,7 +5215,8 @@
         }
       }
     },
-    "notified_predict": true
+    "notified_predict": true,
+    "odds_updated_at": "2026-04-10 14:02"
   },
   "202646041012": {
     "race_name": "能登復興支援 宇出津賞(B2)",
@@ -5139,7 +5228,7 @@
       "horse_number": 2,
       "horse_name": "トウショウクラウド",
       "prob": 0.971,
-      "odds": 2.3,
+      "odds": 4.6,
       "shap_top": [
         {
           "feature": "odds",
@@ -5162,7 +5251,7 @@
       "horse_number": 3,
       "horse_name": "セキレイ",
       "prob": 0.871,
-      "odds": 4.4,
+      "odds": 7.5,
       "shap_top": [
         {
           "feature": "odds",
@@ -5185,7 +5274,7 @@
       "horse_number": 1,
       "horse_name": "インターシア",
       "prob": 0.285,
-      "odds": 16.7,
+      "odds": 14.0,
       "shap_top": [
         {
           "feature": "avg_time_5",
@@ -5216,7 +5305,7 @@
       1,
       4
     ],
-    "ana_horse_num": 8,
+    "ana_horse_num": 6,
     "ana_horse_info": {
       "horse_number": 8,
       "horse_name": "フェスティヴカレン",
@@ -5257,25 +5346,28 @@
     ],
     "ev_top3": [
       {
-        "horse_number": 11,
-        "horse_name": "ブザービート",
-        "ev_score": 12.139,
-        "prob": 0.1984,
-        "odds": 61.2
+        "horse_number": 1,
+        "horse_name": "インターシア",
+        "ev_score": 6.57,
+        "prob": 0.4693,
+        "odds": 14.0,
+        "popularity": 9
       },
       {
         "horse_number": 6,
         "horse_name": "マイボーイ",
-        "ev_score": 8.563,
+        "ev_score": 4.21,
         "prob": 0.3598,
-        "odds": 23.8
+        "odds": 11.7,
+        "popularity": 8
       },
       {
-        "horse_number": 1,
-        "horse_name": "インターシア",
-        "ev_score": 7.837,
-        "prob": 0.4693,
-        "odds": 16.7
+        "horse_number": 11,
+        "horse_name": "ブザービート",
+        "ev_score": 2.778,
+        "prob": 0.1984,
+        "odds": 14.0,
+        "popularity": 10
       }
     ],
     "dangerous_horses": [],
@@ -5354,7 +5446,8 @@
         }
       }
     },
-    "notified_predict": true
+    "notified_predict": true,
+    "odds_updated_at": "2026-04-10 14:02"
   },
   "202648041001": {
     "race_name": "C12組",
@@ -5366,7 +5459,7 @@
       "horse_number": 3,
       "horse_name": "パキラスイート",
       "prob": 0.891,
-      "odds": 3.6,
+      "odds": 2.9,
       "shap_top": [
         {
           "feature": "odds",
@@ -5389,7 +5482,7 @@
       "horse_number": 2,
       "horse_name": "エクメノポリス",
       "prob": 0.821,
-      "odds": 5.4,
+      "odds": 8.2,
       "shap_top": [
         {
           "feature": "odds",
@@ -5412,7 +5505,7 @@
       "horse_number": 6,
       "horse_name": "リッククッキー",
       "prob": 0.184,
-      "odds": 16.8,
+      "odds": 14.6,
       "shap_top": [
         {
           "feature": "avg_time_5",
@@ -5443,7 +5536,7 @@
       9,
       6
     ],
-    "ana_horse_num": 4,
+    "ana_horse_num": 1,
     "ana_horse_info": {
       "horse_number": 4,
       "horse_name": "ヘキレキイッセン",
@@ -5486,23 +5579,26 @@
       {
         "horse_number": 1,
         "horse_name": "サントロペ",
-        "ev_score": 24.185,
+        "ev_score": 32.449,
         "prob": 0.1463,
-        "odds": 165.3
+        "odds": 221.8,
+        "popularity": 11
       },
       {
         "horse_number": 4,
         "horse_name": "ヘキレキイッセン",
-        "ev_score": 11.727,
+        "ev_score": 15.202,
         "prob": 0.4188,
-        "odds": 28.0
+        "odds": 36.3,
+        "popularity": 9
       },
       {
         "horse_number": 6,
         "horse_name": "リッククッキー",
-        "ev_score": 8.095,
+        "ev_score": 7.034,
         "prob": 0.4818,
-        "odds": 16.8
+        "odds": 14.6,
+        "popularity": 6
       }
     ],
     "dangerous_horses": [
@@ -5591,7 +5687,8 @@
         }
       }
     },
-    "notified_predict": true
+    "notified_predict": true,
+    "odds_updated_at": "2026-04-10 14:02"
   },
   "202648041002": {
     "race_name": "C11組",
@@ -5603,7 +5700,7 @@
       "horse_number": 3,
       "horse_name": "ベストキャット",
       "prob": 0.893,
-      "odds": 3.9,
+      "odds": 2.5,
       "shap_top": [
         {
           "feature": "odds",
@@ -5626,7 +5723,7 @@
       "horse_number": 4,
       "horse_name": "ナンゴクジャックス",
       "prob": 0.662,
-      "odds": 5.7,
+      "odds": 6.5,
       "shap_top": [
         {
           "feature": "odds",
@@ -5649,7 +5746,7 @@
       "horse_number": 2,
       "horse_name": "スイングボーイ",
       "prob": 0.147,
-      "odds": 13.4,
+      "odds": 16.6,
       "shap_top": [
         {
           "feature": "prev_finish_pos",
@@ -5680,7 +5777,7 @@
       5,
       2
     ],
-    "ana_horse_num": 6,
+    "ana_horse_num": 11,
     "ana_horse_info": {
       "horse_number": 6,
       "horse_name": "ヴォルヴァ",
@@ -5721,25 +5818,28 @@
     ],
     "ev_top3": [
       {
+        "horse_number": 11,
+        "horse_name": "ウインマグノリア",
+        "ev_score": 21.831,
+        "prob": 0.127,
+        "odds": 171.9,
+        "popularity": 10
+      },
+      {
         "horse_number": 8,
         "horse_name": "ゴールドパン",
-        "ev_score": 11.577,
+        "ev_score": 18.305,
         "prob": 0.3189,
-        "odds": 36.3
+        "odds": 57.4,
+        "popularity": 9
       },
       {
         "horse_number": 2,
         "horse_name": "スイングボーイ",
-        "ev_score": 6.356,
+        "ev_score": 7.873,
         "prob": 0.4743,
-        "odds": 13.4
-      },
-      {
-        "horse_number": 11,
-        "horse_name": "ウインマグノリア",
-        "ev_score": 5.628,
-        "prob": 0.127,
-        "odds": 44.3
+        "odds": 16.6,
+        "popularity": 5
       }
     ],
     "dangerous_horses": [],
@@ -5818,7 +5918,8 @@
         }
       }
     },
-    "notified_predict": true
+    "notified_predict": true,
+    "odds_updated_at": "2026-04-10 14:02"
   },
   "202648041003": {
     "race_name": "C10組",
@@ -5830,7 +5931,7 @@
       "horse_number": 9,
       "horse_name": "シャイニーセーラー",
       "prob": 0.939,
-      "odds": 2.7,
+      "odds": 2.2,
       "shap_top": [
         {
           "feature": "odds",
@@ -5853,7 +5954,7 @@
       "horse_number": 7,
       "horse_name": "メイショウキタダケ",
       "prob": 0.636,
-      "odds": 7.7,
+      "odds": 5.1,
       "shap_top": [
         {
           "feature": "popularity",
@@ -5876,7 +5977,7 @@
       "horse_number": 3,
       "horse_name": "ゴーゴーゴウト",
       "prob": 0.118,
-      "odds": 13.6,
+      "odds": 28.0,
       "shap_top": [
         {
           "feature": "jockey_district_fukusho_rate",
@@ -5907,7 +6008,7 @@
       1,
       5
     ],
-    "ana_horse_num": 3,
+    "ana_horse_num": 6,
     "ana_horse_info": {
       "horse_number": 3,
       "horse_name": "ゴーゴーゴウト",
@@ -5950,23 +6051,26 @@
       {
         "horse_number": 6,
         "horse_name": "ブリリアントギフト",
-        "ev_score": 9.244,
+        "ev_score": 25.477,
         "prob": 0.215,
-        "odds": 43.0
+        "odds": 118.5,
+        "popularity": 11
       },
       {
         "horse_number": 11,
         "horse_name": "ジャストハンマー",
-        "ev_score": 9.11,
+        "ev_score": 19.367,
         "prob": 0.3374,
-        "odds": 27.0
+        "odds": 57.4,
+        "popularity": 9
       },
       {
         "horse_number": 4,
         "horse_name": "カピタン",
-        "ev_score": 6.011,
+        "ev_score": 9.532,
         "prob": 0.1408,
-        "odds": 42.7
+        "odds": 67.7,
+        "popularity": 10
       }
     ],
     "dangerous_horses": [],
@@ -6045,7 +6149,8 @@
         }
       }
     },
-    "notified_predict": true
+    "notified_predict": true,
+    "odds_updated_at": "2026-04-10 14:03"
   },
   "202648041004": {
     "race_name": "C9組",
@@ -6057,7 +6162,7 @@
       "horse_number": 11,
       "horse_name": "クインズモンブラン",
       "prob": 0.979,
-      "odds": 2.0,
+      "odds": 2.5,
       "shap_top": [
         {
           "feature": "odds",
@@ -6080,7 +6185,7 @@
       "horse_number": 10,
       "horse_name": "ロジピエルフ",
       "prob": 0.96,
-      "odds": 3.0,
+      "odds": 3.8,
       "shap_top": [
         {
           "feature": "odds",
@@ -6103,7 +6208,7 @@
       "horse_number": 6,
       "horse_name": "ハクサンシャトル",
       "prob": 0.517,
-      "odds": 7.3,
+      "odds": 4.9,
       "shap_top": [
         {
           "feature": "odds",
@@ -6134,7 +6239,7 @@
       7,
       3
     ],
-    "ana_horse_num": null,
+    "ana_horse_num": 1,
     "ana_horse_info": {},
     "predicted_top5": [
       {
@@ -6170,25 +6275,28 @@
     ],
     "ev_top3": [
       {
-        "horse_number": 8,
-        "horse_name": "カゼノヨウニ",
-        "ev_score": 11.619,
-        "prob": 0.3098,
-        "odds": 37.5
-      },
-      {
         "horse_number": 3,
         "horse_name": "テルケンユミガール",
-        "ev_score": 11.233,
+        "ev_score": 13.488,
         "prob": 0.4176,
-        "odds": 26.9
+        "odds": 32.3,
+        "popularity": 7
       },
       {
         "horse_number": 1,
         "horse_name": "ストラティファイド",
-        "ev_score": 9.565,
+        "ev_score": 13.313,
         "prob": 0.2585,
-        "odds": 37.0
+        "odds": 51.5,
+        "popularity": 9
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "カゼノヨウニ",
+        "ev_score": 5.576,
+        "prob": 0.3098,
+        "odds": 18.0,
+        "popularity": 5
       }
     ],
     "dangerous_horses": [],
@@ -6267,7 +6375,8 @@
         }
       }
     },
-    "notified_predict": true
+    "notified_predict": true,
+    "odds_updated_at": "2026-04-10 14:03"
   },
   "202648041005": {
     "race_name": "C8組",
@@ -6279,7 +6388,7 @@
       "horse_number": 9,
       "horse_name": "アイタロオ",
       "prob": 0.913,
-      "odds": 2.4,
+      "odds": 2.9,
       "shap_top": [
         {
           "feature": "odds",
@@ -6302,7 +6411,7 @@
       "horse_number": 11,
       "horse_name": "バイマイセルフ",
       "prob": 0.707,
-      "odds": 5.1,
+      "odds": 5.3,
       "shap_top": [
         {
           "feature": "odds",
@@ -6325,7 +6434,7 @@
       "horse_number": 5,
       "horse_name": "ミッションアイズ",
       "prob": 0.304,
-      "odds": 12.5,
+      "odds": 24.5,
       "shap_top": [
         {
           "feature": "jockey_trainer_fukusho_rate",
@@ -6356,7 +6465,7 @@
       5,
       1
     ],
-    "ana_horse_num": 2,
+    "ana_horse_num": 6,
     "ana_horse_info": {
       "horse_number": 2,
       "horse_name": "パルジファル",
@@ -6399,23 +6508,26 @@
       {
         "horse_number": 6,
         "horse_name": "ウォーターリッシュ",
-        "ev_score": 19.99,
+        "ev_score": 12.448,
         "prob": 0.1924,
-        "odds": 103.9
+        "odds": 64.7,
+        "popularity": 11
       },
       {
         "horse_number": 4,
         "horse_name": "グレースシャルマン",
-        "ev_score": 11.069,
+        "ev_score": 3.019,
         "prob": 0.2287,
-        "odds": 48.4
+        "odds": 13.2,
+        "popularity": 6
       },
       {
         "horse_number": 7,
         "horse_name": "ラビオンアスール",
-        "ev_score": 9.563,
+        "ev_score": 2.373,
         "prob": 0.1771,
-        "odds": 54.0
+        "odds": 13.4,
+        "popularity": 7
       }
     ],
     "dangerous_horses": [],
@@ -6494,7 +6606,8 @@
         }
       }
     },
-    "notified_predict": true
+    "notified_predict": true,
+    "odds_updated_at": "2026-04-10 14:03"
   },
   "202648041006": {
     "race_name": "蘭ちゃん1歳バースデイ(B)",
@@ -6506,7 +6619,7 @@
       "horse_number": 7,
       "horse_name": "ドリームトリップ",
       "prob": 0.935,
-      "odds": 2.1,
+      "odds": 2.8,
       "shap_top": [
         {
           "feature": "odds",
@@ -6529,7 +6642,7 @@
       "horse_number": 4,
       "horse_name": "ダイタエリュシオン",
       "prob": 0.927,
-      "odds": 3.4,
+      "odds": 4.8,
       "shap_top": [
         {
           "feature": "odds",
@@ -6552,7 +6665,7 @@
       "horse_number": 8,
       "horse_name": "カンタカナリート",
       "prob": 0.767,
-      "odds": 6.9,
+      "odds": 6.0,
       "shap_top": [
         {
           "feature": "odds",
@@ -6583,7 +6696,7 @@
       5,
       1
     ],
-    "ana_horse_num": null,
+    "ana_horse_num": 6,
     "ana_horse_info": {},
     "predicted_top5": [
       {
@@ -6621,23 +6734,26 @@
       {
         "horse_number": 6,
         "horse_name": "メリトーリアス",
-        "ev_score": 16.067,
+        "ev_score": 5.266,
         "prob": 0.2975,
-        "odds": 54.0
+        "odds": 17.7,
+        "popularity": 7
       },
       {
         "horse_number": 10,
         "horse_name": "マサハヤヴァンス",
-        "ev_score": 8.972,
+        "ev_score": 4.859,
         "prob": 0.2016,
-        "odds": 44.5
+        "odds": 24.1,
+        "popularity": 10
       },
       {
         "horse_number": 2,
         "horse_name": "ミキノオーボエ",
-        "ev_score": 8.892,
+        "ev_score": 4.304,
         "prob": 0.1786,
-        "odds": 49.8
+        "odds": 24.1,
+        "popularity": 9
       }
     ],
     "dangerous_horses": [],
@@ -6716,7 +6832,8 @@
         }
       }
     },
-    "notified_predict": true
+    "notified_predict": true,
+    "odds_updated_at": "2026-04-10 14:03"
   },
   "202648041007": {
     "race_name": "B10組",
@@ -6728,7 +6845,7 @@
       "horse_number": 11,
       "horse_name": "ラウニウ",
       "prob": 0.997,
-      "odds": 1.3,
+      "odds": 1.1,
       "shap_top": [
         {
           "feature": "odds",
@@ -6751,7 +6868,7 @@
       "horse_number": 7,
       "horse_name": "ヌンルチル",
       "prob": 0.712,
-      "odds": 10.7,
+      "odds": 19.4,
       "shap_top": [
         {
           "feature": "popularity",
@@ -6774,7 +6891,7 @@
       "horse_number": 1,
       "horse_name": "ルミナスピラー",
       "prob": 0.696,
-      "odds": 7.7,
+      "odds": 24.0,
       "shap_top": [
         {
           "feature": "popularity",
@@ -6805,7 +6922,7 @@
       4,
       2
     ],
-    "ana_horse_num": null,
+    "ana_horse_num": 10,
     "ana_horse_info": {},
     "predicted_top5": [
       {
@@ -6841,25 +6958,28 @@
     ],
     "ev_top3": [
       {
-        "horse_number": 6,
-        "horse_name": "サンライズテソロ",
-        "ev_score": 29.438,
-        "prob": 0.0389,
-        "odds": 756.5
-      },
-      {
         "horse_number": 10,
         "horse_name": "ダバイカンティーク",
-        "ev_score": 17.975,
+        "ev_score": 11.508,
         "prob": 0.1255,
-        "odds": 143.2
+        "odds": 91.7,
+        "popularity": 10
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "サンライズテソロ",
+        "ev_score": 4.357,
+        "prob": 0.0389,
+        "odds": 112.0,
+        "popularity": 11
       },
       {
         "horse_number": 9,
         "horse_name": "ノクターナリティ",
-        "ev_score": 14.915,
+        "ev_score": 3.776,
         "prob": 0.1311,
-        "odds": 113.8
+        "odds": 28.8,
+        "popularity": 6
       }
     ],
     "dangerous_horses": [],
@@ -6931,7 +7051,8 @@
         }
       }
     },
-    "notified_predict": true
+    "notified_predict": true,
+    "odds_updated_at": "2026-04-10 14:03"
   },
   "202648041008": {
     "race_name": "B9組",
@@ -6943,7 +7064,7 @@
       "horse_number": 1,
       "horse_name": "フォアファン",
       "prob": 0.945,
-      "odds": 4.4,
+      "odds": 6.3,
       "shap_top": [
         {
           "feature": "odds",
@@ -6966,7 +7087,7 @@
       "horse_number": 4,
       "horse_name": "ピコブルー",
       "prob": 0.946,
-      "odds": 1.8,
+      "odds": 2.3,
       "shap_top": [
         {
           "feature": "odds",
@@ -6989,7 +7110,7 @@
       "horse_number": 3,
       "horse_name": "デスティニーホープ",
       "prob": 0.869,
-      "odds": 5.2,
+      "odds": 5.7,
       "shap_top": [
         {
           "feature": "odds",
@@ -7020,7 +7141,7 @@
       7,
       2
     ],
-    "ana_horse_num": null,
+    "ana_horse_num": 8,
     "ana_horse_info": {},
     "predicted_top5": [
       {
@@ -7058,23 +7179,26 @@
       {
         "horse_number": 8,
         "horse_name": "マリアナジャズ",
-        "ev_score": 15.168,
+        "ev_score": 9.996,
         "prob": 0.1404,
-        "odds": 108.0
-      },
-      {
-        "horse_number": 5,
-        "horse_name": "スターインパクト",
-        "ev_score": 10.605,
-        "prob": 0.2121,
-        "odds": 50.0
+        "odds": 71.2,
+        "popularity": 11
       },
       {
         "horse_number": 10,
         "horse_name": "リストン",
-        "ev_score": 10.138,
+        "ev_score": 1.889,
         "prob": 0.2391,
-        "odds": 42.4
+        "odds": 7.9,
+        "popularity": 4
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "スターインパクト",
+        "ev_score": 1.845,
+        "prob": 0.2121,
+        "odds": 8.7,
+        "popularity": 5
       }
     ],
     "dangerous_horses": [],
@@ -7153,7 +7277,8 @@
         }
       }
     },
-    "notified_predict": true
+    "notified_predict": true,
+    "odds_updated_at": "2026-04-10 14:03"
   },
   "202648041009": {
     "race_name": "桜餅賞(3歳)",
@@ -7165,7 +7290,7 @@
       "horse_number": 5,
       "horse_name": "クインズツバキ",
       "prob": 0.983,
-      "odds": 2.0,
+      "odds": 3.0,
       "shap_top": [
         {
           "feature": "odds",
@@ -7188,7 +7313,7 @@
       "horse_number": 11,
       "horse_name": "フォールティア",
       "prob": 0.932,
-      "odds": 5.8,
+      "odds": 7.3,
       "shap_top": [
         {
           "feature": "odds",
@@ -7211,7 +7336,7 @@
       "horse_number": 3,
       "horse_name": "マイネルメテオーラ",
       "prob": 0.07,
-      "odds": 13.5,
+      "odds": 13.9,
       "shap_top": [
         {
           "feature": "jockey_district_fukusho_rate",
@@ -7242,7 +7367,7 @@
       4,
       3
     ],
-    "ana_horse_num": null,
+    "ana_horse_num": 10,
     "ana_horse_info": {},
     "predicted_top5": [
       {
@@ -7280,23 +7405,26 @@
       {
         "horse_number": 10,
         "horse_name": "フィアマネラ",
-        "ev_score": 16.413,
+        "ev_score": 22.582,
         "prob": 0.2498,
-        "odds": 65.7
+        "odds": 90.4,
+        "popularity": 11
       },
       {
         "horse_number": 7,
         "horse_name": "テクノレモン",
-        "ev_score": 11.816,
+        "ev_score": 19.046,
         "prob": 0.2317,
-        "odds": 51.0
+        "odds": 82.2,
+        "popularity": 9
       },
       {
         "horse_number": 2,
         "horse_name": "レッドファイブ",
-        "ev_score": 10.12,
+        "ev_score": 2.742,
         "prob": 0.149,
-        "odds": 67.9
+        "odds": 18.4,
+        "popularity": 6
       }
     ],
     "dangerous_horses": [],
@@ -7375,7 +7503,8 @@
         }
       }
     },
-    "notified_predict": true
+    "notified_predict": true,
+    "odds_updated_at": "2026-04-10 14:03"
   },
   "202648041010": {
     "race_name": "八重桜特別(A)",
@@ -7387,7 +7516,7 @@
       "horse_number": 6,
       "horse_name": "エイシンガウディ",
       "prob": 0.978,
-      "odds": 1.8,
+      "odds": 1.7,
       "shap_top": [
         {
           "feature": "odds",
@@ -7410,7 +7539,7 @@
       "horse_number": 2,
       "horse_name": "フリッパー",
       "prob": 0.912,
-      "odds": 5.4,
+      "odds": 14.9,
       "shap_top": [
         {
           "feature": "odds",
@@ -7433,7 +7562,7 @@
       "horse_number": 4,
       "horse_name": "オニジオオタニ",
       "prob": 0.066,
-      "odds": 35.1,
+      "odds": 14.4,
       "shap_top": [
         {
           "feature": "trainer_fukusho_rate",
@@ -7464,7 +7593,7 @@
       1,
       4
     ],
-    "ana_horse_num": 5,
+    "ana_horse_num": 7,
     "ana_horse_info": {
       "horse_number": 5,
       "horse_name": "ドラゴステ",
@@ -7507,23 +7636,26 @@
       {
         "horse_number": 4,
         "horse_name": "オニジオオタニ",
-        "ev_score": 14.806,
+        "ev_score": 6.074,
         "prob": 0.4218,
-        "odds": 35.1
+        "odds": 14.4,
+        "popularity": 6
       },
       {
         "horse_number": 7,
         "horse_name": "ダブルアタック",
-        "ev_score": 8.838,
+        "ev_score": 5.275,
         "prob": 0.0911,
-        "odds": 97.0
+        "odds": 57.9,
+        "popularity": 9
       },
       {
         "horse_number": 9,
         "horse_name": "カサデガ",
-        "ev_score": 7.838,
+        "ev_score": 4.561,
         "prob": 0.3563,
-        "odds": 22.0
+        "odds": 12.8,
+        "popularity": 4
       }
     ],
     "dangerous_horses": [],
@@ -7602,7 +7734,8 @@
         }
       }
     },
-    "notified_predict": true
+    "notified_predict": true,
+    "odds_updated_at": "2026-04-10 14:03"
   },
   "202648041011": {
     "race_name": "春爛漫特別(3歳)",
@@ -7614,7 +7747,7 @@
       "horse_number": 7,
       "horse_name": "マイネルモンテュス",
       "prob": 0.991,
-      "odds": 2.3,
+      "odds": 4.2,
       "shap_top": [
         {
           "feature": "odds",
@@ -7637,7 +7770,7 @@
       "horse_number": 10,
       "horse_name": "タガノアイゼン",
       "prob": 0.956,
-      "odds": 3.2,
+      "odds": 4.5,
       "shap_top": [
         {
           "feature": "odds",
@@ -7660,7 +7793,7 @@
       "horse_number": 6,
       "horse_name": "カレンショー",
       "prob": 0.175,
-      "odds": 19.7,
+      "odds": 9.3,
       "shap_top": [
         {
           "feature": "avg_time_5",
@@ -7691,7 +7824,7 @@
       6,
       8
     ],
-    "ana_horse_num": null,
+    "ana_horse_num": 11,
     "ana_horse_info": {},
     "predicted_top5": [
       {
@@ -7727,25 +7860,28 @@
     ],
     "ev_top3": [
       {
-        "horse_number": 9,
-        "horse_name": "ポンコツソード",
-        "ev_score": 12.239,
-        "prob": 0.1702,
-        "odds": 71.9
-      },
-      {
         "horse_number": 6,
         "horse_name": "カレンショー",
-        "ev_score": 8.488,
+        "ev_score": 4.007,
         "prob": 0.4309,
-        "odds": 19.7
+        "odds": 9.3,
+        "popularity": 5
       },
       {
         "horse_number": 11,
         "horse_name": "タイガートレイル",
-        "ev_score": 8.063,
+        "ev_score": 3.141,
         "prob": 0.2094,
-        "odds": 38.5
+        "odds": 15.0,
+        "popularity": 8
+      },
+      {
+        "horse_number": 9,
+        "horse_name": "ポンコツソード",
+        "ev_score": 2.042,
+        "prob": 0.1702,
+        "odds": 12.0,
+        "popularity": 7
       }
     ],
     "dangerous_horses": [],
@@ -7824,6 +7960,8 @@
         }
       }
     },
-    "notified_predict": true
-  }
+    "notified_predict": true,
+    "odds_updated_at": "2026-04-10 14:03"
+  },
+  "_odds_updated": "2026-04-10 14:03"
 }
