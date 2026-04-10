@@ -414,12 +414,31 @@
         KEIBA EDGE NARは機械学習（XGBoost）を活用した<strong>地方競馬（NAR）専用</strong>の予想システムです。
       </p>
       <p style="font-size:13px;color:var(--text-muted);line-height:1.8;margin-bottom:12px;">
-        約80万件のNAR過去データから騎手成績・コース適性・馬場状態・脚質など44の特徴量を学習。モデル精度AUC 0.816、5-fold CVで複勝的中率60.5%を達成しています。
+        約80万件のNAR過去データから騎手成績・コース適性・馬場状態・脚質など44の特徴量を学習。Optunaチューニング済み。5-fold CVで複勝的中率60.5%を達成しています。
       </p>
       <p style="font-size:13px;color:var(--text-muted);line-height:1.8;margin-bottom:12px;">
         大井・川崎・船橋・浦和・門別・名古屋・園田・笠松・金沢・高知・佐賀など全国の地方競馬場に対応。毎日自動で予想を生成し、Discord・Xで配信しています。
       </p>
-      <p style="font-size:12px;color:var(--text-muted);margin-top:12px;">
+
+      <h3 style="color:var(--accent);margin-top:20px;margin-bottom:12px;">📋 買い目戦略</h3>
+      <div style="font-size:13px;color:var(--text-muted);line-height:2;">
+        <div><strong>券種:</strong> ワイド ◎-○ 1点</div>
+        <div><strong>基本金額:</strong> 1,000円</div>
+        <div><strong>増額条件:</strong> 同会場2連勝以上で2,000円に増額 🔥</div>
+      </div>
+
+      <h3 style="color:var(--accent);margin-top:20px;margin-bottom:12px;">🚫 見送りフィルタ</h3>
+      <div style="font-size:13px;color:var(--text-muted);line-height:2;">
+        <div>① ○（対抗）AI確率 &lt; 30% → 見送り</div>
+        <div>② ◎○ 確率差 &gt; 15% → 見送り</div>
+        <div>③ ◎+○ 合計確率 &lt; 180% → 見送り</div>
+        <div>④ 推定ワイドオッズ &lt; 1.5倍 → 見送り</div>
+      </div>
+      <p style="font-size:11px;color:var(--text-muted);margin-top:8px;">
+        ※ フィルタは過去データのバックテストに基づいて設定。データ蓄積に応じて調整予定。
+      </p>
+
+      <p style="font-size:12px;color:var(--text-muted);margin-top:16px;">
         ⚠ 本サイトの予想はAIによる分析です。馬券購入は自己責任でお願いします。
       </p>
     </div>
