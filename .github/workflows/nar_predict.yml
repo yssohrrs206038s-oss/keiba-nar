@@ -142,8 +142,9 @@ jobs:
           print(f'今日のNARレース: {len(nar_races)} 件')
           cache = _load_cache()
 
-          # 今日以外のキャッシュを削除（日付が変わったら再予想）
-          today_str = date.today().isoformat()
+          # 今日以外のキャッシュを削除（JST基準・日付が変わったら再予想）
+          from datetime import datetime, timezone, timedelta
+          today_str = (datetime.now(timezone.utc) + timedelta(hours=9)).date().isoformat()
           stale = [k for k, v in cache.items()
                    if not k.startswith('_') and isinstance(v, dict)
                    and v.get('race_date') and v['race_date'] != today_str]

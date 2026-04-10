@@ -349,7 +349,8 @@ def build_live_features(
     try:
         race_date = pd.Timestamp(race_date_str)
     except Exception:
-        race_date = pd.Timestamp(date.today())
+        from datetime import datetime, timezone, timedelta
+        race_date = pd.Timestamp((datetime.now(timezone.utc) + timedelta(hours=9)).date())
 
     # 過去成績を読み込む
     history  = _load_history(cleaned_path)

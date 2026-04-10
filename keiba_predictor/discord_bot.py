@@ -34,9 +34,13 @@ def _load_cache() -> dict:
     return {}
 
 
+def _today_jst() -> date:
+    from datetime import datetime, timezone, timedelta
+    return (datetime.now(timezone.utc) + timedelta(hours=9)).date()
+
 def _today_entries(cache: dict, venue: str = "") -> list[tuple[str, dict]]:
     """本日のキャッシュエントリを返す。venue指定時はその開催場のみ。"""
-    today_str = date.today().isoformat()
+    today_str = _today_jst().isoformat()
     entries = []
     for rid, entry in cache.items():
         if rid.startswith("_"):
@@ -92,7 +96,7 @@ def _format_result_summary() -> str:
 
     import pandas as pd
     df = pd.read_csv(HIST_PATH, encoding="utf-8-sig", dtype=str)
-    today_str = date.today().isoformat()
+    today_str = _today_jst().isoformat()
     today_df = df[df["date"] == today_str]
 
     if today_df.empty:

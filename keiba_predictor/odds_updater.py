@@ -137,7 +137,8 @@ def run_odds_update() -> int:
         logger.info("predictions_cache.json が空です")
         return 0
 
-    today = date.today().isoformat()  # "YYYY-MM-DD"
+    from datetime import datetime, timezone, timedelta
+    today = (datetime.now(timezone.utc) + timedelta(hours=9)).date().isoformat()
     logger.info(f"本日: {today}  キャッシュ内レース数: {len(cache)}")
 
     updated = 0
