@@ -310,24 +310,27 @@ def predict_race(
     return result
 
 
-def _get_win_streak() -> int:
-    """predictions_cache.json から直近の連勝数を返す。"""
+def _get_venue_win_streak(venue: str) -> int:
+    """predictions_cache.json から指定会場の直近連勝数を返す。"""
     try:
         import json
         cache_path = DATA_DIR / "predictions_cache.json"
         if not cache_path.exists():
             return 0
         cache = json.loads(cache_path.read_text(encoding="utf-8"))
-        # 結果済みレースを発走時刻順でソート
+        # 指定会場の結果済みレースを発走時刻順でソート
         settled = []
         for rid, entry in cache.items():
             if rid.startswith("_") or not isinstance(entry, dict):
                 continue
-            if entry.get("result_settled"):
-                settled.append((
-                    entry.get("race_date", "") + " " + entry.get("start_time", "99:99"),
-                    entry.get("wide_hit", False),
-                ))
+            if not entry.get("result_settled"):
+                continue
+            if entry.get("venue", "") != venue:
+                continue
+            settled.append((
+                entry.get("race_date", "") + " " + entry.get("start_time", "99:99"),
+                entry.get("wide_hit", False),
+            ))
         if not settled:
             return 0
         settled.sort(reverse=True)  # 最新順
@@ -347,10 +350,15 @@ def _decide_bet_strategy(result_df: pd.DataFrame) -> dict:
     NAR予測結果DataFrameから買い目を決定する。
 
     構成: ワイド ◎-○ 1点
-    金額: 通常1,000円、2連勝以上で2,000円（ストリーク増額）
+    金額: 通常1,000円、同会場2連勝以上で2,000円（会場別ストリーク増額）
     フィルタ: 推定ワイドオッズ < 1.5倍 の場合はスキップ（買い目なし）
     """
-    streak = _get_win_streak()
+    # レースの会場を取得してストリーク判定
+    race_id = str(result_df.iloc[0].get("race_id", "")) if "race_id" in result_df.columns else ""
+    venue = ""
+    if len(race_id) >= 6:
+        venue = VENUE_MAP.get(race_id[4:6], "")
+    streak = _get_venue_win_streak(venue) if venue else 0
     WIDE_UNIT = 2000 if streak >= 2 else 1000
     MIN_WIDE_ODDS = 1.5
 
@@ -456,9 +464,11 @@ def _build_buy_lines(result_df: pd.DataFrame, race_name: str = "") -> list[str]:
     if pd.notna(tai_row.get("horse_name")):
         tai_name = str(tai_row["horse_name"])
 
-    streak = _get_win_streak()
+    race_id = str(result_df.iloc[0].get("race_id", "")) if "race_id" in result_df.columns else ""
+    venue = VENUE_MAP.get(race_id[4:6], "") if len(race_id) >= 6 else ""
+    streak = _get_venue_win_streak(venue) if venue else 0
     unit = 2000 if streak >= 2 else 1000
-    streak_note = f"  🔥{streak}連勝中→増額" if streak >= 2 else ""
+    streak_note = f"  🔥{venue}{streak}連勝中→増額" if streak >= 2 else ""
     header = f"💰 {race_name}  買い目" if race_name else "💰 買い目"
     lines = [
         SEP,
