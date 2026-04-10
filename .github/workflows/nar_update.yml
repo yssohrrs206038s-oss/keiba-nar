@@ -1,8 +1,7 @@
 name: NAR 水曜データ更新・モデル再学習
 
 on:
-  schedule:
-    - cron: '0 1 * * 3'  # 毎週水曜 1:00 UTC = JST 10:00
+  # スケジュールは外部cron-jobで管理（水曜 10:00）
   workflow_dispatch:
 
 permissions:
