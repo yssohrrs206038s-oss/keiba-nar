@@ -140,7 +140,7 @@ def tune_hyperparameters(
     import optuna
     optuna.logging.set_verbosity(optuna.logging.WARNING)
 
-    X = df[feature_cols].astype(float)
+    X = df[feature_cols].apply(pd.to_numeric, errors="coerce")
     y = df["top3"].astype(int)
     tscv = TimeSeriesSplit(n_splits=n_splits)
 
@@ -261,7 +261,7 @@ def train(
         df[col] = pd.to_numeric(df[col], errors="coerce")
     df["top3"] = pd.to_numeric(df["top3"], errors="coerce")
     df = df.dropna(subset=["top3"]).reset_index(drop=True)
-    X = df[available_cols].astype(float)
+    X = df[available_cols].apply(pd.to_numeric, errors="coerce")
     y = df["top3"].astype(int)
 
     logger.info(f"使用特徴量: {available_cols}")
@@ -381,7 +381,7 @@ def train(
                 logger.warning(f"{label}モデル: データ不足 ({len(df_band)} rows) → スキップ")
                 continue
 
-            X_band = df_band[available_cols].astype(float)
+            X_band = df_band[available_cols].apply(pd.to_numeric, errors="coerce")
             y_band = df_band["top3"].astype(int)
 
             # 交差検証でAUC算出
