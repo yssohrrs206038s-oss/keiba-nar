@@ -127,6 +127,39 @@ def _load_rows() -> list[dict]:
         return []
 
 
+def _rolling_30_section(all_rows: list[dict], cache: dict) -> list[str]:
+    """直近30戦パフォーマンスセクションを生成する。"""
+    qualified = [
+        r for r in all_rows
+        if str(r.get("date", ""))[:10] >= STRATEGY_START
+    ]
+    # 日付降順で直近30戦を取得
+    qualified.sort(key=lambda r: str(r.get("date", ""))[:10], reverse=True)
+    recent = qualified[:30]
+    if not recent:
+        return []
+
+    s = _aggregate(recent, cache)
+    roi = s["roi"]
+    sep = "━" * 16
+
+    lines = [
+        sep,
+        f"📈 **直近30戦パフォーマンス**（{s['n']}戦集計）",
+        f"ワイド的中率: {s['wide_rate']:.0f}%（{s['wide_hits']}/{s['n']}）",
+        f"回収率: {roi:.0f}%",
+        f"損益: {'+' if s['profit'] >= 0 else ''}{s['profit']:,}円",
+    ]
+
+    if roi < 120:
+        lines.append(f"⚠️ 直近30戦ROI {roi:.0f}% — フィルタ見直し推奨")
+    elif roi > 200:
+        lines.append(f"✨ 直近30戦ROI {roi:.0f}% — 好調")
+
+    lines.append(sep)
+    return lines
+
+
 def analyze_daily(target_date: str = None) -> str:
     """日次レポート: 当日分の成績."""
     if target_date is None:
@@ -167,6 +200,11 @@ def analyze_daily(target_date: str = None) -> str:
             f"増額効果: {sign}{effect:,}円",
             sep,
         ])
+
+    # 直近30戦パフォーマンス
+    rolling = _rolling_30_section(rows, cache)
+    if rolling:
+        lines.extend(rolling)
 
     return "\n".join(lines)
 
@@ -221,6 +259,11 @@ def analyze_weekly(target_date: str = None) -> str:
             f"増額効果: {sign}{effect:,}円",
             sep,
         ])
+
+    # 直近30戦パフォーマンス
+    rolling = _rolling_30_section(rows, cache)
+    if rolling:
+        lines.extend(rolling)
 
     return "\n".join(lines)
 

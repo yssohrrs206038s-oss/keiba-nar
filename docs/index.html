@@ -306,6 +306,61 @@
       border-top: 1px solid var(--border);
     }
     footer a { color: var(--accent-dk); text-decoration: none; }
+    /* EV TOP5 セクション */
+    .ev-top5-section { margin-bottom: 20px; }
+    .ev-top5-title {
+      font-size: 16px; font-weight: 700; color: var(--accent);
+      border-left: 4px solid var(--accent);
+      padding-left: 12px; margin-bottom: 12px;
+    }
+    .ev-top5-scroll {
+      display: flex; gap: 12px; overflow-x: auto;
+      padding-bottom: 8px; scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    .ev-top5-scroll::-webkit-scrollbar { height: 4px; }
+    .ev-top5-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+    .ev-top5-card {
+      flex: 0 0 220px; scroll-snap-align: start;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 14px; cursor: pointer;
+      box-shadow: var(--shadow); transition: transform .2s, box-shadow .2s, border-color .2s;
+      position: relative; animation: fadeUp .4s ease both;
+    }
+    .ev-top5-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(46,204,113,.18);
+      border-color: rgba(46,204,113,.4);
+    }
+    .ev-top5-card.ev-skip { border-color: rgba(231,76,60,.3); }
+    .ev-top5-card.ev-skip:hover { border-color: rgba(231,76,60,.5); }
+    .ev-top5-rank {
+      position: absolute; top: -8px; left: -8px;
+      width: 28px; height: 28px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-lt));
+      color: #080c0a; font-size: 13px; font-weight: 900;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 8px rgba(46,204,113,.4);
+    }
+    .ev-top5-card.ev-skip .ev-top5-rank {
+      background: linear-gradient(135deg, #e74c3c, #ff6b6b);
+    }
+    .ev-top5-race { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .ev-top5-racename { font-size: 11px; color: var(--text-muted); margin-bottom: 8px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .ev-top5-horse { font-size: 14px; font-weight: 700; color: var(--gold); margin-bottom: 6px; }
+    .ev-top5-ev { font-size: 20px; font-weight: 900; background: linear-gradient(135deg, var(--accent), var(--accent-lt)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .ev-top5-card.ev-skip .ev-top5-ev { background: linear-gradient(135deg, #e74c3c, #ff6b6b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .ev-top5-badge {
+      display: inline-block; padding: 2px 8px; border-radius: 10px;
+      font-size: 10px; font-weight: 700; margin-top: 6px;
+    }
+    .ev-top5-badge.buy { background: rgba(46,204,113,.2); color: var(--accent); border: 1px solid rgba(46,204,113,.3); }
+    .ev-top5-badge.skip { background: rgba(231,76,60,.15); color: #ff6b6b; border: 1px solid rgba(231,76,60,.3); }
+    .ev-top5-skip-reason { font-size: 10px; color: var(--text-muted); margin-top: 4px; line-height: 1.3; }
+    @media (max-width: 480px) {
+      .ev-top5-card { flex: 0 0 180px; padding: 12px; }
+      .ev-top5-ev { font-size: 18px; }
+    }
   </style>
 </head>
 <body>
@@ -341,6 +396,7 @@
     <div id="venue-tabs" style="display:flex;gap:6px;overflow-x:auto;margin-bottom:16px;padding-bottom:4px;">
       <button class="tab-btn active" data-venue="all" style="flex:none;font-size:12px;padding:8px 14px;border-radius:20px;border:1px solid var(--border);background:var(--bg-card2);">全レース</button>
     </div>
+    <div id="ev-top5-container"></div>
     <div class="section-title">🏇 本日の予想</div>
     <div class="race-grid" id="race-grid">
       <div class="no-data">予想データを読み込んでいます...</div>
@@ -378,6 +434,16 @@
 
     <div class="section-title">📍 開催場別回収率</div>
     <div class="chart-wrap"><canvas id="venue-roi-chart"></canvas></div>
+
+    <div class="section-title">🗺️ 会場別 今週の調子</div>
+    <div id="venue-heatmap" style="
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 10px;
+      margin-bottom: 28px;
+    ">
+      <div class="no-data" style="grid-column:1/-1;">データ蓄積中...</div>
+    </div>
 
     <div class="section-title">📍 開催場別成績</div>
     <div style="overflow-x:auto;">
@@ -781,6 +847,7 @@ function renderPredictions(cache) {
     _predHtmlMap[raceId] = _renderRaceCard(raceId, r);
   });
   _renderFilteredPredictions();
+  _renderEvTop5();
 }
 
 function _renderRaceCard(raceId, r) {
@@ -957,6 +1024,121 @@ function _renderFilteredPredictions() {
 }
 
 /* ================================================================
+   EV TOP5 注目レース
+================================================================ */
+function _renderEvTop5() {
+  const container = document.getElementById('ev-top5-container');
+  if (!container || !_allPredEntries.length) { if (container) container.innerHTML = ''; return; }
+
+  // 各レースの EV スコアを計算: honmei の prob * odds (ev_top3 の honmei 馬番の ev_score を優先)
+  const scored = _allPredEntries.map(([raceId, r]) => {
+    const honmei = r.honmei;
+    if (!honmei || !honmei.horse_name) return null;
+    const prob = honmei.prob || 0;
+    // ev_top3 から honmei の ev_score を取得
+    let evScore = 0;
+    const evEntries = r.ev_top3 || [];
+    const honmeiNum = honmei.horse_number != null ? +honmei.horse_number : null;
+    for (const e of evEntries) {
+      if (e.horse_number != null && +e.horse_number === honmeiNum) {
+        evScore = e.ev_score || 0;
+        break;
+      }
+    }
+    // フォールバック: predicted_top5 から探す
+    if (!evScore && r.predicted_top5) {
+      for (const p of r.predicted_top5) {
+        if (p.horse_number != null && +p.horse_number === honmeiNum && p.ev_score) {
+          evScore = p.ev_score;
+          break;
+        }
+      }
+    }
+    // 最終フォールバック: prob * odds
+    if (!evScore && honmei.odds) {
+      evScore = prob * honmei.odds;
+    }
+    const bs = r.bet_strategy;
+    const isSkipped = bs && bs.strategy_note && bs.strategy_note.includes('見送り');
+    const isBuy = bs && bs.total_points > 0;
+    const venue = r.venue || '';
+    const raceNum = raceId.length >= 12 ? parseInt(raceId.slice(10, 12), 10) + 'R' : '';
+    const venueRace = venue && raceNum ? venue + raceNum : raceId;
+    return {
+      raceId, r, evScore, prob, honmeiName: honmei.horse_name,
+      isBuy, isSkipped, venueRace,
+      raceName: r.race_name || '',
+      skipReason: (bs && bs.strategy_note) || ''
+    };
+  }).filter(Boolean);
+
+  // EV スコア降順でソート
+  scored.sort((a, b) => b.evScore - a.evScore);
+  const top5 = scored.slice(0, 5);
+
+  if (!top5.length) { container.innerHTML = ''; return; }
+
+  const cards = top5.map((item, i) => {
+    const skipClass = item.isSkipped ? ' ev-skip' : '';
+    const badge = item.isBuy
+      ? '<div class="ev-top5-badge buy">買い</div>'
+      : '<div class="ev-top5-badge skip">🚫 見送り</div>';
+    const skipReasonHTML = item.isSkipped && item.skipReason
+      ? `<div class="ev-top5-skip-reason">${esc(item.skipReason)}</div>`
+      : '';
+    return `<div class="ev-top5-card${skipClass}" data-ev-race-id="${esc(item.raceId)}" style="animation-delay:${i * 0.05}s;">
+      <div class="ev-top5-rank">${i + 1}</div>
+      <div class="ev-top5-race">${esc(item.venueRace)}</div>
+      <div class="ev-top5-racename">${esc(item.raceName)}</div>
+      <div class="ev-top5-horse">◎ ${esc(item.honmeiName)}</div>
+      <div class="ev-top5-ev">EV ${item.evScore.toFixed(2)}</div>
+      ${badge}
+      ${skipReasonHTML}
+    </div>`;
+  }).join('');
+
+  container.innerHTML = `<div class="ev-top5-section">
+    <div class="ev-top5-title">📊 本日の注目レース TOP5</div>
+    <div class="ev-top5-scroll">${cards}</div>
+  </div>`;
+
+  // クリックで該当レースカードにスクロール＆展開
+  container.querySelectorAll('.ev-top5-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const rid = card.dataset.evRaceId;
+      const grid = document.getElementById('race-grid');
+      if (!grid) return;
+      const target = _findAccordionByRaceId(rid, grid);
+      if (target) {
+        target.open = true;
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+  });
+}
+
+function _findAccordionByRaceId(raceId, grid) {
+  // _allPredEntries の順序（venue フィルタ適用後）で accordion を照合
+  // 現在のフィルタ状態を再現
+  const filtered = _allPredEntries.filter(([, r]) => {
+    if (_currentVenue === 'all') return true;
+    return r.venue === _currentVenue;
+  });
+  const sorted = [...filtered];
+  if (_nextRaceId) {
+    const idx = sorted.findIndex(([id]) => id === _nextRaceId);
+    if (idx > 0) {
+      const [next] = sorted.splice(idx, 1);
+      sorted.unshift(next);
+    }
+  }
+  const pos = sorted.findIndex(([id]) => id === raceId);
+  if (pos < 0) return null;
+  const accordions = grid.querySelectorAll('details.race-accordion');
+  return accordions[pos] || null;
+}
+
+/* ================================================================
    履歴テーブル
 ================================================================ */
 function renderHistory(rows) {
@@ -988,6 +1170,121 @@ function renderHistory(rows) {
       <td style="${roiColor};font-weight:700;">${esc(roi)}</td>
     </tr>`;
   }).join('');
+}
+
+/* ================================================================
+   会場別 今週の調子ヒートマップ
+================================================================ */
+function renderVenueHeatmap(rows) {
+  const container = document.getElementById('venue-heatmap');
+  if (!rows.length) return;
+
+  // 今週の月曜〜日曜を算出 (JST)
+  const now = new Date();
+  const jstOff = 9 * 60 * 60 * 1000;
+  const jstNow = new Date(now.getTime() + jstOff);
+  const day = jstNow.getUTCDay(); // 0=Sun
+  const mondayOff = day === 0 ? 6 : day - 1;
+  const weekStart = new Date(Date.UTC(jstNow.getUTCFullYear(), jstNow.getUTCMonth(), jstNow.getUTCDate() - mondayOff));
+  const weekStartStr = weekStart.toISOString().slice(0, 10);
+
+  // 全期間 & 今週のデータを会場別に集計
+  const venueAll = {};
+  const venueWeek = {};
+  rows.forEach(r => {
+    const rid = (r.race_id || '').trim();
+    if (rid.length < 6) return;
+    const venue = VENUE_MAP[rid.slice(4, 6)] || '';
+    if (!venue) return;
+    const hit = r.wide_hit === 'True';
+    const ret = calcRet(r);
+    // 全期間
+    if (!venueAll[venue]) venueAll[venue] = { w: 0, n: 0, bet: 0, ret: 0 };
+    venueAll[venue].n++;
+    if (hit) venueAll[venue].w++;
+    venueAll[venue].bet += BET_PER_RACE;
+    venueAll[venue].ret += ret;
+    // 今週
+    const d = (r.date || '').slice(0, 10);
+    if (d >= weekStartStr) {
+      if (!venueWeek[venue]) venueWeek[venue] = { w: 0, n: 0, bet: 0, ret: 0 };
+      venueWeek[venue].n++;
+      if (hit) venueWeek[venue].w++;
+      venueWeek[venue].bet += BET_PER_RACE;
+      venueWeek[venue].ret += ret;
+    }
+  });
+
+  // 連勝/連敗ストリーク計算（直近レースから遡る）
+  const venueStreak = {};
+  // 日付昇順にソート
+  const sorted = [...rows].sort((a, b) => ((a.date || '') + (a.race_id || '')).localeCompare((b.date || '') + (b.race_id || '')));
+  sorted.forEach(r => {
+    const rid = (r.race_id || '').trim();
+    if (rid.length < 6) return;
+    const venue = VENUE_MAP[rid.slice(4, 6)] || '';
+    if (!venue) return;
+    const hit = r.wide_hit === 'True';
+    if (!venueStreak[venue]) venueStreak[venue] = { count: 0, type: null };
+    const s = venueStreak[venue];
+    if (s.type === null || s.type === hit) {
+      s.type = hit;
+      s.count++;
+    } else {
+      s.type = hit;
+      s.count = 1;
+    }
+  });
+
+  // カード生成 — 今週データがある会場 + 全期間データがある会場
+  const allVenues = new Set([...Object.keys(venueAll), ...Object.keys(venueWeek)]);
+  const cards = [];
+  allVenues.forEach(venue => {
+    const wk = venueWeek[venue] || { w: 0, n: 0, bet: 0, ret: 0 };
+    const all = venueAll[venue] || { w: 0, n: 0, bet: 0, ret: 0 };
+    const streak = venueStreak[venue] || { count: 0, type: null };
+    const wkRoi = wk.bet > 0 ? (wk.ret / wk.bet * 100) : 0;
+    const allRoi = all.bet > 0 ? (all.ret / all.bet * 100) : 0;
+    // 今週データがあればその ROI で判定、なければ全期間
+    const judgeRoi = wk.n > 0 ? wkRoi : allRoi;
+    let borderColor = 'var(--border)';
+    let bgColor = 'var(--bg-card)';
+    if (judgeRoi > 150) { borderColor = 'var(--green)'; bgColor = 'rgba(46,204,113,.08)'; }
+    else if (judgeRoi < 80) { borderColor = 'var(--red)'; bgColor = 'rgba(231,76,60,.08)'; }
+    const fireIcon = (streak.type === true && streak.count >= 2) ? ' 🔥' : '';
+    const streakLabel = streak.count > 0
+      ? (streak.type ? `${streak.count}連勝` : `${streak.count}連敗`)
+      : '';
+    const streakColor = streak.type ? 'var(--green)' : 'var(--red)';
+    cards.push({
+      venue, wk, allRoi, wkRoi, judgeRoi, borderColor, bgColor, fireIcon, streakLabel, streakColor,
+      sortKey: wk.n > 0 ? 1000 + wkRoi : allRoi
+    });
+  });
+  cards.sort((a, b) => b.sortKey - a.sortKey);
+
+  if (!cards.length) return;
+  container.innerHTML = cards.map(c => `
+    <div style="
+      background: ${c.bgColor};
+      border: 1px solid ${c.borderColor};
+      border-radius: var(--radius);
+      padding: 10px 12px;
+      text-align: center;
+    ">
+      <div style="font-weight:700;font-size:14px;margin-bottom:4px;">${esc(c.venue)}${c.fireIcon}</div>
+      ${c.wk.n > 0 ? `
+        <div style="font-size:12px;color:var(--text-muted);">今週 ${c.wk.w}勝/${c.wk.n}戦</div>
+        <div style="font-size:18px;font-weight:700;color:${c.wkRoi > 100 ? 'var(--green)' : 'var(--red)'};">
+          ${c.wkRoi.toFixed(0)}%
+        </div>
+      ` : `
+        <div style="font-size:12px;color:var(--text-muted);">今週 —</div>
+        <div style="font-size:14px;color:var(--text-muted);">通算 ${c.allRoi.toFixed(0)}%</div>
+      `}
+      ${c.streakLabel ? `<div style="font-size:11px;color:${c.streakColor};">${c.streakLabel}</div>` : ''}
+    </div>
+  `).join('');
 }
 
 /* ================================================================
@@ -1205,6 +1502,7 @@ async function main() {
     renderWeeklyChart(rows);
     renderHistory(rows);
     renderRankings(rows);
+    renderVenueHeatmap(rows);
     renderHitRateChart(rows);
     renderVenueRoiChart(rows);
   } catch (e) {
