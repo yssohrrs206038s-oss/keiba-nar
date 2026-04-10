@@ -310,15 +310,48 @@ def predict_race(
     return result
 
 
+def _get_win_streak() -> int:
+    """predictions_cache.json から直近の連勝数を返す。"""
+    try:
+        import json
+        cache_path = DATA_DIR / "predictions_cache.json"
+        if not cache_path.exists():
+            return 0
+        cache = json.loads(cache_path.read_text(encoding="utf-8"))
+        # 結果済みレースを発走時刻順でソート
+        settled = []
+        for rid, entry in cache.items():
+            if rid.startswith("_") or not isinstance(entry, dict):
+                continue
+            if entry.get("result_settled"):
+                settled.append((
+                    entry.get("race_date", "") + " " + entry.get("start_time", "99:99"),
+                    entry.get("wide_hit", False),
+                ))
+        if not settled:
+            return 0
+        settled.sort(reverse=True)  # 最新順
+        streak = 0
+        for _, hit in settled:
+            if hit:
+                streak += 1
+            else:
+                break
+        return streak
+    except Exception:
+        return 0
+
+
 def _decide_bet_strategy(result_df: pd.DataFrame) -> dict:
     """
     NAR予測結果DataFrameから買い目を決定する。
 
-    構成: ワイド ◎-○ 1点 1,000円のみ
+    構成: ワイド ◎-○ 1点
+    金額: 通常1,000円、2連勝以上で2,000円（ストリーク増額）
     フィルタ: 推定ワイドオッズ < 1.5倍 の場合はスキップ（買い目なし）
     """
-    BUDGET = 1000
-    WIDE_UNIT = 1000
+    streak = _get_win_streak()
+    WIDE_UNIT = 2000 if streak >= 2 else 1000
     MIN_WIDE_ODDS = 1.5
 
     def _empty(note: str) -> dict:
@@ -381,15 +414,17 @@ def _decide_bet_strategy(result_df: pd.DataFrame) -> dict:
                 f"見送り（推定ワイドオッズ{estimated_wide_odds:.1f}倍 < 1.5倍）"
             )
 
-    note = "ワイド1点"
+    streak_label = f"🔥{streak}連勝中→{WIDE_UNIT:,}円" if streak >= 2 else ""
+    note = f"ワイド1点{' ' + streak_label if streak_label else ''}"
     if estimated_wide_odds is not None:
-        note = f"ワイド1点（推定{estimated_wide_odds:.1f}倍）"
+        note = f"ワイド1点（推定{estimated_wide_odds:.1f}倍）{' ' + streak_label if streak_label else ''}"
 
     strategy = {
         "fukusho": [], "umaren": [], "wide": [{"nums": [hon, tai]}],
         "sanrenpuku": {},
         "total_points": 1, "total_cost": WIDE_UNIT,
         "strategy_note": note, "use_wide": True,
+        "streak": streak,
     }
 
     return strategy
@@ -421,15 +456,18 @@ def _build_buy_lines(result_df: pd.DataFrame, race_name: str = "") -> list[str]:
     if pd.notna(tai_row.get("horse_name")):
         tai_name = str(tai_row["horse_name"])
 
+    streak = _get_win_streak()
+    unit = 2000 if streak >= 2 else 1000
+    streak_note = f"  🔥{streak}連勝中→増額" if streak >= 2 else ""
     header = f"💰 {race_name}  買い目" if race_name else "💰 買い目"
     lines = [
         SEP,
         header,
         SEP,
-        "■ ワイド（1点 1,000円）",
+        f"■ ワイド（1点 {unit:,}円）{streak_note}",
         f"　◎{hon}番 {hon_name} - ○{tai}番 {tai_name}",
         SEP,
-        "合計 1点 / 1,000円",
+        f"合計 1点 / {unit:,}円",
         SEP,
     ]
     return lines
