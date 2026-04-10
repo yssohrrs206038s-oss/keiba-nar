@@ -387,6 +387,7 @@ def _decide_bet_strategy(result_df: pd.DataFrame) -> dict:
     MIN_TAI_PROB = 0.30  # ○30%未満は見送り（実績: ROI 95%→166%改善）
     MAX_PROB_DIFF = 0.15  # ◎○差15%超は見送り（実績: ROI 166%→176%改善）
     MIN_PROB_SUM = 1.80   # ◎+○合計180%未満は見送り（実績: ROI 176%→196%改善）
+    MIN_ANA_PROB = 0.50   # ▲50%未満は見送り（実績: ROI 207%→229%改善・混戦回避）
     hon_prob = pd.to_numeric(result_df.iloc[0].get("prob_top3"), errors="coerce")
     tai_prob = pd.to_numeric(result_df.iloc[1].get("prob_top3"), errors="coerce")
     if pd.isna(hon_prob) or pd.isna(tai_prob):
@@ -409,6 +410,14 @@ def _decide_bet_strategy(result_df: pd.DataFrame) -> dict:
         return _empty(
             f"見送り（◎○合計{prob_sum*100:.0f}% < 180%）"
         )
+
+    # ▲確率チェック（混戦レース回避）
+    if len(result_df) >= 3:
+        ana_prob = pd.to_numeric(result_df.iloc[2].get("prob_top3"), errors="coerce")
+        if pd.notna(ana_prob) and float(ana_prob) < MIN_ANA_PROB:
+            return _empty(
+                f"見送り（▲確率{float(ana_prob)*100:.1f}% < 50%・混戦）"
+            )
 
     # ワイドオッズを単勝オッズから推定（経験式: ◎odds × ○odds / 4）
     # 推定値が1.5倍未満なら買い目なし
