@@ -1696,15 +1696,7 @@ def run_predict_notify(
     # 二重送信防止はレース単位の notified_predict フラグで行う
     # （日付ベースの notified_date.txt は廃止: 8:30/14:00の複数回通知に対応）
 
-    # 通知前にオッズを最新に更新（14:00通知時に発走直前オッズを反映）
-    if not test_race_id:
-        try:
-            from keiba_predictor.odds_updater import run_odds_update
-            n_updated = run_odds_update()
-            if n_updated > 0:
-                logger.info(f"オッズ更新完了: {n_updated}レース")
-        except Exception as e:
-            logger.warning(f"オッズ更新失敗（続行）: {e}")
+    # オッズ更新はワークフロー側で実行（Discord/X通知なしの独立ステップ）
 
     if model_path is None:
         model_path = MODEL_PATH

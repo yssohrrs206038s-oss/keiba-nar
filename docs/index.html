@@ -407,6 +407,7 @@
       <div class="stat-card green"><div class="stat-value" id="i-fukusho">--</div><div class="stat-label">CV複勝的中率</div><div class="stat-note">過去データの交差検証による3着以内的中率</div></div>
       <div class="stat-card"><div class="stat-value" id="i-features">--</div><div class="stat-label">特徴量数</div></div>
       <div class="stat-card blue"><div class="stat-value" id="i-updated">--</div><div class="stat-label">最終更新</div></div>
+      <div class="stat-card" style="border-color:var(--accent);"><div class="stat-value" id="i-odds-updated" style="font-size:14px;">--</div><div class="stat-label">オッズ更新</div><div class="stat-note">14時に最新オッズを取得</div></div>
     </div>
     <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-top:16px;">
       <h3 style="color:var(--accent);margin-bottom:12px;">KEIBA EDGE NAR について</h3>
@@ -913,13 +914,14 @@ function _renderRaceCard(raceId, r) {
   const startTime = r.start_time ? esc(r.start_time) : '';
   const isNext = raceId === _nextRaceId;
   const nextBadge = isNext ? '<span class="next-race-badge">⏭ 次のレース</span>' : '';
+  const oddsUpdated = r.odds_updated_at ? `<span style="font-size:9px;color:var(--accent);margin-left:6px;opacity:.8;">📊${r.odds_updated_at.slice(11)||'更新済'}</span>` : '';
   const accordionClass = isNext ? 'race-accordion next-race' : 'race-accordion';
   const openAttr = isNext ? ' open' : '';
 
   return `<details class="${accordionClass}"${openAttr}>
     <summary class="race-summary">
       <span class="race-summary-icon">${statusIcon}</span>
-      <span class="race-summary-title">${esc(raceTitle)}${nextBadge}</span>
+      <span class="race-summary-title">${esc(raceTitle)}${nextBadge}${oddsUpdated}</span>
       <span class="race-summary-time">${startTime}</span>
     </summary>
     <div class="race-card-body">
@@ -1223,6 +1225,9 @@ async function main() {
       if (iFuk) iFuk.textContent = mm.fukusho_rate ? mm.fukusho_rate + '%' : '--';
       if (iFeat) iFeat.textContent = mm.n_features || '--';
     }
+    const oddsTs = predCache._odds_updated;
+    const iOdds = document.getElementById('i-odds-updated');
+    if (iOdds && oddsTs) iOdds.textContent = oddsTs;
   } catch(e) {}
 
   const loading = document.getElementById('loading');

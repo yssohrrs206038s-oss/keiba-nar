@@ -189,14 +189,33 @@ jobs:
             echo "✅ コミット・プッシュ完了"
           fi
 
-      # ── 通知（14時JST） ──────────────────────────────────────
-      - name: Discord にNAR予想を送信
+      # ── オッズ更新（14時JST） ──────────────────────────────────
+      - name: オッズ更新（Discord/X通知なし）
         if: steps.mode.outputs.mode == 'notify' || steps.mode.outputs.mode == 'both'
         continue-on-error: true
         run: |
-          echo "📤 NAR予想通知を送信..."
-          python -m keiba_predictor.main notify --mode predict
-          echo "✅ 通知完了"
+          echo "📊 オッズ更新中..."
+          python -c "
+          import sys, logging
+          sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+          logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
+          from keiba_predictor.odds_updater import run_odds_update
+          n = run_odds_update()
+          print(f'オッズ更新完了: {n}レース')
+
+          # キャッシュに更新時刻を記録（ダッシュボード表示用）
+          import json
+          from pathlib import Path
+          from datetime import datetime, timezone, timedelta
+          cache_path = Path('keiba_predictor/data/predictions_cache.json')
+          if cache_path.exists():
+              cache = json.loads(cache_path.read_text(encoding='utf-8'))
+              jst = datetime.now(timezone(timedelta(hours=9)))
+              cache['_odds_updated'] = jst.strftime('%Y-%m-%d %H:%M')
+              cache_path.write_text(json.dumps(cache, ensure_ascii=False, indent=2), encoding='utf-8')
+              print(f'更新時刻記録: {cache[\"_odds_updated\"]}')
+          "
+          echo "✅ オッズ更新完了"
 
       - name: レポートをコミット
         if: always()

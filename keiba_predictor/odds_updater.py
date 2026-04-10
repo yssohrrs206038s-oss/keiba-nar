@@ -152,6 +152,7 @@ def run_odds_update() -> int:
 
         logger.info(f"  オッズ更新中: {race_name} ({race_id})")
         cache[race_id] = update_odds_for_race(race_id, entry)
+        cache[race_id]["odds_updated_at"] = datetime.now(timezone(timedelta(hours=9))).strftime("%Y-%m-%d %H:%M")
         updated += 1
 
     if updated == 0:
