@@ -225,7 +225,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636041202": {
     "race_name": "C2十組",
@@ -447,7 +448,8 @@
           "normal": 0.03
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636041203": {
     "race_name": "C2九組",
@@ -674,7 +676,8 @@
           "normal": 0.12
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636041204": {
     "race_name": "C2八組",
@@ -888,7 +891,8 @@
           "normal": 0.29
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636041205": {
     "race_name": "3歳C1二組",
@@ -1115,7 +1119,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636041206": {
     "race_name": "3歳C1一組",
@@ -1342,7 +1347,8 @@
           "normal": 0.06
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636041207": {
     "race_name": "C1",
@@ -1569,7 +1575,8 @@
           "normal": 0.16
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636041208": {
     "race_name": "C1",
@@ -1796,7 +1803,8 @@
           "normal": 0.25
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636041209": {
     "race_name": "C1",
@@ -2015,7 +2023,8 @@
           "normal": 0.24
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636041210": {
     "race_name": "岩手伝統工芸 秀衡塗賞(C1)",
@@ -2237,7 +2246,8 @@
           "normal": 0.22
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636041211": {
     "race_name": "C1一組",
@@ -2459,7 +2469,8 @@
           "normal": 0.16
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636041212": {
     "race_name": "スプリント特別OP",
@@ -2681,7 +2692,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646041201": {
     "race_name": "エスエスファミリー金沢競馬初来場記念(C2)",
@@ -2905,7 +2917,8 @@
           "normal": 0.33
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646041202": {
     "race_name": "C213",
@@ -3127,7 +3140,8 @@
           "normal": 0.24
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646041203": {
     "race_name": "C212",
@@ -3354,7 +3368,8 @@
           "normal": 0.04
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646041204": {
     "race_name": "高瀬さん海外赴任おめでとう記念(C2)",
@@ -3581,7 +3596,8 @@
           "normal": 0.13
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646041205": {
     "race_name": "ウマ娘トラベルポップアップストア金沢記念(C2)",
@@ -3803,7 +3819,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646041206": {
     "race_name": "能登復興支援 桜峠特別(C2)",
@@ -4030,7 +4047,8 @@
           "normal": 0.36
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646041207": {
     "race_name": "結翔入学おめでとう!中学生がん馬って記念(B2)",
@@ -4257,7 +4275,8 @@
           "normal": 0.16
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646041208": {
     "race_name": "JBCイヤー記念【利家盃TR】重賞",
@@ -4479,7 +4498,8 @@
           "normal": 0.02
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646041209": {
     "race_name": "B22",
@@ -4706,7 +4726,8 @@
           "normal": 0.17
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646041210": {
     "race_name": "スマホで投票!楽天競馬特別(B2)",
@@ -4928,7 +4949,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202654041201": {
     "race_name": "3歳ー7",
@@ -5150,7 +5172,8 @@
           "normal": 0.17
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202654041202": {
     "race_name": "3歳ー6",
@@ -5364,7 +5387,8 @@
           "normal": 0.2
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202654041203": {
     "race_name": "3歳ー5",
@@ -5586,7 +5610,8 @@
           "normal": 0.01
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202654041204": {
     "race_name": "C3ー16",
@@ -5800,7 +5825,8 @@
           "normal": 0.03
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202654041205": {
     "race_name": "フルーツトマト特別(C3)",
@@ -6027,7 +6053,8 @@
           "normal": 0.15
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202654041206": {
     "race_name": "二十四万石賞重賞",
@@ -6251,7 +6278,8 @@
           "normal": 0.15
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202654041207": {
     "race_name": "C3ー14",
@@ -6473,7 +6501,8 @@
           "normal": 0.03
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202654041208": {
     "race_name": "C3ー12",
@@ -6687,7 +6716,8 @@
           "normal": 0.01
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202654041209": {
     "race_name": "Aー3",
@@ -6901,7 +6931,8 @@
           "normal": 0.26
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202654041210": {
     "race_name": "Aー2",
@@ -7128,7 +7159,8 @@
           "normal": 0.21
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202654041211": {
     "race_name": "ファイナルレース(C3)",
@@ -7350,7 +7382,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202655041201": {
     "race_name": "3歳ー8組",
@@ -7572,7 +7605,8 @@
           "normal": 0.03
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202655041202": {
     "race_name": "3歳ー7組",
@@ -7794,7 +7828,8 @@
           "normal": 0.01
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202655041203": {
     "race_name": "C2ー5組",
@@ -8021,7 +8056,8 @@
           "normal": 0.1
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202655041204": {
     "race_name": "C2ー4組",
@@ -8248,7 +8284,8 @@
           "normal": 0.36
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202655041205": {
     "race_name": "C2ー3組",
@@ -8470,7 +8507,8 @@
           "normal": 0.02
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202655041206": {
     "race_name": "佐賀がばいスプリント重賞",
@@ -8700,7 +8738,8 @@
           "normal": 0.31
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202655041207": {
     "race_name": "C1ー13組",
@@ -8914,7 +8953,8 @@
           "normal": 0.1
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202655041208": {
     "race_name": "サガデーナイト競馬賞(C1)",
@@ -9141,7 +9181,8 @@
           "normal": 0.17
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202655041209": {
     "race_name": "ネメシア賞(B)",
@@ -9368,7 +9409,8 @@
           "normal": 0.21
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202655041210": {
     "race_name": "清明特選(C2)",
@@ -9595,7 +9637,8 @@
           "normal": 0.17
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202655041211": {
     "race_name": "SAGAリベンジャーズドリーム(3歳)",
@@ -9817,6 +9860,7 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   }
 }
