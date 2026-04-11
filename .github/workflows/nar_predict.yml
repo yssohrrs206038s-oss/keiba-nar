@@ -189,6 +189,15 @@ jobs:
             echo "✅ コミット・プッシュ完了"
           fi
 
+      # ── Discord通知（both時） ──────────────────────────────────
+      - name: Discord にNAR予想を送信
+        if: steps.mode.outputs.mode == 'both'
+        continue-on-error: true
+        run: |
+          echo "📤 NAR予想通知を送信..."
+          python -m keiba_predictor.main notify --mode predict
+          echo "✅ 通知完了"
+
       # ── オッズ更新（14時JST） ──────────────────────────────────
       - name: オッズ更新（Discord/X通知なし）
         if: steps.mode.outputs.mode == 'notify' || steps.mode.outputs.mode == 'both'
