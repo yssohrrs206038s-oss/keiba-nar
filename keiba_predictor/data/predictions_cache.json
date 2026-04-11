@@ -163,7 +163,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（◎○合計149% < 180%）",
+      "strategy_note": "見送り（◎○差26.3% > 15%）",
       "use_wide": true
     },
     "simulation": {
@@ -379,12 +379,20 @@
     "bet_strategy": {
       "fukusho": [],
       "umaren": [],
-      "wide": [],
+      "wide": [
+        {
+          "nums": [
+            1,
+            7
+          ]
+        }
+      ],
       "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（◎○合計159% < 180%）",
-      "use_wide": true
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "ワイド1点（推定1.9倍）",
+      "use_wide": true,
+      "streak": 0
     },
     "simulation": {
       "1": {
@@ -594,12 +602,20 @@
     "bet_strategy": {
       "fukusho": [],
       "umaren": [],
-      "wide": [],
+      "wide": [
+        {
+          "nums": [
+            5,
+            2
+          ]
+        }
+      ],
       "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（◎○差34.9% > 15%）",
-      "use_wide": true
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "ワイド1点（推定2.8倍）",
+      "use_wide": true,
+      "streak": 0
     },
     "simulation": {
       "5": {
@@ -809,12 +825,20 @@
     "bet_strategy": {
       "fukusho": [],
       "umaren": [],
-      "wide": [],
+      "wide": [
+        {
+          "nums": [
+            3,
+            5
+          ]
+        }
+      ],
       "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（◎○差25.3% > 15%）",
-      "use_wide": true
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "ワイド1点（推定1.8倍）",
+      "use_wide": true,
+      "streak": 0
     },
     "simulation": {
       "3": {
@@ -1028,7 +1052,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（◎○合計163% < 180%）",
+      "strategy_note": "見送り（推定ワイドオッズ1.2倍 < 1.5倍）",
       "use_wide": true
     },
     "simulation": {
@@ -1244,12 +1268,20 @@
     "bet_strategy": {
       "fukusho": [],
       "umaren": [],
-      "wide": [],
+      "wide": [
+        {
+          "nums": [
+            11,
+            6
+          ]
+        }
+      ],
       "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（◎○差16.8% > 15%）",
-      "use_wide": true
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "ワイド1点（推定3.6倍）",
+      "use_wide": true,
+      "streak": 0
     },
     "simulation": {
       "11": {
@@ -1459,12 +1491,20 @@
     "bet_strategy": {
       "fukusho": [],
       "umaren": [],
-      "wide": [],
+      "wide": [
+        {
+          "nums": [
+            10,
+            8
+          ]
+        }
+      ],
       "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（◎○合計157% < 180%）",
-      "use_wide": true
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "ワイド1点（推定1.9倍）",
+      "use_wide": true,
+      "streak": 0
     },
     "simulation": {
       "10": {
@@ -1679,12 +1719,20 @@
     "bet_strategy": {
       "fukusho": [],
       "umaren": [],
-      "wide": [],
+      "wide": [
+        {
+          "nums": [
+            9,
+            6
+          ]
+        }
+      ],
       "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（◎○合計152% < 180%）",
-      "use_wide": true
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "ワイド1点（推定1.7倍）",
+      "use_wide": true,
+      "streak": 0
     },
     "simulation": {
       "9": {
@@ -1894,12 +1942,20 @@
     "bet_strategy": {
       "fukusho": [],
       "umaren": [],
-      "wide": [],
+      "wide": [
+        {
+          "nums": [
+            9,
+            6
+          ]
+        }
+      ],
       "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（◎○差22.7% > 15%）",
-      "use_wide": true
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "ワイド1点（推定2.3倍）",
+      "use_wide": true,
+      "streak": 0
     },
     "simulation": {
       "9": {
@@ -2109,12 +2165,20 @@
     "bet_strategy": {
       "fukusho": [],
       "umaren": [],
-      "wide": [],
+      "wide": [
+        {
+          "nums": [
+            10,
+            6
+          ]
+        }
+      ],
       "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（◎○合計145% < 180%）",
-      "use_wide": true
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "ワイド1点（推定4.0倍）",
+      "use_wide": true,
+      "streak": 0
     },
     "simulation": {
       "10": {
@@ -2329,12 +2393,20 @@
     "bet_strategy": {
       "fukusho": [],
       "umaren": [],
-      "wide": [],
+      "wide": [
+        {
+          "nums": [
+            10,
+            7
+          ]
+        }
+      ],
       "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（◎○合計147% < 180%）",
-      "use_wide": true
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "ワイド1点（推定2.8倍）",
+      "use_wide": true,
+      "streak": 0
     },
     "simulation": {
       "10": {
@@ -2544,12 +2616,20 @@
     "bet_strategy": {
       "fukusho": [],
       "umaren": [],
-      "wide": [],
+      "wide": [
+        {
+          "nums": [
+            4,
+            11
+          ]
+        }
+      ],
       "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（◎○合計157% < 180%）",
-      "use_wide": true
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "ワイド1点（推定2.0倍）",
+      "use_wide": true,
+      "streak": 0
     },
     "simulation": {
       "4": {
@@ -2764,12 +2844,20 @@
     "bet_strategy": {
       "fukusho": [],
       "umaren": [],
-      "wide": [],
+      "wide": [
+        {
+          "nums": [
+            10,
+            8
+          ]
+        }
+      ],
       "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（◎○合計150% < 180%）",
-      "use_wide": true
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "ワイド1点（推定2.2倍）",
+      "use_wide": true,
+      "streak": 0
     },
     "simulation": {
       "10": {
@@ -2988,7 +3076,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（◎○差17.8% > 15%）",
+      "strategy_note": "見送り（◎○差39.9% > 15%）",
       "use_wide": true
     },
     "simulation": {
@@ -3204,12 +3292,20 @@
     "bet_strategy": {
       "fukusho": [],
       "umaren": [],
-      "wide": [],
+      "wide": [
+        {
+          "nums": [
+            10,
+            7
+          ]
+        }
+      ],
       "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（◎○差21.8% > 15%）",
-      "use_wide": true
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "ワイド1点（推定2.3倍）",
+      "use_wide": true,
+      "streak": 0
     },
     "simulation": {
       "10": {
@@ -3419,12 +3515,20 @@
     "bet_strategy": {
       "fukusho": [],
       "umaren": [],
-      "wide": [],
+      "wide": [
+        {
+          "nums": [
+            10,
+            3
+          ]
+        }
+      ],
       "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（◎○合計137% < 180%）",
-      "use_wide": true
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "ワイド1点（推定2.0倍）",
+      "use_wide": true,
+      "streak": 0
     },
     "simulation": {
       "10": {
@@ -3634,12 +3738,20 @@
     "bet_strategy": {
       "fukusho": [],
       "umaren": [],
-      "wide": [],
+      "wide": [
+        {
+          "nums": [
+            4,
+            8
+          ]
+        }
+      ],
       "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（◎○差35.1% > 15%）",
-      "use_wide": true
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "ワイド1点（推定1.9倍）",
+      "use_wide": true,
+      "streak": 0
     },
     "simulation": {
       "4": {
@@ -3853,7 +3965,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（◎○差16.5% > 15%）",
+      "strategy_note": "見送り（推定ワイドオッズ1.5倍 < 1.5倍）",
       "use_wide": true
     },
     "simulation": {
@@ -4064,12 +4176,20 @@
     "bet_strategy": {
       "fukusho": [],
       "umaren": [],
-      "wide": [],
+      "wide": [
+        {
+          "nums": [
+            1,
+            8
+          ]
+        }
+      ],
       "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（◎○合計146% < 180%）",
-      "use_wide": true
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "ワイド1点（推定2.1倍）",
+      "use_wide": true,
+      "streak": 0
     },
     "simulation": {
       "1": {
@@ -4298,7 +4418,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（◎○差27.6% > 15%）",
+      "strategy_note": "見送り（◎○差43.2% > 15%）",
       "use_wide": true
     },
     "simulation": {
@@ -4513,7 +4633,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（◎○合計145% < 180%）",
+      "strategy_note": "見送り（推定ワイドオッズ1.4倍 < 1.5倍）",
       "use_wide": true
     },
     "simulation": {
@@ -4729,12 +4849,20 @@
     "bet_strategy": {
       "fukusho": [],
       "umaren": [],
-      "wide": [],
+      "wide": [
+        {
+          "nums": [
+            3,
+            7
+          ]
+        }
+      ],
       "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（◎○合計160% < 180%）",
-      "use_wide": true
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "ワイド1点（推定3.4倍）",
+      "use_wide": true,
+      "streak": 0
     },
     "simulation": {
       "3": {
