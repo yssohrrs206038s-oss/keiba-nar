@@ -222,7 +222,8 @@
           "normal": 0.34
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202654041102": {
     "race_name": "3歳ー3",
@@ -441,7 +442,8 @@
           "normal": 0.19
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202654041103": {
     "race_name": "3歳ー2",
@@ -655,7 +657,8 @@
           "normal": 0.12
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202654041104": {
     "race_name": "Bー3",
@@ -869,7 +872,8 @@
           "normal": 0.02
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202654041105": {
     "race_name": "C3ー11",
@@ -1083,7 +1087,8 @@
           "normal": 0.05
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202654041106": {
     "race_name": "C3ー10",
@@ -1302,7 +1307,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202654041107": {
     "race_name": "C3ー9",
@@ -1516,7 +1522,8 @@
           "normal": 0.01
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202654041108": {
     "race_name": "C3ー7",
@@ -1735,7 +1742,8 @@
           "normal": 0.15
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202654041109": {
     "race_name": "Bー2",
@@ -1949,7 +1957,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202654041110": {
     "race_name": "工石山特別(B)",
@@ -2163,7 +2172,8 @@
           "normal": 0.12
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202654041111": {
     "race_name": "ファイナルレース(C3)",
@@ -2382,7 +2392,8 @@
           "normal": 0.25
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202655041101": {
     "race_name": "3歳ー6組",
@@ -2596,7 +2607,8 @@
           "normal": 0.19
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202655041102": {
     "race_name": "メモリアルカップ(C2)",
@@ -2815,7 +2827,8 @@
           "normal": 0.16
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202655041103": {
     "race_name": "C2ー7組",
@@ -3034,7 +3047,8 @@
           "normal": 0.23
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202655041104": {
     "race_name": "九千部山賞",
@@ -3253,7 +3267,8 @@
           "normal": 0.13
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202655041105": {
     "race_name": "おおぐま座特選(C2)",
@@ -3467,7 +3482,8 @@
           "normal": 0.12
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202655041106": {
     "race_name": "C2ー6組",
@@ -3681,7 +3697,8 @@
           "normal": 0.04
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202655041107": {
     "race_name": "C1ー11組",
@@ -3895,7 +3912,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202655041108": {
     "race_name": "アイリス賞(C1)",
@@ -4109,7 +4127,8 @@
           "normal": 0.05
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202655041109": {
     "race_name": "AIパッカル賞(B)",
@@ -4338,7 +4357,8 @@
           "normal": 0.2
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202655041110": {
     "race_name": "ガッツポーズの日賞",
@@ -4552,7 +4572,8 @@
           "normal": 0.03
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202655041111": {
     "race_name": "SAGAリベンジャーズウェルカム(3歳)",
@@ -4771,6 +4792,7 @@
           "normal": 0.15
         }
       }
-    }
+    },
+    "notified_predict": true
   }
 }
