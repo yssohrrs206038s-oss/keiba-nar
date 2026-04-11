@@ -360,7 +360,7 @@ def _decide_bet_strategy(result_df: pd.DataFrame) -> dict:
         venue = VENUE_MAP.get(race_id[4:6], "")
     streak = _get_venue_win_streak(venue) if venue else 0
     WIDE_UNIT = 2000 if streak >= 2 else 1000
-    MIN_WIDE_ODDS = 1.5
+    MIN_WIDE_ODDS = 1.0  # 元本割れ（1.0倍未満）のみ除外。1.2倍でも勝率高ければプラス
 
     def _empty(note: str) -> dict:
         return {
