@@ -238,9 +238,11 @@ def record_result(
     sanren_hit = False
     sanren_payout = 0
 
-    bet_total = BETS_PER_RACE_TOTAL  # 1,000円（ワイド1点）
+    # 見送りレース（フィルタ）の場合は投資0
+    is_skip = bs.get("total_points", 0) == 0 or "見送り" in bs.get("strategy_note", "")
+    bet_total = 0 if is_skip else BETS_PER_RACE_TOTAL
     # 100円ベース配当 × 10 = 1,000円購入時の払戻
-    return_total = wide_payout * 10 if wide_hit else 0
+    return_total = wide_payout * 10 if wide_hit and not is_skip else 0
 
     row = {
         "date":       race_date,

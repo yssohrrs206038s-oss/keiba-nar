@@ -349,18 +349,25 @@ def _decide_bet_strategy(result_df: pd.DataFrame) -> dict:
     """
     NAR予測結果DataFrameから買い目を決定する。
 
-    構成: ワイド ◎-○ 1点
-    金額: 通常1,000円、同会場2連勝以上で2,000円（会場別ストリーク増額）
-    フィルタ: 推定ワイドオッズ < 1.5倍 の場合はスキップ（買い目なし）
+    構成: ワイド ◎-○ 1点（固定1,000円）
+    フィルタ:
+    - 川崎・高知: 見送り（回収率43%・58%、モデル適性低い）
+    - 推定ワイドオッズ < 1.0倍: 見送り
+    - ○確率 < 20%: 見送り
+    - ◎○差 > 25%: 見送り
     """
-    # レースの会場を取得してストリーク判定
+    # レースの会場を取得
     race_id = str(result_df.iloc[0].get("race_id", "")) if "race_id" in result_df.columns else ""
     venue = ""
+    venue_code = ""
     if len(race_id) >= 6:
-        venue = VENUE_MAP.get(race_id[4:6], "")
-    streak = _get_venue_win_streak(venue) if venue else 0
-    WIDE_UNIT = 2000 if streak >= 2 else 1000
-    MIN_WIDE_ODDS = 1.0  # 元本割れ（1.0倍未満）のみ除外。1.2倍でも勝率高ければプラス
+        venue_code = race_id[4:6]
+        venue = VENUE_MAP.get(venue_code, "")
+
+    # 開催場フィルタ: 川崎・高知は見送り（成績分析4/4-4/11: 回収率43%・58%）
+    SKIP_VENUES = {"45", "54"}  # 45=川崎, 54=高知
+    WIDE_UNIT = 1000  # 固定1,000円（ストリーク増額廃止: 増額時60% vs 通常72%）
+    MIN_WIDE_ODDS = 1.0
 
     def _empty(note: str) -> dict:
         return {
@@ -371,6 +378,9 @@ def _decide_bet_strategy(result_df: pd.DataFrame) -> dict:
 
     if len(result_df) < 2:
         return _empty("出走頭数不足")
+
+    if venue_code in SKIP_VENUES:
+        return _empty(f"見送り（{venue}フィルタ: 回収率低）")
 
     top2 = result_df.head(2)
     nums = [int(r["horse_number"]) for _, r in top2.iterrows()
@@ -431,17 +441,15 @@ def _decide_bet_strategy(result_df: pd.DataFrame) -> dict:
                 f"見送り（推定ワイドオッズ{estimated_wide_odds:.1f}倍 < 1.5倍）"
             )
 
-    streak_label = f"🔥{streak}連勝中→{WIDE_UNIT:,}円" if streak >= 2 else ""
-    note = f"ワイド1点{' ' + streak_label if streak_label else ''}"
+    note = "ワイド1点"
     if estimated_wide_odds is not None:
-        note = f"ワイド1点（推定{estimated_wide_odds:.1f}倍）{' ' + streak_label if streak_label else ''}"
+        note = f"ワイド1点（推定{estimated_wide_odds:.1f}倍）"
 
     strategy = {
         "fukusho": [], "umaren": [], "wide": [{"nums": [hon, tai]}],
         "sanrenpuku": {},
         "total_points": 1, "total_cost": WIDE_UNIT,
         "strategy_note": note, "use_wide": True,
-        "streak": streak,
     }
 
     return strategy
@@ -473,20 +481,15 @@ def _build_buy_lines(result_df: pd.DataFrame, race_name: str = "") -> list[str]:
     if pd.notna(tai_row.get("horse_name")):
         tai_name = str(tai_row["horse_name"])
 
-    race_id = str(result_df.iloc[0].get("race_id", "")) if "race_id" in result_df.columns else ""
-    venue = VENUE_MAP.get(race_id[4:6], "") if len(race_id) >= 6 else ""
-    streak = _get_venue_win_streak(venue) if venue else 0
-    unit = 2000 if streak >= 2 else 1000
-    streak_note = f"  🔥{venue}{streak}連勝中→増額" if streak >= 2 else ""
     header = f"💰 {race_name}  買い目" if race_name else "💰 買い目"
     lines = [
         SEP,
         header,
         SEP,
-        f"■ ワイド（1点 {unit:,}円）{streak_note}",
+        f"■ ワイド（1点 1,000円）",
         f"　◎{hon}番 {hon_name} - ○{tai}番 {tai_name}",
         SEP,
-        f"合計 1点 / {unit:,}円",
+        f"合計 1点 / 1,000円",
         SEP,
     ]
     return lines
