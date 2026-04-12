@@ -310,40 +310,6 @@ def predict_race(
     return result
 
 
-def _get_venue_win_streak(venue: str) -> int:
-    """predictions_cache.json から指定会場の直近連勝数を返す。"""
-    try:
-        import json
-        cache_path = DATA_DIR / "predictions_cache.json"
-        if not cache_path.exists():
-            return 0
-        cache = json.loads(cache_path.read_text(encoding="utf-8"))
-        # 指定会場の結果済みレースを発走時刻順でソート
-        settled = []
-        for rid, entry in cache.items():
-            if rid.startswith("_") or not isinstance(entry, dict):
-                continue
-            if not entry.get("result_settled"):
-                continue
-            if entry.get("venue", "") != venue:
-                continue
-            settled.append((
-                entry.get("race_date", "") + " " + entry.get("start_time", "99:99"),
-                entry.get("wide_hit", False),
-            ))
-        if not settled:
-            return 0
-        settled.sort(reverse=True)  # 最新順
-        streak = 0
-        for _, hit in settled:
-            if hit:
-                streak += 1
-            else:
-                break
-        return streak
-    except Exception:
-        return 0
-
 
 def _decide_bet_strategy(result_df: pd.DataFrame) -> dict:
     """

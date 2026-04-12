@@ -1097,8 +1097,8 @@ def _record_manual_result(race_id: str, race_name: str, race_date: str,
     fukusho_payout  = manual_pay.get("fukusho", 0)
     umaren_payout   = manual_pay.get("umaren", 0)
     sanren_payout   = manual_pay.get("sanrenpuku", 0)
-    # 投資: 複勝1点 + 馬連3点 + 3連複10点 = 14点 × 100円
-    bet_total       = 1400
+    # 投資: ワイド1点 × 1,000円
+    bet_total       = 1000
     return_total    = fukusho_payout + umaren_payout + sanren_payout
 
     def _a(i):
