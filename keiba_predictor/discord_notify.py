@@ -1934,6 +1934,7 @@ def run_result_notify(
 
     notified = 0
     skipped  = 0
+    skip_hits: list[str] = []  # 見送りだったが的中していたレース
     for race in grade_races:
         race_id   = race["race_id"]
         race_name = race.get("race_name", race_id)
@@ -2071,11 +2072,28 @@ def run_result_notify(
             except Exception as e:
                 logger.warning(f"  [history] 記録失敗 ({race_name}): {e}")
 
-        # X（Twitter）への個別レース結果投稿は廃止
-        # → 日次まとめに集約（loss_analysis.py main で post_daily_result_summary を呼ぶ）
+        # 見送りレースの的中チェック（買っていたら当たっていたケース）
+        bs = pred.get("bet_strategy", {})
+        is_skip = "見送り" in bs.get("strategy_note", "") or bs.get("total_points", 0) == 0
+        if is_skip:
+            top3_nums = pred.get("predicted_top3_nums", [])
+            if len(top3_nums) >= 2:
+                _df_c = actual_df.copy()
+                _df_c["_fp"] = pd.to_numeric(_df_c["finish_position"], errors="coerce")
+                _t3 = _df_c[_df_c["_fp"].isin([1, 2, 3])].sort_values("_fp").head(3)
+                _aset = set(int(r["horse_number"]) for _, r in _t3.iterrows() if pd.notna(r.get("horse_number")))
+                hon, tai = top3_nums[0], top3_nums[1]
+                if hon in _aset and tai in _aset:
+                    _wp = _get_payout(payouts, "ワイド", f"{hon}-{tai}")
+                    skip_hits.append(f"⚠️ {race_name}: ◎{hon}-○{tai} ワイド的中（{_wp or '配当不明'}）← {bs.get('strategy_note','')}")
 
     if notified > 0:
         send_discord(webhook_url, f"✅ {notified}レース結果送信完了")
+
+    # 見送りだったが的中していたレースを報告
+    if skip_hits:
+        skip_msg = "━" * 20 + "\n📋 **見送りレースの的中チェック**\n" + "\n".join(skip_hits) + "\n" + "━" * 20
+        send_discord(result_webhook or webhook_url, skip_msg)
 
     # 日曜日に週次サマリーを X に投稿
     if os.environ.get("ENABLE_X_POST", "false").lower() == "true":
