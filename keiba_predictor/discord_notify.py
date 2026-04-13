@@ -1531,7 +1531,7 @@ def _format_prediction_from_cache(race_name: str, entry: dict, race_id: str = ""
         lines1.append(meta_line)
     lines1.append(flag_sep)
 
-    MARKS = ["◎", "○", "▲", "△", "　"]
+    MARKS = ["◎", "○", "▲", "△", "☆"]
     top5_nums = entry.get("predicted_top5_nums", [])
 
     # predicted_top5（上位5頭の詳細情報）を馬番→infoのマップに変換

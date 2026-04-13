@@ -488,7 +488,7 @@ def format_prediction(
         lines1.append(course_info)
     lines1.append(sep)
 
-    MARKS = ["◎", "○", "▲", "△", "　"]
+    MARKS = ["◎", "○", "▲", "△", "☆"]
     top5  = result_df.head(5)
 
     for rank, (_, row) in enumerate(top5.iterrows()):

@@ -288,7 +288,7 @@ def _build_note_race_markdown(race_id: str, r: dict, analysis: dict) -> str:
         "|---|---|---|---|---|",
     ]
 
-    MARKS = ["◎", "○", "▲", "△", "　"]
+    MARKS = ["◎", "○", "▲", "△", "☆"]
     top5 = r.get("predicted_top5", r.get("ev_top3", []))
     roles_data = []
     for idx, (role, mark) in enumerate([("honmei", "◎"), ("taikou", "○"), ("ana", "▲")]):
