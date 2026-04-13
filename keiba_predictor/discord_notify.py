@@ -2090,9 +2090,12 @@ def run_result_notify(
     if notified > 0:
         send_discord(webhook_url, f"✅ {notified}レース結果送信完了")
 
-    # 見送りだったが的中していたレースを報告
+    # 見送りレースの的中サマリー
     if skip_hits:
-        skip_msg = "━" * 20 + "\n📋 **見送りレースの的中チェック**\n" + "\n".join(skip_hits) + "\n" + "━" * 20
+        skip_total = sum(1 for r in grade_races
+                         if cache.get(r["race_id"], {}).get("bet_strategy", {}).get("total_points", 0) == 0
+                         or "見送り" in cache.get(r["race_id"], {}).get("bet_strategy", {}).get("strategy_note", ""))
+        skip_msg = f"📋 見送り{skip_total}件中 的中{len(skip_hits)}件"
         send_discord(result_webhook or webhook_url, skip_msg)
 
     # 日曜日に週次サマリーを X に投稿
