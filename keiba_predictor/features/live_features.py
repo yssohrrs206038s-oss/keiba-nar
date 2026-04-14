@@ -526,7 +526,7 @@ def build_live_features(
             "sire_course_win_rate": _sire_course_rate(sire, history, ped_db, race_date, course_type_enc),
             "sire_dist_win_rate": _sire_dist_rate(sire, history, ped_db, race_date, distance),
             "bms_course_win_rate": _bms_course_rate(bms, history, ped_db, race_date, course_type_enc),
-        }
+        })
 
         # 斤量増減
         cur_wc = pd.to_numeric(h.get("weight_carried"), errors="coerce")
