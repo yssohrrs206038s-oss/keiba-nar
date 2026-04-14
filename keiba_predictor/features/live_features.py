@@ -318,6 +318,92 @@ def _horse_track_rate(
 
 
 # ══════════════════════════════════════════════════════════════
+# 血統特徴量ヘルパー
+# ══════════════════════════════════════════════════════════════
+
+def _load_pedigree_db() -> pd.DataFrame:
+    ped_path = DATA_DIR / "pedigree_db.csv"
+    if not ped_path.exists():
+        return pd.DataFrame()
+    try:
+        return pd.read_csv(ped_path, dtype=str)
+    except Exception:
+        return pd.DataFrame()
+
+
+def _sire_rate(sire, history, ped_db, race_date):
+    if not sire or history.empty or ped_db.empty:
+        return np.nan
+    horses = set(ped_db[ped_db["sire"] == sire]["horse_id"].tolist())
+    if not horses:
+        return np.nan
+    past = history[(history["horse_id"].astype(str).isin(horses)) & (history["race_date"] < race_date)]
+    t = pd.to_numeric(past["top3"], errors="coerce").dropna()
+    return float(t.mean()) if len(t) >= 1 else np.nan
+
+
+def _bms_rate(bms, history, ped_db, race_date):
+    if not bms or history.empty or ped_db.empty:
+        return np.nan
+    horses = set(ped_db[ped_db["bms"] == bms]["horse_id"].tolist())
+    if not horses:
+        return np.nan
+    past = history[(history["horse_id"].astype(str).isin(horses)) & (history["race_date"] < race_date)]
+    t = pd.to_numeric(past["top3"], errors="coerce").dropna()
+    return float(t.mean()) if len(t) >= 1 else np.nan
+
+
+def _sire_course_rate(sire, history, ped_db, race_date, course_type_enc):
+    if not sire or history.empty or ped_db.empty:
+        return np.nan
+    horses = set(ped_db[ped_db["sire"] == sire]["horse_id"].tolist())
+    if not horses:
+        return np.nan
+    past = history[
+        (history["horse_id"].astype(str).isin(horses)) &
+        (history["race_date"] < race_date) &
+        (pd.to_numeric(history["course_type_enc"], errors="coerce") == course_type_enc)
+    ]
+    t = pd.to_numeric(past["top3"], errors="coerce").dropna()
+    return float(t.mean()) if len(t) >= 1 else np.nan
+
+
+def _sire_dist_rate(sire, history, ped_db, race_date, distance):
+    if not sire or history.empty or ped_db.empty:
+        return np.nan
+    horses = set(ped_db[ped_db["sire"] == sire]["horse_id"].tolist())
+    if not horses:
+        return np.nan
+    d = pd.to_numeric(history["distance"], errors="coerce")
+    if distance < 1400:
+        mask = d < 1400
+    elif distance <= 1800:
+        mask = (d >= 1400) & (d <= 1800)
+    elif distance <= 2200:
+        mask = (d > 1800) & (d <= 2200)
+    else:
+        mask = d > 2200
+    past = history[(history["horse_id"].astype(str).isin(horses)) & (history["race_date"] < race_date) & mask]
+    t = pd.to_numeric(past["top3"], errors="coerce").dropna()
+    return float(t.mean()) if len(t) >= 1 else np.nan
+
+
+def _bms_course_rate(bms, history, ped_db, race_date, course_type_enc):
+    if not bms or history.empty or ped_db.empty:
+        return np.nan
+    horses = set(ped_db[ped_db["bms"] == bms]["horse_id"].tolist())
+    if not horses:
+        return np.nan
+    past = history[
+        (history["horse_id"].astype(str).isin(horses)) &
+        (history["race_date"] < race_date) &
+        (pd.to_numeric(history["course_type_enc"], errors="coerce") == course_type_enc)
+    ]
+    t = pd.to_numeric(past["top3"], errors="coerce").dropna()
+    return float(t.mean()) if len(t) >= 1 else np.nan
+
+
+# ══════════════════════════════════════════════════════════════
 # 公開 API
 # ══════════════════════════════════════════════════════════════
 
@@ -345,6 +431,8 @@ def build_live_features(
     venue               = str(shutuba_info.get("venue", ""))
     race_grade_enc      = int(shutuba_info.get("race_grade_enc", 0))
     track_condition_enc = shutuba_info.get("track_condition_enc")  # None if unknown
+
+    ped_db = _load_pedigree_db()
 
     try:
         race_date = pd.Timestamp(race_date_str)
@@ -423,6 +511,21 @@ def build_live_features(
             "jockey_course_fukusho_rate": jockey_course_rate,
             "jockey_dist_fukusho_rate":   jockey_dist_rate,
             "jockey_trainer_fukusho_rate": jt_rate,
+        }
+
+        # 血統特徴量
+        sire, bms = "", ""
+        if not ped_db.empty and horse_id:
+            ped_row = ped_db[ped_db["horse_id"] == str(horse_id)]
+            if not ped_row.empty:
+                sire = str(ped_row.iloc[0].get("sire", ""))
+                bms = str(ped_row.iloc[0].get("bms", ""))
+        row.update({
+            "sire_win_rate": _sire_rate(sire, history, ped_db, race_date),
+            "bms_win_rate": _bms_rate(bms, history, ped_db, race_date),
+            "sire_course_win_rate": _sire_course_rate(sire, history, ped_db, race_date, course_type_enc),
+            "sire_dist_win_rate": _sire_dist_rate(sire, history, ped_db, race_date, distance),
+            "bms_course_win_rate": _bms_course_rate(bms, history, ped_db, race_date, course_type_enc),
         }
 
         # 斤量増減

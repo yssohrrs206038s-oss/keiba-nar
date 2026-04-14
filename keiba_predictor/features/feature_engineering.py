@@ -82,6 +82,12 @@ FEATURE_COLS = [
     "is_weight_increase",        # 斤量増加フラグ（1=増加）
     "same_day_rank",             # 同レース内AI確率順位
     "prob_vs_avg",               # AI確率 - レース平均確率
+    # 血統特徴量
+    "sire_win_rate",             # 同じ父馬の3着以内率（過去expanding mean）
+    "bms_win_rate",              # 同じ母父の3着以内率
+    "sire_course_win_rate",      # 同じ父馬×コース種別の3着以内率
+    "sire_dist_win_rate",        # 同じ父馬×距離帯の3着以内率
+    "bms_course_win_rate",       # 同じ母父×コース種別の3着以内率
 ]
 
 
@@ -454,6 +460,69 @@ def add_jockey_course_dist_features(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
+def add_pedigree_features(df: pd.DataFrame) -> pd.DataFrame:
+    """血統（父馬・母父）の過去成績に基づく特徴量を追加する。"""
+    pedigree_path = DATA_DIR / "pedigree_db.csv"
+    if not pedigree_path.exists():
+        logger.warning(f"pedigree_db.csv が見つかりません: {pedigree_path}")
+        for col in ["sire_win_rate", "bms_win_rate", "sire_course_win_rate",
+                     "sire_dist_win_rate", "bms_course_win_rate"]:
+            df[col] = np.nan
+        return df
+
+    ped = pd.read_csv(pedigree_path, dtype=str)
+    logger.info(f"血統DB読み込み: {len(ped)} 件")
+
+    df["horse_id"] = df["horse_id"].astype(str)
+    ped["horse_id"] = ped["horse_id"].astype(str)
+    df = df.merge(ped[["horse_id", "sire", "dam", "bms"]], on="horse_id", how="left")
+    df = df.sort_values("race_date").reset_index(drop=True)
+
+    logger.info("父馬複勝率を計算中...")
+    df["sire_win_rate"] = (
+        df.groupby("sire", group_keys=False)["top3"]
+        .transform(lambda x: x.shift(1).expanding().mean())
+    )
+
+    logger.info("母父複勝率を計算中...")
+    df["bms_win_rate"] = (
+        df.groupby("bms", group_keys=False)["top3"]
+        .transform(lambda x: x.shift(1).expanding().mean())
+    )
+
+    # course_type_enc がなければ course_type から生成
+    if "course_type_enc" not in df.columns and "course_type" in df.columns:
+        df["course_type_enc"] = df["course_type"].map({"芝": 0, "ダ": 1, "ダート": 1, "障": 2}).fillna(1).astype(int)
+
+    logger.info("父馬×コース種別複勝率を計算中...")
+    if "course_type_enc" in df.columns:
+        df["sire_course_win_rate"] = (
+            df.groupby(["sire", "course_type_enc"], group_keys=False)["top3"]
+            .transform(lambda x: x.shift(1).expanding().mean())
+        )
+    else:
+        df["sire_course_win_rate"] = np.nan
+
+    logger.info("父馬×距離帯複勝率を計算中...")
+    df["_sire_dist_band"] = df["distance"].apply(_dist_band_label)
+    df["sire_dist_win_rate"] = (
+        df.groupby(["sire", "_sire_dist_band"], group_keys=False)["top3"]
+        .transform(lambda x: x.shift(1).expanding().mean())
+    )
+    df = df.drop(columns=["_sire_dist_band"])
+
+    logger.info("母父×コース種別複勝率を計算中...")
+    if "course_type_enc" in df.columns:
+        df["bms_course_win_rate"] = (
+            df.groupby(["bms", "course_type_enc"], group_keys=False)["top3"]
+            .transform(lambda x: x.shift(1).expanding().mean())
+        )
+    else:
+        df["bms_course_win_rate"] = np.nan
+
+    return df
+
+
 def build_features(df: pd.DataFrame) -> pd.DataFrame:
     """
     クリーニング済みDataFrameにすべての特徴量を追加して返す。
@@ -470,6 +539,7 @@ def build_features(df: pd.DataFrame) -> pd.DataFrame:
     df = add_jockey_horse_features(df)      # jockey_fukusho_rate に依存するため最後
     df = add_jockey_course_dist_features(df)  # NAR: 地区別に変更
     df = add_jockey_trainer_features(df)
+    df = add_pedigree_features(df)
 
     # same_day_rank / prob_vs_avg は学習時には使えない（leakage）ため NaN で埋める
     # ライブ予測時のみ predict_race() 後に計算する
