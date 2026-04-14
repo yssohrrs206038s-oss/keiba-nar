@@ -348,6 +348,10 @@ def _decide_bet_strategy(result_df: pd.DataFrame) -> dict:
     if venue_code in SKIP_VENUES:
         return _empty(f"見送り（{venue}フィルタ: 回収率低）")
 
+    MAX_HORSES = 10  # 78,776Rバックテスト: 11頭以上はROI 75-76%→除外
+    if len(result_df) > MAX_HORSES:
+        return _empty(f"見送り（{len(result_df)}頭: 多頭数フィルタ）")
+
     top2 = result_df.head(2)
     nums = [int(r["horse_number"]) for _, r in top2.iterrows()
             if pd.notna(r.get("horse_number"))]
