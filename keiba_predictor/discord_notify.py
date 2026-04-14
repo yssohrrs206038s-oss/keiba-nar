@@ -1638,20 +1638,31 @@ def _format_prediction_from_cache(race_name: str, entry: dict, race_id: str = ""
 
     if bs and bs.get("total_points", 0) > 0:
         lines2 = ["💰 買い目"]
+        total_cost = bs.get("total_cost", 1000)
 
-        # ワイド ◎-○ 1点
+        # ワイド
         if bs.get("wide"):
             w = bs["wide"][0]
             lines2.append(f"ワイド ◎{w['nums'][0]}-○{w['nums'][1]}  1,000円")
 
+        # 3連複
+        sr = bs.get("sanrenpuku", {})
+        if sr and sr.get("jiku") and sr.get("aite"):
+            from itertools import combinations
+            jiku = sr["jiku"][0]
+            aite = sr["aite"]
+            n_pts = len(list(combinations(aite, 2)))
+            lines2.append(f"3連複 軸◎{jiku} × {'/'.join(str(a) for a in aite)}  {n_pts}点×100円")
+
         lines2.append(f"────────────────")
-        lines2.append(f"合計投資額: 1,000円")
+        lines2.append(f"合計投資額: {total_cost:,}円")
+        if bs.get("strategy_note"):
+            lines2.append(f"💡 {bs['strategy_note']}")
     elif bs and "見送り" in str(bs.get("strategy_note", "")):
-        # オッズフィルタで見送り
         note = bs.get("strategy_note", "見送り")
         lines2 = ["💰 買い目", f"⏭️ {note}"]
     else:
-        # フォールバック: ワイド ◎-○ 1点（bet_strategyがない場合）
+        # フォールバック
         nums = top5_nums
         if len(nums) < 2:
             return msg1, ""
@@ -2034,7 +2045,7 @@ def run_result_notify(
             _top3 = _df_copy[_df_copy["_fp"].isin([1, 2, 3])].sort_values("_fp").head(3)
             _actual_top3_nums = [int(r["horse_number"]) for _, r in _top3.iterrows() if pd.notna(r.get("horse_number"))]
 
-            # ワイド的中判定
+            # 的中判定（ワイド or 3連複）
             _wh = False
             _wp = ""
             _actual_set = set(_actual_top3_nums[:3])
@@ -2046,6 +2057,18 @@ def run_result_notify(
                         _wp = _get_payout(payouts, "ワイド", f"{a}-{b}")
                         _wh = True
                         break
+            # 3連複的中判定
+            sr = bs.get("sanrenpuku", {})
+            if sr and sr.get("jiku") and sr.get("aite") and len(_actual_set) >= 3:
+                from itertools import combinations as _comb_r
+                jiku = sr["jiku"]
+                if len(jiku) == 1 and jiku[0] in _actual_set:
+                    for pair in _comb_r(sr["aite"], 2):
+                        if {jiku[0], pair[0], pair[1]} == _actual_set:
+                            combo = "-".join(str(n) for n in sorted([jiku[0], pair[0], pair[1]]))
+                            _wp = _get_payout(payouts, "三連複", combo)
+                            _wh = True
+                            break
             _venue = pred.get("venue", "")
             hit_embed = _build_hit_embed(
                 _venue, race_name, _honmei_num, _honmei_name,

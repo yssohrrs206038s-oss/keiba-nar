@@ -917,10 +917,20 @@ function _renderRaceCard(raceId, r) {
   // 買い目
   const bs = r.bet_strategy;
   let betHTML = '';
-  if (bs && bs.total_points > 0 && bs.wide && bs.wide.length) {
-    const w = bs.wide[0];
-    const wideStr = `◎${w.nums[0]}-○${w.nums[1]}`;
-    betHTML = `<div class="bet-box"><div class="bet-box-title">💰 買い目（1点）</div><div class="bet-rows" style="display:flex;flex-direction:column;gap:4px;"><div class="bet-row"><span class="bet-label">ワイド</span>${wideStr}<span style="color:var(--text-muted);margin-left:auto;font-size:11px;">1,000円</span></div></div><div style="border-top:1px solid var(--border);margin-top:8px;padding-top:6px;font-size:12px;font-weight:700;">合計投資額: 1,000円</div></div>`;
+  if (bs && bs.total_points > 0 && (bs.wide?.length || bs.sanrenpuku?.jiku)) {
+    const cost = bs.total_cost || bs.total_points * 100;
+    let betRows = '';
+    if (bs.wide && bs.wide.length) {
+      const w = bs.wide[0];
+      betRows = `<div class="bet-row"><span class="bet-label">ワイド</span>◎${w.nums[0]}-○${w.nums[1]}<span style="color:var(--text-muted);margin-left:auto;font-size:11px;">1,000円</span></div>`;
+    }
+    if (bs.sanrenpuku && bs.sanrenpuku.jiku && bs.sanrenpuku.aite) {
+      const j = bs.sanrenpuku.jiku[0];
+      const a = bs.sanrenpuku.aite.join('/');
+      betRows = `<div class="bet-row"><span class="bet-label">3連複</span>◎${j}軸 × ${a}<span style="color:var(--text-muted);margin-left:auto;font-size:11px;">${bs.total_points}点×100円</span></div>`;
+    }
+    const note = bs.strategy_note ? `<div style="font-size:10px;color:var(--text-muted);margin-top:4px;">💡 ${esc(bs.strategy_note)}</div>` : '';
+    betHTML = `<div class="bet-box"><div class="bet-box-title">💰 買い目（${bs.total_points}点）</div><div class="bet-rows" style="display:flex;flex-direction:column;gap:4px;">${betRows}</div><div style="border-top:1px solid var(--border);margin-top:8px;padding-top:6px;font-size:12px;font-weight:700;">合計投資額: ${cost.toLocaleString()}円</div>${note}</div>`;
   } else if (bs && bs.strategy_note && bs.strategy_note.includes('見送り')) {
     // オッズフィルタで見送り
     betHTML = `<div class="bet-box"><div class="bet-box-title">💰 買い目</div><div style="font-size:12px;color:var(--text-muted);">⏭️ ${esc(bs.strategy_note)}</div></div>`;

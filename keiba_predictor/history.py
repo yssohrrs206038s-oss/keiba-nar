@@ -235,14 +235,31 @@ def record_result(
 
     umaren_hit = False
     umaren_payout = 0
+
+    # 3連複判定: bet_strategyのsanrenpukuで判定
     sanren_hit = False
     sanren_payout = 0
+    sr = bs.get("sanrenpuku", {})
+    if sr and sr.get("jiku") and sr.get("aite"):
+        from itertools import combinations
+        jiku = sr["jiku"]
+        aite = sr["aite"]
+        if len(jiku) == 1 and jiku[0] in actual_top3_set:
+            for pair in combinations(aite, 2):
+                if {jiku[0], pair[0], pair[1]} == actual_top3_set:
+                    combo = "-".join(str(n) for n in sorted([jiku[0], pair[0], pair[1]]))
+                    pay_str = _get_payout(payouts, "三連複", combo)
+                    sanren_payout = _payout_str_to_int(pay_str)
+                    sanren_hit = True
+                    break
 
     # 見送りレース（フィルタ）の場合は投資0
     is_skip = bs.get("total_points", 0) == 0 or "見送り" in bs.get("strategy_note", "")
-    bet_total = 0 if is_skip else BETS_PER_RACE_TOTAL
-    # 100円ベース配当 × 10 = 1,000円購入時の払戻
-    return_total = wide_payout * 10 if wide_hit and not is_skip else 0
+    bet_total = 0 if is_skip else bs.get("total_cost", BETS_PER_RACE_TOTAL)
+    # 払戻計算: ワイド(100円ベース×10) or 3連複(100円ベース×1)
+    wide_return = wide_payout * 10 if wide_hit else 0  # 1000円/100円 = 10倍
+    sanren_return = sanren_payout * 1 if sanren_hit else 0  # 100円そのまま
+    return_total = (wide_return + sanren_return) if not is_skip else 0
 
     row = {
         "date":       race_date,
