@@ -381,7 +381,13 @@ def _decide_bet_strategy(result_df: pd.DataFrame) -> dict:
             f"見送り（○確率{float(tai_prob)*100:.1f}% < 30%）"
         )
     prob_diff = float(hon_prob) - float(tai_prob)
-    if prob_diff > MAX_PROB_DIFF:
+    # ◎○差が大きい場合: オッズ比3倍以上なら3連複に切替（後段で処理）、それ以外は見送り
+    _hon_odds_tmp = pd.to_numeric(result_df.iloc[0].get("odds"), errors="coerce")
+    _tai_odds_tmp = pd.to_numeric(result_df.iloc[1].get("odds"), errors="coerce")
+    _odds_ratio_tmp = (float(_tai_odds_tmp) / float(_hon_odds_tmp)
+                       if pd.notna(_hon_odds_tmp) and pd.notna(_tai_odds_tmp) and _hon_odds_tmp > 0
+                       else 0)
+    if prob_diff > MAX_PROB_DIFF and _odds_ratio_tmp < 3.0:
         return _empty(
             f"見送り（◎○差{prob_diff*100:.1f}% > 15%）"
         )
@@ -411,6 +417,33 @@ def _decide_bet_strategy(result_df: pd.DataFrame) -> dict:
                 f"見送り（推定ワイドオッズ{estimated_wide_odds:.1f}倍 < 1.5倍）"
             )
 
+    # ◎○のオッズ比で買い目を分岐
+    # オッズ比3倍以上 = ◎が圧倒的 → 3連複◎軸（○が来ないリスク回避）
+    # バックテスト: 3倍以上でワイドROI 84% vs 3連複ROI 200%
+    SANREN_ODDS_RATIO = 3.0
+    use_sanren = False
+    if pd.notna(hon_odds) and pd.notna(tai_odds) and hon_odds > 0:
+        odds_ratio = float(tai_odds) / float(hon_odds)
+        if odds_ratio >= SANREN_ODDS_RATIO:
+            use_sanren = True
+
+    if use_sanren:
+        # 3連複 ◎1頭軸 × 相手4頭(2-5位) = C(4,2)=6点 × 100円 = 600円
+        from itertools import combinations as _comb
+        top5 = result_df.head(5)
+        aite = [int(r["horse_number"]) for _, r in top5.iloc[1:].iterrows()
+                if pd.notna(r.get("horse_number"))]
+        if len(aite) >= 2:
+            n_pts = len(list(_comb(aite, 2)))
+            note = f"3連複◎軸×{len(aite)}頭（◎圧倒: オッズ比{odds_ratio:.1f}倍）"
+            strategy = {
+                "fukusho": [], "umaren": [], "wide": [],
+                "sanrenpuku": {"jiku": [hon], "aite": aite},
+                "total_points": n_pts, "total_cost": n_pts * 100,
+                "strategy_note": note, "use_wide": False,
+            }
+            return strategy
+
     note = "ワイド1点"
     if estimated_wide_odds is not None:
         note = f"ワイド1点（推定{estimated_wide_odds:.1f}倍）"
@@ -426,10 +459,7 @@ def _decide_bet_strategy(result_df: pd.DataFrame) -> dict:
 
 
 def _build_buy_lines(result_df: pd.DataFrame, race_name: str = "") -> list[str]:
-    """
-    買い目リストを返す。
-    ワイド: ◎-○ 1点 1,000円のみ
-    """
+    """買い目リストを返す。"""
     SEP = "━" * 20
 
     top2 = result_df.head(2)
@@ -440,7 +470,6 @@ def _build_buy_lines(result_df: pd.DataFrame, race_name: str = "") -> list[str]:
         return []
 
     hon = nums[0]
-    tai = nums[1]
 
     hon_name = ""
     hon_row = result_df.iloc[0]
@@ -451,17 +480,44 @@ def _build_buy_lines(result_df: pd.DataFrame, race_name: str = "") -> list[str]:
     if pd.notna(tai_row.get("horse_name")):
         tai_name = str(tai_row["horse_name"])
 
+    # オッズ比判定
+    hon_odds = pd.to_numeric(hon_row.get("odds"), errors="coerce")
+    tai_odds = pd.to_numeric(tai_row.get("odds"), errors="coerce")
+    use_sanren = False
+    if pd.notna(hon_odds) and pd.notna(tai_odds) and hon_odds > 0:
+        odds_ratio = float(tai_odds) / float(hon_odds)
+        if odds_ratio >= 3.0:
+            use_sanren = True
+
     header = f"💰 {race_name}  買い目" if race_name else "💰 買い目"
-    lines = [
-        SEP,
-        header,
-        SEP,
-        f"■ ワイド（1点 1,000円）",
-        f"　◎{hon}番 {hon_name} - ○{tai}番 {tai_name}",
-        SEP,
-        f"合計 1点 / 1,000円",
-        SEP,
-    ]
+
+    if use_sanren:
+        from itertools import combinations as _comb
+        top5 = result_df.head(5)
+        aite = [int(r["horse_number"]) for _, r in top5.iloc[1:].iterrows()
+                if pd.notna(r.get("horse_number"))]
+        n_pts = len(list(_comb(aite, 2))) if len(aite) >= 2 else 0
+        aite_str = "/".join(str(n) for n in aite)
+        lines = [
+            SEP, header, SEP,
+            f"■ 3連複（{n_pts}点 各100円 = {n_pts*100:,}円）",
+            f"　軸 ◎{hon}番 {hon_name}",
+            f"　× {aite_str}",
+            f"　（◎圧倒レース: オッズ比{odds_ratio:.1f}倍）",
+            SEP,
+            f"合計 {n_pts}点 / {n_pts*100:,}円",
+            SEP,
+        ]
+    else:
+        tai = nums[1]
+        lines = [
+            SEP, header, SEP,
+            f"■ ワイド（1点 1,000円）",
+            f"　◎{hon}番 {hon_name} - ○{tai}番 {tai_name}",
+            SEP,
+            f"合計 1点 / 1,000円",
+            SEP,
+        ]
     return lines
 
 
