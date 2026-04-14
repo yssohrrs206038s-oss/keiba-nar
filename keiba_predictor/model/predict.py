@@ -333,7 +333,7 @@ def _decide_bet_strategy(result_df: pd.DataFrame) -> dict:
     # 開催場フィルタ: 川崎・高知は見送り（成績分析4/4-4/11: 回収率43%・58%）
     SKIP_VENUES = {"45", "54"}  # 45=川崎, 54=高知
     WIDE_UNIT = 1000  # 固定1,000円（ストリーク増額廃止: 増額時60% vs 通常72%）
-    MIN_WIDE_ODDS = 1.0
+    MIN_WIDE_ODDS = 1.5  # 78,776Rバックテスト: 1.0→1.5でROI 79%→80%
 
     def _empty(note: str) -> dict:
         return {
