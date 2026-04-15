@@ -47,17 +47,17 @@ jobs:
       - name: 実行モードを判定
         id: mode
         run: |
-          HOUR=$(date -u +%H)
+          JST_HOUR=$(TZ=Asia/Tokyo date +%H)
           INPUT_MODE="${{ inputs.mode }}"
           if [ -n "$INPUT_MODE" ] && [ "$INPUT_MODE" != "" ]; then
             echo "mode=$INPUT_MODE" >> $GITHUB_OUTPUT
             echo "📋 手動実行モード: $INPUT_MODE"
-          elif [ "$HOUR" -lt 4 ]; then
+          elif [ "$JST_HOUR" -lt 12 ]; then
             echo "mode=predict" >> $GITHUB_OUTPUT
-            echo "📋 スケジュール: 予想生成モード (UTC $HOUR時)"
+            echo "📋 スケジュール: 予想生成モード (JST ${JST_HOUR}時)"
           else
             echo "mode=notify" >> $GITHUB_OUTPUT
-            echo "📋 スケジュール: 通知モード (UTC $HOUR時)"
+            echo "📋 スケジュール: 通知モード (JST ${JST_HOUR}時)"
           fi
 
       - name: Python 3.11 をセットアップ
