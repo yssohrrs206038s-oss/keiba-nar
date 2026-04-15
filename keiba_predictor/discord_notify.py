@@ -1177,7 +1177,7 @@ def _build_hit_embed(
     race_id: str = "",
 ) -> Optional[dict]:
     """的中時のembed辞書を生成する。何も的中していなければ None。"""
-    if not wide_hit:
+    if not wide_hit and not sanren_hit:
         return None
 
     # レース番号をrace_idから取得（末尾2桁）
@@ -1197,7 +1197,18 @@ def _build_hit_embed(
     if wide_hit:
         detail = "ワイド ✅ 的中"
         if wide_pay:
-            detail += f"（配当{re.sub(r'[¥,]', '', str(wide_pay))}円）"
+            try:
+                pv = int(re.sub(r'[¥,円]', '', str(wide_pay)))
+                detail += f"（{pv/100:.1f}倍 × 300円 = {pv*3:,}円）"
+            except: detail += f"（配当{re.sub(r'[¥,]', '', str(wide_pay))}円）"
+        lines.append(detail)
+    if sanren_hit:
+        detail = "3連複 ✅ 的中"
+        if sanren_pay:
+            try:
+                pv = int(re.sub(r'[¥,円]', '', str(sanren_pay)))
+                detail += f"（{pv/100:.1f}倍 × 1,000円 = {pv*10:,}円）"
+            except: detail += f"（配当{re.sub(r'[¥,]', '', str(sanren_pay))}円）"
         lines.append(detail)
 
     color = 0x2ECC71
@@ -1384,19 +1395,39 @@ def _fmt_result(race_name: str, race_date: str,
             ana_horse_num = pred.get("ana_horse_num")
             sanren_hit, sanren_pay = _check_sanrenpuku_raw(predicted_nums, actual_top3_nums, payouts, ana_horse_num, pred=pred)
 
-    # 結果表示: 買い目に応じた券種を表示
+    # 結果表示: 買い目に応じた券種 + オッズ + 回収額
+    def _pay_to_int(p):
+        try: return int(re.sub(r'[¥,円]', '', str(p)))
+        except: return 0
+
+    total_cost = bs.get("total_cost", 0)
+    total_return = 0
+
     if bs.get("wide"):
         hit_label = f"ワイド {'✅ 的中' if wide_hit else '❌ ハズレ'}"
         if wide_hit and wide_pay:
-            hit_label += f"（{wide_hit_count}点的中 配当{re.sub(r'[¥,]', '', str(wide_pay))}円）"
+            pay_val = _pay_to_int(wide_pay)
+            odds_val = pay_val / 100 if pay_val else 0
+            ret_val = pay_val * 3 * wide_hit_count  # 300円購入 × 的中数
+            total_return += ret_val
+            hit_label += f"（{odds_val:.1f}倍 × 300円 = {ret_val:,}円）"
         lines.append(hit_label)
     if sr and (sr.get("trio") or sr.get("jiku")):
         hit_label = f"3連複 {'✅ 的中' if sanren_hit else '❌ ハズレ'}"
         if sanren_hit and sanren_pay:
-            hit_label += f"（配当{re.sub(r'[¥,]', '', str(sanren_pay))}円）"
+            pay_val = _pay_to_int(sanren_pay)
+            odds_val = pay_val / 100 if pay_val else 0
+            ret_val = pay_val * 10  # 1000円購入
+            total_return += ret_val
+            hit_label += f"（{odds_val:.1f}倍 × 1,000円 = {ret_val:,}円）"
         lines.append(hit_label)
     if not bs.get("wide") and not sr:
         lines.append(f"ワイド {'✅ 的中' if wide_hit else '❌ ハズレ'}")
+
+    # 収支
+    if total_cost > 0:
+        profit = total_return - total_cost
+        lines.append(f"💰 投資{total_cost:,}円 → 回収{total_return:,}円（{'+' if profit>=0 else ''}{profit:,}円）")
 
     return "\n".join(lines)
 
