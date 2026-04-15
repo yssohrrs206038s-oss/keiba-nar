@@ -217,7 +217,7 @@ jobs:
 
       # ── Discord通知（both時） ──────────────────────────────────
       - name: Discord にNAR予想を送信
-        if: steps.mode.outputs.mode == 'both'
+        if: steps.mode.outputs.mode == 'predict' || steps.mode.outputs.mode == 'both'
         continue-on-error: true
         run: |
           echo "📤 NAR予想通知を送信..."
