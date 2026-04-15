@@ -236,11 +236,20 @@ def record_result(
     umaren_hit = False
     umaren_payout = 0
 
-    # 3連複判定: bet_strategyのsanrenpukuで判定
+    # 3連複判定
     sanren_hit = False
     sanren_payout = 0
     sr = bs.get("sanrenpuku", {})
-    if sr and sr.get("jiku") and sr.get("aite"):
+    # trio形式: ◎○▲の3頭固定1点
+    if sr and sr.get("trio"):
+        trio_set = set(sr["trio"])
+        if trio_set == actual_top3_set:
+            combo = "-".join(str(n) for n in sorted(sr["trio"]))
+            pay_str = _get_payout(payouts, "三連複", combo)
+            sanren_payout = _payout_str_to_int(pay_str)
+            sanren_hit = True
+    # jiku+aite形式: ◎軸×相手N頭
+    elif sr and sr.get("jiku") and sr.get("aite"):
         from itertools import combinations
         jiku = sr["jiku"]
         aite = sr["aite"]
@@ -256,9 +265,11 @@ def record_result(
     # 見送りレース（フィルタ）の場合は投資0
     is_skip = bs.get("total_points", 0) == 0 or "見送り" in bs.get("strategy_note", "")
     bet_total = 0 if is_skip else bs.get("total_cost", BETS_PER_RACE_TOTAL)
-    # 払戻計算: ワイド(100円ベース×10) or 3連複(100円ベース×1)
-    wide_return = wide_payout * 10 if wide_hit else 0  # 1000円/100円 = 10倍
-    sanren_return = sanren_payout * 1 if sanren_hit else 0  # 100円そのまま
+    # 払戻計算
+    # ワイド: 300円購入 → 100円ベース配当×3倍
+    # 3連複trio: 1000円購入 → 100円ベース配当×10倍
+    wide_return = wide_payout * 3 if wide_hit else 0  # 300円/100円 = 3倍
+    sanren_return = sanren_payout * 10 if sanren_hit else 0  # 1000円/100円 = 10倍
     return_total = (wide_return + sanren_return) if not is_skip else 0
 
     row = {

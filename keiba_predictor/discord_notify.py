@@ -1640,14 +1640,17 @@ def _format_prediction_from_cache(race_name: str, entry: dict, race_id: str = ""
         lines2 = ["💰 買い目"]
         total_cost = bs.get("total_cost", 1000)
 
-        # ワイド
+        # ワイド（3点）
         if bs.get("wide"):
-            w = bs["wide"][0]
-            lines2.append(f"ワイド ◎{w['nums'][0]}-○{w['nums'][1]}  1,000円")
+            pairs = [f"{w['nums'][0]}-{w['nums'][1]}" for w in bs["wide"]]
+            lines2.append(f"ワイド {' / '.join(pairs)}  各300円")
 
-        # 3連複
+        # 3連複（trio形式: ◎○▲1点）
         sr = bs.get("sanrenpuku", {})
-        if sr and sr.get("jiku") and sr.get("aite"):
+        if sr and sr.get("trio"):
+            trio = sr["trio"]
+            lines2.append(f"3連複 {trio[0]}-{trio[1]}-{trio[2]}  1点 1,000円")
+        elif sr and sr.get("jiku") and sr.get("aite"):
             from itertools import combinations
             jiku = sr["jiku"][0]
             aite = sr["aite"]
@@ -2057,9 +2060,14 @@ def run_result_notify(
                         _wp = _get_payout(payouts, "ワイド", f"{a}-{b}")
                         _wh = True
                         break
-            # 3連複的中判定
+            # 3連複的中判定（trio形式 + jiku+aite形式）
             sr = bs.get("sanrenpuku", {})
-            if sr and sr.get("jiku") and sr.get("aite") and len(_actual_set) >= 3:
+            if sr and sr.get("trio") and len(_actual_set) >= 3:
+                if set(sr["trio"]) == _actual_set:
+                    combo = "-".join(str(n) for n in sorted(sr["trio"]))
+                    _wp = _get_payout(payouts, "三連複", combo)
+                    _wh = True
+            elif sr and sr.get("jiku") and sr.get("aite") and len(_actual_set) >= 3:
                 from itertools import combinations as _comb_r
                 jiku = sr["jiku"]
                 if len(jiku) == 1 and jiku[0] in _actual_set:
