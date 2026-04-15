@@ -83,16 +83,16 @@ jobs:
           fi
           echo "✅ notify コマンド終了"
 
-      - name: 日次レポート（21時台のみ・1日1回）
+      - name: 成績レポート（22時=詳細版、それ以外=途中経過）
         continue-on-error: true
         run: |
-          # JST時刻を取得（cron 30 12 * * * = JST 21:30）
           JST_HOUR=$(TZ=Asia/Tokyo date +%H)
-          if [ "$JST_HOUR" = "21" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+          if [ "$JST_HOUR" -ge 21 ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "📊 本日の成績レポートを送信 (JST ${JST_HOUR}時)"
             python -m keiba_predictor.analysis.loss_analysis
           else
-            echo "ℹ️ JST ${JST_HOUR}時 → 日次レポートスキップ（21時のみ送信）"
+            echo "📊 途中経過を送信 (JST ${JST_HOUR}時)"
+            python -m keiba_predictor.analysis.loss_analysis --interim
           fi
 
       - name: 週次レポート（日曜21時のみ）

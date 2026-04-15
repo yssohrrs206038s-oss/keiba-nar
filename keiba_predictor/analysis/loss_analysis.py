@@ -160,6 +160,33 @@ def _rolling_30_section(all_rows: list[dict], cache: dict) -> list[str]:
     return lines
 
 
+def analyze_interim(target_date: str = None) -> str:
+    """途中経過: 当日分の簡易サマリー（12/14/16/18/20時用）."""
+    if target_date is None:
+        target_date = _today_jst().isoformat()
+
+    rows = _load_rows()
+    daily_rows = [
+        r for r in rows
+        if str(r.get("date", ""))[:10] == target_date
+        and str(r.get("date", ""))[:10] >= STRATEGY_START
+    ]
+
+    if not daily_rows:
+        return ""
+
+    cache = _load_cache()
+    s = _aggregate(daily_rows, cache)
+    from datetime import datetime
+    now_jst = datetime.now(__import__('zoneinfo').ZoneInfo("Asia/Tokyo")).strftime("%H:%M")
+
+    return (
+        f"📊 途中経過（{now_jst}時点）\n"
+        f"対象: {s['n']}戦 / ワイド{s['wide_hits']}的中 / "
+        f"回収率 {s['roi']:.0f}% / 損益 {'+' if s['profit'] >= 0 else ''}{s['profit']:,}円"
+    )
+
+
 def analyze_daily(target_date: str = None) -> str:
     """日次レポート: 当日分の成績."""
     if target_date is None:
@@ -281,7 +308,13 @@ def main():
     )
 
     weekly = "--weekly" in sys.argv
-    report = analyze_weekly() if weekly else analyze_daily()
+    interim = "--interim" in sys.argv
+    if weekly:
+        report = analyze_weekly()
+    elif interim:
+        report = analyze_interim()
+    else:
+        report = analyze_daily()
 
     if not report:
         print("分析対象のデータがありません")
