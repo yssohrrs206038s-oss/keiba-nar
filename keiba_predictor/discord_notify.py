@@ -2116,15 +2116,23 @@ def run_result_notify(
         is_skip = "見送り" in bs.get("strategy_note", "") or bs.get("total_points", 0) == 0
         if is_skip:
             top3_nums = pred.get("predicted_top3_nums", [])
-            if len(top3_nums) >= 2:
+            if len(top3_nums) >= 3:
                 _df_c = actual_df.copy()
                 _df_c["_fp"] = pd.to_numeric(_df_c["finish_position"], errors="coerce")
                 _t3 = _df_c[_df_c["_fp"].isin([1, 2, 3])].sort_values("_fp").head(3)
                 _aset = set(int(r["horse_number"]) for _, r in _t3.iterrows() if pd.notna(r.get("horse_number")))
-                hon, tai = top3_nums[0], top3_nums[1]
-                if hon in _aset and tai in _aset:
-                    _wp = _get_payout(payouts, "ワイド", f"{hon}-{tai}")
-                    skip_hits.append(f"⚠️ {race_name}: ◎{hon}-○{tai} ワイド的中（{_wp or '配当不明'}）← {bs.get('strategy_note','')}")
+                hon, tai, ana = top3_nums[0], top3_nums[1], top3_nums[2]
+                # 3連複◎○▲チェック
+                if {hon, tai, ana} == _aset:
+                    _sp = _get_payout(payouts, "三連複", "-".join(str(n) for n in sorted([hon, tai, ana])))
+                    skip_hits.append(f"⚠️ {race_name}: 3連複◎○▲的中（{_sp or '配当不明'}）← {bs.get('strategy_note','')}")
+                # ワイド◎○▲の各ペアチェック
+                else:
+                    for a, b in [(hon,tai),(hon,ana),(tai,ana)]:
+                        if a in _aset and b in _aset:
+                            _wp = _get_payout(payouts, "ワイド", f"{a}-{b}")
+                            skip_hits.append(f"⚠️ {race_name}: ワイド{a}-{b}的中（{_wp or '配当不明'}）← {bs.get('strategy_note','')}")
+                            break
 
     if notified > 0:
         send_discord(webhook_url, f"✅ {notified}レース結果送信完了")
