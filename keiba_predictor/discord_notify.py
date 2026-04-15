@@ -1346,23 +1346,31 @@ def _fmt_result(race_name: str, race_date: str,
         if not umaren_hit:
             umaren_hit, umaren_pay = _check_umaren_raw(predicted_nums, actual_top3_nums, payouts)
 
-        # ワイド（bet_strategy の wide を使用）
+        # ワイド（bet_strategy の wide を使用 — 複数ペア対応）
         wide_hit = False
         wide_pay = ""
+        wide_hit_count = 0
         if bs.get("wide"):
             for w in bs["wide"]:
                 a, b = w["nums"]
                 if a in actual_set and b in actual_set:
                     combo = f"{a}-{b}"
-                    wide_pay = _get_payout(payouts, "ワイド", combo)
+                    wp = _get_payout(payouts, "ワイド", combo)
+                    if not wide_pay:
+                        wide_pay = wp
                     wide_hit = True
-                    break
+                    wide_hit_count += 1
 
-        # 3連複（bet_strategy の sanrenpuku を使用）
+        # 3連複（trio形式 + jiku+aite形式）
         sanren_hit = False
         sanren_pay = ""
         sr = bs.get("sanrenpuku", {})
-        if sr and sr.get("jiku") and sr.get("aite") and len(actual_set) >= 3:
+        if sr and sr.get("trio") and len(actual_set) >= 3:
+            if set(sr["trio"]) == actual_set:
+                combo = "-".join(str(n) for n in sorted(sr["trio"]))
+                sanren_pay = _get_payout(payouts, "三連複", combo)
+                sanren_hit = True
+        elif sr and sr.get("jiku") and sr.get("aite") and len(actual_set) >= 3:
             jiku = sr["jiku"]
             aite = sr["aite"]
             if len(jiku) == 1 and jiku[0] in actual_set:
@@ -1372,22 +1380,23 @@ def _fmt_result(race_name: str, race_date: str,
                         sanren_pay = _get_payout(payouts, "三連複", combo)
                         sanren_hit = True
                         break
-            elif len(jiku) == 2 and jiku[0] in actual_set and jiku[1] in actual_set:
-                for a in aite:
-                    if {jiku[0], jiku[1], a} == actual_set:
-                        combo = "-".join(str(n) for n in sorted([jiku[0], jiku[1], a]))
-                        sanren_pay = _get_payout(payouts, "三連複", combo)
-                        sanren_hit = True
-                        break
-        if not sanren_hit:
-            # フォールバック
+        if not sanren_hit and not wide_hit:
             ana_horse_num = pred.get("ana_horse_num")
             sanren_hit, sanren_pay = _check_sanrenpuku_raw(predicted_nums, actual_top3_nums, payouts, ana_horse_num, pred=pred)
 
-    wide_line = f"ワイド {'✅ 的中' if wide_hit else '❌ ハズレ'}"
-    if wide_hit and wide_pay:
-        wide_line += f"（配当{re.sub(r'[¥,]', '', str(wide_pay))}円）"
-    lines.append(wide_line)
+    # 結果表示: 買い目に応じた券種を表示
+    if bs.get("wide"):
+        hit_label = f"ワイド {'✅ 的中' if wide_hit else '❌ ハズレ'}"
+        if wide_hit and wide_pay:
+            hit_label += f"（{wide_hit_count}点的中 配当{re.sub(r'[¥,]', '', str(wide_pay))}円）"
+        lines.append(hit_label)
+    if sr and (sr.get("trio") or sr.get("jiku")):
+        hit_label = f"3連複 {'✅ 的中' if sanren_hit else '❌ ハズレ'}"
+        if sanren_hit and sanren_pay:
+            hit_label += f"（配当{re.sub(r'[¥,]', '', str(sanren_pay))}円）"
+        lines.append(hit_label)
+    if not bs.get("wide") and not sr:
+        lines.append(f"ワイド {'✅ 的中' if wide_hit else '❌ ハズレ'}")
 
     return "\n".join(lines)
 
@@ -1665,17 +1674,16 @@ def _format_prediction_from_cache(race_name: str, entry: dict, race_id: str = ""
         note = bs.get("strategy_note", "見送り")
         lines2 = ["💰 買い目", f"⏭️ {note}"]
     else:
-        # フォールバック
+        # フォールバック: 新戦略に準拠
         nums = top5_nums
-        if len(nums) < 2:
+        if len(nums) < 3:
             return msg1, ""
-        hon = nums[0]
-        tai = nums[1]
+        hon = nums[0]; tai = nums[1]; ana = nums[2]
         lines2 = [
             "💰 買い目",
-            f"ワイド ◎{hon}-○{tai}  1,000円",
+            f"ワイド ◎{hon}-○{tai} / ◎{hon}-▲{ana} / ○{tai}-▲{ana}  各300円",
             f"────────────────",
-            f"合計投資額: 1,000円",
+            f"合計投資額: 900円",
         ]
 
     # 楽天競馬URL追加

@@ -6,7 +6,7 @@ results_history.csv から的中率・回収率を集計し Discord に送信す
 日次レポート（毎日送信）: 当日分の成績
 週次レポート（日曜のみ）: 月曜〜日曜の週間成績
 
-ワイド1点1,000円戦略前提で投資・回収を計算する。
+◎オッズで自動切替（◎≤2倍→3連複◎○▲1000円、◎>2倍→ワイド3点900円）。
 
 使い方:
     python -m keiba_predictor.analysis.loss_analysis            # 日次
@@ -26,9 +26,9 @@ logger = logging.getLogger(__name__)
 DATA_DIR = Path(__file__).parent.parent / "data"
 HISTORY_PATH = DATA_DIR / "results_history.csv"
 
-# 戦略変更日: ワイド1点1,000円固定
+# 戦略変更日
 STRATEGY_START = "2026-04-07"
-BET_PER_RACE = 1000
+BET_PER_RACE = 1000  # デフォルト（実際はbet_totalカラムから取得）
 
 # JST基準の今日の日付を取得
 def _today_jst() -> date:
@@ -47,12 +47,10 @@ def _load_cache() -> dict:
         return {}
 
 
-def _calc_return(row: dict, bet_amount: int = 1000) -> int:
-    """ワイド100円ベース配当 × (bet_amount/100) = 購入時の払戻"""
-    if row.get("wide_hit") != "True":
-        return 0
+def _calc_return(row: dict, bet_amount: int = None) -> int:
+    """results_history.csvのreturn_totalを直接返す。"""
     try:
-        return int(row.get("wide_payout") or 0) * (bet_amount // 100)
+        return int(float(row.get("return_total") or 0))
     except (ValueError, TypeError):
         return 0
 
@@ -69,36 +67,24 @@ def _aggregate(rows: list[dict], cache: dict = None) -> dict:
     honmei_hits = sum(1 for r in rows if r.get("fukusho_hit") == "True")
     wide_hits = sum(1 for r in rows if r.get("wide_hit") == "True")
 
-    # ストリーク増額を反映した投資・回収を計算
     bet = 0
     ret = 0
-    bet_flat = 0
-    ret_flat = 0
-    boosted_races = 0
-    boosted_venues: dict[str, int] = {}
 
     for r in rows:
-        rid = str(r.get("race_id", ""))
-        entry = cache.get(rid, {})
-        bs = entry.get("bet_strategy", {})
-        cost = bs.get("total_cost", BET_PER_RACE)
-        streak = bs.get("streak", 0)
-
+        try:
+            cost = int(float(r.get("bet_total") or 0))
+        except (ValueError, TypeError):
+            cost = 0
         bet += cost
-        ret += _calc_return(r, cost)
-        bet_flat += BET_PER_RACE
-        ret_flat += _calc_return(r, BET_PER_RACE)
-
-        if streak >= 2:
-            boosted_races += 1
-            venue = entry.get("venue", "?")
-            boosted_venues[venue] = boosted_venues.get(venue, 0) + 1
+        ret += _calc_return(r)
 
     profit = ret - bet
     roi = (ret / bet * 100) if bet > 0 else 0
     honmei_rate = honmei_hits / n * 100 if n > 0 else 0
     wide_rate = wide_hits / n * 100 if n > 0 else 0
-    boost_effect = (ret - ret_flat) - (bet - bet_flat)  # 増額による純利益差
+
+    # 3連複的中数もカウント
+    sanren_hits = sum(1 for r in rows if r.get("sanrenpuku_hit") == "True")
 
     return {
         "n": n,
@@ -106,14 +92,11 @@ def _aggregate(rows: list[dict], cache: dict = None) -> dict:
         "honmei_rate": honmei_rate,
         "wide_hits": wide_hits,
         "wide_rate": wide_rate,
+        "sanren_hits": sanren_hits,
         "bet": bet,
         "ret": ret,
         "profit": profit,
         "roi": roi,
-        "bet_flat": bet_flat,
-        "boosted_races": boosted_races,
-        "boosted_venues": boosted_venues,
-        "boost_effect": boost_effect,
     }
 
 
@@ -182,7 +165,7 @@ def analyze_interim(target_date: str = None) -> str:
 
     return (
         f"📊 途中経過（{now_jst}時点）\n"
-        f"対象: {s['n']}戦 / ワイド{s['wide_hits']}的中 / "
+        f"対象: {s['n']}戦 / ワイド{s['wide_hits']} 3連複{s['sanren_hits']} / "
         f"回収率 {s['roi']:.0f}% / 損益 {'+' if s['profit'] >= 0 else ''}{s['profit']:,}円"
     )
 
@@ -211,22 +194,11 @@ def analyze_daily(target_date: str = None) -> str:
         sep,
         f"対象レース: {s['n']}戦",
         f"本命的中率: {s['honmei_rate']:.0f}%（{s['honmei_hits']}/{s['n']}）",
-        f"ワイド的中率: {s['wide_rate']:.0f}%（{s['wide_hits']}/{s['n']}）",
-        f"回収率: {s['roi']:.0f}%",
+        f"ワイド的中: {s['wide_hits']}件 / 3連複的中: {s['sanren_hits']}件",
+        f"投資: {s['bet']:,}円 → 回収: {s['ret']:,}円",
+        f"回収率: {s['roi']:.0f}% / 損益: {'+' if s['profit']>=0 else ''}{s['profit']:,}円",
         sep,
     ]
-
-    # ストリーク増額情報
-    if s.get("boosted_races", 0) > 0:
-        bv = "・".join(f"{v}{c}" for v, c in sorted(s["boosted_venues"].items()))
-        effect = s["boost_effect"]
-        sign = "+" if effect >= 0 else ""
-        lines.extend([
-            f"🔥 増額レース: {s['boosted_races']}戦（{bv}）",
-            f"通常投資: {s['bet_flat']:,}円 → 実投資: {s['bet']:,}円",
-            f"増額効果: {sign}{effect:,}円",
-            sep,
-        ])
 
     # 直近30戦パフォーマンス
     rolling = _rolling_30_section(rows, cache)
