@@ -420,7 +420,7 @@ def _decide_bet_strategy(result_df: pd.DataFrame) -> dict:
     # ◎○のオッズ比で買い目を分岐
     # オッズ比3倍以上 = ◎が圧倒的 → 3連複◎軸（○が来ないリスク回避）
     # バックテスト: 3倍以上でワイドROI 84% vs 3連複ROI 200%
-    SANREN_ODDS_RATIO = 3.0
+    SANREN_ODDS_RATIO = 5.0  # 3.0→5.0に引き上げ（低配当3連複回避）
     use_sanren = False
     if pd.notna(hon_odds) and pd.notna(tai_odds) and hon_odds > 0:
         odds_ratio = float(tai_odds) / float(hon_odds)
@@ -486,7 +486,7 @@ def _build_buy_lines(result_df: pd.DataFrame, race_name: str = "") -> list[str]:
     use_sanren = False
     if pd.notna(hon_odds) and pd.notna(tai_odds) and hon_odds > 0:
         odds_ratio = float(tai_odds) / float(hon_odds)
-        if odds_ratio >= 3.0:
+        if odds_ratio >= 5.0:
             use_sanren = True
 
     header = f"💰 {race_name}  買い目" if race_name else "💰 買い目"
