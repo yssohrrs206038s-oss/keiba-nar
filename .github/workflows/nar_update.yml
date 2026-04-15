@@ -80,13 +80,13 @@ jobs:
             # 新旧をマージ（race_id重複は新しい方を優先）
             if [ -f keiba_predictor/data/cleaned_races_old.csv ]; then
               python -c "
-              import pandas as pd
-              old = pd.read_csv('keiba_predictor/data/cleaned_races_old.csv', encoding='utf-8-sig', dtype=str)
-              new = pd.read_csv('keiba_predictor/data/cleaned_races.csv', encoding='utf-8-sig', dtype=str)
-              merged = pd.concat([old, new], ignore_index=True).drop_duplicates(subset=['race_id', 'horse_number'], keep='last')
-              merged.to_csv('keiba_predictor/data/cleaned_races.csv', index=False, encoding='utf-8-sig')
-              print(f'マージ完了: 旧{len(old)} + 新{len(new)} → {len(merged)} 行')
-              "
+import pandas as pd
+old = pd.read_csv('keiba_predictor/data/cleaned_races_old.csv', encoding='utf-8-sig', dtype=str)
+new = pd.read_csv('keiba_predictor/data/cleaned_races.csv', encoding='utf-8-sig', dtype=str)
+merged = pd.concat([old, new], ignore_index=True).drop_duplicates(subset=['race_id', 'horse_number'], keep='last')
+merged.to_csv('keiba_predictor/data/cleaned_races.csv', index=False, encoding='utf-8-sig')
+print(f'マージ完了: 旧{len(old)} + 新{len(new)} → {len(merged)} 行')
+"
               rm keiba_predictor/data/cleaned_races_old.csv
             fi
             # gzip 再生成
