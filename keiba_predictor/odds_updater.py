@@ -123,6 +123,27 @@ def update_odds_for_race(race_id: str, entry: dict) -> dict:
     if best_num:
         entry["ana_horse_num"] = best_num
 
+    # オッズ変更に伴うbet_strategy再計算（◎オッズで3連複↔ワイド切替）
+    try:
+        from keiba_predictor.model.predict import _decide_bet_strategy
+        top5 = entry.get("predicted_top5", [])
+        if top5:
+            import pandas as _pd2
+            rows = [{"race_id": race_id, "horse_number": h.get("horse_number"),
+                     "horse_name": h.get("horse_name", ""), "prob_top3": h.get("prob", 0),
+                     "odds": odds_map.get(h.get("horse_number"), h.get("odds")),
+                     "popularity": pop_map.get(h.get("horse_number"), h.get("popularity"))}
+                    for h in top5]
+            df = _pd2.DataFrame(rows)
+            new_bs = _decide_bet_strategy(df)
+            old_note = entry.get("bet_strategy", {}).get("strategy_note", "")
+            new_note = new_bs.get("strategy_note", "")
+            if old_note != new_note:
+                logger.info(f"[{race_id}] bet_strategy変更: {old_note} → {new_note}")
+            entry["bet_strategy"] = new_bs
+    except Exception as e:
+        logger.debug(f"[{race_id}] bet_strategy再計算失敗: {e}")
+
     return entry
 
 
