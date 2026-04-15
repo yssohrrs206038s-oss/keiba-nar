@@ -49,7 +49,7 @@ jobs:
         run: |
           JST_HOUR=$(TZ=Asia/Tokyo date +%H)
           INPUT_MODE="${{ inputs.mode }}"
-          if [ -n "$INPUT_MODE" ] && [ "$INPUT_MODE" != "" ]; then
+          if [ -n "$INPUT_MODE" ]; then
             echo "mode=$INPUT_MODE" >> $GITHUB_OUTPUT
             echo "📋 手動実行モード: $INPUT_MODE"
           elif [ "$JST_HOUR" -lt 12 ]; then
