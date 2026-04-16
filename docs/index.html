@@ -902,7 +902,7 @@ function _renderRaceCard(raceId, r) {
   // 買い目
   const bs = r.bet_strategy;
   let betHTML = '';
-  if (bs && bs.total_points > 0 && (bs.wide?.length || bs.sanrenpuku?.jiku)) {
+  if (bs && bs.total_points > 0 && (bs.wide?.length || bs.sanrenpuku?.jiku || bs.sanrenpuku?.trio)) {
     const cost = bs.total_cost || bs.total_points * 100;
     let betRows = '';
     if (bs.wide && bs.wide.length) {
@@ -944,15 +944,27 @@ function _renderRaceCard(raceId, r) {
     const a3 = res.actual3_num ? `${res.actual3_num}番 ${esc(res.actual3_name || '')}` : '';
     const wHit = res.wide_hit === 'True';
     const wPay = +res.wide_payout || 0;
+    const sHit = res.sanrenpuku_hit === 'True';
+    const sPay = +res.sanrenpuku_payout || 0;
     const bet = calcBet(res);
     const ret = calcRet(res);
     const roi = bet > 0 ? (ret / bet * 100).toFixed(0) + '%' : '—';
     const roiColor = bet > 0 && ret >= bet ? 'var(--green)' : 'var(--red)';
 
+    // 買った券種だけ表示（bet_strategy から判定 + CSV の payout フォールバック）
     const hitParts = [];
-    // 1,000円購入時の払戻額（100円ベース配当×10）
-    const wPayActual = wPay * 10;
-    hitParts.push(`ワイド${wHit ? '✅' : '❌'}${wHit && wPay ? ' ' + wPayActual.toLocaleString() + '円' : ''}`);
+    const hasWide = (bs && bs.wide && bs.wide.length) || wHit || wPay > 0;
+    const hasSanren = (bs && bs.sanrenpuku && (bs.sanrenpuku.trio || bs.sanrenpuku.jiku)) || sHit || sPay > 0;
+    if (hasWide) {
+      // ワイド払戻は100円ベース配当×10（1,000円購入時）
+      hitParts.push(`ワイド${wHit ? '✅' : '❌'}${wHit && wPay ? ' ' + (wPay * 10).toLocaleString() + '円' : ''}`);
+    }
+    if (hasSanren) {
+      hitParts.push(`3連複${sHit ? '✅' : '❌'}${sHit && sPay ? ' ' + sPay.toLocaleString() + '円' : ''}`);
+    }
+    if (!hitParts.length) {
+      hitParts.push(ret > 0 ? `✅ ${ret.toLocaleString()}円` : '❌');
+    }
 
     resultHTML = `
       <div style="border-top:1px solid var(--border);margin-top:12px;padding-top:10px;">
@@ -970,7 +982,8 @@ function _renderRaceCard(raceId, r) {
   const isSkipped = bs && bs.strategy_note && bs.strategy_note.includes('見送り');
   let statusIcon = '🕐';
   if (res2) {
-    statusIcon = res2.wide_hit === 'True' ? '✅' : '❌';
+    const anyHit = res2.wide_hit === 'True' || res2.sanrenpuku_hit === 'True';
+    statusIcon = anyHit ? '✅' : '❌';
   } else if (isSkipped) {
     statusIcon = '🚫';
   }
