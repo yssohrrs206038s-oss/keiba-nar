@@ -960,7 +960,8 @@ function _renderRaceCard(raceId, r) {
       hitParts.push(`ワイド${wHit ? '✅' : '❌'}${wHit && wPay ? ' ' + (wPay * 10).toLocaleString() + '円' : ''}`);
     }
     if (hasSanren) {
-      hitParts.push(`3連複${sHit ? '✅' : '❌'}${sHit && sPay ? ' ' + sPay.toLocaleString() + '円' : ''}`);
+      // 3連複払戻も100円ベース配当×10（1,000円購入時の実回収額）
+      hitParts.push(`3連複${sHit ? '✅' : '❌'}${sHit && sPay ? ' ' + (sPay * 10).toLocaleString() + '円' : ''}`);
     }
     if (!hitParts.length) {
       hitParts.push(ret > 0 ? `✅ ${ret.toLocaleString()}円` : '❌');
