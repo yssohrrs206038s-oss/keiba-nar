@@ -311,6 +311,66 @@ def predict_race(
 
 
 
+# 動的会場フィルタ用キャッシュ（プロセス内で1回だけ計算）
+_DYNAMIC_SKIP_CACHE: Optional[set[str]] = None
+
+
+def _get_dynamic_skip_venues(
+    recent_n: int = 20,
+    roi_threshold: float = 0.50,
+    min_sample: int = 20,
+) -> set[str]:
+    """
+    results_history.csv から会場別の直近N戦ROIを計算し、
+    閾値を下回る会場の venue_code を返す。
+
+    Args:
+        recent_n:      各会場で集計する直近レース数（デフォルト20戦）
+        roi_threshold: この値を下回ったら除外（デフォルト0.50 = ROI 50%）
+        min_sample:    サンプル不足の会場は除外対象から外す（デフォルト20戦）
+
+    静的フィルタ（川崎・高知）とは独立に追加除外する仕組み。
+    統計的信頼性のため min_sample 未満の会場は常にスキップ。
+    """
+    global _DYNAMIC_SKIP_CACHE
+    if _DYNAMIC_SKIP_CACHE is not None:
+        return _DYNAMIC_SKIP_CACHE
+
+    skip: set[str] = set()
+    try:
+        from keiba_predictor.history import HISTORY_PATH
+        if not HISTORY_PATH.exists():
+            _DYNAMIC_SKIP_CACHE = skip
+            return skip
+        df = pd.read_csv(HISTORY_PATH, encoding="utf-8-sig", dtype=str)
+        df["bet_total"] = pd.to_numeric(df.get("bet_total"), errors="coerce").fillna(0)
+        df["return_total"] = pd.to_numeric(df.get("return_total"), errors="coerce").fillna(0)
+        df["venue_code"] = df["race_id"].astype(str).str[4:6]
+        # 投資実績のあるレースのみ対象（見送り=bet_total=0 は除外）
+        df = df[df["bet_total"] > 0]
+
+        for vcode, g in df.groupby("venue_code"):
+            recent = g.sort_values("date").tail(recent_n)
+            if len(recent) < min_sample:
+                continue  # サンプル不足は判定しない
+            bet = recent["bet_total"].sum()
+            ret = recent["return_total"].sum()
+            if bet <= 0:
+                continue
+            roi = ret / bet
+            if roi < roi_threshold:
+                skip.add(str(vcode))
+                logger.info(
+                    f"[dynamic_skip] {VENUE_MAP.get(str(vcode), vcode)}: "
+                    f"直近{len(recent)}戦 ROI={roi*100:.0f}% < {roi_threshold*100:.0f}% → 除外"
+                )
+    except Exception as e:
+        logger.warning(f"動的会場フィルタ読み込み失敗: {e}")
+
+    _DYNAMIC_SKIP_CACHE = skip
+    return skip
+
+
 def _decide_bet_strategy(result_df: pd.DataFrame) -> dict:
     """
     NAR予測結果DataFrameから買い目を決定する。
@@ -318,6 +378,7 @@ def _decide_bet_strategy(result_df: pd.DataFrame) -> dict:
     構成: ワイド ◎-○ 1点（固定1,000円）
     フィルタ:
     - 川崎・高知: 見送り（回収率43%・58%、モデル適性低い）
+    - 動的フィルタ: 直近20戦ROI < 50% の会場も自動除外
     - 推定ワイドオッズ < 1.0倍: 見送り
     - ○確率 < 20%: 見送り
     - ◎○差 > 25%: 見送り
@@ -330,8 +391,9 @@ def _decide_bet_strategy(result_df: pd.DataFrame) -> dict:
         venue_code = race_id[4:6]
         venue = VENUE_MAP.get(venue_code, "")
 
-    # 開催場フィルタ: 川崎・高知は見送り（成績分析4/4-4/11: 回収率43%・58%）
-    SKIP_VENUES = {"45", "54"}  # 45=川崎, 54=高知
+    # 開催場フィルタ: 静的（川崎・高知）+ 動的（直近20戦ROI < 50%）
+    STATIC_SKIP_VENUES = {"45", "54"}  # 45=川崎, 54=高知
+    SKIP_VENUES = STATIC_SKIP_VENUES | _get_dynamic_skip_venues()
     WIDE_UNIT = 1000  # 固定1,000円（ストリーク増額廃止: 増額時60% vs 通常72%）
     MIN_WIDE_ODDS = 1.5  # 78,776Rバックテスト: 1.0→1.5でROI 79%→80%
 
@@ -346,7 +408,9 @@ def _decide_bet_strategy(result_df: pd.DataFrame) -> dict:
         return _empty("出走頭数不足")
 
     if venue_code in SKIP_VENUES:
-        return _empty(f"見送り（{venue}フィルタ: 回収率低）")
+        if venue_code in STATIC_SKIP_VENUES:
+            return _empty(f"見送り（{venue}フィルタ: 回収率低）")
+        return _empty(f"見送り（{venue}: 直近20戦ROI<50%）")
 
     MAX_HORSES = 10  # 78,776Rバックテスト: 11頭以上はROI 75-76%→除外
     if len(result_df) > MAX_HORSES:
