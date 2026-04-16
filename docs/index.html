@@ -660,34 +660,21 @@ function pct(v) { return isNaN(v) ? '--' : (v * 100).toFixed(0) + '%'; }
 /* ================================================================
    実績セクション
 ================================================================ */
-// 現戦略: ワイド1点1,000円固定で投資・回収を再計算
-// 戦略変更日: 2026-04-07 以降のデータのみ集計（旧データはワイド3点合算で計算が異なる）
-const BET_PER_RACE = 1000;
-const STRATEGY_START = '2026-04-07';
-function isCurrentStrategy(r) {
-  const d = (r.date || '').slice(0, 10);
-  return d >= STRATEGY_START;
-}
-function calcBet(r) { return BET_PER_RACE; }
-function calcRet(r) {
-  // wide_payoutは100円ベース配当 → 1,000円購入なので×10
-  if (r.wide_hit !== 'True') return 0;
-  const wp = +r.wide_payout || 0;
-  return wp * 10;
-}
+// 投資額・回収額は results_history.csv の bet_total / return_total をそのまま使用
+// （ワイド/3連複など戦略に応じて記録側で集計済み）
+function calcBet(r) { return +r.bet_total    || 0; }
+function calcRet(r) { return +r.return_total || 0; }
 
 function renderStats(rows) {
   if (!rows.length) return;
-  const currentRows = rows.filter(isCurrentStrategy);
-  const useRows = currentRows.length > 0 ? currentRows : rows;
-  const n     = useRows.length;
+  const n     = rows.length;
   // 本命的中率 = ◎が3着以内（fukusho_hit）
-  const honmeiHits = useRows.filter(r => r.fukusho_hit === 'True').length;
-  const bet   = n * BET_PER_RACE;
-  const ret   = useRows.reduce((s, r) => s + calcRet(r), 0);
+  const honmeiHits = rows.filter(r => r.fukusho_hit === 'True').length;
+  const bet   = rows.reduce((s, r) => s + calcBet(r), 0);
+  const ret   = rows.reduce((s, r) => s + calcRet(r), 0);
   const roi   = bet > 0 ? ret / bet : 0;
   // 直近10戦的中率（ワイドベース）
-  const recent10 = useRows.slice(-10);
+  const recent10 = rows.slice(-10);
   const recent10Hits = recent10.filter(r => r.wide_hit === 'True').length;
   const recentRate = recent10.length > 0 ? recent10Hits / recent10.length : 0;
   document.getElementById('s-races').textContent   = n + ' 戦';
@@ -701,12 +688,10 @@ function renderStats(rows) {
 ================================================================ */
 function renderChart(rows) {
   if (!rows.length) return;
-  const currentRows = rows.filter(isCurrentStrategy);
-  const useRows = currentRows.length > 0 ? currentRows : rows;
   const labels = [], roiData = [];
   let cumBet = 0, cumRet = 0;
-  useRows.forEach(r => {
-    cumBet += BET_PER_RACE;
+  rows.forEach(r => {
+    cumBet += calcBet(r);
     cumRet += calcRet(r);
     const roi = cumBet > 0 ? (cumRet / cumBet * 100) : 0;
     labels.push((r.date || '').slice(0, 10));
@@ -959,10 +944,10 @@ function _renderRaceCard(raceId, r) {
     const a3 = res.actual3_num ? `${res.actual3_num}番 ${esc(res.actual3_name || '')}` : '';
     const wHit = res.wide_hit === 'True';
     const wPay = +res.wide_payout || 0;
-    const bet = BET_PER_RACE;
+    const bet = calcBet(res);
     const ret = calcRet(res);
-    const roi = (ret / bet * 100).toFixed(0) + '%';
-    const roiColor = ret >= bet ? 'var(--green)' : 'var(--red)';
+    const roi = bet > 0 ? (ret / bet * 100).toFixed(0) + '%' : '—';
+    const roiColor = bet > 0 && ret >= bet ? 'var(--green)' : 'var(--red)';
 
     const hitParts = [];
     // 1,000円購入時の払戻額（100円ベース配当×10）
@@ -1153,21 +1138,19 @@ function _findAccordionByRaceId(raceId, grid) {
 ================================================================ */
 function renderHistory(rows) {
   const tbody = document.getElementById('history-tbody');
-  // 現戦略以降 + 的中レースのみ抽出
-  const currentRows = rows.filter(isCurrentStrategy);
-  const baseRows = currentRows.length > 0 ? currentRows : rows;
-  const hitRows = baseRows.filter(r => r.wide_hit === 'True');
+  // 的中レースのみ抽出（ワイド or 3連複）
+  const hitRows = rows.filter(r => r.wide_hit === 'True' || r.sanrenpuku_hit === 'True');
   const recent = hitRows.slice(-15).reverse();
   if (!recent.length) {
     tbody.innerHTML = '<tr><td colspan="4" class="no-data">的中レースがありません</td></tr>';
     return;
   }
   tbody.innerHTML = recent.map(r => {
-    const wHit = r.wide_hit === 'True';
-    const bet = BET_PER_RACE;
+    const wHit = r.wide_hit === 'True' || r.sanrenpuku_hit === 'True';
+    const bet = calcBet(r);
     const ret = calcRet(r);
-    const roi = (ret / bet * 100).toFixed(0) + '%';
-    const roiColor = ret >= bet ? 'color:var(--green)' : 'color:var(--red)';
+    const roi = bet > 0 ? (ret / bet * 100).toFixed(0) + '%' : '—';
+    const roiColor = bet > 0 && ret >= bet ? 'color:var(--green)' : 'color:var(--red)';
     const rid = (r.race_id || '').trim();
     const hVenue = rid.length >= 12 ? (VENUE_MAP[rid.slice(4, 6)] || '') : '';
     const hRaceNum = rid.length >= 12 ? parseInt(rid.slice(10, 12), 10) + 'R' : '';
@@ -1206,13 +1189,14 @@ function renderVenueHeatmap(rows) {
     if (rid.length < 6) return;
     const venue = VENUE_MAP[rid.slice(4, 6)] || '';
     if (!venue) return;
-    const hit = r.wide_hit === 'True';
+    const hit = r.wide_hit === 'True' || r.sanrenpuku_hit === 'True';
+    const bet = calcBet(r);
     const ret = calcRet(r);
     // 全期間
     if (!venueAll[venue]) venueAll[venue] = { w: 0, n: 0, bet: 0, ret: 0 };
     venueAll[venue].n++;
     if (hit) venueAll[venue].w++;
-    venueAll[venue].bet += BET_PER_RACE;
+    venueAll[venue].bet += bet;
     venueAll[venue].ret += ret;
     // 今週
     const d = (r.date || '').slice(0, 10);
@@ -1220,7 +1204,7 @@ function renderVenueHeatmap(rows) {
       if (!venueWeek[venue]) venueWeek[venue] = { w: 0, n: 0, bet: 0, ret: 0 };
       venueWeek[venue].n++;
       if (hit) venueWeek[venue].w++;
-      venueWeek[venue].bet += BET_PER_RACE;
+      venueWeek[venue].bet += bet;
       venueWeek[venue].ret += ret;
     }
   });
@@ -1234,7 +1218,7 @@ function renderVenueHeatmap(rows) {
     if (rid.length < 6) return;
     const venue = VENUE_MAP[rid.slice(4, 6)] || '';
     if (!venue) return;
-    const hit = r.wide_hit === 'True';
+    const hit = r.wide_hit === 'True' || r.sanrenpuku_hit === 'True';
     if (!venueStreak[venue]) venueStreak[venue] = { count: 0, type: null };
     const s = venueStreak[venue];
     if (s.type === null || s.type === hit) {
@@ -1392,19 +1376,17 @@ function renderHitRateChart(rows) {
 ================================================================ */
 function renderVenueRoiChart(rows) {
   if (!rows.length) return;
-  const currentRows = rows.filter(isCurrentStrategy);
-  const useRows = currentRows.length > 0 ? currentRows : rows;
   const venueData = {};
-  useRows.forEach(r => {
+  rows.forEach(r => {
     const rid = (r.race_id || '').trim();
     if (rid.length < 6) return;
     const venue = VENUE_MAP[rid.slice(4, 6)] || '';
     if (!venue) return;
     if (!venueData[venue]) venueData[venue] = { bet: 0, ret: 0, n: 0, fHit: 0 };
-    venueData[venue].bet += BET_PER_RACE;
+    venueData[venue].bet += calcBet(r);
     venueData[venue].ret += calcRet(r);
     venueData[venue].n++;
-    if (r.wide_hit === 'True') venueData[venue].fHit++;
+    if (r.wide_hit === 'True' || r.sanrenpuku_hit === 'True') venueData[venue].fHit++;
   });
 
   const entries = Object.entries(venueData)
