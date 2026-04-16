@@ -331,6 +331,11 @@ def _get_dynamic_skip_venues(
 
     静的フィルタ（川崎・高知）とは独立に追加除外する仕組み。
     統計的信頼性のため min_sample 未満の会場は常にスキップ。
+
+    シャドウ記録（shadow_bet_total / shadow_return_total）を優先的に使い、
+    見送りレースでも「もし買っていたら」の成績で判定する。これにより
+    動的除外された会場が自己復帰できる（永久除外にならない）。
+    シャドウ列が欠損している過去データは bet_total / return_total にフォールバック。
     """
     global _DYNAMIC_SKIP_CACHE
     if _DYNAMIC_SKIP_CACHE is not None:
@@ -343,18 +348,24 @@ def _get_dynamic_skip_venues(
             _DYNAMIC_SKIP_CACHE = skip
             return skip
         df = pd.read_csv(HISTORY_PATH, encoding="utf-8-sig", dtype=str)
-        df["bet_total"] = pd.to_numeric(df.get("bet_total"), errors="coerce").fillna(0)
-        df["return_total"] = pd.to_numeric(df.get("return_total"), errors="coerce").fillna(0)
+        for col in ("bet_total", "return_total", "shadow_bet_total", "shadow_return_total"):
+            if col in df.columns:
+                df[col] = pd.to_numeric(df[col], errors="coerce").fillna(0)
+            else:
+                df[col] = 0
         df["venue_code"] = df["race_id"].astype(str).str[4:6]
-        # 投資実績のあるレースのみ対象（見送り=bet_total=0 は除外）
-        df = df[df["bet_total"] > 0]
+
+        # 実効bet/retを計算: シャドウがあればシャドウ、なければ実投資（旧データ互換）
+        df["eff_bet"] = df["shadow_bet_total"].where(df["shadow_bet_total"] > 0, df["bet_total"])
+        df["eff_ret"] = df["shadow_return_total"].where(df["shadow_bet_total"] > 0, df["return_total"])
+        df = df[df["eff_bet"] > 0]
 
         for vcode, g in df.groupby("venue_code"):
             recent = g.sort_values("date").tail(recent_n)
             if len(recent) < min_sample:
                 continue  # サンプル不足は判定しない
-            bet = recent["bet_total"].sum()
-            ret = recent["return_total"].sum()
+            bet = recent["eff_bet"].sum()
+            ret = recent["eff_ret"].sum()
             if bet <= 0:
                 continue
             roi = ret / bet
@@ -371,7 +382,7 @@ def _get_dynamic_skip_venues(
     return skip
 
 
-def _decide_bet_strategy(result_df: pd.DataFrame) -> dict:
+def _decide_bet_strategy(result_df: pd.DataFrame, _skip_venue_filter: bool = False) -> dict:
     """
     NAR予測結果DataFrameから買い目を決定する。
 
@@ -382,6 +393,10 @@ def _decide_bet_strategy(result_df: pd.DataFrame) -> dict:
     - 推定ワイドオッズ < 1.0倍: 見送り
     - ○確率 < 20%: 見送り
     - ◎○差 > 25%: 見送り
+
+    Args:
+        _skip_venue_filter: シャドウ戦略計算用の内部フラグ。True で会場フィルタを
+            無視して「もし買っていたら」の戦略を返す（動的フィルタの復帰判定用）。
     """
     # レースの会場を取得
     race_id = str(result_df.iloc[0].get("race_id", "")) if "race_id" in result_df.columns else ""
@@ -394,6 +409,18 @@ def _decide_bet_strategy(result_df: pd.DataFrame) -> dict:
     # 開催場フィルタ: 静的（川崎・高知）+ 動的（直近20戦ROI < 50%）
     STATIC_SKIP_VENUES = {"45", "54"}  # 45=川崎, 54=高知
     SKIP_VENUES = STATIC_SKIP_VENUES | _get_dynamic_skip_venues()
+
+    def _with_shadow(result: dict) -> dict:
+        """会場フィルタで見送る場合、shadow_strategy を付帯する（復帰判定用）。"""
+        if _skip_venue_filter:
+            return result
+        try:
+            shadow = _decide_bet_strategy(result_df, _skip_venue_filter=True)
+            if shadow.get("total_points", 0) > 0:
+                result["shadow_strategy"] = shadow
+        except Exception as e:
+            logger.debug(f"shadow_strategy 計算失敗: {e}")
+        return result
     WIDE_UNIT = 1000  # 固定1,000円（ストリーク増額廃止: 増額時60% vs 通常72%）
     MIN_WIDE_ODDS = 1.5  # 78,776Rバックテスト: 1.0→1.5でROI 79%→80%
 
@@ -407,10 +434,10 @@ def _decide_bet_strategy(result_df: pd.DataFrame) -> dict:
     if len(result_df) < 2:
         return _empty("出走頭数不足")
 
-    if venue_code in SKIP_VENUES:
+    if not _skip_venue_filter and venue_code in SKIP_VENUES:
         if venue_code in STATIC_SKIP_VENUES:
-            return _empty(f"見送り（{venue}フィルタ: 回収率低）")
-        return _empty(f"見送り（{venue}: 直近20戦ROI<50%）")
+            return _with_shadow(_empty(f"見送り（{venue}フィルタ: 回収率低）"))
+        return _with_shadow(_empty(f"見送り（{venue}: 直近20戦ROI<50%）"))
 
     MAX_HORSES = 10  # 78,776Rバックテスト: 11頭以上はROI 75-76%→除外
     if len(result_df) > MAX_HORSES:

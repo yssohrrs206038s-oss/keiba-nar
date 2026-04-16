@@ -664,17 +664,21 @@ function pct(v) { return isNaN(v) ? '--' : (v * 100).toFixed(0) + '%'; }
 // （ワイド/3連複など戦略に応じて記録側で集計済み）
 function calcBet(r) { return +r.bet_total    || 0; }
 function calcRet(r) { return +r.return_total || 0; }
+// 見送り（会場フィルタ等）の行はシャドウ成績でCSVに残るが、実績集計からは除外
+function isBetted(r) { return (+r.bet_total || 0) > 0; }
 
 function renderStats(rows) {
   if (!rows.length) return;
-  const n     = rows.length;
+  const betRows = rows.filter(isBetted);
+  const n     = betRows.length;
+  if (!n) return;
   // 本命的中率 = ◎が3着以内（fukusho_hit）
-  const honmeiHits = rows.filter(r => r.fukusho_hit === 'True').length;
-  const bet   = rows.reduce((s, r) => s + calcBet(r), 0);
-  const ret   = rows.reduce((s, r) => s + calcRet(r), 0);
+  const honmeiHits = betRows.filter(r => r.fukusho_hit === 'True').length;
+  const bet   = betRows.reduce((s, r) => s + calcBet(r), 0);
+  const ret   = betRows.reduce((s, r) => s + calcRet(r), 0);
   const roi   = bet > 0 ? ret / bet : 0;
   // 直近10戦的中率（ワイドベース）
-  const recent10 = rows.slice(-10);
+  const recent10 = betRows.slice(-10);
   const recent10Hits = recent10.filter(r => r.wide_hit === 'True').length;
   const recentRate = recent10.length > 0 ? recent10Hits / recent10.length : 0;
   document.getElementById('s-races').textContent   = n + ' 戦';
@@ -688,9 +692,10 @@ function renderStats(rows) {
 ================================================================ */
 function renderChart(rows) {
   if (!rows.length) return;
+  const betRows = rows.filter(isBetted);
   const labels = [], roiData = [];
   let cumBet = 0, cumRet = 0;
-  rows.forEach(r => {
+  betRows.forEach(r => {
     cumBet += calcBet(r);
     cumRet += calcRet(r);
     const roi = cumBet > 0 ? (cumRet / cumBet * 100) : 0;
@@ -1195,10 +1200,10 @@ function renderVenueHeatmap(rows) {
   const weekStart = new Date(Date.UTC(jstNow.getUTCFullYear(), jstNow.getUTCMonth(), jstNow.getUTCDate() - mondayOff));
   const weekStartStr = weekStart.toISOString().slice(0, 10);
 
-  // 全期間 & 今週のデータを会場別に集計
+  // 全期間 & 今週のデータを会場別に集計（見送り=bet_total=0 は除外）
   const venueAll = {};
   const venueWeek = {};
-  rows.forEach(r => {
+  rows.filter(isBetted).forEach(r => {
     const rid = (r.race_id || '').trim();
     if (rid.length < 6) return;
     const venue = VENUE_MAP[rid.slice(4, 6)] || '';
@@ -1223,10 +1228,10 @@ function renderVenueHeatmap(rows) {
     }
   });
 
-  // 連勝/連敗ストリーク計算（直近レースから遡る）
+  // 連勝/連敗ストリーク計算（直近レースから遡る、見送りは除外）
   const venueStreak = {};
   // 日付昇順にソート
-  const sorted = [...rows].sort((a, b) => ((a.date || '') + (a.race_id || '')).localeCompare((b.date || '') + (b.race_id || '')));
+  const sorted = [...rows].filter(isBetted).sort((a, b) => ((a.date || '') + (a.race_id || '')).localeCompare((b.date || '') + (b.race_id || '')));
   sorted.forEach(r => {
     const rid = (r.race_id || '').trim();
     if (rid.length < 6) return;
@@ -1391,7 +1396,7 @@ function renderHitRateChart(rows) {
 function renderVenueRoiChart(rows) {
   if (!rows.length) return;
   const venueData = {};
-  rows.forEach(r => {
+  rows.filter(isBetted).forEach(r => {
     const rid = (r.race_id || '').trim();
     if (rid.length < 6) return;
     const venue = VENUE_MAP[rid.slice(4, 6)] || '';

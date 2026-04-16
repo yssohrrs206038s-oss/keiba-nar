@@ -46,6 +46,9 @@ HISTORY_COLS = [
     "actual1_name", "actual1_num",
     "actual2_name", "actual2_num",
     "actual3_name", "actual3_num",
+    # シャドウ列: 動的会場フィルタの復帰判定用。見送りレースは「もし買っていたら」
+    # の成績を、実買いレースは bet_total / return_total と同値を記録する。
+    "shadow_bet_total", "shadow_return_total",
     "fukusho_hit",
     "umaren_hit",     "umaren_payout",
     "wide_hit",       "wide_payout",
@@ -145,6 +148,7 @@ def load_history() -> pd.DataFrame:
         "wide_hit": "False",     "wide_payout": "0",
         "sanrenpuku_hit": "False", "sanrenpuku_payout": "0",
         "bet_total": "0",        "return_total": "0",
+        "shadow_bet_total": "0", "shadow_return_total": "0",
     }
     for col, default in _defaults.items():
         if col not in df.columns:
@@ -156,7 +160,8 @@ def load_history() -> pd.DataFrame:
     for col in ("fukusho_hit", "umaren_hit", "wide_hit", "sanrenpuku_hit"):
         df[col] = df[col].map({"True": True, "False": False, True: True, False: False})
     for col in ("umaren_payout", "wide_payout", "sanrenpuku_payout",
-                "bet_total", "return_total"):
+                "bet_total", "return_total",
+                "shadow_bet_total", "shadow_return_total"):
         df[col] = pd.to_numeric(df[col], errors="coerce").fillna(0).astype(int)
     df["date"] = pd.to_datetime(df["date"], errors="coerce")
     return df
@@ -185,9 +190,12 @@ def record_result(
         _check_umaren_raw, _check_wide_pairs_raw, _check_sanrenpuku_raw,
     )
 
-    # 見送りレース（オッズフィルタ等でbet_strategyが空）はCSVに記録しない
-    bs = pred.get("bet_strategy", {})
-    if bs and bs.get("total_points", 0) == 0:
+    # 見送りレースの扱い:
+    #  - shadow_strategy 付き（会場フィルタ見送り）→ シャドウ成績を記録（復帰判定用）
+    #  - shadow なし（オッズ/多頭数/確率フィルタ等）→ 従来通りCSVに記録しない
+    bs = pred.get("bet_strategy", {}) or {}
+    shadow_bs = bs.get("shadow_strategy") if isinstance(bs, dict) else None
+    if bs.get("total_points", 0) == 0 and not shadow_bs:
         logger.info(f"  [history] 見送りスキップ: {race_name} ({race_id})")
         return {}
 
@@ -272,6 +280,45 @@ def record_result(
     sanren_return = sanren_payout * 10 if sanren_hit else 0  # 1000円/100円 = 10倍
     return_total = (wide_return + sanren_return) if not is_skip else 0
 
+    # ── シャドウ成績（動的会場フィルタの復帰判定用） ────────────
+    # 見送り時: shadow_strategy があれば「もし買っていたら」を計算
+    # 実買時  : shadow = 実投資（bet_total / return_total と同値）
+    if shadow_bs and is_skip:
+        shadow_bet_total = int(shadow_bs.get("total_cost", 0) or 0)
+        shadow_wide_return = 0
+        if shadow_bs.get("wide"):
+            for w in shadow_bs["wide"]:
+                nums = w.get("nums") or []
+                if len(nums) != 2:
+                    continue
+                a, b = nums
+                if a in actual_top3_set and b in actual_top3_set:
+                    pay_str = _get_payout(payouts, "ワイド", f"{a}-{b}")
+                    shadow_wide_return += _payout_str_to_int(pay_str) * 3
+        shadow_sanren_return = 0
+        ssr = shadow_bs.get("sanrenpuku", {}) or {}
+        if ssr.get("trio"):
+            trio_set = set(ssr["trio"])
+            if trio_set == actual_top3_set and len(trio_set) == 3:
+                combo = "-".join(str(n) for n in sorted(ssr["trio"]))
+                pay_str = _get_payout(payouts, "三連複", combo)
+                shadow_sanren_return = _payout_str_to_int(pay_str) * 10
+        elif ssr.get("jiku") and ssr.get("aite"):
+            from itertools import combinations
+            jiku = ssr["jiku"]
+            aite = ssr["aite"]
+            if len(jiku) == 1 and jiku[0] in actual_top3_set:
+                for pair in combinations(aite, 2):
+                    if {jiku[0], pair[0], pair[1]} == actual_top3_set:
+                        combo = "-".join(str(n) for n in sorted([jiku[0], pair[0], pair[1]]))
+                        pay_str = _get_payout(payouts, "三連複", combo)
+                        shadow_sanren_return = _payout_str_to_int(pay_str) * 10
+                        break
+        shadow_return_total = shadow_wide_return + shadow_sanren_return
+    else:
+        shadow_bet_total = bet_total
+        shadow_return_total = return_total
+
     row = {
         "date":       race_date,
         "race_id":    race_id,
@@ -289,6 +336,8 @@ def record_result(
         "sanrenpuku_hit":  sanren_hit,     "sanrenpuku_payout": sanren_payout,
         "bet_total":       bet_total,
         "return_total":    return_total,
+        "shadow_bet_total":    shadow_bet_total,
+        "shadow_return_total": shadow_return_total,
     }
 
     # CSV 書き込み（既存race_idは上書き、新規は追記）
