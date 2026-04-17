@@ -227,19 +227,20 @@ def record_result(
                 fukusho_payout = entry.get("amount") or 0
                 break
 
-    # ワイド判定: bet_strategyの実際の買い目（◎-○ 1点）で判定
+    # ワイド判定: bet_strategyの全ペアを判定（複数的中に対応）
     from keiba_predictor.discord_notify import _get_payout
     wide_hit = False
-    wide_payout = 0
+    wide_payout = 0      # 的中ペアの配当合計（100円ベース）
+    wide_hit_count = 0
     actual_top3_set = set(actual_nums[:3]) if len(actual_nums) >= 3 else set()
     if bs.get("wide"):
         for w in bs["wide"]:
             a, b = w["nums"]
             if a in actual_top3_set and b in actual_top3_set:
                 pay_str = _get_payout(payouts, "ワイド", f"{a}-{b}")
-                wide_payout = _payout_str_to_int(pay_str)
+                wide_payout += _payout_str_to_int(pay_str)
                 wide_hit = True
-                break
+                wide_hit_count += 1
 
     umaren_hit = False
     umaren_payout = 0
@@ -274,9 +275,9 @@ def record_result(
     is_skip = bs.get("total_points", 0) == 0 or "見送り" in bs.get("strategy_note", "")
     bet_total = 0 if is_skip else bs.get("total_cost", BETS_PER_RACE_TOTAL)
     # 払戻計算
-    # ワイド: 300円購入 → 100円ベース配当×3倍
+    # ワイド: 各300円購入 → 各ペアの100円ベース配当×3倍（wide_payoutは全的中ペアの合計）
     # 3連複trio: 1000円購入 → 100円ベース配当×10倍
-    wide_return = wide_payout * 3 if wide_hit else 0  # 300円/100円 = 3倍
+    wide_return = wide_payout * 3 if wide_hit else 0  # (配当合計)×(300円/100円)
     sanren_return = sanren_payout * 10 if sanren_hit else 0  # 1000円/100円 = 10倍
     return_total = (wide_return + sanren_return) if not is_skip else 0
 

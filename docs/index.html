@@ -966,11 +966,11 @@ function _renderRaceCard(raceId, r) {
     const hasWide = (bs && bs.wide && bs.wide.length) || wHit || wPay > 0;
     const hasSanren = (bs && bs.sanrenpuku && (bs.sanrenpuku.trio || bs.sanrenpuku.jiku)) || sHit || sPay > 0;
     if (hasWide) {
-      // ワイド払戻は100円ベース配当×10（1,000円購入時）
-      hitParts.push(`ワイド${wHit ? '✅' : '❌'}${wHit && wPay ? ' ' + (wPay * 10).toLocaleString() + '円' : ''}`);
+      // ワイド: wide_payoutは全的中ペアの配当合計(100円ベース)×3(300円購入)
+      hitParts.push(`ワイド${wHit ? '✅' : '❌'}${wHit && wPay ? ' ' + (wPay * 3).toLocaleString() + '円' : ''}`);
     }
     if (hasSanren) {
-      // 3連複払戻も100円ベース配当×10（1,000円購入時の実回収額）
+      // 3連複: 100円ベース配当×10（1,000円購入時の実回収額）
       hitParts.push(`3連複${sHit ? '✅' : '❌'}${sHit && sPay ? ' ' + (sPay * 10).toLocaleString() + '円' : ''}`);
     }
     if (!hitParts.length) {
