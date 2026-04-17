@@ -911,8 +911,13 @@ function _renderRaceCard(raceId, r) {
     const cost = bs.total_cost || bs.total_points * 100;
     let betRows = '';
     if (bs.wide && bs.wide.length) {
-      const w = bs.wide[0];
-      betRows = `<div class="bet-row"><span class="bet-label">ワイド</span>◎${w.nums[0]}-○${w.nums[1]}<span style="color:var(--text-muted);margin-left:auto;font-size:11px;">1,000円</span></div>`;
+      const unitCost = bs.wide.length > 1 ? Math.round(cost / bs.wide.length) : cost;
+      const pnums = r.predicted_top3_nums || [];
+      const markOf = n => n === pnums[0] ? '◎' : n === pnums[1] ? '○' : n === pnums[2] ? '▲' : '';
+      betRows = bs.wide.map(w => {
+        const a = w.nums[0], b = w.nums[1];
+        return `<div class="bet-row"><span class="bet-label">ワイド</span>${markOf(a)}${a}-${markOf(b)}${b}<span style="color:var(--text-muted);margin-left:auto;font-size:11px;">${unitCost.toLocaleString()}円</span></div>`;
+      }).join('');
     }
     if (bs.sanrenpuku && bs.sanrenpuku.trio) {
       const t = bs.sanrenpuku.trio;
