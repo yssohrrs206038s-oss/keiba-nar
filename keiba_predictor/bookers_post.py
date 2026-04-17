@@ -55,7 +55,7 @@ def _resolve_api_key(api_key: Optional[str] = None) -> str:
 # 記事本文の組み立て
 # ══════════════════════════════════════════════════════════════
 
-MARKS = {"honmei": "◎", "taikou": "○", "ana": "☆"}
+MARKS = {"honmei": "◎", "taikou": "○", "third": "☆"}
 # △は predicted_top3_nums[3] があれば使用
 ALL_MARKS = ["◎", "○", "☆", "△", "　"]
 

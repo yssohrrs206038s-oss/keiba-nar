@@ -72,7 +72,7 @@ def _format_prediction(entry: dict) -> str:
 
     lines = [f"🏇 {race_name} {meta}"]
 
-    for role, mark in [("honmei", "◎"), ("taikou", "○"), ("ana", "▲")]:
+    for role, mark in [("honmei", "◎"), ("taikou", "○"), ("third", "▲")]:
         p = entry.get(role, {})
         if not p or not p.get("horse_name"):
             continue

@@ -204,7 +204,7 @@ def record_result(
     # 予想馬
     p1 = _pred_row(pred, "honmei")
     p2 = _pred_row(pred, "taikou")
-    p3 = _pred_row(pred, "ana")
+    p3 = _pred_row(pred, "third")
     predicted_nums = pred.get("predicted_top3_nums", [])
 
     # 実際の着順

@@ -52,7 +52,7 @@ MANUAL_RESULTS = DATA_DIR / "manual_results.json"  # 手動結果入力
 # 重賞判定 (G1/G2/G3 を含む括弧表記)
 GRADE_RE = re.compile(r"\(G[Ⅰ-Ⅲ1-3]\)|\(GI{1,3}\)")
 
-MARK = {"honmei": "◎", "taikou": "○", "ana": "△", "hoshi": "☆"}
+MARK = {"honmei": "◎", "taikou": "○", "third": "▲", "hoshi": "☆"}
 
 # ── 開催場別 Discord Webhook マップ ─────────────────────────────
 # GitHub Secrets に各場の Webhook URL を登録:
@@ -655,7 +655,7 @@ def _save_upcoming_to_cache() -> None:
             "course_info":         "",
             "honmei":              None,
             "taikou":              None,
-            "ana":                 None,
+            "third":               None,
             "predicted_top3_nums": [],
             "predicted_top5_nums": [],
             "predicted_top5":      [],
@@ -904,7 +904,7 @@ def _store_prediction(race_id: str, race_name: str, race_date: str,
         "course_info":         course_info,
         "honmei":              _row(result_df, 0),
         "taikou":              _row(result_df, 1),
-        "ana":                 ana,
+        "third":               ana,
         "predicted_top3_nums": top3_nums,
         "predicted_top5_nums": top5_nums,
         "ana_horse_num":       ana_horse_num,
@@ -943,7 +943,7 @@ def _store_prediction(race_id: str, race_name: str, race_date: str,
                 top5_mc[k] = mc_result[k]
         cache[race_id]["simulation"] = top5_mc
         # MC確率でキャッシュ内のprobを上書き（Discord・ダッシュボード表示用）
-        for role in ("honmei", "taikou", "ana"):
+        for role in ("honmei", "taikou", "third"):
             p = cache[race_id].get(role, {})
             if p and p.get("horse_number") is not None:
                 mc = mc_result.get(str(p["horse_number"]), {})
@@ -1070,7 +1070,7 @@ def _record_manual_result(race_id: str, race_name: str, race_date: str,
     grade = _grade_label(name)
     p1 = _pred_row(pred, "honmei")
     p2 = _pred_row(pred, "taikou")
-    p3 = _pred_row(pred, "ana")
+    p3 = _pred_row(pred, "third")
 
     result_nums = manual.get("result", [])
     manual_pay = manual.get("payouts", {})
@@ -1236,7 +1236,7 @@ def _fmt_result(race_name: str, race_date: str,
 
     # 予想馬番→印 のマッピング
     pred_num_to_mark: dict[int, str] = {}
-    for role, mark in [("honmei", "◎"), ("taikou", "○"), ("ana", "△")]:
+    for role, mark in [("honmei", "◎"), ("taikou", "○"), ("third", "▲")]:
         p = pred.get(role, {})
         num = p.get("horse_number")
         if num is not None:
@@ -1249,7 +1249,7 @@ def _fmt_result(race_name: str, race_date: str,
 
     # 馬番→馬名マップを予想キャッシュから構築（結果に馬名がない場合の補完用）
     num_to_name: dict[int, str] = {}
-    for role in ("honmei", "taikou", "ana"):
+    for role in ("honmei", "taikou", "third"):
         p = pred.get(role, {})
         pnum = p.get("horse_number")
         if pnum is not None:
@@ -1567,7 +1567,7 @@ def _format_prediction_from_cache(race_name: str, entry: dict, race_id: str = ""
             top5_detail[int(num)] = h
 
     # honmei/taikou/ana からも補完
-    for role in ("honmei", "taikou", "ana"):
+    for role in ("honmei", "taikou", "third"):
         p = entry.get(role, {})
         num = p.get("horse_number")
         if num is not None and int(num) not in top5_detail:
@@ -2021,7 +2021,7 @@ def run_result_notify(
         if not pred:
             logger.warning(f"  予想キャッシュなし: {race_id}")
             pred = {"race_name": race_name, "race_date": race_date,
-                    "honmei": {}, "taikou": {}, "ana": {}, "predicted_top3_nums": []}
+                    "honmei": {}, "taikou": {}, "third": {}, "predicted_top3_nums": []}
 
         # manual の honmei / predicted_top3_nums で pred を上書き
         if manual:
@@ -2054,7 +2054,7 @@ def run_result_notify(
 
             # 馬名マップ
             _num_to_name: dict[int, str] = {}
-            for _role in ("honmei", "taikou", "ana"):
+            for _role in ("honmei", "taikou", "third"):
                 _p = pred.get(_role, {})
                 _pn = _p.get("horse_number")
                 if _pn is not None:

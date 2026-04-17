@@ -93,7 +93,7 @@ def update_odds_for_race(race_id: str, entry: dict) -> dict:
     logger.info(f"[{race_id}] オッズ取得: {len(odds_map)}頭分")
 
     # honmei / taikou / ana のオッズも更新
-    for role in ("honmei", "taikou", "ana"):
+    for role in ("honmei", "taikou", "third"):
         h = entry.get(role, {})
         num = h.get("horse_number")
         if num and num in odds_map:

@@ -98,7 +98,7 @@ def build_predict_tweet(race_name: str, cache_entry: dict) -> str:
     venue = cache_entry.get("venue", "")
     tag = f"#地方競馬 #KEIBA_EDGE"
     lines = [f"🏇{venue}{short} AI予想"]
-    for role, mark in [("honmei", "◎"), ("taikou", "○"), ("ana", "▲")]:
+    for role, mark in [("honmei", "◎"), ("taikou", "○"), ("third", "▲")]:
         p = cache_entry.get(role, {})
         if not p or not p.get("horse_name"):
             continue

@@ -180,7 +180,7 @@ def _generate_race_analysis(race_data: dict, race_name: str, course_info: str, a
 
     # 上位馬情報を組み立て
     horses_info = []
-    for role, mark in [("honmei", "◎"), ("taikou", "○"), ("ana", "▲")]:
+    for role, mark in [("honmei", "◎"), ("taikou", "○"), ("third", "▲")]:
         p = race_data.get(role, {})
         if not p or not p.get("horse_name"):
             continue
@@ -291,7 +291,7 @@ def _build_note_race_markdown(race_id: str, r: dict, analysis: dict) -> str:
     MARKS = ["◎", "○", "▲", "△", "☆"]
     top5 = r.get("predicted_top5", r.get("ev_top3", []))
     roles_data = []
-    for idx, (role, mark) in enumerate([("honmei", "◎"), ("taikou", "○"), ("ana", "▲")]):
+    for idx, (role, mark) in enumerate([("honmei", "◎"), ("taikou", "○"), ("third", "▲")]):
         p = r.get(role, {})
         if p and p.get("horse_name"):
             num  = p.get("horse_number", "?")
@@ -324,7 +324,7 @@ def _build_note_race_markdown(race_id: str, r: dict, analysis: dict) -> str:
 
     # ── 注目馬AI解説 ─────────────────────────────────────────
     lines += ["## 🔍 注目馬AI解説", ""]
-    for role, mark in [("honmei", "◎"), ("taikou", "○"), ("ana", "▲")]:
+    for role, mark in [("honmei", "◎"), ("taikou", "○"), ("third", "▲")]:
         p = r.get(role, {})
         if not p or not p.get("horse_name"):
             continue
@@ -470,7 +470,7 @@ def _build_race_discord_message(race_id: str, r: dict) -> str:
         "|---|---|---|---|---|",
     ]
 
-    for role, mark in [("honmei", "◎"), ("taikou", "○"), ("ana", "▲")]:
+    for role, mark in [("honmei", "◎"), ("taikou", "○"), ("third", "▲")]:
         p = r.get(role, {})
         if not p or not p.get("horse_name"):
             continue
@@ -487,7 +487,7 @@ def _build_race_discord_message(race_id: str, r: dict) -> str:
     ai_comments = r.get("ai_comments", {})
     if ai_comments:
         lines += ["## 🔍 注目馬AI解説", ""]
-        for role, mark in [("honmei", "◎"), ("taikou", "○"), ("ana", "▲")]:
+        for role, mark in [("honmei", "◎"), ("taikou", "○"), ("third", "▲")]:
             p = r.get(role, {})
             if not p or not p.get("horse_name"):
                 continue
