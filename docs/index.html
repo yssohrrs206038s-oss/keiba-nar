@@ -847,6 +847,8 @@ function _renderRaceCard(raceId, r) {
   const raceNum = raceId.length >= 12 ? parseInt(raceId.slice(10, 12), 10) + 'R' : '';
   const raceTitle = (venue && raceNum ? venue + raceNum + ' ' : '') + shortName;
 
+  // third(新) がなければ ana(旧キャッシュ) にフォールバック
+  if (!r.third && r.ana) r.third = r.ana;
   const roles = [
     { key: 'honmei', mark: '◎', cls: 'mark-honmei' },
     { key: 'taikou', mark: '○', cls: 'mark-taikou' },
