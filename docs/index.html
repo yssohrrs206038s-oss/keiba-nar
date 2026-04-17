@@ -850,7 +850,7 @@ function _renderRaceCard(raceId, r) {
   const roles = [
     { key: 'honmei', mark: '◎', cls: 'mark-honmei' },
     { key: 'taikou', mark: '○', cls: 'mark-taikou' },
-    { key: 'ana',    mark: '★穴', cls: 'mark-ana' },
+    { key: 'ana',    mark: '▲', cls: 'mark-ana' },
   ];
   const evMap = {};
   (r.ev_top3 || []).forEach(e => { if (e.horse_number != null) evMap[+e.horse_number] = e.ev_score; });
@@ -903,6 +903,28 @@ function _renderRaceCard(raceId, r) {
       </div>
     </div>`;
   }).join('');
+
+  // ★穴馬（TOP5外・AI確率35%以上・6番人気以下）
+  let anaHorseHTML = '';
+  const anaInfo = r.ana_horse_info;
+  if (anaInfo && anaInfo.horse_name) {
+    const anaNum = anaInfo.horse_number || '-';
+    const anaName = esc(anaInfo.horse_name);
+    const anaProb = anaInfo.prob ? (anaInfo.prob * 100).toFixed(1) + '%' : '';
+    const anaPop = anaInfo.popularity ? anaInfo.popularity + '人気' : '';
+    anaHorseHTML = `<div class="horse-item" style="border-top:1px dashed var(--border);padding-top:6px;margin-top:4px;">
+      <span class="horse-mark mark-ana">★穴</span>
+      <span class="horse-num">${anaNum}番</span>
+      <div>
+        <div class="horse-name">${anaName}</div>
+        <div class="horse-summary" style="font-size:10px;color:var(--text-muted);">TOP5外・オッズ妙味</div>
+      </div>
+      <div class="horse-stats">
+        ${anaProb ? `<div class="horse-prob">${anaProb}</div>` : ''}
+        ${anaPop ? `<div style="font-size:10px;color:var(--text-muted);">${anaPop}</div>` : ''}
+      </div>
+    </div>`;
+  }
 
   // 買い目
   const bs = r.bet_strategy;
@@ -1012,7 +1034,7 @@ function _renderRaceCard(raceId, r) {
       <span class="race-summary-time">${startTime}</span>
     </summary>
     <div class="race-card-body">
-      <div class="horse-list">${horseHTML || '<div class="no-data" style="padding:12px;">予想生成中...</div>'}</div>
+      <div class="horse-list">${horseHTML || '<div class="no-data" style="padding:12px;">予想生成中...</div>'}${anaHorseHTML}</div>
       ${betHTML}
       ${rakutenHTML}
       ${resultHTML}
