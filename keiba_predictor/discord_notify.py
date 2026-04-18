@@ -1388,7 +1388,15 @@ def _fmt_result(race_name: str, race_date: str,
     total_cost = bs.get("total_cost", 0)
     total_return = 0
 
-    if bs.get("wide"):
+    # 買い目に応じた券種で表示（bet_strategy がない旧データは wide/sanren の hit で判定）
+    has_wide = bs.get("wide")
+    has_sanren = sr and (sr.get("trio") or sr.get("jiku"))
+    if not has_wide and not has_sanren:
+        # bet_strategy なし → CSV の hit フラグから判定
+        has_wide = wide_hit
+        has_sanren = sanren_hit
+
+    if has_wide:
         hit_label = f"ワイド {'✅ 的中' if wide_hit else '❌ ハズレ'}"
         if wide_hit and wide_pay:
             pay_val = _pay_to_int(wide_pay)
@@ -1397,7 +1405,7 @@ def _fmt_result(race_name: str, race_date: str,
             total_return += ret_val
             hit_label += f"（{odds_val:.1f}倍 × 300円 = {ret_val:,}円）"
         lines.append(hit_label)
-    if sr and (sr.get("trio") or sr.get("jiku")):
+    if has_sanren:
         hit_label = f"3連複 {'✅ 的中' if sanren_hit else '❌ ハズレ'}"
         if sanren_hit and sanren_pay:
             pay_val = _pay_to_int(sanren_pay)
@@ -1406,8 +1414,6 @@ def _fmt_result(race_name: str, race_date: str,
             total_return += ret_val
             hit_label += f"（{odds_val:.1f}倍 × 1,000円 = {ret_val:,}円）"
         lines.append(hit_label)
-    if not bs.get("wide") and not sr:
-        lines.append(f"ワイド {'✅ 的中' if wide_hit else '❌ ハズレ'}")
 
     # 収支
     if total_cost > 0:
