@@ -394,7 +394,7 @@
   <!-- 予想タブ -->
   <div class="tab-panel active" id="panel-predict">
     <div id="venue-tabs" style="display:flex;gap:6px;overflow-x:auto;margin-bottom:16px;padding-bottom:4px;">
-      <button class="tab-btn active" data-venue="all" style="flex:none;font-size:12px;padding:8px 14px;border-radius:20px;border:1px solid var(--border);background:var(--bg-card2);">全レース</button>
+      <button class="tab-btn active" data-venue="selected" style="flex:none;font-size:12px;padding:8px 14px;border-radius:20px;border:1px solid var(--border);background:var(--bg-card2);">🎯厳選</button>
     </div>
     <div id="ev-top5-container"></div>
     <div class="section-title">🏇 本日の予想</div>
@@ -489,9 +489,9 @@
 
       <h3 style="color:var(--accent);margin-top:20px;margin-bottom:12px;">📋 買い目戦略</h3>
       <div style="font-size:13px;color:var(--text-muted);line-height:2;">
-        <div><strong>券種:</strong> ワイド ◎-○ 1点</div>
-        <div><strong>基本金額:</strong> 1,000円</div>
-        <div><strong>増額条件:</strong> 同会場2連勝以上で2,000円に増額 🔥</div>
+        <div><strong>券種:</strong> 3連複 ◎○▲ 1点</div>
+        <div><strong>金額:</strong> 1,000円</div>
+        <div><strong>条件:</strong> ◎≤2.0倍 × ≤8頭のみ厳選（他は見送り）</div>
       </div>
 
       <h3 style="color:var(--accent);margin-top:20px;margin-bottom:12px;">🚫 見送りフィルタ</h3>
@@ -765,7 +765,7 @@ function renderWeeklyChart(rows) {
 ================================================================ */
 let _predHtmlMap = {};
 let _allPredEntries = [];
-let _currentVenue = 'all';
+let _currentVenue = 'selected';  // デフォルト: 厳選レースのみ
 let _resultMap = {};
 
 // 「次のレース」(現在時刻に最も近い未来のレース)のrace_id
@@ -813,7 +813,8 @@ function renderPredictions(cache) {
   entries.forEach(([, r]) => { if (r.venue) venues.add(r.venue); });
   const vtabs = document.getElementById('venue-tabs');
   if (vtabs && venues.size) {
-    let btns = '<button class="tab-btn active" data-venue="all" style="flex:none;font-size:12px;padding:8px 14px;border-radius:20px;border:1px solid var(--border);background:var(--bg-card2);">全会場</button>';
+    let btns = '<button class="tab-btn active" data-venue="selected" style="flex:none;font-size:12px;padding:8px 14px;border-radius:20px;border:1px solid var(--border);background:var(--bg-card2);">🎯厳選</button>';
+    btns += '<button class="tab-btn" data-venue="all" style="flex:none;font-size:12px;padding:8px 14px;border-radius:20px;border:1px solid var(--border);background:var(--bg-card2);">全会場</button>';
     for (const v of [...venues].sort()) {
       btns += `<button class="tab-btn" data-venue="${esc(v)}" style="flex:none;font-size:12px;padding:8px 14px;border-radius:20px;border:1px solid var(--border);background:var(--bg-card2);">${esc(v)}</button>`;
     }
@@ -1045,6 +1046,11 @@ function _renderRaceCard(raceId, r) {
 function _renderFilteredPredictions() {
   const grid = document.getElementById('race-grid');
   const filtered = _allPredEntries.filter(([, r]) => {
+    if (_currentVenue === 'selected') {
+      // 厳選: bet_strategy.total_cost > 0 のレースのみ
+      const bs = r.bet_strategy || {};
+      return (bs.total_cost || 0) > 0;
+    }
     if (_currentVenue === 'all') return true;
     return r.venue === _currentVenue;
   });
