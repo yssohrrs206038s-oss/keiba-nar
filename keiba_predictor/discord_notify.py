@@ -629,7 +629,7 @@ def _save_upcoming_to_cache() -> None:
         "42": "浦和", "43": "船橋", "44": "大井", "45": "川崎",
         "46": "金沢", "47": "笠松", "48": "名古屋",
         "50": "園田", "51": "姫路",
-        "54": "高知", "55": "佐賀",
+        "54": "高知", "55": "佐賀", "65": "帯広ばんえい",
     }
 
     added = 0
@@ -1534,6 +1534,8 @@ def _format_prediction_from_cache(race_name: str, entry: dict, race_id: str = ""
 
     # ── Message 1: 予想 ───────────────────────────────────────
     venue = entry.get("venue", "")
+    if not venue and race_id and len(race_id) >= 6:
+        venue = VENUE_MAP.get(race_id[4:6], "")
     start_time = entry.get("start_time", "")
     race_num = ""
     if race_id and len(race_id) >= 12:
