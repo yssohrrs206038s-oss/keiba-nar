@@ -115,6 +115,7 @@ def _rolling_30_section(all_rows: list[dict], cache: dict) -> list[str]:
     qualified = [
         r for r in all_rows
         if str(r.get("date", ""))[:10] >= STRATEGY_START
+        and int(float(r.get("bet_total") or 0)) > 0  # シャドウ(見送り)除外
     ]
     # 日付降順で直近30戦を取得
     qualified.sort(key=lambda r: str(r.get("date", ""))[:10], reverse=True)
@@ -180,6 +181,7 @@ def analyze_daily(target_date: str = None) -> str:
         r for r in rows
         if str(r.get("date", ""))[:10] == target_date
         and str(r.get("date", ""))[:10] >= STRATEGY_START
+        and int(float(r.get("bet_total") or 0)) > 0  # シャドウ(見送り)除外
     ]
 
     if not daily_rows:
