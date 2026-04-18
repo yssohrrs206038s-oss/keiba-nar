@@ -396,7 +396,7 @@
     <div id="venue-tabs" style="display:flex;gap:6px;overflow-x:auto;margin-bottom:16px;padding-bottom:4px;">
       <button class="tab-btn active" data-venue="selected" style="flex:none;font-size:12px;padding:8px 14px;border-radius:20px;border:1px solid var(--border);background:var(--bg-card2);">🎯厳選</button>
     </div>
-    <div id="ev-top5-container"></div>
+    <!-- EV TOP5 セクション削除済み -->
     <div class="section-title">🏇 本日の予想</div>
     <div class="race-grid" id="race-grid">
       <div class="no-data">予想データを読み込んでいます...</div>
@@ -838,7 +838,6 @@ function renderPredictions(cache) {
     _predHtmlMap[raceId] = _renderRaceCard(raceId, r);
   });
   _renderFilteredPredictions();
-  _renderEvTop5();
 }
 
 function _renderRaceCard(raceId, r) {
