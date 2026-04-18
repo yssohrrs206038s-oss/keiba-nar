@@ -217,7 +217,8 @@
           "normal": 0.33
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636041902": {
     "race_name": "C2",
@@ -436,7 +437,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636041903": {
     "race_name": "C2十組",
@@ -655,7 +657,8 @@
           "normal": 0.21
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636041904": {
     "race_name": "C2九組",
@@ -874,7 +877,8 @@
           "normal": 0.14
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636041905": {
     "race_name": "C2八組",
@@ -1093,7 +1097,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636041906": {
     "race_name": "3歳A",
@@ -2831,7 +2836,8 @@
           "normal": 0.37
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646041902": {
     "race_name": "青学写研三役勇退記念(C1)",
@@ -3051,7 +3057,8 @@
           "normal": 0.04
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646041903": {
     "race_name": "3歳A3",
@@ -3270,7 +3277,8 @@
           "normal": 0.16
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646041904": {
     "race_name": "3歳A2",
