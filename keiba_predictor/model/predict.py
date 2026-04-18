@@ -439,7 +439,7 @@ def _decide_bet_strategy(result_df: pd.DataFrame, _skip_venue_filter: bool = Fal
             return _with_shadow(_empty(f"見送り（{venue}フィルタ: 回収率低）"))
         return _with_shadow(_empty(f"見送り（{venue}: 直近20戦ROI<50%）"))
 
-    MAX_HORSES = 10  # 78,776Rバックテスト: 11頭以上はROI 75-76%→除外
+    MAX_HORSES = 8  # 76,098Rバックテスト: ≤8頭でROI120%、9頭以上は急落
     if len(result_df) > MAX_HORSES:
         return _empty(f"見送り（{len(result_df)}頭: 多頭数フィルタ）")
 
@@ -507,31 +507,20 @@ def _decide_bet_strategy(result_df: pd.DataFrame, _skip_venue_filter: bool = Fal
     tai_odds = pd.to_numeric(result_df.iloc[1].get("odds"), errors="coerce")
     ana_odds = pd.to_numeric(result_df.iloc[2].get("odds"), errors="coerce")
 
-    # ◎オッズで買い目を分岐（47,268Rバックテスト）
-    # ◎≤2.0倍: 3連複◎○▲ ROI 123-236% > ワイド3点 ROI 114-190%
-    # ◎>2.0倍: ワイド3点 ROI 88-94% > 3連複 ROI 71-88%
-    use_sanren = pd.notna(hon_odds) and float(hon_odds) <= 2.0
+    # ◎オッズフィルタ（76,098Rバックテスト）
+    # ◎≤2.0倍 × ≤8頭: 3連複的中率24.2% ROI推定120.9%
+    # ◎>2.0倍: 3連複8-14%・ワイド3点ROI65% → 見送り
+    if not pd.notna(hon_odds) or float(hon_odds) > 2.0:
+        return _empty(f"見送り（◎{float(hon_odds) if pd.notna(hon_odds) else 0:.1f}倍>2.0）")
 
-    if use_sanren:
-        # 3連複 ◎○▲ 1点 1,000円
-        note = f"3連複◎○▲ 1点（◎{float(hon_odds):.1f}倍≤2.0）"
-        strategy = {
-            "fukusho": [], "umaren": [], "wide": [],
-            "sanrenpuku": {"trio": top3_nums},
-            "total_points": 1, "total_cost": 1000,
-            "strategy_note": note, "use_wide": False,
-        }
-    else:
-        # ワイド3点 ◎-○ ◎-▲ ○-▲ 各300円 = 900円
-        from itertools import combinations as _comb
-        pairs = [{"nums": list(p)} for p in _comb(top3_nums, 2)]
-        note = f"ワイド3点◎○▲（◎{float(hon_odds):.1f}倍>2.0）"
-        strategy = {
-            "fukusho": [], "umaren": [], "wide": pairs,
-            "sanrenpuku": {},
-            "total_points": len(pairs), "total_cost": len(pairs) * 300,
-            "strategy_note": note, "use_wide": True,
-        }
+    # 3連複 ◎○▲ 1点 1,000円
+    note = f"3連複◎○▲ 1点（◎{float(hon_odds):.1f}倍 {len(result_df)}頭）"
+    strategy = {
+        "fukusho": [], "umaren": [], "wide": [],
+        "sanrenpuku": {"trio": top3_nums},
+        "total_points": 1, "total_cost": 1000,
+        "strategy_note": note, "use_wide": False,
+    }
 
     return strategy
 
