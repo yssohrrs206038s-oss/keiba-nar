@@ -496,14 +496,12 @@
 
       <h3 style="color:var(--accent);margin-top:20px;margin-bottom:12px;">🚫 見送りフィルタ</h3>
       <div style="font-size:13px;color:var(--text-muted);line-height:2;">
-        <div>① ○（対抗）AI確率 &lt; 30% → 見送り</div>
-        <div>② ◎○ 確率差 &gt; 15% → 見送り</div>
-        <div>③ ◎+○ 合計確率 &lt; 180% → 見送り</div>
-        <div>④ ▲（3番手）AI確率 &lt; 50% → 見送り（混戦回避）</div>
-        <div>⑤ 推定ワイドオッズ &lt; 1.5倍 → 見送り</div>
+        <div>① ◎オッズ &gt; 2.0倍 → 見送り</div>
+        <div>② 9頭以上 → 見送り</div>
+        <div>③ 帯広ばんえい → 見送り（別競技）</div>
       </div>
       <p style="font-size:11px;color:var(--text-muted);margin-top:8px;">
-        ※ フィルタは過去データのバックテストに基づいて設定。データ蓄積に応じて調整予定。
+        ※ 76,098Rバックテストに基づく厳選条件。◎≤2.0倍×≤8頭で的中率24%・ROI推定121%。
       </p>
 
       <p style="font-size:12px;color:var(--text-muted);margin-top:16px;">
@@ -958,9 +956,9 @@ function _renderRaceCard(raceId, r) {
     betHTML = `<div class="bet-box"><div class="bet-box-title">💰 買い目</div><div style="font-size:12px;color:var(--text-muted);">⏭️ ${esc(bs.strategy_note)}</div></div>`;
   } else {
     const pnums = (r.predicted_top3_nums || []).filter(n => n != null);
-    if (pnums.length >= 2) {
+    if (pnums.length >= 3) {
       betHTML = `<div class="bet-box"><div class="bet-box-title">💰 買い目（1点）</div><div class="bet-rows">
-        <div class="bet-row"><span class="bet-label">ワイド</span>◎${pnums[0]}-○${pnums[1]}<span style="color:var(--text-muted);margin-left:auto;font-size:11px;">1,000円</span></div>
+        <div class="bet-row"><span class="bet-label">3連複</span>${pnums[0]}-${pnums[1]}-${pnums[2]}<span style="color:var(--text-muted);margin-left:auto;font-size:11px;">1,000円</span></div>
       </div><div style="border-top:1px solid var(--border);margin-top:8px;padding-top:6px;font-size:12px;font-weight:700;">合計投資額: 1,000円</div></div>`;
     }
   }
