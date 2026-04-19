@@ -223,7 +223,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636042002": {
     "race_name": "C2",
@@ -443,7 +444,8 @@
           "normal": 0.18
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636042003": {
     "race_name": "C2七組",
@@ -657,7 +659,8 @@
           "normal": 0.03
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636042004": {
     "race_name": "C2六組",
@@ -876,7 +879,8 @@
           "normal": 0.2
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636042005": {
     "race_name": "C2五組",
@@ -1090,7 +1094,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636042006": {
     "race_name": "3歳B1",
@@ -2822,7 +2827,8 @@
           "normal": 0.01
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202642042002": {
     "race_name": "ランチタイム(3歳)",
@@ -3041,7 +3047,8 @@
           "normal": 0.3
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202642042003": {
     "race_name": "3歳二",
@@ -3260,7 +3267,8 @@
           "normal": 0.18
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202642042004": {
     "race_name": "C3七八",
@@ -3479,7 +3487,8 @@
           "normal": 0.16
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202642042005": {
     "race_name": "C2三四",
@@ -3698,7 +3707,8 @@
           "normal": 0.22
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202642042006": {
     "race_name": "5月1日ヌゥハッピーバースデー賞(C2)",
