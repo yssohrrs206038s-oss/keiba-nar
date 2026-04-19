@@ -1698,16 +1698,15 @@ def _format_prediction_from_cache(race_name: str, entry: dict, race_id: str = ""
         note = bs.get("strategy_note", "見送り")
         lines2 = ["💰 買い目", f"⏭️ {note}"]
     else:
-        # フォールバック: 新戦略に準拠
+        # フォールバック: 3連複◎○▲ 1点
         nums = top5_nums
         if len(nums) < 3:
             return msg1, ""
-        hon = nums[0]; tai = nums[1]; ana = nums[2]
         lines2 = [
             "💰 買い目",
-            f"ワイド ◎{hon}-○{tai} / ◎{hon}-▲{ana} / ○{tai}-▲{ana}  各300円",
+            f"3連複 {nums[0]}-{nums[1]}-{nums[2]}  1点 1,000円",
             f"────────────────",
-            f"合計投資額: 900円",
+            f"合計投資額: 1,000円",
         ]
 
     # 楽天競馬URL追加
@@ -2085,20 +2084,24 @@ def run_result_notify(
             _wp = ""
             _actual_set = set(_actual_top3_nums[:3])
             bs = pred.get("bet_strategy", {})
+            _wide_hit = False
+            _wide_pay = ""
+            _san_hit = False
+            _san_pay = ""
             if bs.get("wide"):
                 for w in bs["wide"]:
                     a, b = w["nums"]
                     if a in _actual_set and b in _actual_set:
-                        _wp = _get_payout(payouts, "ワイド", f"{a}-{b}")
-                        _wh = True
+                        _wide_pay = _get_payout(payouts, "ワイド", f"{a}-{b}")
+                        _wide_hit = True
                         break
             # 3連複的中判定（trio形式 + jiku+aite形式）
             sr = bs.get("sanrenpuku", {})
             if sr and sr.get("trio") and len(_actual_set) >= 3:
                 if set(sr["trio"]) == _actual_set:
                     combo = "-".join(str(n) for n in sorted(sr["trio"]))
-                    _wp = _get_payout(payouts, "三連複", combo)
-                    _wh = True
+                    _san_pay = _get_payout(payouts, "三連複", combo)
+                    _san_hit = True
             elif sr and sr.get("jiku") and sr.get("aite") and len(_actual_set) >= 3:
                 from itertools import combinations as _comb_r
                 jiku = sr["jiku"]
@@ -2106,13 +2109,13 @@ def run_result_notify(
                     for pair in _comb_r(sr["aite"], 2):
                         if {jiku[0], pair[0], pair[1]} == _actual_set:
                             combo = "-".join(str(n) for n in sorted([jiku[0], pair[0], pair[1]]))
-                            _wp = _get_payout(payouts, "三連複", combo)
-                            _wh = True
+                            _san_pay = _get_payout(payouts, "三連複", combo)
+                            _san_hit = True
                             break
             _venue = pred.get("venue", "")
             hit_embed = _build_hit_embed(
                 _venue, race_name, _honmei_num, _honmei_name,
-                _wh, _wp, race_id=race_id,
+                _wide_hit, _wide_pay, sanren_hit=_san_hit, sanren_pay=_san_pay, race_id=race_id,
             )
             if hit_embed:
                 target_webhook = hit_webhook if hit_webhook else result_webhook
