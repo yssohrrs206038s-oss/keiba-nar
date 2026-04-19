@@ -407,8 +407,9 @@ def _decide_bet_strategy(result_df: pd.DataFrame, _skip_venue_filter: bool = Fal
         venue = VENUE_MAP.get(venue_code, "")
 
     # 開催場フィルタ: 静的（川崎・高知）+ 動的（直近20戦ROI < 50%）
-    STATIC_SKIP_VENUES = {"45", "54", "65"}  # 45=川崎, 54=高知, 65=帯広ばんえい
-    SKIP_VENUES = STATIC_SKIP_VENUES | _get_dynamic_skip_venues()
+    STATIC_SKIP_VENUES = {"65"}  # 65=帯広ばんえい（別競技）のみ静的除外
+    # 動的フィルタ無効化: ◎≤2.0×≤8頭の厳選条件で十分絞れるため会場フィルタは帯広のみ
+    SKIP_VENUES = STATIC_SKIP_VENUES
 
     def _with_shadow(result: dict) -> dict:
         """会場フィルタで見送る場合、shadow_strategy を付帯する（復帰判定用）。"""
