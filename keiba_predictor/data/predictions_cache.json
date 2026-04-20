@@ -164,7 +164,7 @@
       },
       "total_points": 1,
       "total_cost": 1000,
-      "strategy_note": "3連複◎○▲ 1点（◎1.7倍 7頭）",
+      "strategy_note": "3連複◎○▲ 1点（◎1.7倍 5頭）",
       "use_wide": false
     },
     "simulation": {
@@ -385,7 +385,7 @@
       },
       "total_points": 1,
       "total_cost": 1000,
-      "strategy_note": "3連複◎○▲ 1点（◎2.0倍 8頭）",
+      "strategy_note": "3連複◎○▲ 1点（◎2.0倍 5頭）",
       "use_wide": false
     },
     "simulation": {
@@ -600,7 +600,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（10頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎2.1倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -820,7 +820,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（10頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎2.8倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -1032,11 +1032,17 @@
       "fukusho": [],
       "umaren": [],
       "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（11頭: 多頭数フィルタ）",
-      "use_wide": true
+      "sanrenpuku": {
+        "trio": [
+          3,
+          8,
+          1
+        ]
+      },
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "3連複◎○▲ 1点（◎1.1倍 5頭）",
+      "use_wide": false
     },
     "simulation": {
       "3": {
@@ -1255,7 +1261,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（12頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎3.2倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -1474,7 +1480,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（9頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎4.2倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -1693,7 +1699,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（10頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎2.4倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -1909,11 +1915,17 @@
       "fukusho": [],
       "umaren": [],
       "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（10頭: 多頭数フィルタ）",
-      "use_wide": true
+      "sanrenpuku": {
+        "trio": [
+          9,
+          6,
+          1
+        ]
+      },
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "3連複◎○▲ 1点（◎1.8倍 5頭）",
+      "use_wide": false
     },
     "simulation": {
       "9": {
@@ -2123,11 +2135,17 @@
       "fukusho": [],
       "umaren": [],
       "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（10頭: 多頭数フィルタ）",
-      "use_wide": true
+      "sanrenpuku": {
+        "trio": [
+          6,
+          7,
+          5
+        ]
+      },
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "3連複◎○▲ 1点（◎1.4倍 5頭）",
+      "use_wide": false
     },
     "simulation": {
       "6": {
@@ -2337,11 +2355,17 @@
       "fukusho": [],
       "umaren": [],
       "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（10頭: 多頭数フィルタ）",
-      "use_wide": true
+      "sanrenpuku": {
+        "trio": [
+          4,
+          6,
+          8
+        ]
+      },
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "3連複◎○▲ 1点（◎1.7倍 5頭）",
+      "use_wide": false
     },
     "simulation": {
       "4": {
@@ -2551,11 +2575,17 @@
       "fukusho": [],
       "umaren": [],
       "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（12頭: 多頭数フィルタ）",
-      "use_wide": true
+      "sanrenpuku": {
+        "trio": [
+          8,
+          7,
+          10
+        ]
+      },
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "3連複◎○▲ 1点（◎1.0倍 5頭）",
+      "use_wide": false
     },
     "simulation": {
       "8": {
@@ -2765,11 +2795,17 @@
       "fukusho": [],
       "umaren": [],
       "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（10頭: 多頭数フィルタ）",
-      "use_wide": true
+      "sanrenpuku": {
+        "trio": [
+          3,
+          7,
+          8
+        ]
+      },
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "3連複◎○▲ 1点（◎1.2倍 5頭）",
+      "use_wide": false
     },
     "simulation": {
       "3": {
@@ -2988,7 +3024,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（12頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎○差35.7% > 15%）",
       "use_wide": true
     },
     "simulation": {
@@ -3205,11 +3241,17 @@
       "fukusho": [],
       "umaren": [],
       "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（12頭: 多頭数フィルタ）",
-      "use_wide": true
+      "sanrenpuku": {
+        "trio": [
+          2,
+          5,
+          3
+        ]
+      },
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "3連複◎○▲ 1点（◎1.6倍 5頭）",
+      "use_wide": false
     },
     "simulation": {
       "2": {
@@ -3428,7 +3470,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（10頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎4.1倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -3645,11 +3687,17 @@
       "fukusho": [],
       "umaren": [],
       "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（11頭: 多頭数フィルタ）",
-      "use_wide": true
+      "sanrenpuku": {
+        "trio": [
+          3,
+          2,
+          6
+        ]
+      },
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "3連複◎○▲ 1点（◎1.8倍 5頭）",
+      "use_wide": false
     },
     "simulation": {
       "3": {
@@ -3860,11 +3908,17 @@
       "fukusho": [],
       "umaren": [],
       "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（11頭: 多頭数フィルタ）",
-      "use_wide": true
+      "sanrenpuku": {
+        "trio": [
+          8,
+          10,
+          1
+        ]
+      },
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "3連複◎○▲ 1点（◎1.0倍 5頭）",
+      "use_wide": false
     },
     "simulation": {
       "8": {
@@ -4077,7 +4131,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（12頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎○差25.8% > 15%）",
       "use_wide": true
     },
     "simulation": {
@@ -4296,7 +4350,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（12頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎5.5倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -4512,11 +4566,17 @@
       "fukusho": [],
       "umaren": [],
       "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（13頭: 多頭数フィルタ）",
-      "use_wide": true
+      "sanrenpuku": {
+        "trio": [
+          7,
+          8,
+          9
+        ]
+      },
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "3連複◎○▲ 1点（◎1.8倍 5頭）",
+      "use_wide": false
     },
     "simulation": {
       "7": {
@@ -4726,11 +4786,17 @@
       "fukusho": [],
       "umaren": [],
       "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（12頭: 多頭数フィルタ）",
-      "use_wide": true
+      "sanrenpuku": {
+        "trio": [
+          4,
+          2,
+          3
+        ]
+      },
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "3連複◎○▲ 1点（◎1.6倍 5頭）",
+      "use_wide": false
     },
     "simulation": {
       "4": {
@@ -4948,7 +5014,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（14頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎3.9倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -5162,7 +5228,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（12頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎3.6倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -5373,11 +5439,17 @@
       "fukusho": [],
       "umaren": [],
       "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（12頭: 多頭数フィルタ）",
-      "use_wide": true
+      "sanrenpuku": {
+        "trio": [
+          11,
+          6,
+          12
+        ]
+      },
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "3連複◎○▲ 1点（◎1.8倍 5頭）",
+      "use_wide": false
     },
     "simulation": {
       "11": {
@@ -5590,7 +5662,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（12頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎5.2倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -5809,7 +5881,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（12頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎2.7倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -6023,7 +6095,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（12頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎2.2倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -6250,11 +6322,17 @@
       "fukusho": [],
       "umaren": [],
       "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（12頭: 多頭数フィルタ）",
-      "use_wide": true
+      "sanrenpuku": {
+        "trio": [
+          3,
+          12,
+          2
+        ]
+      },
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "3連複◎○▲ 1点（◎2.0倍 5頭）",
+      "use_wide": false
     },
     "simulation": {
       "3": {
@@ -6472,7 +6550,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（12頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎2.2倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -6686,7 +6764,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（12頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎3.7倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -6905,7 +6983,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（12頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎2.7倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -7124,7 +7202,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（12頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎3.3倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -7343,7 +7421,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（12頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎3.4倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -7562,7 +7640,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（12頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎○差26.1% > 15%）",
       "use_wide": true
     },
     "simulation": {
@@ -7778,11 +7856,17 @@
       "fukusho": [],
       "umaren": [],
       "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（12頭: 多頭数フィルタ）",
-      "use_wide": true
+      "sanrenpuku": {
+        "trio": [
+          9,
+          7,
+          4
+        ]
+      },
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "3連複◎○▲ 1点（◎1.3倍 5頭）",
+      "use_wide": false
     },
     "simulation": {
       "9": {
@@ -8206,11 +8290,17 @@
       "fukusho": [],
       "umaren": [],
       "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（11頭: 多頭数フィルタ）",
-      "use_wide": true
+      "sanrenpuku": {
+        "trio": [
+          11,
+          2,
+          5
+        ]
+      },
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "3連複◎○▲ 1点（◎1.2倍 5頭）",
+      "use_wide": false
     },
     "simulation": {
       "11": {
@@ -8425,11 +8515,17 @@
       "fukusho": [],
       "umaren": [],
       "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（10頭: 多頭数フィルタ）",
-      "use_wide": true
+      "sanrenpuku": {
+        "trio": [
+          9,
+          6,
+          7
+        ]
+      },
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "3連複◎○▲ 1点（◎2.0倍 5頭）",
+      "use_wide": false
     },
     "simulation": {
       "9": {
@@ -8647,7 +8743,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（12頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎4.7倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -8866,7 +8962,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（10頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎2.4倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -9082,11 +9178,17 @@
       "fukusho": [],
       "umaren": [],
       "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（9頭: 多頭数フィルタ）",
-      "use_wide": true
+      "sanrenpuku": {
+        "trio": [
+          8,
+          4,
+          9
+        ]
+      },
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "3連複◎○▲ 1点（◎1.7倍 5頭）",
+      "use_wide": false
     },
     "simulation": {
       "8": {
@@ -9296,11 +9398,17 @@
       "fukusho": [],
       "umaren": [],
       "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（10頭: 多頭数フィルタ）",
-      "use_wide": true
+      "sanrenpuku": {
+        "trio": [
+          2,
+          9,
+          5
+        ]
+      },
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "3連複◎○▲ 1点（◎1.2倍 5頭）",
+      "use_wide": false
     },
     "simulation": {
       "2": {
@@ -9518,7 +9626,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（9頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎2.1倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -9729,11 +9837,17 @@
       "fukusho": [],
       "umaren": [],
       "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（9頭: 多頭数フィルタ）",
-      "use_wide": true
+      "sanrenpuku": {
+        "trio": [
+          3,
+          5,
+          6
+        ]
+      },
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "3連複◎○▲ 1点（◎1.3倍 5頭）",
+      "use_wide": false
     },
     "simulation": {
       "3": {
@@ -10157,11 +10271,17 @@
       "fukusho": [],
       "umaren": [],
       "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（11頭: 多頭数フィルタ）",
-      "use_wide": true
+      "sanrenpuku": {
+        "trio": [
+          8,
+          11,
+          4
+        ]
+      },
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "3連複◎○▲ 1点（◎1.6倍 5頭）",
+      "use_wide": false
     },
     "simulation": {
       "8": {
