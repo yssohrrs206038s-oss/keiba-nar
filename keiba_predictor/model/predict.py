@@ -440,7 +440,7 @@ def _decide_bet_strategy(result_df: pd.DataFrame, _skip_venue_filter: bool = Fal
             return _with_shadow(_empty(f"見送り（{venue}フィルタ: 回収率低）"))
         return _with_shadow(_empty(f"見送り（{venue}: 直近20戦ROI<50%）"))
 
-    MAX_HORSES = 8  # 76,098Rバックテスト: ≤8頭でROI120%、9頭以上は急落
+    MAX_HORSES = 7  # 76,098Rバックテスト: ≤7頭で的中率27.6%(≤8頭24.2%)、1日約4戦
     if len(result_df) > MAX_HORSES:
         return _empty(f"見送り（{len(result_df)}頭: 多頭数フィルタ）")
 
