@@ -222,7 +222,8 @@
           "normal": 0.24
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636042102": {
     "race_name": "C2三組",
@@ -436,7 +437,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636042103": {
     "race_name": "C2二組",
@@ -655,7 +657,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636042104": {
     "race_name": "C2一組",
@@ -869,7 +872,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636042105": {
     "race_name": "B1",
@@ -1083,7 +1087,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636042106": {
     "race_name": "B1",
@@ -2825,7 +2830,8 @@
           "normal": 0.12
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202642042102": {
     "race_name": "浦和800ラウンド(C3)",
@@ -3044,7 +3050,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202642042103": {
     "race_name": "C2五",
@@ -3263,7 +3270,8 @@
           "normal": 0.13
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202642042104": {
     "race_name": "特選(C1)",
@@ -3482,7 +3490,8 @@
           "normal": 0.2
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202642042105": {
     "race_name": "特選(C1)",
@@ -3701,7 +3710,8 @@
           "normal": 0.22
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202642042106": {
     "race_name": "今日は丑の日 浦和うなぎ賞(C1C2)",
@@ -5433,7 +5443,8 @@
           "normal": 0.04
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646042102": {
     "race_name": "C26",
@@ -8048,7 +8059,8 @@
           "normal": 0.14
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650042102": {
     "race_name": "C2二",
@@ -8262,7 +8274,8 @@
           "normal": 0.0
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650042103": {
     "race_name": "C2一",
@@ -8476,7 +8489,8 @@
           "normal": 0.3
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650042104": {
     "race_name": "来川7ハロンC3一",
@@ -8690,7 +8704,8 @@
           "normal": 0.28
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650042105": {
     "race_name": "木間生スプリントC3",
@@ -8909,7 +8924,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650042106": {
     "race_name": "C1二",
@@ -9123,7 +9139,8 @@
           "normal": 0.13
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650042107": {
     "race_name": "3歳C1二",
@@ -9337,7 +9354,8 @@
           "normal": 0.03
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650042108": {
     "race_name": "3歳C1一",
