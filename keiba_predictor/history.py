@@ -174,6 +174,7 @@ def record_result(
     pred:      dict,
     actual_df: pd.DataFrame,
     payouts:   dict,
+    refunded:  bool = False,
 ) -> dict:
     """
     1 レース分の結果を results_history.csv に追記する。
@@ -182,6 +183,7 @@ def record_result(
         pred:      _load_cache()[race_id] の形式
         actual_df: scrape_race_result の戻り値
         payouts:   scrape_payouts の戻り値
+        refunded:  True の場合、出走取消による返還。bet_total=0 で記録。
 
     Returns:
         記録した 1 行分の dict
@@ -189,6 +191,40 @@ def record_result(
     from keiba_predictor.discord_notify import (
         _check_umaren_raw, _check_wide_pairs_raw, _check_sanrenpuku_raw,
     )
+
+    # 返還（出走取消）の場合: bet_total=0, return_total=0 で記録
+    if refunded:
+        grade = _grade_label(race_name)
+        p1 = _pred_row(pred, "honmei")
+        p2 = _pred_row(pred, "taikou")
+        p3 = _pred_row(pred, "third") or _pred_row(pred, "ana")
+        actuals = _top3_actual(actual_df)
+        def _a(i): return actuals[i] if i < len(actuals) else {"name": "", "num": 0}
+        row = {
+            "date": race_date, "race_id": race_id, "race_name": race_name, "race_grade": grade,
+            "pred1_name": p1["name"], "pred1_num": p1["num"], "pred1_prob": p1["prob"],
+            "pred2_name": p2["name"], "pred2_num": p2["num"], "pred2_prob": p2["prob"],
+            "pred3_name": p3["name"], "pred3_num": p3["num"], "pred3_prob": p3["prob"],
+            "actual1_name": _a(0)["name"], "actual1_num": _a(0)["num"],
+            "actual2_name": _a(1)["name"], "actual2_num": _a(1)["num"],
+            "actual3_name": _a(2)["name"], "actual3_num": _a(2)["num"],
+            "fukusho_hit": False, "umaren_hit": False, "umaren_payout": 0,
+            "wide_hit": False, "wide_payout": 0,
+            "sanrenpuku_hit": False, "sanrenpuku_payout": 0,
+            "bet_total": 0, "return_total": 0,
+            "shadow_bet_total": 0, "shadow_return_total": 0,
+        }
+        DATA_DIR.mkdir(parents=True, exist_ok=True)
+        new_row_df = pd.DataFrame([row])
+        if HISTORY_PATH.exists():
+            existing = pd.read_csv(HISTORY_PATH, encoding="utf-8-sig", dtype=str)
+            existing = existing[existing["race_id"] != str(race_id)]
+            combined = pd.concat([existing, new_row_df], ignore_index=True)
+            combined.to_csv(HISTORY_PATH, index=False, encoding="utf-8-sig")
+        else:
+            new_row_df.to_csv(HISTORY_PATH, mode="w", header=True, index=False, encoding="utf-8-sig")
+        logger.info(f"  [history] 返還記録: {race_name} ({race_id})")
+        return row
 
     # 見送りレースの扱い:
     #  - shadow_strategy 付き（会場フィルタ見送り）→ シャドウ成績を記録（復帰判定用）

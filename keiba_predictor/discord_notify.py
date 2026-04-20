@@ -1050,7 +1050,16 @@ def scrape_payouts(race_id: str, session: requests.Session) -> dict:
                         "combo": combo_all, "amount": amt,
                     })
 
-    if payouts:
+    # 返還（出走取消等）検出: 払戻テーブルに「返還」があれば全券種返還
+    refunded = False
+    for table in pay_tables:
+        if "返還" in table.get_text():
+            refunded = True
+            break
+    if refunded:
+        payouts["_refunded"] = True
+        logger.info(f"  払戻金: {race_id} → 返還（出走取消）")
+    elif payouts:
         logger.info(f"  払戻金取得: {race_id} → {list(payouts.keys())}")
     else:
         logger.warning(f"  払戻金テーブルなし: {race_id}")
@@ -2021,6 +2030,28 @@ def run_result_notify(
 
         if actual_df is None or actual_df.empty:
             logger.info(f"  結果未確定スキップ: {race_name} ({race_id})")
+            continue
+
+        # 返還（出走取消）チェック
+        is_refunded = payouts.get("_refunded", False)
+        if is_refunded:
+            bs = cache.get(race_id, {}).get("bet_strategy", {}) or {}
+            if bs.get("total_cost", 0) > 0:
+                venue = cache.get(race_id, {}).get("venue", "")
+                rn = f"{int(race_id[10:12])}R " if len(race_id) >= 12 else ""
+                send_discord(webhook_url, f"🔄 **{venue} {rn}{race_name}** — 返還（出走取消）")
+                notified += 1
+                logger.info(f"  返還通知: {race_name}")
+            # CSV に bet_total=0 で記録（返還扱い）
+            pred = cache.get(race_id, {})
+            from keiba_predictor.history import record_result
+            try:
+                record_result(race_id, race_name, race_date, pred, actual_df, payouts, refunded=True)
+            except Exception as e:
+                logger.warning(f"  返還記録失敗: {e}")
+            if race_id in cache:
+                cache[race_id]["result_notified"] = True
+                _save_cache(cache)
             continue
 
         # 予想キャッシュ取得
