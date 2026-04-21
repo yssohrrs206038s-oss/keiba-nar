@@ -514,20 +514,21 @@ def _decide_bet_strategy(result_df: pd.DataFrame, _skip_venue_filter: bool = Fal
     if not pd.notna(hon_odds) or float(hon_odds) > 2.0:
         return _empty(f"見送り（◎{float(hon_odds) if pd.notna(hon_odds) else 0:.1f}倍>2.0）")
 
-    # ○▲に高オッズ馬がいれば増額（ROI 160%ゾーン）
-    max_other_odds = max(
-        float(tai_odds) if pd.notna(tai_odds) else 0,
-        float(ana_odds) if pd.notna(ana_odds) else 0,
-    )
-    is_value = max_other_odds >= 8.0
-    bet_amount = 2000 if is_value else 1000
-    value_tag = " 💰増額" if is_value else ""
-    note = f"3連複◎○▲ 1点（◎{float(hon_odds):.1f}倍 {len(result_df)}頭{value_tag}）"
+    # ワイド◎○ 2,000円 + 3連複◎○▲ 500円（ロマン枠）
+    # ワイド◎○: 的中率87.7% ROI247% — 安定収益の柱
+    # 3連複: 的中率27.7% — 大当たり狙い
+    WIDE_COST = 2000
+    SANREN_COST = 500
+    total_cost = WIDE_COST + SANREN_COST
+
+    wide_pair = [{"nums": [top3_nums[0], top3_nums[1]]}]
+    note = f"ワイド◎○ {WIDE_COST:,}円 + 3連複◎○▲ {SANREN_COST:,}円（◎{float(hon_odds):.1f}倍 {len(result_df)}頭）"
     strategy = {
-        "fukusho": [], "umaren": [], "wide": [],
+        "fukusho": [], "umaren": [],
+        "wide": wide_pair,
         "sanrenpuku": {"trio": top3_nums},
-        "total_points": 1, "total_cost": bet_amount,
-        "strategy_note": note, "use_wide": False,
+        "total_points": 2, "total_cost": total_cost,
+        "strategy_note": note, "use_wide": True,
     }
 
     return strategy
