@@ -310,11 +310,13 @@ def record_result(
     # 見送りレース（フィルタ）の場合は投資0
     is_skip = bs.get("total_points", 0) == 0 or "見送り" in bs.get("strategy_note", "")
     bet_total = 0 if is_skip else bs.get("total_cost", BETS_PER_RACE_TOTAL)
-    # 払戻計算
-    # ワイド: 各300円購入 → 各ペアの100円ベース配当×3倍（wide_payoutは全的中ペアの合計）
-    # 3連複trio: 1000円購入 → 100円ベース配当×10倍
-    wide_return = wide_payout * 3 if wide_hit else 0  # (配当合計)×(300円/100円)
-    sanren_return = sanren_payout * 10 if sanren_hit else 0  # 1000円/100円 = 10倍
+    # 払戻計算（total_costベースで倍率を計算）
+    # ワイド: 各300円購入 → 各ペアの100円ベース配当×3倍
+    # 3連複: total_cost円購入 → 100円ベース配当×(total_cost/100)倍
+    actual_cost = bs.get("total_cost", BETS_PER_RACE_TOTAL) if not is_skip else BETS_PER_RACE_TOTAL
+    wide_return = wide_payout * 3 if wide_hit else 0
+    sanren_multiplier = actual_cost // 100 if actual_cost else 10
+    sanren_return = sanren_payout * sanren_multiplier if sanren_hit else 0
     return_total = (wide_return + sanren_return) if not is_skip else 0
 
     # ── シャドウ成績（動的会場フィルタの復帰判定用） ────────────
