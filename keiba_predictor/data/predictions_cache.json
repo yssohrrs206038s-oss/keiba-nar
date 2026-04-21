@@ -594,12 +594,25 @@
     "bet_strategy": {
       "fukusho": [],
       "umaren": [],
-      "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（自信度TOP5外）",
-      "use_wide": false
+      "wide": [
+        {
+          "nums": [
+            9,
+            2
+          ]
+        }
+      ],
+      "sanrenpuku": {
+        "trio": [
+          9,
+          2,
+          6
+        ]
+      },
+      "total_points": 2,
+      "total_cost": 2500,
+      "strategy_note": "ワイド◎○ 2,000円 + 3連複◎○▲ 500円（◎2.0倍 5頭）",
+      "use_wide": true
     },
     "simulation": {
       "9": {
@@ -809,7 +822,14 @@
     "bet_strategy": {
       "fukusho": [],
       "umaren": [],
-      "wide": [],
+      "wide": [
+        {
+          "nums": [
+            8,
+            3
+          ]
+        }
+      ],
       "sanrenpuku": {
         "trio": [
           8,
@@ -817,10 +837,10 @@
           9
         ]
       },
-      "total_points": 1,
-      "total_cost": 2000,
-      "strategy_note": "3連複◎○▲ 1点（◎1.3倍 5頭 💰増額）",
-      "use_wide": false
+      "total_points": 2,
+      "total_cost": 2500,
+      "strategy_note": "ワイド◎○ 2,000円 + 3連複◎○▲ 500円（◎1.3倍 5頭）",
+      "use_wide": true
     },
     "simulation": {
       "8": {
@@ -1030,7 +1050,14 @@
     "bet_strategy": {
       "fukusho": [],
       "umaren": [],
-      "wide": [],
+      "wide": [
+        {
+          "nums": [
+            9,
+            6
+          ]
+        }
+      ],
       "sanrenpuku": {
         "trio": [
           9,
@@ -1038,10 +1065,10 @@
           2
         ]
       },
-      "total_points": 1,
-      "total_cost": 1000,
-      "strategy_note": "3連複◎○▲ 1点（◎1.6倍 5頭）",
-      "use_wide": false
+      "total_points": 2,
+      "total_cost": 2500,
+      "strategy_note": "ワイド◎○ 2,000円 + 3連複◎○▲ 500円（◎1.6倍 5頭）",
+      "use_wide": true
     },
     "simulation": {
       "9": {
@@ -1694,12 +1721,25 @@
     "bet_strategy": {
       "fukusho": [],
       "umaren": [],
-      "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（自信度TOP5外）",
-      "use_wide": false
+      "wide": [
+        {
+          "nums": [
+            1,
+            8
+          ]
+        }
+      ],
+      "sanrenpuku": {
+        "trio": [
+          1,
+          8,
+          6
+        ]
+      },
+      "total_points": 2,
+      "total_cost": 2500,
+      "strategy_note": "ワイド◎○ 2,000円 + 3連複◎○▲ 500円（◎1.7倍 5頭）",
+      "use_wide": true
     },
     "simulation": {
       "1": {
@@ -1913,12 +1953,25 @@
     "bet_strategy": {
       "fukusho": [],
       "umaren": [],
-      "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（自信度TOP5外）",
-      "use_wide": false
+      "wide": [
+        {
+          "nums": [
+            2,
+            5
+          ]
+        }
+      ],
+      "sanrenpuku": {
+        "trio": [
+          2,
+          5,
+          1
+        ]
+      },
+      "total_points": 2,
+      "total_cost": 2500,
+      "strategy_note": "ワイド◎○ 2,000円 + 3連複◎○▲ 500円（◎1.6倍 5頭）",
+      "use_wide": true
     },
     "simulation": {
       "2": {
@@ -2346,12 +2399,25 @@
     "bet_strategy": {
       "fukusho": [],
       "umaren": [],
-      "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（自信度TOP5外）",
-      "use_wide": false
+      "wide": [
+        {
+          "nums": [
+            9,
+            1
+          ]
+        }
+      ],
+      "sanrenpuku": {
+        "trio": [
+          9,
+          1,
+          7
+        ]
+      },
+      "total_points": 2,
+      "total_cost": 2500,
+      "strategy_note": "ワイド◎○ 2,000円 + 3連複◎○▲ 500円（◎1.7倍 5頭）",
+      "use_wide": true
     },
     "simulation": {
       "9": {
@@ -2560,12 +2626,25 @@
     "bet_strategy": {
       "fukusho": [],
       "umaren": [],
-      "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（自信度TOP5外）",
-      "use_wide": false
+      "wide": [
+        {
+          "nums": [
+            4,
+            6
+          ]
+        }
+      ],
+      "sanrenpuku": {
+        "trio": [
+          4,
+          6,
+          7
+        ]
+      },
+      "total_points": 2,
+      "total_cost": 2500,
+      "strategy_note": "ワイド◎○ 2,000円 + 3連複◎○▲ 500円（◎1.8倍 5頭）",
+      "use_wide": true
     },
     "simulation": {
       "4": {
@@ -2999,12 +3078,25 @@
     "bet_strategy": {
       "fukusho": [],
       "umaren": [],
-      "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（自信度TOP5外）",
-      "use_wide": false
+      "wide": [
+        {
+          "nums": [
+            3,
+            6
+          ]
+        }
+      ],
+      "sanrenpuku": {
+        "trio": [
+          3,
+          6,
+          7
+        ]
+      },
+      "total_points": 2,
+      "total_cost": 2500,
+      "strategy_note": "ワイド◎○ 2,000円 + 3連複◎○▲ 500円（◎1.8倍 5頭）",
+      "use_wide": true
     },
     "simulation": {
       "3": {
@@ -5392,12 +5484,25 @@
     "bet_strategy": {
       "fukusho": [],
       "umaren": [],
-      "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（自信度TOP5外）",
-      "use_wide": false
+      "wide": [
+        {
+          "nums": [
+            9,
+            5
+          ]
+        }
+      ],
+      "sanrenpuku": {
+        "trio": [
+          9,
+          5,
+          7
+        ]
+      },
+      "total_points": 2,
+      "total_cost": 2500,
+      "strategy_note": "ワイド◎○ 2,000円 + 3連複◎○▲ 500円（◎1.5倍 5頭）",
+      "use_wide": true
     },
     "simulation": {
       "9": {
@@ -5612,12 +5717,25 @@
     "bet_strategy": {
       "fukusho": [],
       "umaren": [],
-      "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（自信度TOP5外）",
-      "use_wide": false
+      "wide": [
+        {
+          "nums": [
+            4,
+            9
+          ]
+        }
+      ],
+      "sanrenpuku": {
+        "trio": [
+          4,
+          9,
+          5
+        ]
+      },
+      "total_points": 2,
+      "total_cost": 2500,
+      "strategy_note": "ワイド◎○ 2,000円 + 3連複◎○▲ 500円（◎1.1倍 5頭）",
+      "use_wide": true
     },
     "simulation": {
       "4": {
@@ -5826,12 +5944,25 @@
     "bet_strategy": {
       "fukusho": [],
       "umaren": [],
-      "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（自信度TOP5外）",
-      "use_wide": false
+      "wide": [
+        {
+          "nums": [
+            6,
+            8
+          ]
+        }
+      ],
+      "sanrenpuku": {
+        "trio": [
+          6,
+          8,
+          10
+        ]
+      },
+      "total_points": 2,
+      "total_cost": 2500,
+      "strategy_note": "ワイド◎○ 2,000円 + 3連複◎○▲ 500円（◎1.4倍 5頭）",
+      "use_wide": true
     },
     "simulation": {
       "6": {
@@ -6478,12 +6609,25 @@
     "bet_strategy": {
       "fukusho": [],
       "umaren": [],
-      "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（自信度TOP5外）",
-      "use_wide": false
+      "wide": [
+        {
+          "nums": [
+            7,
+            6
+          ]
+        }
+      ],
+      "sanrenpuku": {
+        "trio": [
+          7,
+          6,
+          4
+        ]
+      },
+      "total_points": 2,
+      "total_cost": 2500,
+      "strategy_note": "ワイド◎○ 2,000円 + 3連複◎○▲ 500円（◎1.3倍 5頭）",
+      "use_wide": true
     },
     "simulation": {
       "7": {
@@ -6692,7 +6836,14 @@
     "bet_strategy": {
       "fukusho": [],
       "umaren": [],
-      "wide": [],
+      "wide": [
+        {
+          "nums": [
+            7,
+            9
+          ]
+        }
+      ],
       "sanrenpuku": {
         "trio": [
           7,
@@ -6700,10 +6851,10 @@
           4
         ]
       },
-      "total_points": 1,
-      "total_cost": 2000,
-      "strategy_note": "3連複◎○▲ 1点（◎1.0倍 5頭 💰増額）",
-      "use_wide": false
+      "total_points": 2,
+      "total_cost": 2500,
+      "strategy_note": "ワイド◎○ 2,000円 + 3連複◎○▲ 500円（◎1.0倍 5頭）",
+      "use_wide": true
     },
     "simulation": {
       "7": {
@@ -6912,12 +7063,25 @@
     "bet_strategy": {
       "fukusho": [],
       "umaren": [],
-      "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（自信度TOP5外）",
-      "use_wide": false
+      "wide": [
+        {
+          "nums": [
+            6,
+            5
+          ]
+        }
+      ],
+      "sanrenpuku": {
+        "trio": [
+          6,
+          5,
+          4
+        ]
+      },
+      "total_points": 2,
+      "total_cost": 2500,
+      "strategy_note": "ワイド◎○ 2,000円 + 3連複◎○▲ 500円（◎1.4倍 5頭）",
+      "use_wide": true
     },
     "simulation": {
       "6": {
@@ -7131,12 +7295,25 @@
     "bet_strategy": {
       "fukusho": [],
       "umaren": [],
-      "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（自信度TOP5外）",
-      "use_wide": false
+      "wide": [
+        {
+          "nums": [
+            3,
+            1
+          ]
+        }
+      ],
+      "sanrenpuku": {
+        "trio": [
+          3,
+          1,
+          4
+        ]
+      },
+      "total_points": 2,
+      "total_cost": 2500,
+      "strategy_note": "ワイド◎○ 2,000円 + 3連複◎○▲ 500円（◎1.5倍 5頭）",
+      "use_wide": true
     },
     "simulation": {
       "3": {
@@ -7350,12 +7527,25 @@
     "bet_strategy": {
       "fukusho": [],
       "umaren": [],
-      "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（自信度TOP5外）",
-      "use_wide": false
+      "wide": [
+        {
+          "nums": [
+            4,
+            6
+          ]
+        }
+      ],
+      "sanrenpuku": {
+        "trio": [
+          4,
+          6,
+          9
+        ]
+      },
+      "total_points": 2,
+      "total_cost": 2500,
+      "strategy_note": "ワイド◎○ 2,000円 + 3連複◎○▲ 500円（◎2.0倍 5頭）",
+      "use_wide": true
     },
     "simulation": {
       "4": {
@@ -7783,7 +7973,14 @@
     "bet_strategy": {
       "fukusho": [],
       "umaren": [],
-      "wide": [],
+      "wide": [
+        {
+          "nums": [
+            7,
+            2
+          ]
+        }
+      ],
       "sanrenpuku": {
         "trio": [
           7,
@@ -7791,10 +7988,10 @@
           6
         ]
       },
-      "total_points": 1,
-      "total_cost": 2000,
-      "strategy_note": "3連複◎○▲ 1点（◎1.4倍 5頭 💰増額）",
-      "use_wide": false
+      "total_points": 2,
+      "total_cost": 2500,
+      "strategy_note": "ワイド◎○ 2,000円 + 3連複◎○▲ 500円（◎1.4倍 5頭）",
+      "use_wide": true
     },
     "simulation": {
       "7": {
@@ -8438,12 +8635,25 @@
     "bet_strategy": {
       "fukusho": [],
       "umaren": [],
-      "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（自信度TOP5外）",
-      "use_wide": false
+      "wide": [
+        {
+          "nums": [
+            3,
+            6
+          ]
+        }
+      ],
+      "sanrenpuku": {
+        "trio": [
+          3,
+          6,
+          7
+        ]
+      },
+      "total_points": 2,
+      "total_cost": 2500,
+      "strategy_note": "ワイド◎○ 2,000円 + 3連複◎○▲ 500円（◎1.5倍 5頭）",
+      "use_wide": true
     },
     "simulation": {
       "3": {
@@ -9088,12 +9298,25 @@
     "bet_strategy": {
       "fukusho": [],
       "umaren": [],
-      "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（自信度TOP5外）",
-      "use_wide": false
+      "wide": [
+        {
+          "nums": [
+            7,
+            5
+          ]
+        }
+      ],
+      "sanrenpuku": {
+        "trio": [
+          7,
+          5,
+          4
+        ]
+      },
+      "total_points": 2,
+      "total_cost": 2500,
+      "strategy_note": "ワイド◎○ 2,000円 + 3連複◎○▲ 500円（◎1.7倍 5頭）",
+      "use_wide": true
     },
     "simulation": {
       "7": {
@@ -9742,12 +9965,25 @@
     "bet_strategy": {
       "fukusho": [],
       "umaren": [],
-      "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（自信度TOP5外）",
-      "use_wide": false
+      "wide": [
+        {
+          "nums": [
+            3,
+            6
+          ]
+        }
+      ],
+      "sanrenpuku": {
+        "trio": [
+          3,
+          6,
+          4
+        ]
+      },
+      "total_points": 2,
+      "total_cost": 2500,
+      "strategy_note": "ワイド◎○ 2,000円 + 3連複◎○▲ 500円（◎1.8倍 5頭）",
+      "use_wide": true
     },
     "simulation": {
       "3": {
@@ -9956,7 +10192,14 @@
     "bet_strategy": {
       "fukusho": [],
       "umaren": [],
-      "wide": [],
+      "wide": [
+        {
+          "nums": [
+            1,
+            2
+          ]
+        }
+      ],
       "sanrenpuku": {
         "trio": [
           1,
@@ -9964,10 +10207,10 @@
           5
         ]
       },
-      "total_points": 1,
-      "total_cost": 1000,
-      "strategy_note": "3連複◎○▲ 1点（◎1.8倍 5頭）",
-      "use_wide": false
+      "total_points": 2,
+      "total_cost": 2500,
+      "strategy_note": "ワイド◎○ 2,000円 + 3連複◎○▲ 500円（◎1.8倍 5頭）",
+      "use_wide": true
     },
     "simulation": {
       "1": {
