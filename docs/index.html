@@ -1005,7 +1005,7 @@ function _renderRaceCard(raceId, r) {
     }
     if (bs.sanrenpuku && bs.sanrenpuku.trio) {
       const t = bs.sanrenpuku.trio;
-      betRows = `<div class="bet-row"><span class="bet-label">3連複</span>${t[0]}-${t[1]}-${t[2]}<span style="color:var(--text-muted);margin-left:auto;font-size:11px;">1点 1,000円</span></div>`;
+      betRows = `<div class="bet-row"><span class="bet-label">3連複</span>${t[0]}-${t[1]}-${t[2]}<span style="color:var(--text-muted);margin-left:auto;font-size:11px;">1点 ${cost.toLocaleString()}円</span></div>`;
     } else if (bs.sanrenpuku && bs.sanrenpuku.jiku && bs.sanrenpuku.aite) {
       const j = bs.sanrenpuku.jiku[0];
       const a = bs.sanrenpuku.aite.join('/');

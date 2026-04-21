@@ -1167,6 +1167,7 @@ def _build_hit_embed(
     wide_hit: bool,
     wide_pay: str,
     sanren_hit: bool = False,
+    bet_cost: int = 1000,
     sanren_pay: str = "",
     race_id: str = "",
 ) -> Optional[dict]:
@@ -1201,7 +1202,8 @@ def _build_hit_embed(
         if sanren_pay:
             try:
                 pv = int(re.sub(r'[¥,円]', '', str(sanren_pay)))
-                detail += f"（{pv/100:.1f}倍 × 1,000円 = {pv*10:,}円）"
+                multiplier = bet_cost // 100
+                detail += f"（{pv/100:.1f}倍 × {bet_cost:,}円 = {pv*multiplier:,}円）"
             except: detail += f"（配当{re.sub(r'[¥,]', '', str(sanren_pay))}円）"
         lines.append(detail)
 
@@ -1419,9 +1421,10 @@ def _fmt_result(race_name: str, race_date: str,
         if sanren_hit and sanren_pay:
             pay_val = _pay_to_int(sanren_pay)
             odds_val = pay_val / 100 if pay_val else 0
-            ret_val = pay_val * 10  # 1000円購入
+            multiplier = total_cost // 100 if total_cost else 10
+            ret_val = pay_val * multiplier
             total_return += ret_val
-            hit_label += f"（{odds_val:.1f}倍 × 1,000円 = {ret_val:,}円）"
+            hit_label += f"（{odds_val:.1f}倍 × {total_cost:,}円 = {ret_val:,}円）"
         lines.append(hit_label)
 
     # 収支
@@ -2144,9 +2147,11 @@ def run_result_notify(
                             _san_hit = True
                             break
             _venue = pred.get("venue", "")
+            _bet_cost = bs.get("total_cost", 1000) if bs else 1000
             hit_embed = _build_hit_embed(
                 _venue, race_name, _honmei_num, _honmei_name,
-                _wide_hit, _wide_pay, sanren_hit=_san_hit, sanren_pay=_san_pay, race_id=race_id,
+                _wide_hit, _wide_pay, sanren_hit=_san_hit, sanren_pay=_san_pay,
+                bet_cost=_bet_cost, race_id=race_id,
             )
             if hit_embed:
                 target_webhook = hit_webhook if hit_webhook else result_webhook
