@@ -222,7 +222,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646050302": {
     "race_name": "C26",
@@ -436,7 +437,8 @@
           "normal": 0.05
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646050303": {
     "race_name": "えまちゃんが平井になった記念(C2)",
@@ -661,7 +663,8 @@
           "normal": 0.13
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646050304": {
     "race_name": "C24",
