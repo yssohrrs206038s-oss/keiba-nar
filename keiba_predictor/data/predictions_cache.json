@@ -223,7 +223,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635050402": {
     "race_name": "C2九組",
@@ -442,7 +443,8 @@
           "normal": 0.13
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635050403": {
     "race_name": "C2八組",
@@ -656,7 +658,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635050404": {
     "race_name": "C2七組",
@@ -870,7 +873,8 @@
           "normal": 0.2
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635050405": {
     "race_name": "C2",
@@ -5190,7 +5194,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648050402": {
     "race_name": "C26組",
@@ -5404,7 +5409,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648050403": {
     "race_name": "3歳11組",
@@ -5618,7 +5624,8 @@
           "normal": 0.21
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648050404": {
     "race_name": "3歳10組",
@@ -5837,7 +5844,8 @@
           "normal": 0.26
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648050405": {
     "race_name": "C25組",
@@ -7774,7 +7782,8 @@
           "normal": 0.15
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650050402": {
     "race_name": "C2二",
@@ -7988,7 +7997,8 @@
           "normal": 0.06
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650050403": {
     "race_name": "C2一",
@@ -8208,7 +8218,8 @@
           "normal": 0.0
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650050404": {
     "race_name": "スマイル☆来場記念3歳C1",
@@ -8422,7 +8433,8 @@
           "normal": 0.14
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650050405": {
     "race_name": "豪快キャプテン☆来場記念C1二",
@@ -8636,7 +8648,8 @@
           "normal": 0.15
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650050406": {
     "race_name": "C3一",
@@ -8856,7 +8869,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650050407": {
     "race_name": "C3二",
@@ -9076,7 +9090,8 @@
           "normal": 0.1
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650050408": {
     "race_name": "C2",
@@ -9296,7 +9311,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650050409": {
     "race_name": "芦毛集結!enjoyGW!C2C3",
