@@ -217,7 +217,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202643050802": {
     "race_name": "3歳八",
@@ -436,7 +437,8 @@
           "normal": 0.13
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202643050803": {
     "race_name": "スズランデビュー(2歳)",
@@ -655,7 +657,8 @@
           "normal": 0.12
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202643050804": {
     "race_name": "スズランデビュー(2歳)",
@@ -875,7 +878,8 @@
           "normal": 0.02
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202643050805": {
     "race_name": "びわ特別(C3)",
@@ -1089,7 +1093,8 @@
           "normal": 0.23
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202643050806": {
     "race_name": "C2五六",
@@ -1308,7 +1313,8 @@
           "normal": 0.2
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202643050807": {
     "race_name": "馬い!山武たがやす倶楽部記念(C2)",
@@ -1527,7 +1533,8 @@
           "normal": 0.16
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202643050808": {
     "race_name": "琥珀ダッシュ(C1)",
@@ -1741,7 +1748,8 @@
           "normal": 0.16
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202643050809": {
     "race_name": "ベルフラワースプリント(B1B2)",
@@ -1955,7 +1963,8 @@
           "normal": 0.15
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202643050810": {
     "race_name": "五香特別(C1)",
@@ -2174,7 +2183,8 @@
           "normal": 0.22
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202643050811": {
     "race_name": "皐月盃(4上)OP",
@@ -2388,7 +2398,8 @@
           "normal": 0.44
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202643050812": {
     "race_name": "20時50分にビッグチャンス(B1)",
@@ -2612,7 +2623,8 @@
           "normal": 0.21
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648050801": {
     "race_name": "アジア・アジアパラ応援26(C)",
@@ -2826,7 +2838,8 @@
           "normal": 0.15
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648050802": {
     "race_name": "B14組",
@@ -3040,7 +3053,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648050803": {
     "race_name": "祝45歳!キミとの未来は最高(C)",
@@ -3259,7 +3273,8 @@
           "normal": 0.18
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648050804": {
     "race_name": "C3組",
@@ -3478,7 +3493,8 @@
           "normal": 0.1
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648050805": {
     "race_name": "3歳9組",
@@ -3697,7 +3713,8 @@
           "normal": 0.12
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648050806": {
     "race_name": "3歳8組",
@@ -3911,7 +3928,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648050807": {
     "race_name": "3歳7組",
@@ -4125,7 +4143,8 @@
           "normal": 0.24
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648050808": {
     "race_name": "B13組",
@@ -4339,7 +4358,8 @@
           "normal": 0.14
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648050809": {
     "race_name": "B12組",
@@ -4558,7 +4578,8 @@
           "normal": 0.25
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648050810": {
     "race_name": "城下町賞(C)",
@@ -4772,7 +4793,8 @@
           "normal": 0.21
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648050811": {
     "race_name": "翡翠特別(A)",
@@ -4991,7 +5013,8 @@
           "normal": 0.15
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648050812": {
     "race_name": "犬山特別(C)",
@@ -5205,6 +5228,7 @@
           "normal": 0.05
         }
       }
-    }
+    },
+    "notified_predict": true
   }
 }
