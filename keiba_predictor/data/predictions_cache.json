@@ -223,7 +223,8 @@
           "normal": 0.04
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635051002": {
     "race_name": "C2九組",
@@ -442,7 +443,8 @@
           "normal": 0.22
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635051003": {
     "race_name": "C2八組",
@@ -656,7 +658,8 @@
           "normal": 0.1
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635051004": {
     "race_name": "C2七組",
@@ -870,7 +873,8 @@
           "normal": 0.06
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635051005": {
     "race_name": "3歳C1二組",
@@ -2582,7 +2586,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646051002": {
     "race_name": "まめちゃんぴよぴよ記念(C1)",
@@ -2802,7 +2807,8 @@
           "normal": 0.19
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646051003": {
     "race_name": "C14",
@@ -3022,7 +3028,8 @@
           "normal": 0.14
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646051004": {
     "race_name": "志帆ちゃんお誕生日おめでとう記念(C1)",
@@ -3236,7 +3243,8 @@
           "normal": 0.25
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646051005": {
     "race_name": "C12",
