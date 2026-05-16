@@ -222,7 +222,8 @@
           "normal": 0.12
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635051702": {
     "race_name": "ファーストステップ 2歳 新馬戦",
@@ -441,7 +442,8 @@
           "normal": 0.23
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635051703": {
     "race_name": "C2九組",
@@ -655,7 +657,8 @@
           "normal": 0.03
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635051704": {
     "race_name": "C2八組",
@@ -869,7 +872,8 @@
           "normal": 0.1
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635051705": {
     "race_name": "C2七組",
@@ -2596,7 +2600,8 @@
           "normal": 0.16
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646051702": {
     "race_name": "C25",
@@ -2810,7 +2815,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646051703": {
     "race_name": "C24",
@@ -3029,7 +3035,8 @@
           "normal": 0.2
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646051704": {
     "race_name": "久保&ゆりぽん結婚バンザイ記念!(C2)",
