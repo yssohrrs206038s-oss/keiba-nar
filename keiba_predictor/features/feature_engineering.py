@@ -530,6 +530,9 @@ def build_features(df: pd.DataFrame) -> pd.DataFrame:
     logger.info("特徴量エンジニアリング開始")
 
     df = df.copy()
+    # course_type_enc を先に生成（add_past_time_features で参照されるため）
+    if "course_type_enc" not in df.columns and "course_type" in df.columns:
+        df["course_type_enc"] = df["course_type"].map({"芝": 0, "ダ": 1, "ダート": 1, "障": 2}).fillna(1).astype(int)
     df = add_past_time_features(df)
     df = add_win_rate_features(df)          # jockey_fukusho_rate を先に生成
     df = add_prev_race_features(df)
@@ -565,7 +568,8 @@ def load_and_build(
     クリーニング済みCSVを読み込んで特徴量を構築し保存する。
     """
     if cleaned_path is None:
-        cleaned_path = DATA_DIR / "cleaned_races.csv"
+        gz_path = DATA_DIR / "cleaned_races.csv.gz"
+        cleaned_path = gz_path if gz_path.exists() else DATA_DIR / "cleaned_races.csv"
     if output_path is None:
         output_path = DATA_DIR / "featured_races.csv"
 
