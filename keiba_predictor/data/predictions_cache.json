@@ -217,7 +217,8 @@
           "normal": 0.04
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635052502": {
     "race_name": "C2",
@@ -431,7 +432,8 @@
           "normal": 0.02
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635052503": {
     "race_name": "C2六組",
@@ -650,7 +652,8 @@
           "normal": 0.2
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635052504": {
     "race_name": "C2五組",
@@ -864,7 +867,8 @@
           "normal": 0.13
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635052505": {
     "race_name": "C2四組",
@@ -1078,7 +1082,8 @@
           "normal": 0.1
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635052506": {
     "race_name": "3歳C2三組",
@@ -2795,7 +2800,8 @@
           "normal": 0.04
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202642052502": {
     "race_name": "ランチタイム(3歳)",
@@ -3009,7 +3015,8 @@
           "normal": 0.05
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202642052503": {
     "race_name": "ドリームチャレンジ(2歳)",
@@ -3223,7 +3230,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202642052504": {
     "race_name": "ドリームチャレンジ(2歳)",
@@ -3442,7 +3450,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202642052505": {
     "race_name": "3歳三",
@@ -3671,7 +3680,8 @@
           "normal": 0.31
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202642052506": {
     "race_name": "C2三四",
@@ -5398,7 +5408,8 @@
           "normal": 0.17
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646052502": {
     "race_name": "C15",
@@ -5612,7 +5623,8 @@
           "normal": 0.04
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646052503": {
     "race_name": "カポ峯生誕記念(C1)",
@@ -5832,7 +5844,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646052504": {
     "race_name": "C13",
@@ -6052,7 +6065,8 @@
           "normal": 0.18
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646052505": {
     "race_name": "裕紀くん!寛太くん!誕生日おめでとう記念(C1)",
