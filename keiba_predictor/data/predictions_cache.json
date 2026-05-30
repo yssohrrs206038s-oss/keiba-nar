@@ -222,7 +222,8 @@
           "normal": 0.24
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636053102": {
     "race_name": "C2九組",
@@ -436,7 +437,8 @@
           "normal": 0.1
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636053103": {
     "race_name": "C2八組",
@@ -650,7 +652,8 @@
           "normal": 0.14
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636053104": {
     "race_name": "C2七組",
@@ -864,7 +867,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636053105": {
     "race_name": "C2",
@@ -2586,7 +2590,8 @@
           "normal": 0.18
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646053102": {
     "race_name": "C23",
@@ -2800,7 +2805,8 @@
           "normal": 0.06
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646053103": {
     "race_name": "Win5愛好へそきり会招福記念(C2)",
@@ -3014,7 +3020,8 @@
           "normal": 0.12
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646053104": {
     "race_name": "楽天競馬で馬券を買おう!楽天競馬特別(C2)",
@@ -3228,7 +3235,8 @@
           "normal": 0.06
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646053105": {
     "race_name": "スーパードリーム2歳新馬",
