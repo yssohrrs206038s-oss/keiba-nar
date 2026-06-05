@@ -18588,7 +18588,8 @@
           "normal": 0.03
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202654060602": {
     "race_name": "3罩潟��3",
@@ -18802,7 +18803,8 @@
           "normal": 0.04
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202654060603": {
     "race_name": "3罩潟��2",
@@ -19016,7 +19018,8 @@
           "normal": 0.13
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202654060604": {
     "race_name": "3罩潟��1",
@@ -19235,7 +19238,8 @@
           "normal": 0.16
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202654060605": {
     "race_name": "C3���9",
@@ -19449,7 +19453,8 @@
           "normal": 0.14
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202654060606": {
     "race_name": "C3���8",
@@ -19663,7 +19668,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202654060607": {
     "race_name": "C3���7",
@@ -19877,7 +19883,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202654060608": {
     "race_name": "B���3",
@@ -20096,7 +20103,8 @@
           "normal": 0.18
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202654060609": {
     "race_name": "B���2",
@@ -20315,7 +20323,8 @@
           "normal": 0.12
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202654060610": {
     "race_name": "絎���医����劫��(B)",
@@ -20534,7 +20543,8 @@
           "normal": 0.18
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202654060611": {
     "race_name": "�����＜�ゃ����������若��(B)",
@@ -20753,7 +20763,8 @@
           "normal": 0.27
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202655060601": {
     "race_name": "��鴻�若����若����若����������������ャ�� 2罩恰�育Μ",
@@ -20967,7 +20978,8 @@
           "normal": 0.16
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202655060602": {
     "race_name": "��鴻�若����若����若����������������ャ�� 2罩恰�育Μ",
@@ -21186,7 +21198,8 @@
           "normal": 0.19
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202655060603": {
     "race_name": "3罩潟��9腟�",
@@ -21400,7 +21413,8 @@
           "normal": 0.18
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202655060604": {
     "race_name": "C2���4腟�",
@@ -21614,7 +21628,8 @@
           "normal": 0.03
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202655060605": {
     "race_name": "紊у��綏�莖�(A1)",
@@ -21828,7 +21843,8 @@
           "normal": 0.16
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202655060606": {
     "race_name": "C2���3腟�",
@@ -22042,7 +22058,8 @@
           "normal": 0.15
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202655060607": {
     "race_name": "C1���12腟�",
@@ -22256,7 +22273,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202655060608": {
     "race_name": "C1���11腟�",
@@ -22470,7 +22488,8 @@
           "normal": 0.14
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202655060609": {
     "race_name": "��泣�������若����ゃ��腴狗Μ莖�(B)",
@@ -22684,7 +22703,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202655060610": {
     "race_name": "�����潟�鴻����≪�活��",
@@ -22898,7 +22918,8 @@
           "normal": 0.06
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202655060611": {
     "race_name": "���腮�莖�(C2)",
@@ -23117,7 +23138,8 @@
           "normal": 0.19
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202655060612": {
     "race_name": "SAGA��������潟�吾�ｃ�若��(3罩�)",
@@ -23336,7 +23358,8 @@
           "normal": 0.18
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202665060601": {
     "race_name": "罩ｆ�����薤�������荐�綽究��",
