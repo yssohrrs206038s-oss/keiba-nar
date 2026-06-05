@@ -10626,7 +10626,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（11頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎2.8倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -11066,7 +11066,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（◎2.5倍>2.0）",
+      "strategy_note": "見送り（◎○差25.5% > 15%）",
       "use_wide": true
     },
     "simulation": {
@@ -11281,7 +11281,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（11頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎2.1倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -11501,7 +11501,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（10頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎3.2倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -11716,7 +11716,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（12頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎2.4倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -11928,11 +11928,17 @@
       "fukusho": [],
       "umaren": [],
       "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（12頭: 多頭数フィルタ）",
-      "use_wide": true
+      "sanrenpuku": {
+        "trio": [
+          7,
+          11,
+          9
+        ]
+      },
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "3連複◎○▲ 1点（◎1.2倍 5頭）",
+      "use_wide": false
     },
     "simulation": {
       "7": {
@@ -12151,7 +12157,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（12頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎3.2倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -12371,7 +12377,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（14頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎2.3倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -12586,7 +12592,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（9頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎2.7倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -12806,7 +12812,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（11頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎3.0倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -13028,11 +13034,17 @@
       "fukusho": [],
       "umaren": [],
       "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（13頭: 多頭数フィルタ）",
-      "use_wide": true
+      "sanrenpuku": {
+        "trio": [
+          13,
+          9,
+          10
+        ]
+      },
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "3連複◎○▲ 1点（◎1.4倍 5頭）",
+      "use_wide": false
     },
     "simulation": {
       "13": {
@@ -13246,7 +13258,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（11頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎3.6倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -13461,7 +13473,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（12頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎2.3倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -13681,7 +13693,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（12頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎○差26.4% > 15%）",
       "use_wide": true
     },
     "simulation": {
@@ -14108,11 +14120,17 @@
       "fukusho": [],
       "umaren": [],
       "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（12頭: 多頭数フィルタ）",
-      "use_wide": true
+      "sanrenpuku": {
+        "trio": [
+          10,
+          12,
+          9
+        ]
+      },
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "3連複◎○▲ 1点（◎1.7倍 5頭）",
+      "use_wide": false
     },
     "simulation": {
       "10": {
@@ -14323,11 +14341,17 @@
       "fukusho": [],
       "umaren": [],
       "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（12頭: 多頭数フィルタ）",
-      "use_wide": true
+      "sanrenpuku": {
+        "trio": [
+          9,
+          1,
+          6
+        ]
+      },
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "3連複◎○▲ 1点（◎1.9倍 5頭）",
+      "use_wide": false
     },
     "simulation": {
       "9": {
@@ -14546,7 +14570,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（12頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎3.4倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -14763,11 +14787,17 @@
       "fukusho": [],
       "umaren": [],
       "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（12頭: 多頭数フィルタ）",
-      "use_wide": true
+      "sanrenpuku": {
+        "trio": [
+          10,
+          2,
+          3
+        ]
+      },
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "3連複◎○▲ 1点（◎1.7倍 5頭）",
+      "use_wide": false
     },
     "simulation": {
       "10": {
@@ -14978,11 +15008,17 @@
       "fukusho": [],
       "umaren": [],
       "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（12頭: 多頭数フィルタ）",
-      "use_wide": true
+      "sanrenpuku": {
+        "trio": [
+          1,
+          5,
+          10
+        ]
+      },
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "3連複◎○▲ 1点（◎1.8倍 5頭）",
+      "use_wide": false
     },
     "simulation": {
       "1": {
@@ -15201,7 +15237,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（12頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎2.4倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -15413,11 +15449,17 @@
       "fukusho": [],
       "umaren": [],
       "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（12頭: 多頭数フィルタ）",
-      "use_wide": true
+      "sanrenpuku": {
+        "trio": [
+          6,
+          1,
+          10
+        ]
+      },
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "3連複◎○▲ 1点（◎2.0倍 5頭）",
+      "use_wide": false
     },
     "simulation": {
       "6": {
@@ -15636,7 +15678,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（12頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎5.4倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -15856,7 +15898,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（12頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎3.2倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -16076,7 +16118,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（10頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎4.7倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -16296,7 +16338,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（10頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎4.2倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -16508,11 +16550,17 @@
       "fukusho": [],
       "umaren": [],
       "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（9頭: 多頭数フィルタ）",
-      "use_wide": true
+      "sanrenpuku": {
+        "trio": [
+          6,
+          5,
+          1
+        ]
+      },
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "3連複◎○▲ 1点（◎1.5倍 5頭）",
+      "use_wide": false
     },
     "simulation": {
       "6": {
@@ -16723,11 +16771,17 @@
       "fukusho": [],
       "umaren": [],
       "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（9頭: 多頭数フィルタ）",
-      "use_wide": true
+      "sanrenpuku": {
+        "trio": [
+          8,
+          1,
+          5
+        ]
+      },
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "3連複◎○▲ 1点（◎2.0倍 5頭）",
+      "use_wide": false
     },
     "simulation": {
       "8": {
@@ -16946,7 +17000,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（9頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎2.1倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -17161,7 +17215,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（12頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎2.3倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -17382,7 +17436,7 @@
       },
       "total_points": 1,
       "total_cost": 1000,
-      "strategy_note": "3連複◎○▲ 1点（◎1.9倍 8頭）",
+      "strategy_note": "3連複◎○▲ 1点（◎1.9倍 5頭）",
       "use_wide": false
     },
     "simulation": {
@@ -17603,7 +17657,7 @@
       },
       "total_points": 1,
       "total_cost": 1000,
-      "strategy_note": "3連複◎○▲ 1点（◎2.0倍 7頭）",
+      "strategy_note": "3連複◎○▲ 1点（◎2.0倍 5頭）",
       "use_wide": false
     },
     "simulation": {
@@ -17815,11 +17869,17 @@
       "fukusho": [],
       "umaren": [],
       "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（10頭: 多頭数フィルタ）",
-      "use_wide": true
+      "sanrenpuku": {
+        "trio": [
+          7,
+          2,
+          3
+        ]
+      },
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "3連複◎○▲ 1点（◎2.0倍 5頭）",
+      "use_wide": false
     },
     "simulation": {
       "7": {
@@ -18030,11 +18090,17 @@
       "fukusho": [],
       "umaren": [],
       "wide": [],
-      "sanrenpuku": {},
-      "total_points": 0,
-      "total_cost": 0,
-      "strategy_note": "見送り（10頭: 多頭数フィルタ）",
-      "use_wide": true
+      "sanrenpuku": {
+        "trio": [
+          6,
+          8,
+          3
+        ]
+      },
+      "total_points": 1,
+      "total_cost": 1000,
+      "strategy_note": "3連複◎○▲ 1点（◎1.6倍 5頭）",
+      "use_wide": false
     },
     "simulation": {
       "6": {
@@ -18248,7 +18314,7 @@
       "sanrenpuku": {},
       "total_points": 0,
       "total_cost": 0,
-      "strategy_note": "見送り（12頭: 多頭数フィルタ）",
+      "strategy_note": "見送り（◎2.4倍>2.0）",
       "use_wide": true
     },
     "simulation": {
@@ -18309,5 +18375,7595 @@
       }
     },
     "notified_predict": true
+  },
+  "202654060601": {
+    "race_name": "3罩潟��4",
+    "race_date": "",
+    "start_time": "",
+    "venue": "高知",
+    "course_info": "芝1400m",
+    "honmei": {
+      "horse_number": 10,
+      "horse_name": "��帥�若����若����ゃ�ゃ��",
+      "prob": 0.999,
+      "odds": 1.6,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 2.1152,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2676,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2542,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 7,
+      "horse_name": "�����違�������＜�若��",
+      "prob": 0.945,
+      "odds": 4.3,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.7184,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3698,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2512,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "third": {
+      "horse_number": 3,
+      "horse_name": "��������ャ�＜�����",
+      "prob": 0.769,
+      "odds": 6.6,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.3501,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3225,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2531,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      10,
+      7,
+      3
+    ],
+    "predicted_top5_nums": [
+      10,
+      7,
+      3,
+      1,
+      9
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 10,
+        "horse_name": "��帥�若����若����ゃ�ゃ��",
+        "prob": 0.999,
+        "odds": 1.6
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "�����違�������＜�若��",
+        "prob": 0.945,
+        "odds": 4.3
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "��������ャ�＜�����",
+        "prob": 0.769,
+        "odds": 6.6
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "��激�����������",
+        "prob": 0.234,
+        "odds": 11.1
+      },
+      {
+        "horse_number": 9,
+        "horse_name": "�����ャ�������眼�＜��",
+        "prob": 0.03,
+        "odds": 26.4
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 9,
+        "horse_name": "�����ャ�������眼�＜��",
+        "ev_score": 7.401,
+        "prob": 0.2803,
+        "odds": 26.4
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "�����鴻�宴�若�����������",
+        "ev_score": 7.382,
+        "prob": 0.1516,
+        "odds": 48.7
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "��眼�ｃ����≪�眼�＜�潟��",
+        "ev_score": 6.479,
+        "prob": 0.2339,
+        "odds": 27.7
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 0,
+      "total_cost": 0,
+      "strategy_note": "見送り（10頭: 多頭数フィルタ）",
+      "use_wide": true
+    },
+    "simulation": {
+      "10": {
+        "horse_name": "��帥�若����若����ゃ�ゃ��",
+        "top3_rate": 0.999,
+        "top3_std": 0.002,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 1.0,
+          "slow_pace": 1.0,
+          "normal": 1.0
+        }
+      },
+      "7": {
+        "horse_name": "�����違�������＜�若��",
+        "top3_rate": 0.945,
+        "top3_std": 0.008,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.95,
+          "slow_pace": 0.94,
+          "normal": 0.94
+        }
+      },
+      "3": {
+        "horse_name": "��������ャ�＜�����",
+        "top3_rate": 0.769,
+        "top3_std": 0.017,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.77,
+          "slow_pace": 0.77,
+          "normal": 0.76
+        }
+      },
+      "1": {
+        "horse_name": "��激�����������",
+        "top3_rate": 0.234,
+        "top3_std": 0.017,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.23,
+          "slow_pace": 0.23,
+          "normal": 0.24
+        }
+      },
+      "9": {
+        "horse_name": "�����ャ�������眼�＜��",
+        "top3_rate": 0.03,
+        "top3_std": 0.007,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.03,
+          "slow_pace": 0.03,
+          "normal": 0.03
+        }
+      }
+    }
+  },
+  "202654060602": {
+    "race_name": "3罩潟��3",
+    "race_date": "",
+    "start_time": "",
+    "venue": "高知",
+    "course_info": "芝1400m",
+    "honmei": {
+      "horse_number": 9,
+      "horse_name": "�����������潟����吟��",
+      "prob": 1.0,
+      "odds": 1.3,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 2.6204,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3079,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2582,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 3,
+      "horse_name": "��泣�潟�祉����������若��",
+      "prob": 0.989,
+      "odds": 3.4,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.9479,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3701,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2536,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "third": {
+      "horse_number": 8,
+      "horse_name": "��吾�с����激�с�若����若��",
+      "prob": 0.651,
+      "odds": 15.0,
+      "shap_top": [
+        {
+          "feature": "popularity",
+          "value": 0.3879,
+          "label": "人気"
+        },
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.0762,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2533,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      9,
+      3,
+      8
+    ],
+    "predicted_top5_nums": [
+      9,
+      3,
+      8,
+      1,
+      5
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 9,
+        "horse_name": "�����������潟����吟��",
+        "prob": 1.0,
+        "odds": 1.3
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "��泣�潟�祉����������若��",
+        "prob": 0.989,
+        "odds": 3.4
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "��吾�с����激�с�若����若��",
+        "prob": 0.651,
+        "odds": 15.0
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "��潟�鴻�≪����������ｃ��",
+        "prob": 0.307,
+        "odds": 16.4
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "�����≪�純����ゃ��",
+        "prob": 0.031,
+        "odds": 42.9
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 5,
+        "horse_name": "�����≪�純����ゃ��",
+        "ev_score": 9.303,
+        "prob": 0.2169,
+        "odds": 42.9
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "������������������",
+        "ev_score": 8.679,
+        "prob": 0.1371,
+        "odds": 63.3
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "������������",
+        "ev_score": 8.551,
+        "prob": 0.142,
+        "odds": 60.2
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 0,
+      "total_cost": 0,
+      "strategy_note": "見送り（9頭: 多頭数フィルタ）",
+      "use_wide": true
+    },
+    "simulation": {
+      "9": {
+        "horse_name": "�����������潟����吟��",
+        "top3_rate": 1.0,
+        "top3_std": 0.001,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 1.0,
+          "slow_pace": 1.0,
+          "normal": 1.0
+        }
+      },
+      "3": {
+        "horse_name": "��泣�潟�祉����������若��",
+        "top3_rate": 0.989,
+        "top3_std": 0.005,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.99,
+          "slow_pace": 0.99,
+          "normal": 0.99
+        }
+      },
+      "8": {
+        "horse_name": "��吾�с����激�с�若����若��",
+        "top3_rate": 0.651,
+        "top3_std": 0.018,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.65,
+          "slow_pace": 0.66,
+          "normal": 0.65
+        }
+      },
+      "1": {
+        "horse_name": "��潟�鴻�≪����������ｃ��",
+        "top3_rate": 0.307,
+        "top3_std": 0.017,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.32,
+          "slow_pace": 0.3,
+          "normal": 0.31
+        }
+      },
+      "5": {
+        "horse_name": "�����≪�純����ゃ��",
+        "top3_rate": 0.031,
+        "top3_std": 0.008,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.02,
+          "slow_pace": 0.03,
+          "normal": 0.04
+        }
+      }
+    }
+  },
+  "202654060603": {
+    "race_name": "3罩潟��2",
+    "race_date": "",
+    "start_time": "",
+    "venue": "高知",
+    "course_info": "芝1400m",
+    "honmei": {
+      "horse_number": 10,
+      "horse_name": "��潟�潟�眼�＜�若�潟�����",
+      "prob": 0.994,
+      "odds": 1.9,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 1.7119,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2265,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.254,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 9,
+      "horse_name": "��激����潟�ゃ����祉��",
+      "prob": 0.803,
+      "odds": 5.9,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.4419,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3728,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2523,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "third": {
+      "horse_number": 3,
+      "horse_name": "��純��������",
+      "prob": 0.652,
+      "odds": 7.5,
+      "shap_top": [
+        {
+          "feature": "popularity",
+          "value": 0.3307,
+          "label": "人気"
+        },
+        {
+          "feature": "odds",
+          "value": 0.2677,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2563,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      10,
+      9,
+      3
+    ],
+    "predicted_top5_nums": [
+      10,
+      9,
+      3,
+      1,
+      2
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 10,
+        "horse_name": "��潟�潟�眼�＜�若�潟�����",
+        "prob": 0.994,
+        "odds": 1.9
+      },
+      {
+        "horse_number": 9,
+        "horse_name": "��激����潟�ゃ����祉��",
+        "prob": 0.803,
+        "odds": 5.9
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "��純��������",
+        "prob": 0.652,
+        "odds": 7.5
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "��≪����������若��������",
+        "prob": 0.35,
+        "odds": 8.6
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "��違�������若�����������",
+        "prob": 0.124,
+        "odds": 11.1
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 4,
+        "horse_name": "�����若����潟�違��������",
+        "ev_score": 6.595,
+        "prob": 0.1306,
+        "odds": 50.5
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "��帥�若����若����若�����",
+        "ev_score": 5.167,
+        "prob": 0.2126,
+        "odds": 24.3
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "��激�若�吟�純�潟��",
+        "ev_score": 5.079,
+        "prob": 0.2267,
+        "odds": 22.4
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 0,
+      "total_cost": 0,
+      "strategy_note": "見送り（10頭: 多頭数フィルタ）",
+      "use_wide": true
+    },
+    "simulation": {
+      "10": {
+        "horse_name": "��潟�潟�眼�＜�若�潟�����",
+        "top3_rate": 0.994,
+        "top3_std": 0.004,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.99,
+          "slow_pace": 0.99,
+          "normal": 0.99
+        }
+      },
+      "9": {
+        "horse_name": "��激����潟�ゃ����祉��",
+        "top3_rate": 0.803,
+        "top3_std": 0.017,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.8,
+          "slow_pace": 0.81,
+          "normal": 0.79
+        }
+      },
+      "3": {
+        "horse_name": "��純��������",
+        "top3_rate": 0.652,
+        "top3_std": 0.018,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.65,
+          "slow_pace": 0.66,
+          "normal": 0.64
+        }
+      },
+      "1": {
+        "horse_name": "��≪����������若��������",
+        "top3_rate": 0.35,
+        "top3_std": 0.016,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.34,
+          "slow_pace": 0.35,
+          "normal": 0.36
+        }
+      },
+      "2": {
+        "horse_name": "��違�������若�����������",
+        "top3_rate": 0.124,
+        "top3_std": 0.015,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.12,
+          "slow_pace": 0.12,
+          "normal": 0.13
+        }
+      }
+    }
+  },
+  "202654060604": {
+    "race_name": "3罩潟��1",
+    "race_date": "",
+    "start_time": "",
+    "venue": "高知",
+    "course_info": "芝1400m",
+    "honmei": {
+      "horse_number": 3,
+      "horse_name": "�����若��������������������",
+      "prob": 0.984,
+      "odds": 2.1,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 1.5849,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2061,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2556,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 7,
+      "horse_name": "�����潟�帥�������若����若��",
+      "prob": 0.756,
+      "odds": 5.8,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.4454,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3827,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2513,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "third": {
+      "horse_number": 6,
+      "horse_name": "�����若����ャ�若�吾��",
+      "prob": 0.658,
+      "odds": 6.1,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.4071,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3218,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2525,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      3,
+      7,
+      6
+    ],
+    "predicted_top5_nums": [
+      3,
+      7,
+      6,
+      10,
+      1
+    ],
+    "ana_horse_num": 9,
+    "ana_horse_info": {
+      "horse_number": 9,
+      "horse_name": "��吟�����",
+      "prob": 0.354,
+      "popularity": 6
+    },
+    "predicted_top5": [
+      {
+        "horse_number": 3,
+        "horse_name": "�����若��������������������",
+        "prob": 0.984,
+        "odds": 2.1
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "�����潟�帥�������若����若��",
+        "prob": 0.756,
+        "odds": 5.8
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "�����若����ャ�若�吾��",
+        "prob": 0.658,
+        "odds": 6.1
+      },
+      {
+        "horse_number": 10,
+        "horse_name": "�����ゃ�激�ｃ��������",
+        "prob": 0.381,
+        "odds": 6.6
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "��吾�с����激�с�若��������",
+        "prob": 0.157,
+        "odds": 8.0
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 5,
+        "horse_name": "�����������鴻����帥�若�����",
+        "ev_score": 7.646,
+        "prob": 0.1208,
+        "odds": 63.3
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "��������������������潟��",
+        "ev_score": 6.789,
+        "prob": 0.1815,
+        "odds": 37.4
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "��激�激����潟�����",
+        "ev_score": 6.695,
+        "prob": 0.1008,
+        "odds": 66.4
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 0,
+      "total_cost": 0,
+      "strategy_note": "見送り（10頭: 多頭数フィルタ）",
+      "use_wide": true
+    },
+    "simulation": {
+      "3": {
+        "horse_name": "�����若��������������������",
+        "top3_rate": 0.984,
+        "top3_std": 0.006,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.98,
+          "slow_pace": 0.98,
+          "normal": 0.98
+        }
+      },
+      "7": {
+        "horse_name": "�����潟�帥�������若����若��",
+        "top3_rate": 0.756,
+        "top3_std": 0.018,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.76,
+          "slow_pace": 0.76,
+          "normal": 0.75
+        }
+      },
+      "6": {
+        "horse_name": "�����若����ャ�若�吾��",
+        "top3_rate": 0.658,
+        "top3_std": 0.02,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.66,
+          "slow_pace": 0.66,
+          "normal": 0.65
+        }
+      },
+      "10": {
+        "horse_name": "�����ゃ�激�ｃ��������",
+        "top3_rate": 0.381,
+        "top3_std": 0.02,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.37,
+          "slow_pace": 0.38,
+          "normal": 0.39
+        }
+      },
+      "1": {
+        "horse_name": "��吾�с����激�с�若��������",
+        "top3_rate": 0.157,
+        "top3_std": 0.019,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.16,
+          "slow_pace": 0.16,
+          "normal": 0.16
+        }
+      }
+    }
+  },
+  "202654060605": {
+    "race_name": "C3���9",
+    "race_date": "",
+    "start_time": "",
+    "venue": "高知",
+    "course_info": "芝1300m",
+    "honmei": {
+      "horse_number": 5,
+      "horse_name": "��潟����������潟��������",
+      "prob": 1.0,
+      "odds": 1.1,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 3.3527,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3578,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2683,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 7,
+      "horse_name": "��������若�������激�����",
+      "prob": 0.895,
+      "odds": 10.7,
+      "shap_top": [
+        {
+          "feature": "popularity",
+          "value": 0.4484,
+          "label": "人気"
+        },
+        {
+          "feature": "odds",
+          "value": 0.158,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2549,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "third": {
+      "horse_number": 3,
+      "horse_name": "��激�������若����若��",
+      "prob": 0.603,
+      "odds": 17.3,
+      "shap_top": [
+        {
+          "feature": "popularity",
+          "value": 0.3856,
+          "label": "人気"
+        },
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.0668,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2534,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      5,
+      7,
+      3
+    ],
+    "predicted_top5_nums": [
+      5,
+      7,
+      3,
+      8,
+      4
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 5,
+        "horse_name": "��潟����������潟��������",
+        "prob": 1.0,
+        "odds": 1.1
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "��������若�������激�����",
+        "prob": 0.895,
+        "odds": 10.7
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "��激�������若����若��",
+        "prob": 0.603,
+        "odds": 17.3
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "��������鴻����ｃ�若�激��",
+        "prob": 0.247,
+        "odds": 24.8
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "�����帥�若����������ゃ��",
+        "prob": 0.138,
+        "odds": 25.4
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 8,
+        "horse_name": "��������鴻����ｃ�若�激��",
+        "ev_score": 8.118,
+        "prob": 0.3273,
+        "odds": 24.8
+      },
+      {
+        "horse_number": 9,
+        "horse_name": "�����鴻����ゃ����潟��",
+        "ev_score": 7.956,
+        "prob": 0.016,
+        "odds": 498.7
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "��激�������若����若��",
+        "ev_score": 7.274,
+        "prob": 0.4205,
+        "odds": 17.3
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 0,
+      "total_cost": 0,
+      "strategy_note": "見送り（11頭: 多頭数フィルタ）",
+      "use_wide": true
+    },
+    "simulation": {
+      "5": {
+        "horse_name": "��潟����������潟��������",
+        "top3_rate": 1.0,
+        "top3_std": 0.0,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 1.0,
+          "slow_pace": 1.0,
+          "normal": 1.0
+        }
+      },
+      "7": {
+        "horse_name": "��������若�������激�����",
+        "top3_rate": 0.895,
+        "top3_std": 0.011,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.9,
+          "slow_pace": 0.9,
+          "normal": 0.89
+        }
+      },
+      "3": {
+        "horse_name": "��激�������若����若��",
+        "top3_rate": 0.603,
+        "top3_std": 0.019,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.61,
+          "slow_pace": 0.6,
+          "normal": 0.6
+        }
+      },
+      "8": {
+        "horse_name": "��������鴻����ｃ�若�激��",
+        "top3_rate": 0.247,
+        "top3_std": 0.014,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.25,
+          "slow_pace": 0.25,
+          "normal": 0.24
+        }
+      },
+      "4": {
+        "horse_name": "�����帥�若����������ゃ��",
+        "top3_rate": 0.138,
+        "top3_std": 0.017,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.14,
+          "slow_pace": 0.14,
+          "normal": 0.14
+        }
+      }
+    }
+  },
+  "202654060606": {
+    "race_name": "C3���8",
+    "race_date": "",
+    "start_time": "",
+    "venue": "高知",
+    "course_info": "芝1300m",
+    "honmei": {
+      "horse_number": 9,
+      "horse_name": "�����������鴻����ゃ��",
+      "prob": 0.993,
+      "odds": 1.9,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 1.7181,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2275,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2543,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 4,
+      "horse_name": "�����若����鴻����ゃ�帥��",
+      "prob": 0.93,
+      "odds": 3.9,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.773,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3635,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2537,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "third": {
+      "horse_number": 1,
+      "horse_name": "�����������潟�������ゃ�潟��",
+      "prob": 0.673,
+      "odds": 6.6,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.3514,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3231,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.254,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      9,
+      4,
+      1
+    ],
+    "predicted_top5_nums": [
+      9,
+      4,
+      1,
+      3,
+      7
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 9,
+        "horse_name": "�����������鴻����ゃ��",
+        "prob": 0.993,
+        "odds": 1.9
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "�����若����鴻����ゃ�帥��",
+        "prob": 0.93,
+        "odds": 3.9
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "�����������潟�������ゃ�潟��",
+        "prob": 0.673,
+        "odds": 6.6
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "�����������������潟��",
+        "prob": 0.257,
+        "odds": 10.1
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "�����若����帥�ゃ��",
+        "prob": 0.106,
+        "odds": 12.0
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 8,
+        "horse_name": "�����ｃ����鴻�������吾�����",
+        "ev_score": 6.733,
+        "prob": 0.0385,
+        "odds": 174.7
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "��≪�潟����������ゃ��",
+        "ev_score": 5.45,
+        "prob": 0.2121,
+        "odds": 25.7
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "�����＜�����������������",
+        "ev_score": 5.431,
+        "prob": 0.2235,
+        "odds": 24.3
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 0,
+      "total_cost": 0,
+      "strategy_note": "見送り（9頭: 多頭数フィルタ）",
+      "use_wide": true
+    },
+    "simulation": {
+      "9": {
+        "horse_name": "�����������鴻����ゃ��",
+        "top3_rate": 0.993,
+        "top3_std": 0.005,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.99,
+          "slow_pace": 0.99,
+          "normal": 0.99
+        }
+      },
+      "4": {
+        "horse_name": "�����若����鴻����ゃ�帥��",
+        "top3_rate": 0.93,
+        "top3_std": 0.011,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.94,
+          "slow_pace": 0.93,
+          "normal": 0.92
+        }
+      },
+      "1": {
+        "horse_name": "�����������潟�������ゃ�潟��",
+        "top3_rate": 0.673,
+        "top3_std": 0.016,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.67,
+          "slow_pace": 0.68,
+          "normal": 0.67
+        }
+      },
+      "3": {
+        "horse_name": "�����������������潟��",
+        "top3_rate": 0.257,
+        "top3_std": 0.017,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.26,
+          "slow_pace": 0.25,
+          "normal": 0.26
+        }
+      },
+      "7": {
+        "horse_name": "�����若����帥�ゃ��",
+        "top3_rate": 0.106,
+        "top3_std": 0.014,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.09,
+          "slow_pace": 0.11,
+          "normal": 0.11
+        }
+      }
+    }
+  },
+  "202654060607": {
+    "race_name": "C3���7",
+    "race_date": "",
+    "start_time": "",
+    "venue": "高知",
+    "course_info": "芝1300m",
+    "honmei": {
+      "horse_number": 6,
+      "horse_name": "��������������ゃ�吾�潟��",
+      "prob": 0.979,
+      "odds": 2.4,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 1.4305,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2202,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.254,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 1,
+      "horse_name": "��������������ゃ�若��",
+      "prob": 0.936,
+      "odds": 3.5,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.9338,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3703,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2547,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "third": {
+      "horse_number": 8,
+      "horse_name": "�����蚊�������潟��",
+      "prob": 0.659,
+      "odds": 6.5,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.3568,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3221,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2514,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      6,
+      1,
+      8
+    ],
+    "predicted_top5_nums": [
+      6,
+      1,
+      8,
+      10,
+      7
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 6,
+        "horse_name": "��������������ゃ�吾�潟��",
+        "prob": 0.979,
+        "odds": 2.4
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "��������������ゃ�若��",
+        "prob": 0.936,
+        "odds": 3.5
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "�����蚊�������潟��",
+        "prob": 0.659,
+        "odds": 6.5
+      },
+      {
+        "horse_number": 10,
+        "horse_name": "��違����潟����������激��",
+        "prob": 0.293,
+        "odds": 8.3
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "�����ゃ�激�ｃ�����",
+        "prob": 0.083,
+        "odds": 12.1
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 5,
+        "horse_name": "�����������������潟��",
+        "ev_score": 6.487,
+        "prob": 0.0566,
+        "odds": 114.6
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "��≪�潟����若�吟�鴻�帥��",
+        "ev_score": 6.436,
+        "prob": 0.1597,
+        "odds": 40.3
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "�����≪�������鴻�����",
+        "ev_score": 5.906,
+        "prob": 0.1795,
+        "odds": 32.9
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 0,
+      "total_cost": 0,
+      "strategy_note": "見送り（10頭: 多頭数フィルタ）",
+      "use_wide": true
+    },
+    "simulation": {
+      "6": {
+        "horse_name": "��������������ゃ�吾�潟��",
+        "top3_rate": 0.979,
+        "top3_std": 0.007,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.98,
+          "slow_pace": 0.98,
+          "normal": 0.98
+        }
+      },
+      "1": {
+        "horse_name": "��������������ゃ�若��",
+        "top3_rate": 0.936,
+        "top3_std": 0.009,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.94,
+          "slow_pace": 0.94,
+          "normal": 0.93
+        }
+      },
+      "8": {
+        "horse_name": "�����蚊�������潟��",
+        "top3_rate": 0.659,
+        "top3_std": 0.02,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.67,
+          "slow_pace": 0.66,
+          "normal": 0.65
+        }
+      },
+      "10": {
+        "horse_name": "��違����潟����������激��",
+        "top3_rate": 0.293,
+        "top3_std": 0.021,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.28,
+          "slow_pace": 0.3,
+          "normal": 0.3
+        }
+      },
+      "7": {
+        "horse_name": "�����ゃ�激�ｃ�����",
+        "top3_rate": 0.083,
+        "top3_std": 0.012,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.08,
+          "slow_pace": 0.08,
+          "normal": 0.09
+        }
+      }
+    }
+  },
+  "202654060608": {
+    "race_name": "B���3",
+    "race_date": "",
+    "start_time": "",
+    "venue": "高知",
+    "course_info": "芝1600m",
+    "honmei": {
+      "horse_number": 3,
+      "horse_name": "�����������若�鴻�������ゃ��",
+      "prob": 0.999,
+      "odds": 1.5,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 2.2047,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2564,
+          "label": "人気"
+        },
+        {
+          "feature": "jockey_dist_fukusho_rate",
+          "value": -0.0981,
+          "label": "騎手距離適性やや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 7,
+      "horse_name": "��違����ゃ�鴻����若��",
+      "prob": 0.697,
+      "odds": 7.6,
+      "shap_top": [
+        {
+          "feature": "popularity",
+          "value": 0.3295,
+          "label": "人気"
+        },
+        {
+          "feature": "odds",
+          "value": 0.2758,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "jockey_dist_fukusho_rate",
+          "value": -0.1179,
+          "label": "騎手距離適性やや悪"
+        }
+      ]
+    },
+    "third": {
+      "horse_number": 4,
+      "horse_name": "�����鴻�������ｃ�激�吾�с��",
+      "prob": 0.658,
+      "odds": 7.7,
+      "shap_top": [
+        {
+          "feature": "popularity",
+          "value": 0.2884,
+          "label": "人気"
+        },
+        {
+          "feature": "odds",
+          "value": 0.2155,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "jockey_dist_fukusho_rate",
+          "value": -0.1103,
+          "label": "騎手距離適性やや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      3,
+      7,
+      4
+    ],
+    "predicted_top5_nums": [
+      3,
+      7,
+      4,
+      10,
+      1
+    ],
+    "ana_horse_num": 6,
+    "ana_horse_info": {
+      "horse_number": 6,
+      "horse_name": "��激�潟����������鴻����ゃ��",
+      "prob": 0.3774,
+      "popularity": 6
+    },
+    "predicted_top5": [
+      {
+        "horse_number": 3,
+        "horse_name": "�����������若�鴻�������ゃ��",
+        "prob": 0.999,
+        "odds": 1.5
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "��違����ゃ�鴻����若��",
+        "prob": 0.697,
+        "odds": 7.6
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "�����鴻�������ｃ�激�吾�с��",
+        "prob": 0.658,
+        "odds": 7.7
+      },
+      {
+        "horse_number": 10,
+        "horse_name": "��≪�違��������������",
+        "prob": 0.267,
+        "odds": 10.7
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "�����ゃ�激�潟����������ｃ��",
+        "prob": 0.179,
+        "odds": 13.2
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 5,
+        "horse_name": "��≪�����������������",
+        "ev_score": 8.687,
+        "prob": 0.2025,
+        "odds": 42.9
+      },
+      {
+        "horse_number": 9,
+        "horse_name": "�����������泣����純��",
+        "ev_score": 8.028,
+        "prob": 0.1058,
+        "odds": 75.9
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "��������潟�����������",
+        "ev_score": 7.082,
+        "prob": 0.0571,
+        "odds": 124.0
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 0,
+      "total_cost": 0,
+      "strategy_note": "見送り（10頭: 多頭数フィルタ）",
+      "use_wide": true
+    },
+    "simulation": {
+      "3": {
+        "horse_name": "�����������若�鴻�������ゃ��",
+        "top3_rate": 0.999,
+        "top3_std": 0.001,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 1.0,
+          "slow_pace": 1.0,
+          "normal": 1.0
+        }
+      },
+      "7": {
+        "horse_name": "��違����ゃ�鴻����若��",
+        "top3_rate": 0.697,
+        "top3_std": 0.021,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.7,
+          "slow_pace": 0.7,
+          "normal": 0.69
+        }
+      },
+      "4": {
+        "horse_name": "�����鴻�������ｃ�激�吾�с��",
+        "top3_rate": 0.658,
+        "top3_std": 0.023,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.66,
+          "slow_pace": 0.66,
+          "normal": 0.65
+        }
+      },
+      "10": {
+        "horse_name": "��≪�違��������������",
+        "top3_rate": 0.267,
+        "top3_std": 0.019,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.26,
+          "slow_pace": 0.27,
+          "normal": 0.27
+        }
+      },
+      "1": {
+        "horse_name": "�����ゃ�激�潟����������ｃ��",
+        "top3_rate": 0.179,
+        "top3_std": 0.019,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.18,
+          "slow_pace": 0.18,
+          "normal": 0.18
+        }
+      }
+    }
+  },
+  "202654060609": {
+    "race_name": "B���2",
+    "race_date": "",
+    "start_time": "",
+    "venue": "高知",
+    "course_info": "芝1600m",
+    "honmei": {
+      "horse_number": 6,
+      "horse_name": "�����ゃ�������������若�潟��",
+      "prob": 0.986,
+      "odds": 2.8,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 1.3117,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3503,
+          "label": "人気"
+        },
+        {
+          "feature": "jockey_dist_fukusho_rate",
+          "value": -0.1031,
+          "label": "騎手距離適性やや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 8,
+      "horse_name": "��純����潟�若�帥��������",
+      "prob": 0.983,
+      "odds": 2.3,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 1.501,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.1923,
+          "label": "人気"
+        },
+        {
+          "feature": "jockey_dist_fukusho_rate",
+          "value": -0.1046,
+          "label": "騎手距離適性やや悪"
+        }
+      ]
+    },
+    "third": {
+      "horse_number": 3,
+      "horse_name": "��激�с����泣�潟����冴��",
+      "prob": 0.573,
+      "odds": 7.2,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.3218,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2702,
+          "label": "人気"
+        },
+        {
+          "feature": "jockey_dist_fukusho_rate",
+          "value": -0.109,
+          "label": "騎手距離適性やや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      6,
+      8,
+      3
+    ],
+    "predicted_top5_nums": [
+      6,
+      8,
+      3,
+      4,
+      5
+    ],
+    "ana_horse_num": 1,
+    "ana_horse_info": {
+      "horse_number": 1,
+      "horse_name": "�����������ャ�若��",
+      "prob": 0.37,
+      "popularity": 6
+    },
+    "predicted_top5": [
+      {
+        "horse_number": 6,
+        "horse_name": "�����ゃ�������������若�潟��",
+        "prob": 0.986,
+        "odds": 2.8
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "��純����潟�若�帥��������",
+        "prob": 0.983,
+        "odds": 2.3
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "��激�с����泣�潟����冴��",
+        "prob": 0.573,
+        "odds": 7.2
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "��鴻����若����ゃ��������",
+        "prob": 0.254,
+        "odds": 12.0
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "�����若�����������",
+        "prob": 0.122,
+        "odds": 13.0
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 7,
+        "horse_name": "��������若�帥�若����≪��",
+        "ev_score": 8.815,
+        "prob": 0.1566,
+        "odds": 56.3
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "��������違����ャ�若�����",
+        "ev_score": 5.761,
+        "prob": 0.3148,
+        "odds": 18.3
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "��鴻����若����ゃ��������",
+        "ev_score": 5.68,
+        "prob": 0.4733,
+        "odds": 12.0
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 0,
+      "total_cost": 0,
+      "strategy_note": "見送り（◎2.8倍>2.0）",
+      "use_wide": true
+    },
+    "simulation": {
+      "6": {
+        "horse_name": "�����ゃ�������������若�潟��",
+        "top3_rate": 0.986,
+        "top3_std": 0.006,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.99,
+          "slow_pace": 0.99,
+          "normal": 0.98
+        }
+      },
+      "8": {
+        "horse_name": "��純����潟�若�帥��������",
+        "top3_rate": 0.983,
+        "top3_std": 0.005,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.98,
+          "slow_pace": 0.98,
+          "normal": 0.99
+        }
+      },
+      "3": {
+        "horse_name": "��激�с����泣�潟����冴��",
+        "top3_rate": 0.573,
+        "top3_std": 0.026,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.57,
+          "slow_pace": 0.57,
+          "normal": 0.58
+        }
+      },
+      "4": {
+        "horse_name": "��鴻����若����ゃ��������",
+        "top3_rate": 0.254,
+        "top3_std": 0.021,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.26,
+          "slow_pace": 0.25,
+          "normal": 0.25
+        }
+      },
+      "5": {
+        "horse_name": "�����若�����������",
+        "top3_rate": 0.122,
+        "top3_std": 0.013,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.12,
+          "slow_pace": 0.13,
+          "normal": 0.12
+        }
+      }
+    }
+  },
+  "202654060610": {
+    "race_name": "絎���医����劫��(B)",
+    "race_date": "",
+    "start_time": "",
+    "venue": "高知",
+    "course_info": "芝1600m",
+    "honmei": {
+      "horse_number": 6,
+      "horse_name": "��祉�ゃ����潟�����������",
+      "prob": 0.97,
+      "odds": 2.7,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 1.3185,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.1637,
+          "label": "人気"
+        },
+        {
+          "feature": "jockey_dist_fukusho_rate",
+          "value": -0.1016,
+          "label": "騎手距離適性やや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 5,
+      "horse_name": "��≪�＜�若�吾�潟��",
+      "prob": 0.62,
+      "odds": 6.4,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.4176,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2773,
+          "label": "人気"
+        },
+        {
+          "feature": "jockey_dist_fukusho_rate",
+          "value": -0.109,
+          "label": "騎手距離適性やや悪"
+        }
+      ]
+    },
+    "third": {
+      "horse_number": 10,
+      "horse_name": "��眼�若�����������",
+      "prob": 0.573,
+      "odds": 6.0,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.4836,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.33,
+          "label": "人気"
+        },
+        {
+          "feature": "jockey_dist_fukusho_rate",
+          "value": -0.116,
+          "label": "騎手距離適性やや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      6,
+      5,
+      10
+    ],
+    "predicted_top5_nums": [
+      6,
+      5,
+      10,
+      2,
+      8
+    ],
+    "ana_horse_num": 1,
+    "ana_horse_info": {
+      "horse_number": 1,
+      "horse_name": "��＜�ゃ�激�с�������潟��",
+      "prob": 0.4247,
+      "popularity": 6
+    },
+    "predicted_top5": [
+      {
+        "horse_number": 6,
+        "horse_name": "��祉�ゃ����潟�����������",
+        "prob": 0.97,
+        "odds": 2.7
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "��≪�＜�若�吾�潟��",
+        "prob": 0.62,
+        "odds": 6.4
+      },
+      {
+        "horse_number": 10,
+        "horse_name": "��眼�若�����������",
+        "prob": 0.573,
+        "odds": 6.0
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "��≪�若�鴻����ゃ�吟��",
+        "prob": 0.486,
+        "odds": 7.4
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "�����ｃ����若�����������",
+        "prob": 0.176,
+        "odds": 8.1
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 4,
+        "horse_name": "��蚊�潟��������������������",
+        "ev_score": 6.384,
+        "prob": 0.2484,
+        "odds": 25.7
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "������������",
+        "ev_score": 5.964,
+        "prob": 0.2251,
+        "odds": 26.5
+      },
+      {
+        "horse_number": 9,
+        "horse_name": "�����ャ�若�����",
+        "ev_score": 5.894,
+        "prob": 0.2456,
+        "odds": 24.0
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 0,
+      "total_cost": 0,
+      "strategy_note": "見送り（10頭: 多頭数フィルタ）",
+      "use_wide": true
+    },
+    "simulation": {
+      "6": {
+        "horse_name": "��祉�ゃ����潟�����������",
+        "top3_rate": 0.97,
+        "top3_std": 0.007,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.97,
+          "slow_pace": 0.97,
+          "normal": 0.97
+        }
+      },
+      "5": {
+        "horse_name": "��≪�＜�若�吾�潟��",
+        "top3_rate": 0.62,
+        "top3_std": 0.023,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.62,
+          "slow_pace": 0.62,
+          "normal": 0.62
+        }
+      },
+      "10": {
+        "horse_name": "��眼�若�����������",
+        "top3_rate": 0.573,
+        "top3_std": 0.025,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.58,
+          "slow_pace": 0.58,
+          "normal": 0.56
+        }
+      },
+      "2": {
+        "horse_name": "��≪�若�鴻����ゃ�吟��",
+        "top3_rate": 0.486,
+        "top3_std": 0.016,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.48,
+          "slow_pace": 0.49,
+          "normal": 0.49
+        }
+      },
+      "8": {
+        "horse_name": "�����ｃ����若�����������",
+        "top3_rate": 0.176,
+        "top3_std": 0.018,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.18,
+          "slow_pace": 0.17,
+          "normal": 0.18
+        }
+      }
+    }
+  },
+  "202654060611": {
+    "race_name": "�����＜�ゃ����������若��(B)",
+    "race_date": "",
+    "start_time": "",
+    "venue": "高知",
+    "course_info": "芝1600m",
+    "honmei": {
+      "horse_number": 8,
+      "horse_name": "�����若����若����激�����",
+      "prob": 0.708,
+      "odds": 5.9,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.4815,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3276,
+          "label": "人気"
+        },
+        {
+          "feature": "jockey_dist_fukusho_rate",
+          "value": -0.13,
+          "label": "騎手距離適性やや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 4,
+      "horse_name": "��潟�若����������潟��",
+      "prob": 0.682,
+      "odds": 6.7,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.3827,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2717,
+          "label": "人気"
+        },
+        {
+          "feature": "jockey_dist_fukusho_rate",
+          "value": -0.109,
+          "label": "騎手距離適性やや悪"
+        }
+      ]
+    },
+    "third": {
+      "horse_number": 3,
+      "horse_name": "�����ｃ����������ゃ��",
+      "prob": 0.621,
+      "odds": 4.6,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.5265,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.0818,
+          "label": "人気"
+        },
+        {
+          "feature": "jockey_dist_fukusho_rate",
+          "value": -0.1259,
+          "label": "騎手距離適性やや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      8,
+      4,
+      3
+    ],
+    "predicted_top5_nums": [
+      8,
+      4,
+      3,
+      11,
+      7
+    ],
+    "ana_horse_num": 1,
+    "ana_horse_info": {
+      "horse_number": 1,
+      "horse_name": "��������潟�吾�ｃ�鴻����ｃ��",
+      "prob": 0.3753,
+      "popularity": 8
+    },
+    "predicted_top5": [
+      {
+        "horse_number": 8,
+        "horse_name": "�����若����若����激�����",
+        "prob": 0.708,
+        "odds": 5.9
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "��潟�若����������潟��",
+        "prob": 0.682,
+        "odds": 6.7
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "�����ｃ����������ゃ��",
+        "prob": 0.621,
+        "odds": 4.6
+      },
+      {
+        "horse_number": 11,
+        "horse_name": "�����������������������若��",
+        "prob": 0.418,
+        "odds": 6.9
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "�����������ゃ�ゃ��",
+        "prob": 0.267,
+        "odds": 7.7
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 5,
+        "horse_name": "�����ｃ����ｃ�≪�潟��",
+        "ev_score": 5.768,
+        "prob": 0.228,
+        "odds": 25.3
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "��≪�������с�����",
+        "ev_score": 5.66,
+        "prob": 0.2933,
+        "odds": 19.3
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "�����ゃ�≪�����������",
+        "ev_score": 5.485,
+        "prob": 0.2756,
+        "odds": 19.9
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 0,
+      "total_cost": 0,
+      "strategy_note": "見送り（11頭: 多頭数フィルタ）",
+      "use_wide": true
+    },
+    "simulation": {
+      "8": {
+        "horse_name": "�����若����若����激�����",
+        "top3_rate": 0.708,
+        "top3_std": 0.023,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.69,
+          "slow_pace": 0.72,
+          "normal": 0.71
+        }
+      },
+      "4": {
+        "horse_name": "��潟�若����������潟��",
+        "top3_rate": 0.682,
+        "top3_std": 0.016,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.68,
+          "slow_pace": 0.69,
+          "normal": 0.67
+        }
+      },
+      "3": {
+        "horse_name": "�����ｃ����������ゃ��",
+        "top3_rate": 0.621,
+        "top3_std": 0.017,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.63,
+          "slow_pace": 0.61,
+          "normal": 0.62
+        }
+      },
+      "11": {
+        "horse_name": "�����������������������若��",
+        "top3_rate": 0.418,
+        "top3_std": 0.019,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.42,
+          "slow_pace": 0.42,
+          "normal": 0.41
+        }
+      },
+      "7": {
+        "horse_name": "�����������ゃ�ゃ��",
+        "top3_rate": 0.267,
+        "top3_std": 0.01,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.27,
+          "slow_pace": 0.27,
+          "normal": 0.27
+        }
+      }
+    }
+  },
+  "202655060601": {
+    "race_name": "��鴻�若����若����若����������������ャ�� 2罩恰�育Μ",
+    "race_date": "",
+    "start_time": "",
+    "venue": "佐賀",
+    "course_info": "芝900m",
+    "honmei": {
+      "horse_number": 5,
+      "horse_name": "��������ゃ�鴻����若�����",
+      "prob": 0.97,
+      "odds": 2.1,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 1.5924,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2193,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2691,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 6,
+      "horse_name": "��≪�若��������",
+      "prob": 0.834,
+      "odds": 3.8,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.799,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3586,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2629,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "third": {
+      "horse_number": 4,
+      "horse_name": "�����ゃ����眼�冴�����",
+      "prob": 0.641,
+      "odds": 5.0,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.5437,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3388,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2654,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      5,
+      6,
+      4
+    ],
+    "predicted_top5_nums": [
+      5,
+      6,
+      4,
+      3,
+      2
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 5,
+        "horse_name": "��������ゃ�鴻����若�����",
+        "prob": 0.97,
+        "odds": 2.1
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "��≪�若��������",
+        "prob": 0.834,
+        "odds": 3.8
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "�����ゃ����眼�冴�����",
+        "prob": 0.641,
+        "odds": 5.0
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "�����≪�潟�帥�祉�若��",
+        "prob": 0.397,
+        "odds": 5.8
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "��������ゃ����潟��",
+        "prob": 0.157,
+        "odds": 6.8
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 3,
+        "horse_name": "�����≪�潟�帥�祉�若��",
+        "ev_score": 3.15,
+        "prob": 0.5431,
+        "odds": 5.8
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "��������ゃ����潟��",
+        "ev_score": 3.125,
+        "prob": 0.4596,
+        "odds": 6.8
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "�����ゃ����眼�冴�����",
+        "ev_score": 3.019,
+        "prob": 0.6038,
+        "odds": 5.0
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 0,
+      "total_cost": 0,
+      "strategy_note": "見送り（◎2.1倍>2.0）",
+      "use_wide": true
+    },
+    "simulation": {
+      "5": {
+        "horse_name": "��������ゃ�鴻����若�����",
+        "top3_rate": 0.97,
+        "top3_std": 0.008,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.97,
+          "slow_pace": 0.97,
+          "normal": 0.97
+        }
+      },
+      "6": {
+        "horse_name": "��≪�若��������",
+        "top3_rate": 0.834,
+        "top3_std": 0.016,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.84,
+          "slow_pace": 0.83,
+          "normal": 0.83
+        }
+      },
+      "4": {
+        "horse_name": "�����ゃ����眼�冴�����",
+        "top3_rate": 0.641,
+        "top3_std": 0.021,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.64,
+          "slow_pace": 0.64,
+          "normal": 0.64
+        }
+      },
+      "3": {
+        "horse_name": "�����≪�潟�帥�祉�若��",
+        "top3_rate": 0.397,
+        "top3_std": 0.024,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.4,
+          "slow_pace": 0.4,
+          "normal": 0.39
+        }
+      },
+      "2": {
+        "horse_name": "��������ゃ����潟��",
+        "top3_rate": 0.157,
+        "top3_std": 0.015,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.15,
+          "slow_pace": 0.16,
+          "normal": 0.16
+        }
+      }
+    }
+  },
+  "202655060602": {
+    "race_name": "��鴻�若����若����若����������������ャ�� 2罩恰�育Μ",
+    "race_date": "",
+    "start_time": "",
+    "venue": "佐賀",
+    "course_info": "芝900m",
+    "honmei": {
+      "horse_number": 6,
+      "horse_name": "�����ゃ����違�����������",
+      "prob": 0.868,
+      "odds": 3.0,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 1.0756,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.204,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2646,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 3,
+      "horse_name": "��鴻�帥�若�������帥�����",
+      "prob": 0.761,
+      "odds": 4.4,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.6642,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3755,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.262,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "third": {
+      "horse_number": 7,
+      "horse_name": "��������泣�����",
+      "prob": 0.693,
+      "odds": 4.7,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.6074,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3395,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2592,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      6,
+      3,
+      7
+    ],
+    "predicted_top5_nums": [
+      6,
+      3,
+      7,
+      4,
+      2
+    ],
+    "ana_horse_num": 1,
+    "ana_horse_info": {
+      "horse_number": 1,
+      "horse_name": "�����������違����若��",
+      "prob": 0.3545,
+      "popularity": 7
+    },
+    "predicted_top5": [
+      {
+        "horse_number": 6,
+        "horse_name": "�����ゃ����違�����������",
+        "prob": 0.868,
+        "odds": 3.0
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "��鴻�帥�若�������帥�����",
+        "prob": 0.761,
+        "odds": 4.4
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "��������泣�����",
+        "prob": 0.693,
+        "odds": 4.7
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "��������≪����若�帥��",
+        "prob": 0.459,
+        "odds": 5.0
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "�����激��������������",
+        "prob": 0.191,
+        "odds": 5.9
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 1,
+        "horse_name": "�����������違����若��",
+        "ev_score": 3.261,
+        "prob": 0.3545,
+        "odds": 9.2
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "��������泣�����",
+        "ev_score": 2.963,
+        "prob": 0.6304,
+        "odds": 4.7
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "��鴻�帥�若�������帥�����",
+        "ev_score": 2.859,
+        "prob": 0.6499,
+        "odds": 4.4
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 0,
+      "total_cost": 0,
+      "strategy_note": "見送り（◎3.0倍>2.0）",
+      "use_wide": true
+    },
+    "simulation": {
+      "6": {
+        "horse_name": "�����ゃ����違�����������",
+        "top3_rate": 0.868,
+        "top3_std": 0.019,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.86,
+          "slow_pace": 0.87,
+          "normal": 0.88
+        }
+      },
+      "3": {
+        "horse_name": "��鴻�帥�若�������帥�����",
+        "top3_rate": 0.761,
+        "top3_std": 0.015,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.77,
+          "slow_pace": 0.75,
+          "normal": 0.77
+        }
+      },
+      "7": {
+        "horse_name": "��������泣�����",
+        "top3_rate": 0.693,
+        "top3_std": 0.023,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.68,
+          "slow_pace": 0.7,
+          "normal": 0.69
+        }
+      },
+      "4": {
+        "horse_name": "��������≪����若�帥��",
+        "top3_rate": 0.459,
+        "top3_std": 0.021,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.46,
+          "slow_pace": 0.46,
+          "normal": 0.46
+        }
+      },
+      "2": {
+        "horse_name": "�����激��������������",
+        "top3_rate": 0.191,
+        "top3_std": 0.016,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.2,
+          "slow_pace": 0.19,
+          "normal": 0.19
+        }
+      }
+    }
+  },
+  "202655060603": {
+    "race_name": "3罩潟��9腟�",
+    "race_date": "",
+    "start_time": "",
+    "venue": "佐賀",
+    "course_info": "芝1400m",
+    "honmei": {
+      "horse_number": 9,
+      "horse_name": "��≪�＜�≪�＜�����������",
+      "prob": 0.983,
+      "odds": 2.1,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 1.5854,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.208,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2559,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 5,
+      "horse_name": "��������祉����潟�������ゃ��",
+      "prob": 0.848,
+      "odds": 4.8,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.5818,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3838,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2497,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "third": {
+      "horse_number": 1,
+      "horse_name": "�����＜�����",
+      "prob": 0.585,
+      "odds": 6.7,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.3515,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3222,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2531,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      9,
+      5,
+      1
+    ],
+    "predicted_top5_nums": [
+      9,
+      5,
+      1,
+      6,
+      10
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 9,
+        "horse_name": "��≪�＜�≪�＜�����������",
+        "prob": 0.983,
+        "odds": 2.1
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "��������祉����潟�������ゃ��",
+        "prob": 0.848,
+        "odds": 4.8
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "�����＜�����",
+        "prob": 0.585,
+        "odds": 6.7
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "��������帥�ゃ��",
+        "prob": 0.353,
+        "odds": 7.8
+      },
+      {
+        "horse_number": 10,
+        "horse_name": "��帥�潟�帥�潟����若����ゃ��",
+        "prob": 0.181,
+        "odds": 7.9
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 4,
+        "horse_name": "��������ャ�潟��",
+        "ev_score": 7.014,
+        "prob": 0.0852,
+        "odds": 82.3
+      },
+      {
+        "horse_number": 11,
+        "horse_name": "�����ャ��������������",
+        "ev_score": 6.75,
+        "prob": 0.0814,
+        "odds": 82.9
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "��������若����������眼��",
+        "ev_score": 6.497,
+        "prob": 0.0578,
+        "odds": 112.4
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 0,
+      "total_cost": 0,
+      "strategy_note": "見送り（11頭: 多頭数フィルタ）",
+      "use_wide": true
+    },
+    "simulation": {
+      "9": {
+        "horse_name": "��≪�＜�≪�＜�����������",
+        "top3_rate": 0.983,
+        "top3_std": 0.006,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.98,
+          "slow_pace": 0.99,
+          "normal": 0.99
+        }
+      },
+      "5": {
+        "horse_name": "��������祉����潟�������ゃ��",
+        "top3_rate": 0.848,
+        "top3_std": 0.016,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.85,
+          "slow_pace": 0.85,
+          "normal": 0.84
+        }
+      },
+      "1": {
+        "horse_name": "�����＜�����",
+        "top3_rate": 0.585,
+        "top3_std": 0.022,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.59,
+          "slow_pace": 0.58,
+          "normal": 0.58
+        }
+      },
+      "6": {
+        "horse_name": "��������帥�ゃ��",
+        "top3_rate": 0.353,
+        "top3_std": 0.015,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.35,
+          "slow_pace": 0.36,
+          "normal": 0.35
+        }
+      },
+      "10": {
+        "horse_name": "��帥�潟�帥�潟����若����ゃ��",
+        "top3_rate": 0.181,
+        "top3_std": 0.015,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.19,
+          "slow_pace": 0.18,
+          "normal": 0.18
+        }
+      }
+    }
+  },
+  "202655060604": {
+    "race_name": "C2���4腟�",
+    "race_date": "",
+    "start_time": "",
+    "venue": "佐賀",
+    "course_info": "芝1400m",
+    "honmei": {
+      "horse_number": 7,
+      "horse_name": "�����ゃ�����������",
+      "prob": 0.961,
+      "odds": 2.5,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 1.3482,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2227,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2508,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 5,
+      "horse_name": "��������������ゃ����祉��",
+      "prob": 0.885,
+      "odds": 4.0,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.7721,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3634,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2528,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "third": {
+      "horse_number": 6,
+      "horse_name": "�����帥����祉�障��",
+      "prob": 0.877,
+      "odds": 4.1,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.7905,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.323,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2504,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      7,
+      5,
+      6
+    ],
+    "predicted_top5_nums": [
+      7,
+      5,
+      6,
+      8,
+      10
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 7,
+        "horse_name": "�����ゃ�����������",
+        "prob": 0.961,
+        "odds": 2.5
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "��������������ゃ����祉��",
+        "prob": 0.885,
+        "odds": 4.0
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "�����帥����祉�障��",
+        "prob": 0.877,
+        "odds": 4.1
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "��＜�����",
+        "prob": 0.245,
+        "odds": 7.5
+      },
+      {
+        "horse_number": 10,
+        "horse_name": "�����潟�障��",
+        "prob": 0.023,
+        "odds": 16.0
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 11,
+        "horse_name": "�����������祉��",
+        "ev_score": 6.979,
+        "prob": 0.1335,
+        "odds": 52.3
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "�����鴻�����",
+        "ev_score": 6.786,
+        "prob": 0.1696,
+        "odds": 40.0
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "��吾�������若�����������",
+        "ev_score": 6.434,
+        "prob": 0.1062,
+        "odds": 60.6
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 0,
+      "total_cost": 0,
+      "strategy_note": "見送り（11頭: 多頭数フィルタ）",
+      "use_wide": true
+    },
+    "simulation": {
+      "7": {
+        "horse_name": "�����ゃ�����������",
+        "top3_rate": 0.961,
+        "top3_std": 0.009,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.96,
+          "slow_pace": 0.96,
+          "normal": 0.96
+        }
+      },
+      "5": {
+        "horse_name": "��������������ゃ����祉��",
+        "top3_rate": 0.885,
+        "top3_std": 0.01,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.89,
+          "slow_pace": 0.89,
+          "normal": 0.88
+        }
+      },
+      "6": {
+        "horse_name": "�����帥����祉�障��",
+        "top3_rate": 0.877,
+        "top3_std": 0.016,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.88,
+          "slow_pace": 0.88,
+          "normal": 0.88
+        }
+      },
+      "8": {
+        "horse_name": "��＜�����",
+        "top3_rate": 0.245,
+        "top3_std": 0.014,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.25,
+          "slow_pace": 0.25,
+          "normal": 0.24
+        }
+      },
+      "10": {
+        "horse_name": "�����潟�障��",
+        "top3_rate": 0.023,
+        "top3_std": 0.006,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.02,
+          "slow_pace": 0.02,
+          "normal": 0.03
+        }
+      }
+    }
+  },
+  "202655060605": {
+    "race_name": "紊у��綏�莖�(A1)",
+    "race_date": "",
+    "start_time": "",
+    "venue": "佐賀",
+    "course_info": "芝1300m",
+    "honmei": {
+      "horse_number": 3,
+      "horse_name": "�����若����������若�蚊��",
+      "prob": 1.0,
+      "odds": 1.3,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 2.6148,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3075,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.261,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 1,
+      "horse_name": "��������若����潟����純�若��",
+      "prob": 0.749,
+      "odds": 8.9,
+      "shap_top": [
+        {
+          "feature": "popularity",
+          "value": 0.431,
+          "label": "人気"
+        },
+        {
+          "feature": "odds",
+          "value": 0.2443,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2581,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "third": {
+      "horse_number": 2,
+      "horse_name": "��������ｃ��������",
+      "prob": 0.668,
+      "odds": 9.2,
+      "shap_top": [
+        {
+          "feature": "popularity",
+          "value": 0.3457,
+          "label": "人気"
+        },
+        {
+          "feature": "odds",
+          "value": 0.2105,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2506,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      3,
+      1,
+      2
+    ],
+    "predicted_top5_nums": [
+      3,
+      1,
+      2,
+      5,
+      8
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 3,
+        "horse_name": "�����若����������若�蚊��",
+        "prob": 1.0,
+        "odds": 1.3
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "��������若����潟����純�若��",
+        "prob": 0.749,
+        "odds": 8.9
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "��������ｃ��������",
+        "prob": 0.668,
+        "odds": 9.2
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "�����若����������������ゃ��",
+        "prob": 0.379,
+        "odds": 9.9
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "��≪�ゃ�帥��",
+        "prob": 0.162,
+        "odds": 12.7
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 7,
+        "horse_name": "��眼�若����������ゃ�≪��",
+        "ev_score": 9.073,
+        "prob": 0.0189,
+        "odds": 480.6
+      },
+      {
+        "horse_number": 9,
+        "horse_name": "�����鴻�激�若�≪��������",
+        "ev_score": 8.095,
+        "prob": 0.1467,
+        "odds": 55.2
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "��眼�ｃ�������潟��",
+        "ev_score": 7.641,
+        "prob": 0.0621,
+        "odds": 123.1
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 0,
+      "total_cost": 0,
+      "strategy_note": "見送り（9頭: 多頭数フィルタ）",
+      "use_wide": true
+    },
+    "simulation": {
+      "3": {
+        "horse_name": "�����若����������若�蚊��",
+        "top3_rate": 1.0,
+        "top3_std": 0.001,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 1.0,
+          "slow_pace": 1.0,
+          "normal": 1.0
+        }
+      },
+      "1": {
+        "horse_name": "��������若����潟����純�若��",
+        "top3_rate": 0.749,
+        "top3_std": 0.017,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.76,
+          "slow_pace": 0.75,
+          "normal": 0.73
+        }
+      },
+      "2": {
+        "horse_name": "��������ｃ��������",
+        "top3_rate": 0.668,
+        "top3_std": 0.016,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.67,
+          "slow_pace": 0.67,
+          "normal": 0.67
+        }
+      },
+      "5": {
+        "horse_name": "�����若����������������ゃ��",
+        "top3_rate": 0.379,
+        "top3_std": 0.016,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.38,
+          "slow_pace": 0.37,
+          "normal": 0.39
+        }
+      },
+      "8": {
+        "horse_name": "��≪�ゃ�帥��",
+        "top3_rate": 0.162,
+        "top3_std": 0.014,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.15,
+          "slow_pace": 0.17,
+          "normal": 0.16
+        }
+      }
+    }
+  },
+  "202655060606": {
+    "race_name": "C2���3腟�",
+    "race_date": "",
+    "start_time": "",
+    "venue": "佐賀",
+    "course_info": "芝1300m",
+    "honmei": {
+      "horse_number": 7,
+      "horse_name": "��≪�������≪�眼�ｃ����若��",
+      "prob": 1.0,
+      "odds": 1.2,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 2.8549,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3261,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2524,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 5,
+      "horse_name": "�����若�����",
+      "prob": 0.898,
+      "odds": 8.5,
+      "shap_top": [
+        {
+          "feature": "popularity",
+          "value": 0.4238,
+          "label": "人気"
+        },
+        {
+          "feature": "odds",
+          "value": 0.2704,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.256,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "third": {
+      "horse_number": 3,
+      "horse_name": "�����潟�������潟��������",
+      "prob": 0.606,
+      "odds": 17.0,
+      "shap_top": [
+        {
+          "feature": "popularity",
+          "value": 0.3868,
+          "label": "人気"
+        },
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.0668,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2541,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      7,
+      5,
+      3
+    ],
+    "predicted_top5_nums": [
+      7,
+      5,
+      3,
+      1,
+      11
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 7,
+        "horse_name": "��≪�������≪�眼�ｃ����若��",
+        "prob": 1.0,
+        "odds": 1.2
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "�����若�����",
+        "prob": 0.898,
+        "odds": 8.5
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "�����潟�������潟��������",
+        "prob": 0.606,
+        "odds": 17.0
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "�����若����若�������激�с��",
+        "prob": 0.281,
+        "odds": 20.6
+      },
+      {
+        "horse_number": 11,
+        "horse_name": "��������≪����若��",
+        "prob": 0.151,
+        "odds": 20.7
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 6,
+        "horse_name": "���������",
+        "ev_score": 7.501,
+        "prob": 0.0997,
+        "odds": 75.2
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "�����潟�������潟��������",
+        "ev_score": 7.47,
+        "prob": 0.4394,
+        "odds": 17.0
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "�����若����若�������激�с��",
+        "ev_score": 7.411,
+        "prob": 0.3598,
+        "odds": 20.6
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 0,
+      "total_cost": 0,
+      "strategy_note": "見送り（12頭: 多頭数フィルタ）",
+      "use_wide": true
+    },
+    "simulation": {
+      "7": {
+        "horse_name": "��≪�������≪�眼�ｃ����若��",
+        "top3_rate": 1.0,
+        "top3_std": 0.0,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 1.0,
+          "slow_pace": 1.0,
+          "normal": 1.0
+        }
+      },
+      "5": {
+        "horse_name": "�����若�����",
+        "top3_rate": 0.898,
+        "top3_std": 0.015,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.9,
+          "slow_pace": 0.9,
+          "normal": 0.9
+        }
+      },
+      "3": {
+        "horse_name": "�����潟�������潟��������",
+        "top3_rate": 0.606,
+        "top3_std": 0.019,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.6,
+          "slow_pace": 0.59,
+          "normal": 0.62
+        }
+      },
+      "1": {
+        "horse_name": "�����若����若�������激�с��",
+        "top3_rate": 0.281,
+        "top3_std": 0.023,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.28,
+          "slow_pace": 0.28,
+          "normal": 0.28
+        }
+      },
+      "11": {
+        "horse_name": "��������≪����若��",
+        "top3_rate": 0.151,
+        "top3_std": 0.015,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.16,
+          "slow_pace": 0.15,
+          "normal": 0.15
+        }
+      }
+    }
+  },
+  "202655060607": {
+    "race_name": "C1���12腟�",
+    "race_date": "",
+    "start_time": "",
+    "venue": "佐賀",
+    "course_info": "芝1300m",
+    "honmei": {
+      "horse_number": 9,
+      "horse_name": "�����������������鴻��",
+      "prob": 1.0,
+      "odds": 1.1,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 3.3645,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3558,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.266,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 3,
+      "horse_name": "���������������������",
+      "prob": 0.904,
+      "odds": 10.4,
+      "shap_top": [
+        {
+          "feature": "popularity",
+          "value": 0.4473,
+          "label": "人気"
+        },
+        {
+          "feature": "odds",
+          "value": 0.1861,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2581,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "third": {
+      "horse_number": 5,
+      "horse_name": "�����ゃ�����������",
+      "prob": 0.815,
+      "odds": 13.0,
+      "shap_top": [
+        {
+          "feature": "popularity",
+          "value": 0.3761,
+          "label": "人気"
+        },
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.068,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2546,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      9,
+      3,
+      5
+    ],
+    "predicted_top5_nums": [
+      9,
+      3,
+      5,
+      2,
+      10
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 9,
+        "horse_name": "�����������������鴻��",
+        "prob": 1.0,
+        "odds": 1.1
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "���������������������",
+        "prob": 0.904,
+        "odds": 10.4
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "�����ゃ�����������",
+        "prob": 0.815,
+        "odds": 13.0
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "��≪�ゃ����若�ゃ��������",
+        "prob": 0.163,
+        "odds": 26.9
+      },
+      {
+        "horse_number": 10,
+        "horse_name": "�����с�鴻����ゃ��",
+        "prob": 0.06,
+        "odds": 32.2
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 2,
+        "horse_name": "��≪�ゃ����若�ゃ��������",
+        "ev_score": 8.307,
+        "prob": 0.3088,
+        "odds": 26.9
+      },
+      {
+        "horse_number": 10,
+        "horse_name": "�����с�鴻����ゃ��",
+        "ev_score": 7.741,
+        "prob": 0.2404,
+        "odds": 32.2
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "��激�潟����若����若��",
+        "ev_score": 7.269,
+        "prob": 0.1883,
+        "odds": 38.6
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 0,
+      "total_cost": 0,
+      "strategy_note": "見送り（10頭: 多頭数フィルタ）",
+      "use_wide": true
+    },
+    "simulation": {
+      "9": {
+        "horse_name": "�����������������鴻��",
+        "top3_rate": 1.0,
+        "top3_std": 0.0,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 1.0,
+          "slow_pace": 1.0,
+          "normal": 1.0
+        }
+      },
+      "3": {
+        "horse_name": "���������������������",
+        "top3_rate": 0.904,
+        "top3_std": 0.011,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.91,
+          "slow_pace": 0.91,
+          "normal": 0.9
+        }
+      },
+      "5": {
+        "horse_name": "�����ゃ�����������",
+        "top3_rate": 0.815,
+        "top3_std": 0.02,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.82,
+          "slow_pace": 0.81,
+          "normal": 0.81
+        }
+      },
+      "2": {
+        "horse_name": "��≪�ゃ����若�ゃ��������",
+        "top3_rate": 0.163,
+        "top3_std": 0.017,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.16,
+          "slow_pace": 0.17,
+          "normal": 0.17
+        }
+      },
+      "10": {
+        "horse_name": "�����с�鴻����ゃ��",
+        "top3_rate": 0.06,
+        "top3_std": 0.011,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.06,
+          "slow_pace": 0.06,
+          "normal": 0.07
+        }
+      }
+    }
+  },
+  "202655060608": {
+    "race_name": "C1���11腟�",
+    "race_date": "",
+    "start_time": "",
+    "venue": "佐賀",
+    "course_info": "芝1400m",
+    "honmei": {
+      "horse_number": 6,
+      "horse_name": "�����ゃ����������潟��",
+      "prob": 0.999,
+      "odds": 1.6,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 2.1142,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2706,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2555,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 7,
+      "horse_name": "�����若�激�ｃ��",
+      "prob": 0.774,
+      "odds": 8.9,
+      "shap_top": [
+        {
+          "feature": "popularity",
+          "value": 0.4296,
+          "label": "人気"
+        },
+        {
+          "feature": "odds",
+          "value": 0.2454,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2556,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "third": {
+      "horse_number": 11,
+      "horse_name": "��������������ゃ�鴻�帥��",
+      "prob": 0.605,
+      "odds": 9.6,
+      "shap_top": [
+        {
+          "feature": "popularity",
+          "value": 0.3542,
+          "label": "人気"
+        },
+        {
+          "feature": "odds",
+          "value": 0.1997,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2535,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      6,
+      7,
+      11
+    ],
+    "predicted_top5_nums": [
+      6,
+      7,
+      11,
+      10,
+      5
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 6,
+        "horse_name": "�����ゃ����������潟��",
+        "prob": 0.999,
+        "odds": 1.6
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "�����若�激�ｃ��",
+        "prob": 0.774,
+        "odds": 8.9
+      },
+      {
+        "horse_number": 11,
+        "horse_name": "��������������ゃ�鴻�帥��",
+        "prob": 0.605,
+        "odds": 9.6
+      },
+      {
+        "horse_number": 10,
+        "horse_name": "��鴻����ゃ�������潟��",
+        "prob": 0.361,
+        "odds": 10.5
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "�����������潟��",
+        "prob": 0.136,
+        "odds": 13.2
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 4,
+        "horse_name": "��＜�ゃ�激�с����宴�潟�祉��",
+        "ev_score": 6.13,
+        "prob": 0.1165,
+        "odds": 52.6
+      },
+      {
+        "horse_number": 9,
+        "horse_name": "��≪�鴻�潟��������",
+        "ev_score": 5.89,
+        "prob": 0.1567,
+        "odds": 37.6
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "���������",
+        "ev_score": 5.762,
+        "prob": 0.1516,
+        "odds": 38.0
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 0,
+      "total_cost": 0,
+      "strategy_note": "見送り（11頭: 多頭数フィルタ）",
+      "use_wide": true
+    },
+    "simulation": {
+      "6": {
+        "horse_name": "�����ゃ����������潟��",
+        "top3_rate": 0.999,
+        "top3_std": 0.002,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 1.0,
+          "slow_pace": 1.0,
+          "normal": 1.0
+        }
+      },
+      "7": {
+        "horse_name": "�����若�激�ｃ��",
+        "top3_rate": 0.774,
+        "top3_std": 0.017,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.77,
+          "slow_pace": 0.77,
+          "normal": 0.77
+        }
+      },
+      "11": {
+        "horse_name": "��������������ゃ�鴻�帥��",
+        "top3_rate": 0.605,
+        "top3_std": 0.015,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.61,
+          "slow_pace": 0.6,
+          "normal": 0.6
+        }
+      },
+      "10": {
+        "horse_name": "��鴻����ゃ�������潟��",
+        "top3_rate": 0.361,
+        "top3_std": 0.015,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.36,
+          "slow_pace": 0.36,
+          "normal": 0.35
+        }
+      },
+      "5": {
+        "horse_name": "�����������潟��",
+        "top3_rate": 0.136,
+        "top3_std": 0.016,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.14,
+          "slow_pace": 0.13,
+          "normal": 0.14
+        }
+      }
+    }
+  },
+  "202655060609": {
+    "race_name": "��泣�������若����ゃ��腴狗Μ莖�(B)",
+    "race_date": "",
+    "start_time": "",
+    "venue": "佐賀",
+    "course_info": "芝1400m",
+    "honmei": {
+      "horse_number": 8,
+      "horse_name": "������������������",
+      "prob": 0.982,
+      "odds": 2.3,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 1.4385,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.213,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2518,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 5,
+      "horse_name": "��泣����激�潟�違�違����若��",
+      "prob": 0.891,
+      "odds": 4.4,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.6581,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3782,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2519,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "third": {
+      "horse_number": 3,
+      "horse_name": "�����激�������ゃ�泣�����",
+      "prob": 0.809,
+      "odds": 5.1,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.5426,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3393,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2533,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      8,
+      5,
+      3
+    ],
+    "predicted_top5_nums": [
+      8,
+      5,
+      3,
+      7,
+      6
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 8,
+        "horse_name": "������������������",
+        "prob": 0.982,
+        "odds": 2.3
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "��泣����激�潟�違�違����若��",
+        "prob": 0.891,
+        "odds": 4.4
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "�����激�������ゃ�泣�����",
+        "prob": 0.809,
+        "odds": 5.1
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "��祉����激�若�潟����潟�����",
+        "prob": 0.19,
+        "odds": 10.9
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "��≪�������ｃ�潟�違��������",
+        "prob": 0.072,
+        "odds": 12.0
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 2,
+        "horse_name": "�����������宴����ｃ�潟��",
+        "ev_score": 6.874,
+        "prob": 0.1397,
+        "odds": 49.2
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "��祉����激�若�潟����潟�����",
+        "ev_score": 4.787,
+        "prob": 0.4392,
+        "odds": 10.9
+      },
+      {
+        "horse_number": 9,
+        "horse_name": "�����吾�泣����≪�若��",
+        "ev_score": 4.741,
+        "prob": 0.2549,
+        "odds": 18.6
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 0,
+      "total_cost": 0,
+      "strategy_note": "見送り（9頭: 多頭数フィルタ）",
+      "use_wide": true
+    },
+    "simulation": {
+      "8": {
+        "horse_name": "������������������",
+        "top3_rate": 0.982,
+        "top3_std": 0.007,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.98,
+          "slow_pace": 0.98,
+          "normal": 0.98
+        }
+      },
+      "5": {
+        "horse_name": "��泣����激�潟�違�違����若��",
+        "top3_rate": 0.891,
+        "top3_std": 0.014,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.9,
+          "slow_pace": 0.89,
+          "normal": 0.88
+        }
+      },
+      "3": {
+        "horse_name": "�����激�������ゃ�泣�����",
+        "top3_rate": 0.809,
+        "top3_std": 0.016,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.81,
+          "slow_pace": 0.81,
+          "normal": 0.81
+        }
+      },
+      "7": {
+        "horse_name": "��祉����激�若�潟����潟�����",
+        "top3_rate": 0.19,
+        "top3_std": 0.019,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.2,
+          "slow_pace": 0.19,
+          "normal": 0.19
+        }
+      },
+      "6": {
+        "horse_name": "��≪�������ｃ�潟�違��������",
+        "top3_rate": 0.072,
+        "top3_std": 0.012,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.06,
+          "slow_pace": 0.07,
+          "normal": 0.08
+        }
+      }
+    }
+  },
+  "202655060610": {
+    "race_name": "�����潟�鴻����≪�活��",
+    "race_date": "",
+    "start_time": "",
+    "venue": "佐賀",
+    "course_info": "芝1400m",
+    "honmei": {
+      "horse_number": 3,
+      "horse_name": "�����ゃ����������潟����с��",
+      "prob": 0.959,
+      "odds": 3.1,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 1.1137,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3816,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.254,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 4,
+      "horse_name": "��泣�潟����若�����",
+      "prob": 0.933,
+      "odds": 2.7,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 1.1944,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.1991,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2552,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "third": {
+      "horse_number": 8,
+      "horse_name": "�����ゃ����潟�������若��",
+      "prob": 0.876,
+      "odds": 3.8,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.8096,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3216,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2489,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      3,
+      4,
+      8
+    ],
+    "predicted_top5_nums": [
+      3,
+      4,
+      8,
+      7,
+      6
+    ],
+    "ana_horse_num": null,
+    "ana_horse_info": {},
+    "predicted_top5": [
+      {
+        "horse_number": 3,
+        "horse_name": "�����ゃ����������潟����с��",
+        "prob": 0.959,
+        "odds": 3.1
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "��泣�潟����若�����",
+        "prob": 0.933,
+        "odds": 2.7
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "�����ゃ����潟�������若��",
+        "prob": 0.876,
+        "odds": 3.8
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "�����������潟����＜�若��",
+        "prob": 0.174,
+        "odds": 9.1
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "�����������������吾��",
+        "prob": 0.054,
+        "odds": 9.6
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 1,
+        "horse_name": "�����＜����潟�潟����若��",
+        "ev_score": 6.537,
+        "prob": 0.1028,
+        "odds": 63.6
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "�����������吾�激�潟�違��",
+        "ev_score": 6.528,
+        "prob": 0.176,
+        "odds": 37.1
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "�����ゃ�������������潟��",
+        "ev_score": 6.26,
+        "prob": 0.2336,
+        "odds": 26.8
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 0,
+      "total_cost": 0,
+      "strategy_note": "見送り（◎3.1倍>2.0）",
+      "use_wide": true
+    },
+    "simulation": {
+      "3": {
+        "horse_name": "�����ゃ����������潟����с��",
+        "top3_rate": 0.959,
+        "top3_std": 0.008,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.96,
+          "slow_pace": 0.96,
+          "normal": 0.96
+        }
+      },
+      "4": {
+        "horse_name": "��泣�潟����若�����",
+        "top3_rate": 0.933,
+        "top3_std": 0.008,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.93,
+          "slow_pace": 0.93,
+          "normal": 0.93
+        }
+      },
+      "8": {
+        "horse_name": "�����ゃ����潟�������若��",
+        "top3_rate": 0.876,
+        "top3_std": 0.014,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.88,
+          "slow_pace": 0.88,
+          "normal": 0.87
+        }
+      },
+      "7": {
+        "horse_name": "�����������潟����＜�若��",
+        "top3_rate": 0.174,
+        "top3_std": 0.018,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.17,
+          "slow_pace": 0.17,
+          "normal": 0.17
+        }
+      },
+      "6": {
+        "horse_name": "�����������������吾��",
+        "top3_rate": 0.054,
+        "top3_std": 0.01,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.05,
+          "slow_pace": 0.05,
+          "normal": 0.06
+        }
+      }
+    }
+  },
+  "202655060611": {
+    "race_name": "���腮�莖�(C2)",
+    "race_date": "",
+    "start_time": "",
+    "venue": "佐賀",
+    "course_info": "芝1400m",
+    "honmei": {
+      "horse_number": 7,
+      "horse_name": "�����鴻�����������",
+      "prob": 0.791,
+      "odds": 4.3,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.6764,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.2031,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2468,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 3,
+      "horse_name": "��������純�潟����純�若��",
+      "prob": 0.757,
+      "odds": 6.3,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.4132,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3923,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2519,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "third": {
+      "horse_number": 11,
+      "horse_name": "��鴻�帥�若����ｃ�≪��",
+      "prob": 0.598,
+      "odds": 6.8,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.3472,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3204,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2503,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      7,
+      3,
+      11
+    ],
+    "predicted_top5_nums": [
+      7,
+      3,
+      11,
+      9,
+      4
+    ],
+    "ana_horse_num": 5,
+    "ana_horse_info": {
+      "horse_number": 5,
+      "horse_name": "�����潟����帥�ゃ�激�с��",
+      "prob": 0.3763,
+      "popularity": 6
+    },
+    "predicted_top5": [
+      {
+        "horse_number": 7,
+        "horse_name": "�����鴻�����������",
+        "prob": 0.791,
+        "odds": 4.3
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "��������純�潟����純�若��",
+        "prob": 0.757,
+        "odds": 6.3
+      },
+      {
+        "horse_number": 11,
+        "horse_name": "��鴻�帥�若����ｃ�≪��",
+        "prob": 0.598,
+        "odds": 6.8
+      },
+      {
+        "horse_number": 9,
+        "horse_name": "�����ｃ�若�冴����純����吾��",
+        "prob": 0.423,
+        "odds": 7.0
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "��������������若��",
+        "prob": 0.192,
+        "odds": 8.5
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 8,
+        "horse_name": "��違�������������ｃ��",
+        "ev_score": 5.35,
+        "prob": 0.1851,
+        "odds": 28.9
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "��������潟����������激��",
+        "ev_score": 4.637,
+        "prob": 0.239,
+        "odds": 19.4
+      },
+      {
+        "horse_number": 2,
+        "horse_name": "��＜�若��������������",
+        "ev_score": 4.485,
+        "prob": 0.2623,
+        "odds": 17.1
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 0,
+      "total_cost": 0,
+      "strategy_note": "見送り（11頭: 多頭数フィルタ）",
+      "use_wide": true
+    },
+    "simulation": {
+      "7": {
+        "horse_name": "�����鴻�����������",
+        "top3_rate": 0.791,
+        "top3_std": 0.019,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.77,
+          "slow_pace": 0.8,
+          "normal": 0.8
+        }
+      },
+      "3": {
+        "horse_name": "��������純�潟����純�若��",
+        "top3_rate": 0.757,
+        "top3_std": 0.016,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.76,
+          "slow_pace": 0.76,
+          "normal": 0.75
+        }
+      },
+      "11": {
+        "horse_name": "��鴻�帥�若����ｃ�≪��",
+        "top3_rate": 0.598,
+        "top3_std": 0.017,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.61,
+          "slow_pace": 0.59,
+          "normal": 0.59
+        }
+      },
+      "9": {
+        "horse_name": "�����ｃ�若�冴����純����吾��",
+        "top3_rate": 0.423,
+        "top3_std": 0.021,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.43,
+          "slow_pace": 0.42,
+          "normal": 0.42
+        }
+      },
+      "4": {
+        "horse_name": "��������������若��",
+        "top3_rate": 0.192,
+        "top3_std": 0.014,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.2,
+          "slow_pace": 0.19,
+          "normal": 0.19
+        }
+      }
+    }
+  },
+  "202655060612": {
+    "race_name": "SAGA��������潟�吾�ｃ�若��(3罩�)",
+    "race_date": "",
+    "start_time": "",
+    "venue": "佐賀",
+    "course_info": "芝1300m",
+    "honmei": {
+      "horse_number": 7,
+      "horse_name": "�����������鴻����ｃ��",
+      "prob": 0.903,
+      "odds": 3.8,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.7927,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3604,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2492,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 3,
+      "horse_name": "�����ｃ����若�冴��������",
+      "prob": 0.899,
+      "odds": 3.2,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 1.0237,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.181,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2558,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "third": {
+      "horse_number": 9,
+      "horse_name": "�����潟�����",
+      "prob": 0.546,
+      "odds": 7.2,
+      "shap_top": [
+        {
+          "feature": "odds",
+          "value": 0.3272,
+          "label": "オッズ有利"
+        },
+        {
+          "feature": "popularity",
+          "value": 0.3223,
+          "label": "人気"
+        },
+        {
+          "feature": "horse_weight",
+          "value": -0.2558,
+          "label": "馬体重やや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      7,
+      3,
+      9
+    ],
+    "predicted_top5_nums": [
+      7,
+      3,
+      9,
+      5,
+      4
+    ],
+    "ana_horse_num": 2,
+    "ana_horse_info": {
+      "horse_number": 2,
+      "horse_name": "������",
+      "prob": 0.3648,
+      "popularity": 6
+    },
+    "predicted_top5": [
+      {
+        "horse_number": 7,
+        "horse_name": "�����������鴻����ｃ��",
+        "prob": 0.903,
+        "odds": 3.8
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "�����ｃ����若�冴��������",
+        "prob": 0.899,
+        "odds": 3.2
+      },
+      {
+        "horse_number": 9,
+        "horse_name": "�����潟�����",
+        "prob": 0.546,
+        "odds": 7.2
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "�����激�������������潟��",
+        "prob": 0.335,
+        "odds": 7.8
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "��泣�潟����ゃ�冴����潟�帥��",
+        "prob": 0.175,
+        "odds": 8.0
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 8,
+        "horse_name": "�����宴�≪����吟�����",
+        "ev_score": 6.797,
+        "prob": 0.0682,
+        "odds": 99.7
+      },
+      {
+        "horse_number": 1,
+        "horse_name": "��������若����ゃ�ゃ��",
+        "ev_score": 6.047,
+        "prob": 0.0341,
+        "odds": 177.2
+      },
+      {
+        "horse_number": 10,
+        "horse_name": "��≪����若��",
+        "ev_score": 4.253,
+        "prob": 0.2726,
+        "odds": 15.6
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 0,
+      "total_cost": 0,
+      "strategy_note": "見送り（10頭: 多頭数フィルタ）",
+      "use_wide": true
+    },
+    "simulation": {
+      "7": {
+        "horse_name": "�����������鴻����ｃ��",
+        "top3_rate": 0.903,
+        "top3_std": 0.014,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.9,
+          "slow_pace": 0.9,
+          "normal": 0.91
+        }
+      },
+      "3": {
+        "horse_name": "�����ｃ����若�冴��������",
+        "top3_rate": 0.899,
+        "top3_std": 0.011,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.9,
+          "slow_pace": 0.9,
+          "normal": 0.9
+        }
+      },
+      "9": {
+        "horse_name": "�����潟�����",
+        "top3_rate": 0.546,
+        "top3_std": 0.023,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.55,
+          "slow_pace": 0.55,
+          "normal": 0.54
+        }
+      },
+      "5": {
+        "horse_name": "�����激�������������潟��",
+        "top3_rate": 0.335,
+        "top3_std": 0.019,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.33,
+          "slow_pace": 0.34,
+          "normal": 0.33
+        }
+      },
+      "4": {
+        "horse_name": "��泣�潟����ゃ�冴����潟�帥��",
+        "top3_rate": 0.175,
+        "top3_std": 0.018,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.18,
+          "slow_pace": 0.17,
+          "normal": 0.18
+        }
+      }
+    }
+  },
+  "202665060601": {
+    "race_name": "罩ｆ�����薤�������荐�綽究��",
+    "race_date": "",
+    "start_time": "",
+    "venue": "",
+    "course_info": "芝200m",
+    "honmei": {
+      "horse_number": 7,
+      "horse_name": "��鴻�若����若�������≪��",
+      "prob": 0.325,
+      "odds": null,
+      "shap_top": [
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.0887,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight_diff",
+          "value": 0.0463,
+          "label": "馬体重増減"
+        },
+        {
+          "feature": "popularity",
+          "value": -0.2269,
+          "label": "人気やや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 8,
+      "horse_name": "��������潟����若��",
+      "prob": 0.314,
+      "odds": null,
+      "shap_top": [
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.0889,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight_diff",
+          "value": 0.046,
+          "label": "馬体重増減"
+        },
+        {
+          "feature": "popularity",
+          "value": -0.2281,
+          "label": "人気やや悪"
+        }
+      ]
+    },
+    "third": {
+      "horse_number": 4,
+      "horse_name": "��������潟�祉�鴻�����",
+      "prob": 0.306,
+      "odds": null,
+      "shap_top": [
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.078,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight_diff",
+          "value": 0.0465,
+          "label": "馬体重増減"
+        },
+        {
+          "feature": "popularity",
+          "value": -0.2274,
+          "label": "人気やや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      7,
+      8,
+      4
+    ],
+    "predicted_top5_nums": [
+      7,
+      8,
+      4,
+      5,
+      3
+    ],
+    "ana_horse_num": 6,
+    "ana_horse_info": {
+      "horse_number": 6,
+      "horse_name": "��吾�с�ゃ��������",
+      "prob": 0.3581,
+      "popularity": 6
+    },
+    "predicted_top5": [
+      {
+        "horse_number": 7,
+        "horse_name": "��鴻�若����若�������≪��",
+        "prob": 0.325,
+        "odds": null
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "��������潟����若��",
+        "prob": 0.314,
+        "odds": null
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "��������潟�祉�鴻�����",
+        "prob": 0.306,
+        "odds": null
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "�����ｃ����������ゃ��",
+        "prob": 0.317,
+        "odds": null
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "��≪�≪�≪�潟�����������",
+        "prob": 0.303,
+        "odds": null
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 7,
+        "horse_name": "��鴻�若����若�������≪��",
+        "ev_score": 7.013,
+        "prob": 0.3634,
+        "odds": null
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "��������潟����若��",
+        "ev_score": 6.98,
+        "prob": 0.3617,
+        "odds": null
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "��������潟�祉�鴻�����",
+        "ev_score": 6.94,
+        "prob": 0.3596,
+        "odds": null
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 0,
+      "total_cost": 0,
+      "strategy_note": "見送り（フィルタ: 回収率低）",
+      "use_wide": true
+    },
+    "simulation": {
+      "7": {
+        "horse_name": "��鴻�若����若�������≪��",
+        "top3_rate": 0.325,
+        "top3_std": 0.028,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.32,
+          "slow_pace": 0.32,
+          "normal": 0.33
+        }
+      },
+      "8": {
+        "horse_name": "��������潟����若��",
+        "top3_rate": 0.314,
+        "top3_std": 0.02,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.31,
+          "slow_pace": 0.32,
+          "normal": 0.32
+        }
+      },
+      "4": {
+        "horse_name": "��������潟�祉�鴻�����",
+        "top3_rate": 0.306,
+        "top3_std": 0.019,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.31,
+          "slow_pace": 0.3,
+          "normal": 0.31
+        }
+      },
+      "5": {
+        "horse_name": "�����ｃ����������ゃ��",
+        "top3_rate": 0.317,
+        "top3_std": 0.015,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.31,
+          "slow_pace": 0.32,
+          "normal": 0.32
+        }
+      },
+      "3": {
+        "horse_name": "��≪�≪�≪�潟�����������",
+        "top3_rate": 0.303,
+        "top3_std": 0.02,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.31,
+          "slow_pace": 0.3,
+          "normal": 0.3
+        }
+      }
+    }
+  },
+  "202665060602": {
+    "race_name": "�����������ｃ��絽�綺�HFFM荐�綽�",
+    "race_date": "",
+    "start_time": "",
+    "venue": "",
+    "course_info": "芝200m",
+    "honmei": {
+      "horse_number": 7,
+      "horse_name": "��������祉�ゃ�帥�宴��",
+      "prob": 0.341,
+      "odds": null,
+      "shap_top": [
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.0889,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight_diff",
+          "value": 0.0462,
+          "label": "馬体重増減"
+        },
+        {
+          "feature": "popularity",
+          "value": -0.2267,
+          "label": "人気やや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 8,
+      "horse_name": "��吾�с�ゃ�������潟�����",
+      "prob": 0.346,
+      "odds": null,
+      "shap_top": [
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.0896,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight_diff",
+          "value": 0.0462,
+          "label": "馬体重増減"
+        },
+        {
+          "feature": "popularity",
+          "value": -0.2278,
+          "label": "人気やや悪"
+        }
+      ]
+    },
+    "third": {
+      "horse_number": 5,
+      "horse_name": "��吟�����������",
+      "prob": 0.34,
+      "odds": null,
+      "shap_top": [
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.0779,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight_diff",
+          "value": 0.0465,
+          "label": "馬体重増減"
+        },
+        {
+          "feature": "popularity",
+          "value": -0.228,
+          "label": "人気やや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      7,
+      8,
+      5
+    ],
+    "predicted_top5_nums": [
+      7,
+      8,
+      5,
+      4,
+      3
+    ],
+    "ana_horse_num": 6,
+    "ana_horse_info": {
+      "horse_number": 6,
+      "horse_name": "��吾�с�ゃ��������",
+      "prob": 0.3581,
+      "popularity": 6
+    },
+    "predicted_top5": [
+      {
+        "horse_number": 7,
+        "horse_name": "��������祉�ゃ�帥�宴��",
+        "prob": 0.341,
+        "odds": null
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "��吾�с�ゃ�������潟�����",
+        "prob": 0.346,
+        "odds": null
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "��吟�����������",
+        "prob": 0.34,
+        "odds": null
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "��帥�������≪�ゃ�����",
+        "prob": 0.344,
+        "odds": null
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "�����������������違�����",
+        "prob": 0.344,
+        "odds": null
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 7,
+        "horse_name": "��������祉�ゃ�帥�宴��",
+        "ev_score": 6.967,
+        "prob": 0.361,
+        "odds": null
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "��吾�с�ゃ�������潟�����",
+        "ev_score": 6.951,
+        "prob": 0.3601,
+        "odds": null
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "��吟�����������",
+        "ev_score": 6.94,
+        "prob": 0.3596,
+        "odds": null
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 0,
+      "total_cost": 0,
+      "strategy_note": "見送り（フィルタ: 回収率低）",
+      "use_wide": true
+    },
+    "simulation": {
+      "7": {
+        "horse_name": "��������祉�ゃ�帥�宴��",
+        "top3_rate": 0.341,
+        "top3_std": 0.023,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.34,
+          "slow_pace": 0.34,
+          "normal": 0.35
+        }
+      },
+      "8": {
+        "horse_name": "��吾�с�ゃ�������潟�����",
+        "top3_rate": 0.346,
+        "top3_std": 0.021,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.35,
+          "slow_pace": 0.36,
+          "normal": 0.33
+        }
+      },
+      "5": {
+        "horse_name": "��吟�����������",
+        "top3_rate": 0.34,
+        "top3_std": 0.023,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.34,
+          "slow_pace": 0.34,
+          "normal": 0.34
+        }
+      },
+      "4": {
+        "horse_name": "��帥�������≪�ゃ�����",
+        "top3_rate": 0.344,
+        "top3_std": 0.019,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.35,
+          "slow_pace": 0.33,
+          "normal": 0.35
+        }
+      },
+      "3": {
+        "horse_name": "�����������������違�����",
+        "top3_rate": 0.344,
+        "top3_std": 0.025,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.33,
+          "slow_pace": 0.35,
+          "normal": 0.35
+        }
+      }
+    }
+  },
+  "202665060603": {
+    "race_name": "臂�臂純�＜�����茯������ヨ��綽�",
+    "race_date": "",
+    "start_time": "",
+    "venue": "",
+    "course_info": "芝200m",
+    "honmei": {
+      "horse_number": 8,
+      "horse_name": "�����������帥��",
+      "prob": 0.32,
+      "odds": null,
+      "shap_top": [
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.0889,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight_diff",
+          "value": 0.046,
+          "label": "馬体重増減"
+        },
+        {
+          "feature": "popularity",
+          "value": -0.2277,
+          "label": "人気やや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 7,
+      "horse_name": "��������若�����������������",
+      "prob": 0.314,
+      "odds": null,
+      "shap_top": [
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.0889,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight_diff",
+          "value": 0.0462,
+          "label": "馬体重増減"
+        },
+        {
+          "feature": "popularity",
+          "value": -0.2267,
+          "label": "人気やや悪"
+        }
+      ]
+    },
+    "third": {
+      "horse_number": 4,
+      "horse_name": "�����潟��������",
+      "prob": 0.306,
+      "odds": null,
+      "shap_top": [
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.078,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight_diff",
+          "value": 0.0465,
+          "label": "馬体重増減"
+        },
+        {
+          "feature": "popularity",
+          "value": -0.2274,
+          "label": "人気やや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      8,
+      7,
+      4
+    ],
+    "predicted_top5_nums": [
+      8,
+      7,
+      4,
+      5,
+      3
+    ],
+    "ana_horse_num": 6,
+    "ana_horse_info": {
+      "horse_number": 6,
+      "horse_name": "������",
+      "prob": 0.3581,
+      "popularity": 6
+    },
+    "predicted_top5": [
+      {
+        "horse_number": 8,
+        "horse_name": "�����������帥��",
+        "prob": 0.32,
+        "odds": null
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "��������若�����������������",
+        "prob": 0.314,
+        "odds": null
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "�����潟��������",
+        "prob": 0.306,
+        "odds": null
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "��������������潟�����",
+        "prob": 0.317,
+        "odds": null
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "�����с�≪����若����若��",
+        "prob": 0.304,
+        "odds": null
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 8,
+        "horse_name": "�����������帥��",
+        "ev_score": 6.98,
+        "prob": 0.3617,
+        "odds": null
+      },
+      {
+        "horse_number": 7,
+        "horse_name": "��������若�����������������",
+        "ev_score": 6.967,
+        "prob": 0.361,
+        "odds": null
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "�����潟��������",
+        "ev_score": 6.94,
+        "prob": 0.3596,
+        "odds": null
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 0,
+      "total_cost": 0,
+      "strategy_note": "見送り（フィルタ: 回収率低）",
+      "use_wide": true
+    },
+    "simulation": {
+      "8": {
+        "horse_name": "�����������帥��",
+        "top3_rate": 0.32,
+        "top3_std": 0.028,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.32,
+          "slow_pace": 0.32,
+          "normal": 0.33
+        }
+      },
+      "7": {
+        "horse_name": "��������若�����������������",
+        "top3_rate": 0.314,
+        "top3_std": 0.021,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.31,
+          "slow_pace": 0.32,
+          "normal": 0.32
+        }
+      },
+      "4": {
+        "horse_name": "�����潟��������",
+        "top3_rate": 0.306,
+        "top3_std": 0.019,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.31,
+          "slow_pace": 0.3,
+          "normal": 0.31
+        }
+      },
+      "5": {
+        "horse_name": "��������������潟�����",
+        "top3_rate": 0.317,
+        "top3_std": 0.016,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.32,
+          "slow_pace": 0.32,
+          "normal": 0.32
+        }
+      },
+      "3": {
+        "horse_name": "�����с�≪����若����若��",
+        "top3_rate": 0.304,
+        "top3_std": 0.02,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.31,
+          "slow_pace": 0.3,
+          "normal": 0.31
+        }
+      }
+    }
+  },
+  "202665060604": {
+    "race_name": "��ゅ����私�������紫�鎣＜�紫┣���荐�綽�",
+    "race_date": "",
+    "start_time": "",
+    "venue": "",
+    "course_info": "芝200m",
+    "honmei": {
+      "horse_number": 7,
+      "horse_name": "��泣�������帥�����",
+      "prob": 0.326,
+      "odds": null,
+      "shap_top": [
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.0887,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight_diff",
+          "value": 0.0463,
+          "label": "馬体重増減"
+        },
+        {
+          "feature": "popularity",
+          "value": -0.2278,
+          "label": "人気やや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 4,
+      "horse_name": "������������������",
+      "prob": 0.31,
+      "odds": null,
+      "shap_top": [
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.078,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight_diff",
+          "value": 0.0465,
+          "label": "馬体重増減"
+        },
+        {
+          "feature": "popularity",
+          "value": -0.2275,
+          "label": "人気やや悪"
+        }
+      ]
+    },
+    "third": {
+      "horse_number": 5,
+      "horse_name": "��������鴻�帥�������ｃ�≪��",
+      "prob": 0.306,
+      "odds": null,
+      "shap_top": [
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.0779,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight_diff",
+          "value": 0.0465,
+          "label": "馬体重増減"
+        },
+        {
+          "feature": "popularity",
+          "value": -0.2279,
+          "label": "人気やや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      7,
+      4,
+      5
+    ],
+    "predicted_top5_nums": [
+      7,
+      4,
+      5,
+      3,
+      8
+    ],
+    "ana_horse_num": 6,
+    "ana_horse_info": {
+      "horse_number": 6,
+      "horse_name": "��吾�с�ゃ����若�����",
+      "prob": 0.3581,
+      "popularity": 6
+    },
+    "predicted_top5": [
+      {
+        "horse_number": 7,
+        "horse_name": "��泣�������帥�����",
+        "prob": 0.326,
+        "odds": null
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "������������������",
+        "prob": 0.31,
+        "odds": null
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "��������鴻�帥�������ｃ�≪��",
+        "prob": 0.306,
+        "odds": null
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "��������激�с��������",
+        "prob": 0.317,
+        "odds": null
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "�����＜��������������",
+        "prob": 0.304,
+        "odds": null
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 7,
+        "horse_name": "��泣�������帥�����",
+        "ev_score": 7.013,
+        "prob": 0.3634,
+        "odds": null
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "������������������",
+        "ev_score": 6.94,
+        "prob": 0.3596,
+        "odds": null
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "��������鴻�帥�������ｃ�≪��",
+        "ev_score": 6.94,
+        "prob": 0.3596,
+        "odds": null
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 0,
+      "total_cost": 0,
+      "strategy_note": "見送り（フィルタ: 回収率低）",
+      "use_wide": true
+    },
+    "simulation": {
+      "7": {
+        "horse_name": "��泣�������帥�����",
+        "top3_rate": 0.326,
+        "top3_std": 0.027,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.32,
+          "slow_pace": 0.32,
+          "normal": 0.33
+        }
+      },
+      "4": {
+        "horse_name": "������������������",
+        "top3_rate": 0.31,
+        "top3_std": 0.02,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.3,
+          "slow_pace": 0.31,
+          "normal": 0.31
+        }
+      },
+      "5": {
+        "horse_name": "��������鴻�帥�������ｃ�≪��",
+        "top3_rate": 0.306,
+        "top3_std": 0.019,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.31,
+          "slow_pace": 0.3,
+          "normal": 0.31
+        }
+      },
+      "3": {
+        "horse_name": "��������激�с��������",
+        "top3_rate": 0.317,
+        "top3_std": 0.015,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.31,
+          "slow_pace": 0.32,
+          "normal": 0.32
+        }
+      },
+      "8": {
+        "horse_name": "�����＜��������������",
+        "top3_rate": 0.304,
+        "top3_std": 0.02,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.31,
+          "slow_pace": 0.3,
+          "normal": 0.3
+        }
+      }
+    }
+  },
+  "202665060605": {
+    "race_name": "�����������������傑��",
+    "race_date": "",
+    "start_time": "",
+    "venue": "",
+    "course_info": "芝200m",
+    "honmei": {
+      "horse_number": 7,
+      "horse_name": "�����≪��",
+      "prob": 0.325,
+      "odds": null,
+      "shap_top": [
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.0887,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight_diff",
+          "value": 0.0463,
+          "label": "馬体重増減"
+        },
+        {
+          "feature": "popularity",
+          "value": -0.2283,
+          "label": "人気やや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 8,
+      "horse_name": "�����������帥����ゃ��",
+      "prob": 0.314,
+      "odds": null,
+      "shap_top": [
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.0889,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight_diff",
+          "value": 0.046,
+          "label": "馬体重増減"
+        },
+        {
+          "feature": "popularity",
+          "value": -0.2268,
+          "label": "人気やや悪"
+        }
+      ]
+    },
+    "third": {
+      "horse_number": 4,
+      "horse_name": "��������������ゃ��",
+      "prob": 0.306,
+      "odds": null,
+      "shap_top": [
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.078,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight_diff",
+          "value": 0.0465,
+          "label": "馬体重増減"
+        },
+        {
+          "feature": "popularity",
+          "value": -0.2279,
+          "label": "人気やや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      7,
+      8,
+      4
+    ],
+    "predicted_top5_nums": [
+      7,
+      8,
+      4,
+      5,
+      3
+    ],
+    "ana_horse_num": 6,
+    "ana_horse_info": {
+      "horse_number": 6,
+      "horse_name": "��������鴻�帥����≪����激��",
+      "prob": 0.3581,
+      "popularity": 6
+    },
+    "predicted_top5": [
+      {
+        "horse_number": 7,
+        "horse_name": "�����≪��",
+        "prob": 0.325,
+        "odds": null
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "�����������帥����ゃ��",
+        "prob": 0.314,
+        "odds": null
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "��������������ゃ��",
+        "prob": 0.306,
+        "odds": null
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "���������������������",
+        "prob": 0.317,
+        "odds": null
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "�����眼����≪�違����若��",
+        "prob": 0.303,
+        "odds": null
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 7,
+        "horse_name": "�����≪��",
+        "ev_score": 7.013,
+        "prob": 0.3634,
+        "odds": null
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "�����������帥����ゃ��",
+        "ev_score": 6.98,
+        "prob": 0.3617,
+        "odds": null
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "��������������ゃ��",
+        "ev_score": 6.94,
+        "prob": 0.3596,
+        "odds": null
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 0,
+      "total_cost": 0,
+      "strategy_note": "見送り（フィルタ: 回収率低）",
+      "use_wide": true
+    },
+    "simulation": {
+      "7": {
+        "horse_name": "�����≪��",
+        "top3_rate": 0.325,
+        "top3_std": 0.028,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.32,
+          "slow_pace": 0.32,
+          "normal": 0.33
+        }
+      },
+      "8": {
+        "horse_name": "�����������帥����ゃ��",
+        "top3_rate": 0.314,
+        "top3_std": 0.02,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.31,
+          "slow_pace": 0.32,
+          "normal": 0.32
+        }
+      },
+      "4": {
+        "horse_name": "��������������ゃ��",
+        "top3_rate": 0.306,
+        "top3_std": 0.019,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.31,
+          "slow_pace": 0.3,
+          "normal": 0.31
+        }
+      },
+      "5": {
+        "horse_name": "���������������������",
+        "top3_rate": 0.317,
+        "top3_std": 0.015,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.31,
+          "slow_pace": 0.32,
+          "normal": 0.32
+        }
+      },
+      "3": {
+        "horse_name": "�����眼����≪�違����若��",
+        "top3_rate": 0.303,
+        "top3_std": 0.02,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.31,
+          "slow_pace": 0.3,
+          "normal": 0.3
+        }
+      }
+    }
+  },
+  "202665060606": {
+    "race_name": "絏� ���綽� ���茯�35綛雁キ",
+    "race_date": "",
+    "start_time": "",
+    "venue": "",
+    "course_info": "芝200m",
+    "honmei": {
+      "horse_number": 7,
+      "horse_name": "��吾�с�ゃ�＜�吾�ｃ��",
+      "prob": 0.323,
+      "odds": null,
+      "shap_top": [
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.0887,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight_diff",
+          "value": 0.0463,
+          "label": "馬体重増減"
+        },
+        {
+          "feature": "popularity",
+          "value": -0.2271,
+          "label": "人気やや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 8,
+      "horse_name": "�����с�������ゃ�����������",
+      "prob": 0.314,
+      "odds": null,
+      "shap_top": [
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.0889,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight_diff",
+          "value": 0.046,
+          "label": "馬体重増減"
+        },
+        {
+          "feature": "popularity",
+          "value": -0.227,
+          "label": "人気やや悪"
+        }
+      ]
+    },
+    "third": {
+      "horse_number": 5,
+      "horse_name": "��眼�若��������������",
+      "prob": 0.307,
+      "odds": null,
+      "shap_top": [
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.0779,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight_diff",
+          "value": 0.0465,
+          "label": "馬体重増減"
+        },
+        {
+          "feature": "popularity",
+          "value": -0.2273,
+          "label": "人気やや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      7,
+      8,
+      5
+    ],
+    "predicted_top5_nums": [
+      7,
+      8,
+      5,
+      4,
+      3
+    ],
+    "ana_horse_num": 6,
+    "ana_horse_info": {
+      "horse_number": 6,
+      "horse_name": "���������������",
+      "prob": 0.3558,
+      "popularity": 6
+    },
+    "predicted_top5": [
+      {
+        "horse_number": 7,
+        "horse_name": "��吾�с�ゃ�＜�吾�ｃ��",
+        "prob": 0.323,
+        "odds": null
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "�����с�������ゃ�����������",
+        "prob": 0.314,
+        "odds": null
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "��眼�若��������������",
+        "prob": 0.307,
+        "odds": null
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "��ゃ����������������с��",
+        "prob": 0.315,
+        "odds": null
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "��������泣�潟�������ゃ�≪��",
+        "prob": 0.302,
+        "odds": null
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 7,
+        "horse_name": "��吾�с�ゃ�＜�吾�ｃ��",
+        "ev_score": 6.968,
+        "prob": 0.3611,
+        "odds": null
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "�����с�������ゃ�����������",
+        "ev_score": 6.936,
+        "prob": 0.3594,
+        "odds": null
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "��眼�若��������������",
+        "ev_score": 6.915,
+        "prob": 0.3583,
+        "odds": null
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 0,
+      "total_cost": 0,
+      "strategy_note": "見送り（フィルタ: 回収率低）",
+      "use_wide": true
+    },
+    "simulation": {
+      "7": {
+        "horse_name": "��吾�с�ゃ�＜�吾�ｃ��",
+        "top3_rate": 0.323,
+        "top3_std": 0.028,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.32,
+          "slow_pace": 0.32,
+          "normal": 0.33
+        }
+      },
+      "8": {
+        "horse_name": "�����с�������ゃ�����������",
+        "top3_rate": 0.314,
+        "top3_std": 0.02,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.31,
+          "slow_pace": 0.32,
+          "normal": 0.32
+        }
+      },
+      "5": {
+        "horse_name": "��眼�若��������������",
+        "top3_rate": 0.307,
+        "top3_std": 0.019,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.31,
+          "slow_pace": 0.3,
+          "normal": 0.31
+        }
+      },
+      "4": {
+        "horse_name": "��ゃ����������������с��",
+        "top3_rate": 0.315,
+        "top3_std": 0.015,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.31,
+          "slow_pace": 0.32,
+          "normal": 0.32
+        }
+      },
+      "3": {
+        "horse_name": "��������泣�潟�������ゃ�≪��",
+        "top3_rate": 0.302,
+        "top3_std": 0.021,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.3,
+          "slow_pace": 0.3,
+          "normal": 0.3
+        }
+      }
+    }
+  },
+  "202665060607": {
+    "race_name": "��������＜�����篋�罩潟�紫��茯�荐�綽究��",
+    "race_date": "",
+    "start_time": "",
+    "venue": "",
+    "course_info": "芝200m",
+    "honmei": {
+      "horse_number": 7,
+      "horse_name": "��≪�純�������潟�����",
+      "prob": 0.322,
+      "odds": null,
+      "shap_top": [
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.0887,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight_diff",
+          "value": 0.0463,
+          "label": "馬体重増減"
+        },
+        {
+          "feature": "popularity",
+          "value": -0.2271,
+          "label": "人気やや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 4,
+      "horse_name": "��������������������激��",
+      "prob": 0.313,
+      "odds": null,
+      "shap_top": [
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.078,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight_diff",
+          "value": 0.0465,
+          "label": "馬体重増減"
+        },
+        {
+          "feature": "popularity",
+          "value": -0.2266,
+          "label": "人気やや悪"
+        }
+      ]
+    },
+    "third": {
+      "horse_number": 8,
+      "horse_name": "�����≪�潟�������若��",
+      "prob": 0.31,
+      "odds": null,
+      "shap_top": [
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.0889,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight_diff",
+          "value": 0.046,
+          "label": "馬体重増減"
+        },
+        {
+          "feature": "popularity",
+          "value": -0.227,
+          "label": "人気やや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      7,
+      4,
+      8
+    ],
+    "predicted_top5_nums": [
+      7,
+      4,
+      8,
+      6,
+      3
+    ],
+    "ana_horse_num": 5,
+    "ana_horse_info": {
+      "horse_number": 5,
+      "horse_name": "�����潟�����",
+      "prob": 0.3573,
+      "popularity": 6
+    },
+    "predicted_top5": [
+      {
+        "horse_number": 7,
+        "horse_name": "��≪�純�������潟�����",
+        "prob": 0.322,
+        "odds": null
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "��������������������激��",
+        "prob": 0.313,
+        "odds": null
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "�����≪�潟�������若��",
+        "prob": 0.31,
+        "odds": null
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "��������ゃ�������泣�����",
+        "prob": 0.317,
+        "odds": null
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "��≪��������",
+        "prob": 0.305,
+        "odds": null
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 7,
+        "horse_name": "��≪�純�������潟�����",
+        "ev_score": 6.968,
+        "prob": 0.3611,
+        "odds": null
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "��������������������激��",
+        "ev_score": 6.94,
+        "prob": 0.3596,
+        "odds": null
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "�����≪�潟�������若��",
+        "ev_score": 6.936,
+        "prob": 0.3594,
+        "odds": null
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 0,
+      "total_cost": 0,
+      "strategy_note": "見送り（フィルタ: 回収率低）",
+      "use_wide": true
+    },
+    "simulation": {
+      "7": {
+        "horse_name": "��≪�純�������潟�����",
+        "top3_rate": 0.322,
+        "top3_std": 0.028,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.32,
+          "slow_pace": 0.32,
+          "normal": 0.33
+        }
+      },
+      "4": {
+        "horse_name": "��������������������激��",
+        "top3_rate": 0.313,
+        "top3_std": 0.021,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.31,
+          "slow_pace": 0.32,
+          "normal": 0.32
+        }
+      },
+      "8": {
+        "horse_name": "�����≪�潟�������若��",
+        "top3_rate": 0.31,
+        "top3_std": 0.019,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.31,
+          "slow_pace": 0.31,
+          "normal": 0.31
+        }
+      },
+      "6": {
+        "horse_name": "��������ゃ�������泣�����",
+        "top3_rate": 0.317,
+        "top3_std": 0.016,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.31,
+          "slow_pace": 0.32,
+          "normal": 0.32
+        }
+      },
+      "3": {
+        "horse_name": "��≪��������",
+        "top3_rate": 0.305,
+        "top3_std": 0.019,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.31,
+          "slow_pace": 0.3,
+          "normal": 0.31
+        }
+      }
+    }
+  },
+  "202665060608": {
+    "race_name": "������&�����ゅ�����羌潔��荐�綽究��",
+    "race_date": "",
+    "start_time": "",
+    "venue": "",
+    "course_info": "芝200m",
+    "honmei": {
+      "horse_number": 7,
+      "horse_name": "��宴�潟����ｃ��",
+      "prob": 0.32,
+      "odds": null,
+      "shap_top": [
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.0892,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight_diff",
+          "value": 0.0463,
+          "label": "馬体重増減"
+        },
+        {
+          "feature": "popularity",
+          "value": -0.2285,
+          "label": "人気やや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 3,
+      "horse_name": "��激�潟����ゃ�������≪��",
+      "prob": 0.315,
+      "odds": null,
+      "shap_top": [
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.078,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight_diff",
+          "value": 0.0465,
+          "label": "馬体重増減"
+        },
+        {
+          "feature": "popularity",
+          "value": -0.2265,
+          "label": "人気やや悪"
+        }
+      ]
+    },
+    "third": {
+      "horse_number": 8,
+      "horse_name": "�����潟����������＜�蚊�����",
+      "prob": 0.307,
+      "odds": null,
+      "shap_top": [
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.0894,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight_diff",
+          "value": 0.046,
+          "label": "馬体重増減"
+        },
+        {
+          "feature": "popularity",
+          "value": -0.2284,
+          "label": "人気やや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      7,
+      3,
+      8
+    ],
+    "predicted_top5_nums": [
+      7,
+      3,
+      8,
+      5,
+      6
+    ],
+    "ana_horse_num": 4,
+    "ana_horse_info": {
+      "horse_number": 4,
+      "horse_name": "�����������吾�ャ����吾�祉��",
+      "prob": 0.3556,
+      "popularity": 6
+    },
+    "predicted_top5": [
+      {
+        "horse_number": 7,
+        "horse_name": "��宴�潟����ｃ��",
+        "prob": 0.32,
+        "odds": null
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "��激�潟����ゃ�������≪��",
+        "prob": 0.315,
+        "odds": null
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "�����潟����������＜�蚊�����",
+        "prob": 0.307,
+        "odds": null
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "��潟����激�ャ�������潟��",
+        "prob": 0.317,
+        "odds": null
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "��������������ゃ����潟�����",
+        "prob": 0.303,
+        "odds": null
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 7,
+        "horse_name": "��宴�潟����ｃ��",
+        "ev_score": 6.937,
+        "prob": 0.3594,
+        "odds": null
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "��激�潟����ゃ�������≪��",
+        "ev_score": 6.936,
+        "prob": 0.3594,
+        "odds": null
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "�����潟����������＜�蚊�����",
+        "ev_score": 6.904,
+        "prob": 0.3577,
+        "odds": null
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 0,
+      "total_cost": 0,
+      "strategy_note": "見送り（フィルタ: 回収率低）",
+      "use_wide": true
+    },
+    "simulation": {
+      "7": {
+        "horse_name": "��宴�潟����ｃ��",
+        "top3_rate": 0.32,
+        "top3_std": 0.027,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.32,
+          "slow_pace": 0.32,
+          "normal": 0.33
+        }
+      },
+      "3": {
+        "horse_name": "��激�潟����ゃ�������≪��",
+        "top3_rate": 0.315,
+        "top3_std": 0.02,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.31,
+          "slow_pace": 0.32,
+          "normal": 0.32
+        }
+      },
+      "8": {
+        "horse_name": "�����潟����������＜�蚊�����",
+        "top3_rate": 0.307,
+        "top3_std": 0.019,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.31,
+          "slow_pace": 0.3,
+          "normal": 0.31
+        }
+      },
+      "5": {
+        "horse_name": "��潟����激�ャ�������潟��",
+        "top3_rate": 0.317,
+        "top3_std": 0.015,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.31,
+          "slow_pace": 0.32,
+          "normal": 0.32
+        }
+      },
+      "6": {
+        "horse_name": "��������������ゃ����潟�����",
+        "top3_rate": 0.303,
+        "top3_std": 0.02,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.31,
+          "slow_pace": 0.3,
+          "normal": 0.3
+        }
+      }
+    }
+  },
+  "202665060609": {
+    "race_name": "薹壕��茯����腑�2026",
+    "race_date": "",
+    "start_time": "",
+    "venue": "",
+    "course_info": "芝200m",
+    "honmei": {
+      "horse_number": 7,
+      "horse_name": "�����吾�������若��",
+      "prob": 0.344,
+      "odds": null,
+      "shap_top": [
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.0892,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight_diff",
+          "value": 0.0463,
+          "label": "馬体重増減"
+        },
+        {
+          "feature": "popularity",
+          "value": -0.2285,
+          "label": "人気やや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 8,
+      "horse_name": "�����潟�����",
+      "prob": 0.346,
+      "odds": null,
+      "shap_top": [
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.0894,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight_diff",
+          "value": 0.046,
+          "label": "馬体重増減"
+        },
+        {
+          "feature": "popularity",
+          "value": -0.2284,
+          "label": "人気やや悪"
+        }
+      ]
+    },
+    "third": {
+      "horse_number": 5,
+      "horse_name": "��≪�純��������",
+      "prob": 0.34,
+      "odds": null,
+      "shap_top": [
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.0779,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight_diff",
+          "value": 0.0465,
+          "label": "馬体重増減"
+        },
+        {
+          "feature": "popularity",
+          "value": -0.2273,
+          "label": "人気やや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      7,
+      8,
+      5
+    ],
+    "predicted_top5_nums": [
+      7,
+      8,
+      5,
+      4,
+      3
+    ],
+    "ana_horse_num": 6,
+    "ana_horse_info": {
+      "horse_number": 6,
+      "horse_name": "��吾�с�ゃ�������帥��",
+      "prob": 0.3542,
+      "popularity": 6
+    },
+    "predicted_top5": [
+      {
+        "horse_number": 7,
+        "horse_name": "�����吾�������若��",
+        "prob": 0.344,
+        "odds": null
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "�����潟�����",
+        "prob": 0.346,
+        "odds": null
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "��≪�純��������",
+        "prob": 0.34,
+        "odds": null
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "�����潟����帥�ゃ�����",
+        "prob": 0.338,
+        "odds": null
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "��泣�����������������",
+        "prob": 0.34,
+        "odds": null
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 7,
+        "horse_name": "�����吾�������若��",
+        "ev_score": 6.937,
+        "prob": 0.3594,
+        "odds": null
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "�����潟�����",
+        "ev_score": 6.904,
+        "prob": 0.3577,
+        "odds": null
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "��≪�純��������",
+        "ev_score": 6.895,
+        "prob": 0.3573,
+        "odds": null
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 0,
+      "total_cost": 0,
+      "strategy_note": "見送り（フィルタ: 回収率低）",
+      "use_wide": true
+    },
+    "simulation": {
+      "7": {
+        "horse_name": "�����吾�������若��",
+        "top3_rate": 0.344,
+        "top3_std": 0.024,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.34,
+          "slow_pace": 0.34,
+          "normal": 0.35
+        }
+      },
+      "8": {
+        "horse_name": "�����潟�����",
+        "top3_rate": 0.346,
+        "top3_std": 0.021,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.35,
+          "slow_pace": 0.36,
+          "normal": 0.33
+        }
+      },
+      "5": {
+        "horse_name": "��≪�純��������",
+        "top3_rate": 0.34,
+        "top3_std": 0.024,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.34,
+          "slow_pace": 0.34,
+          "normal": 0.34
+        }
+      },
+      "4": {
+        "horse_name": "�����潟����帥�ゃ�����",
+        "top3_rate": 0.338,
+        "top3_std": 0.019,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.35,
+          "slow_pace": 0.32,
+          "normal": 0.35
+        }
+      },
+      "3": {
+        "horse_name": "��泣�����������������",
+        "top3_rate": 0.34,
+        "top3_std": 0.025,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.33,
+          "slow_pace": 0.35,
+          "normal": 0.34
+        }
+      }
+    }
+  },
+  "202665060610": {
+    "race_name": "���綛吾�＜��������������������������",
+    "race_date": "",
+    "start_time": "",
+    "venue": "",
+    "course_info": "芝200m",
+    "honmei": {
+      "horse_number": 7,
+      "horse_name": "��潟�������������潟�吟��",
+      "prob": 0.346,
+      "odds": null,
+      "shap_top": [
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.0892,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight_diff",
+          "value": 0.0464,
+          "label": "馬体重増減"
+        },
+        {
+          "feature": "popularity",
+          "value": -0.2285,
+          "label": "人気やや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 8,
+      "horse_name": "��泣����������ゃ��",
+      "prob": 0.348,
+      "odds": null,
+      "shap_top": [
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.0901,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight_diff",
+          "value": 0.0463,
+          "label": "馬体重増減"
+        },
+        {
+          "feature": "popularity",
+          "value": -0.2285,
+          "label": "人気やや悪"
+        }
+      ]
+    },
+    "third": {
+      "horse_number": 5,
+      "horse_name": "��ゃ�������帥�ゃ�潟��",
+      "prob": 0.337,
+      "odds": null,
+      "shap_top": [
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.0784,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight_diff",
+          "value": 0.0466,
+          "label": "馬体重増減"
+        },
+        {
+          "feature": "popularity",
+          "value": -0.2287,
+          "label": "人気やや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      7,
+      8,
+      5
+    ],
+    "predicted_top5_nums": [
+      7,
+      8,
+      5,
+      4,
+      3
+    ],
+    "ana_horse_num": 9,
+    "ana_horse_info": {
+      "horse_number": 9,
+      "horse_name": "�����潟��",
+      "prob": 0.3545,
+      "popularity": 6
+    },
+    "predicted_top5": [
+      {
+        "horse_number": 7,
+        "horse_name": "��潟�������������潟�吟��",
+        "prob": 0.346,
+        "odds": null
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "��泣����������ゃ��",
+        "prob": 0.348,
+        "odds": null
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "��ゃ�������帥�ゃ�潟��",
+        "prob": 0.337,
+        "odds": null
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "��鴻�若����若��������",
+        "prob": 0.34,
+        "odds": null
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "�����帥��������",
+        "prob": 0.341,
+        "odds": null
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 7,
+        "horse_name": "��潟�������������潟�吟��",
+        "ev_score": 6.937,
+        "prob": 0.3594,
+        "odds": null
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "��泣����������ゃ��",
+        "ev_score": 6.902,
+        "prob": 0.3576,
+        "odds": null
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "��ゃ�������帥�ゃ�潟��",
+        "ev_score": 6.864,
+        "prob": 0.3556,
+        "odds": null
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 0,
+      "total_cost": 0,
+      "strategy_note": "見送り（フィルタ: 回収率低）",
+      "use_wide": true
+    },
+    "simulation": {
+      "7": {
+        "horse_name": "��潟�������������潟�吟��",
+        "top3_rate": 0.346,
+        "top3_std": 0.024,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.34,
+          "slow_pace": 0.34,
+          "normal": 0.36
+        }
+      },
+      "8": {
+        "horse_name": "��泣����������ゃ��",
+        "top3_rate": 0.348,
+        "top3_std": 0.021,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.35,
+          "slow_pace": 0.36,
+          "normal": 0.33
+        }
+      },
+      "5": {
+        "horse_name": "��ゃ�������帥�ゃ�潟��",
+        "top3_rate": 0.337,
+        "top3_std": 0.023,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.34,
+          "slow_pace": 0.33,
+          "normal": 0.34
+        }
+      },
+      "4": {
+        "horse_name": "��鴻�若����若��������",
+        "top3_rate": 0.34,
+        "top3_std": 0.019,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.35,
+          "slow_pace": 0.33,
+          "normal": 0.35
+        }
+      },
+      "3": {
+        "horse_name": "�����帥��������",
+        "top3_rate": 0.341,
+        "top3_std": 0.025,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.33,
+          "slow_pace": 0.35,
+          "normal": 0.34
+        }
+      }
+    }
+  },
+  "202665060611": {
+    "race_name": "������������������羃� ��吾�с�ゃ�恰��",
+    "race_date": "",
+    "start_time": "",
+    "venue": "",
+    "course_info": "芝200m",
+    "honmei": {
+      "horse_number": 7,
+      "horse_name": "��ゃ�������������若��",
+      "prob": 0.349,
+      "odds": null,
+      "shap_top": [
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.1123,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight_diff",
+          "value": 0.0464,
+          "label": "馬体重増減"
+        },
+        {
+          "feature": "popularity",
+          "value": -0.2285,
+          "label": "人気やや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 8,
+      "horse_name": "��激�с�若�帥�ゃ��",
+      "prob": 0.354,
+      "odds": null,
+      "shap_top": [
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.1131,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight_diff",
+          "value": 0.0463,
+          "label": "馬体重増減"
+        },
+        {
+          "feature": "popularity",
+          "value": -0.2285,
+          "label": "人気やや悪"
+        }
+      ]
+    },
+    "third": {
+      "horse_number": 5,
+      "horse_name": "�����������潟�違�����",
+      "prob": 0.34,
+      "odds": null,
+      "shap_top": [
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.1014,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight_diff",
+          "value": 0.0466,
+          "label": "馬体重増減"
+        },
+        {
+          "feature": "popularity",
+          "value": -0.2287,
+          "label": "人気やや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      7,
+      8,
+      5
+    ],
+    "predicted_top5_nums": [
+      7,
+      8,
+      5,
+      4,
+      6
+    ],
+    "ana_horse_num": 3,
+    "ana_horse_info": {
+      "horse_number": 3,
+      "horse_name": "��≪�≪�≪�潟�������若�����",
+      "prob": 0.355,
+      "popularity": 6
+    },
+    "predicted_top5": [
+      {
+        "horse_number": 7,
+        "horse_name": "��ゃ�������������若��",
+        "prob": 0.349,
+        "odds": null
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "��激�с�若�帥�ゃ��",
+        "prob": 0.354,
+        "odds": null
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "�����������潟�違�����",
+        "prob": 0.34,
+        "odds": null
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "��������激��",
+        "prob": 0.344,
+        "odds": null
+      },
+      {
+        "horse_number": 6,
+        "horse_name": "�����ゃ�ゃ�����������",
+        "prob": 0.343,
+        "odds": null
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 7,
+        "horse_name": "��ゃ�������������若��",
+        "ev_score": 6.959,
+        "prob": 0.3606,
+        "odds": null
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "��激�с�若�帥�ゃ��",
+        "ev_score": 6.938,
+        "prob": 0.3595,
+        "odds": null
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "�����������潟�違�����",
+        "ev_score": 6.886,
+        "prob": 0.3568,
+        "odds": null
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 0,
+      "total_cost": 0,
+      "strategy_note": "見送り（フィルタ: 回収率低）",
+      "use_wide": true
+    },
+    "simulation": {
+      "7": {
+        "horse_name": "��ゃ�������������若��",
+        "top3_rate": 0.349,
+        "top3_std": 0.024,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.35,
+          "slow_pace": 0.34,
+          "normal": 0.36
+        }
+      },
+      "8": {
+        "horse_name": "��激�с�若�帥�ゃ��",
+        "top3_rate": 0.354,
+        "top3_std": 0.022,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.35,
+          "slow_pace": 0.36,
+          "normal": 0.34
+        }
+      },
+      "5": {
+        "horse_name": "�����������潟�違�����",
+        "top3_rate": 0.34,
+        "top3_std": 0.022,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.34,
+          "slow_pace": 0.34,
+          "normal": 0.34
+        }
+      },
+      "4": {
+        "horse_name": "��������激��",
+        "top3_rate": 0.344,
+        "top3_std": 0.02,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.35,
+          "slow_pace": 0.33,
+          "normal": 0.36
+        }
+      },
+      "6": {
+        "horse_name": "�����ゃ�ゃ�����������",
+        "top3_rate": 0.343,
+        "top3_std": 0.025,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.33,
+          "slow_pace": 0.35,
+          "normal": 0.34
+        }
+      }
+    }
+  },
+  "202665060612": {
+    "race_name": "B2���1",
+    "race_date": "",
+    "start_time": "",
+    "venue": "",
+    "course_info": "芝200m",
+    "honmei": {
+      "horse_number": 7,
+      "horse_name": "������",
+      "prob": 0.347,
+      "odds": null,
+      "shap_top": [
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.0892,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight_diff",
+          "value": 0.0464,
+          "label": "馬体重増減"
+        },
+        {
+          "feature": "popularity",
+          "value": -0.2285,
+          "label": "人気やや悪"
+        }
+      ]
+    },
+    "taikou": {
+      "horse_number": 8,
+      "horse_name": "��帥�ゃ��",
+      "prob": 0.349,
+      "odds": null,
+      "shap_top": [
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.0901,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight_diff",
+          "value": 0.0463,
+          "label": "馬体重増減"
+        },
+        {
+          "feature": "popularity",
+          "value": -0.2285,
+          "label": "人気やや悪"
+        }
+      ]
+    },
+    "third": {
+      "horse_number": 5,
+      "horse_name": "�����吾�с�潟��������",
+      "prob": 0.338,
+      "odds": null,
+      "shap_top": [
+        {
+          "feature": "jockey_district_fukusho_rate",
+          "value": 0.0784,
+          "label": "jockey_district_fukusho_rate"
+        },
+        {
+          "feature": "horse_weight_diff",
+          "value": 0.0465,
+          "label": "馬体重増減"
+        },
+        {
+          "feature": "popularity",
+          "value": -0.2287,
+          "label": "人気やや悪"
+        }
+      ]
+    },
+    "predicted_top3_nums": [
+      7,
+      8,
+      5
+    ],
+    "predicted_top5_nums": [
+      7,
+      8,
+      5,
+      4,
+      3
+    ],
+    "ana_horse_num": 6,
+    "ana_horse_info": {
+      "horse_number": 6,
+      "horse_name": "��吾�с�ゃ����若�激��",
+      "prob": 0.3542,
+      "popularity": 6
+    },
+    "predicted_top5": [
+      {
+        "horse_number": 7,
+        "horse_name": "������",
+        "prob": 0.347,
+        "odds": null
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "��帥�ゃ��",
+        "prob": 0.349,
+        "odds": null
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "�����吾�с�潟��������",
+        "prob": 0.338,
+        "odds": null
+      },
+      {
+        "horse_number": 4,
+        "horse_name": "��潟����激�ャ����＜�吾�ｃ��",
+        "prob": 0.341,
+        "odds": null
+      },
+      {
+        "horse_number": 3,
+        "horse_name": "�����������潟��������",
+        "prob": 0.342,
+        "odds": null
+      }
+    ],
+    "ev_top3": [
+      {
+        "horse_number": 7,
+        "horse_name": "������",
+        "ev_score": 6.937,
+        "prob": 0.3594,
+        "odds": null
+      },
+      {
+        "horse_number": 8,
+        "horse_name": "��帥�ゃ��",
+        "ev_score": 6.902,
+        "prob": 0.3576,
+        "odds": null
+      },
+      {
+        "horse_number": 5,
+        "horse_name": "�����吾�с�潟��������",
+        "ev_score": 6.864,
+        "prob": 0.3556,
+        "odds": null
+      }
+    ],
+    "dangerous_horses": [],
+    "ai_comments": {},
+    "bet_strategy": {
+      "fukusho": [],
+      "umaren": [],
+      "wide": [],
+      "sanrenpuku": {},
+      "total_points": 0,
+      "total_cost": 0,
+      "strategy_note": "見送り（フィルタ: 回収率低）",
+      "use_wide": true
+    },
+    "simulation": {
+      "7": {
+        "horse_name": "������",
+        "top3_rate": 0.347,
+        "top3_std": 0.024,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.34,
+          "slow_pace": 0.34,
+          "normal": 0.36
+        }
+      },
+      "8": {
+        "horse_name": "��帥�ゃ��",
+        "top3_rate": 0.349,
+        "top3_std": 0.021,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.35,
+          "slow_pace": 0.36,
+          "normal": 0.33
+        }
+      },
+      "5": {
+        "horse_name": "�����吾�с�潟��������",
+        "top3_rate": 0.338,
+        "top3_std": 0.022,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.34,
+          "slow_pace": 0.33,
+          "normal": 0.34
+        }
+      },
+      "4": {
+        "horse_name": "��潟����激�ャ����＜�吾�ｃ��",
+        "top3_rate": 0.341,
+        "top3_std": 0.019,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.35,
+          "slow_pace": 0.33,
+          "normal": 0.35
+        }
+      },
+      "3": {
+        "horse_name": "�����������潟��������",
+        "top3_rate": 0.342,
+        "top3_std": 0.025,
+        "is_stable": true,
+        "scenario": {
+          "high_pace": 0.33,
+          "slow_pace": 0.35,
+          "normal": 0.34
+        }
+      }
+    }
   }
 }
