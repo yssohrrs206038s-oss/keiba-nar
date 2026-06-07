@@ -36788,7 +36788,8 @@
           "normal": 0.14
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636060802": {
     "race_name": "C2",
@@ -37002,7 +37003,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636060803": {
     "race_name": "C2���腟�",
@@ -37232,7 +37234,8 @@
           "normal": 0.12
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636060804": {
     "race_name": "C2篋�腟�",
@@ -37446,7 +37449,8 @@
           "normal": 0.05
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636060805": {
     "race_name": "C2���腟�",
@@ -37660,7 +37664,8 @@
           "normal": 0.23
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636060806": {
     "race_name": "3罩�C2筝�腟�",
@@ -37874,7 +37879,8 @@
           "normal": 0.23
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636060807": {
     "race_name": "3罩�C2篋�腟�",
@@ -38088,7 +38094,8 @@
           "normal": 0.15
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636060808": {
     "race_name": "3罩�C2筝�腟�",
@@ -38302,7 +38309,8 @@
           "normal": 0.01
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636060809": {
     "race_name": "C1",
@@ -38532,7 +38540,8 @@
           "normal": 0.14
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636060810": {
     "race_name": "�����ゃ�������潟�吾�∵��(C1)",
@@ -38746,7 +38755,8 @@
           "normal": 0.1
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636060811": {
     "race_name": "藝�腱���劫��(A)",
@@ -38960,7 +38970,8 @@
           "normal": 0.12
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636060812": {
     "race_name": "���紊���劫��(A)",
@@ -39190,7 +39201,8 @@
           "normal": 0.36
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202644060801": {
     "race_name": "C3篋�",
@@ -39404,7 +39416,8 @@
           "normal": 0.1
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202644060802": {
     "race_name": "3罩渇�御�����薤�",
@@ -39623,7 +39636,8 @@
           "normal": 0.27
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202644060803": {
     "race_name": "2罩恰�育Μ",
@@ -39842,7 +39856,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202644060804": {
     "race_name": "3罩�1213",
@@ -40056,7 +40071,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202644060805": {
     "race_name": "3罩�1213",
@@ -40270,7 +40286,8 @@
           "normal": 0.14
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202644060806": {
     "race_name": "��吾�喝婚��劫�ョ�区軌(C1)",
@@ -40484,7 +40501,8 @@
           "normal": 0.06
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202644060807": {
     "race_name": "��違����鴻����������取��(C213)",
@@ -40698,7 +40716,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202644060808": {
     "race_name": "C2121314(C213)",
@@ -40912,7 +40931,8 @@
           "normal": 0.1
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202644060809": {
     "race_name": "C2121314(C213)",
@@ -41126,7 +41146,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202644060810": {
     "race_name": "�����ゃ�潟�違�激�若��莖�腴区軌(A2B1)",
@@ -41340,7 +41361,8 @@
           "normal": 0.06
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202644060811": {
     "race_name": "��蚊�潟��莖�腴区軌(B2)",
@@ -41554,7 +41576,8 @@
           "normal": 0.04
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646060801": {
     "race_name": "���������&��������������������若����с����ｃ�潟�域��綽�(3罩�7)",
@@ -41768,7 +41791,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646060802": {
     "race_name": "腑�!藥���障��������3��������������＜��絖�荐�綽�(3罩�6)",
@@ -41982,7 +42006,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646060803": {
     "race_name": "3罩�B5��合隈(3罩�5)",
@@ -42196,7 +42221,8 @@
           "normal": 0.13
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646060804": {
     "race_name": "3罩�B4",
@@ -42410,7 +42436,8 @@
           "normal": 0.19
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646060805": {
     "race_name": "3罩�B3",
@@ -42629,7 +42656,8 @@
           "normal": 0.23
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646060806": {
     "race_name": "3罩�B2",
@@ -42843,7 +42871,8 @@
           "normal": 0.02
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646060807": {
     "race_name": "�����������������ゃ�ゃ�≪�潟����劫��(3罩�)",
@@ -43057,7 +43086,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646060808": {
     "race_name": "C18",
@@ -43271,7 +43301,8 @@
           "normal": 0.1
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646060809": {
     "race_name": "C17",
@@ -43485,7 +43516,8 @@
           "normal": 0.01
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646060810": {
     "race_name": "B14",
@@ -43699,7 +43731,8 @@
           "normal": 0.14
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646060811": {
     "race_name": "B13",
@@ -43919,7 +43952,8 @@
           "normal": 0.12
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646060812": {
     "race_name": "���絎吟�с�����������腑�!罐遵ぉ腴狗Μ��劫��(A2)",
@@ -44139,7 +44173,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202665060801": {
     "race_name": "腑�紊�&��延��薤�腟�紿���������с�����",
