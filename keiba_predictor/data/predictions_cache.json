@@ -47090,7 +47090,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630060902": {
     "race_name": "2罩� ���������",
@@ -47304,7 +47305,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630060903": {
     "race_name": "2罩� ���薤����������",
@@ -47518,7 +47520,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630060904": {
     "race_name": "JRA茯�絎�腴区軌��≪�帥����������ｃ����潟�悟�区軌(2罩�)",
@@ -47732,7 +47735,8 @@
           "normal": 0.01
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630060905": {
     "race_name": "3罩割札筝� C4���3",
@@ -47946,7 +47950,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630060906": {
     "race_name": "3罩割札筝� C4���3",
@@ -48166,7 +48171,8 @@
           "normal": 0.12
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630060907": {
     "race_name": "3罩割札筝� C4���3",
@@ -48380,7 +48386,8 @@
           "normal": 0.04
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630060908": {
     "race_name": "�����ゃ����������劫��(C4)",
@@ -48600,7 +48607,8 @@
           "normal": 0.06
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630060909": {
     "race_name": "��ラ����医�堺謙��頥�荐����篌���劫��(C1)",
@@ -48814,7 +48822,8 @@
           "normal": 0.15
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630060910": {
     "race_name": "��違����潟�激�ｃ�������������若��18(C4)",
@@ -49028,7 +49037,8 @@
           "normal": 0.02
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630060911": {
     "race_name": "��鴻�帥�若����合�劫��(C1)",
@@ -49242,7 +49252,8 @@
           "normal": 0.04
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630060912": {
     "race_name": "��≪����������劫��(B2)",
@@ -49456,7 +49467,8 @@
           "normal": 0.02
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636060901": {
     "race_name": "C2筝�腟�",
@@ -49670,7 +49682,8 @@
           "normal": 0.29
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636060902": {
     "race_name": "C2篋�腟�",
@@ -49889,7 +49902,8 @@
           "normal": 0.18
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636060903": {
     "race_name": "C2筝�腟�",
@@ -50103,7 +50117,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636060904": {
     "race_name": "C1",
@@ -50317,7 +50332,8 @@
           "normal": 0.12
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636060905": {
     "race_name": "C1",
@@ -50531,7 +50547,8 @@
           "normal": 0.15
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636060906": {
     "race_name": "C1",
@@ -50745,7 +50762,8 @@
           "normal": 0.23
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636060907": {
     "race_name": "C1",
@@ -50964,7 +50982,8 @@
           "normal": 0.19
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636060908": {
     "race_name": "C1",
@@ -51178,7 +51197,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636060909": {
     "race_name": "C1篋�腟�",
@@ -51397,7 +51417,8 @@
           "normal": 0.14
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636060910": {
     "race_name": "C1���腟�",
@@ -51611,7 +51632,8 @@
           "normal": 0.14
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636060911": {
     "race_name": "C1筝�腟�",
@@ -51825,7 +51847,8 @@
           "normal": 0.06
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636060912": {
     "race_name": "�����ゃ����劫��OP",
@@ -52039,7 +52062,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202644060901": {
     "race_name": "3罩喝��11",
@@ -52253,7 +52277,8 @@
           "normal": 0.18
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202644060902": {
     "race_name": "3罩喝��11",
@@ -52467,7 +52492,8 @@
           "normal": 0.06
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202644060903": {
     "race_name": "2罩割��",
@@ -52681,7 +52707,8 @@
           "normal": 0.0
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202644060904": {
     "race_name": "C2箙����11(C2���)",
@@ -52895,7 +52922,8 @@
           "normal": 0.16
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202644060905": {
     "race_name": "C2箙����11(C2���)",
@@ -53109,7 +53137,8 @@
           "normal": 0.06
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202644060906": {
     "race_name": "C2箙����11(C2���)",
@@ -53323,7 +53352,8 @@
           "normal": 0.23
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202644060907": {
     "race_name": "C1���箙�",
@@ -53537,7 +53567,8 @@
           "normal": 0.18
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202644060908": {
     "race_name": "��������激�ц��(C1)",
@@ -53751,7 +53782,8 @@
           "normal": 0.1
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202644060909": {
     "race_name": "��ｅ�����莖�腴区軌(B3)",
@@ -53965,7 +53997,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202644060910": {
     "race_name": "藜����莖�腴区軌(B3)",
@@ -54179,7 +54212,8 @@
           "normal": 0.14
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202644060911": {
     "race_name": "��泣�潟�帥�≪����帥����������ｃ�若�������ゃ�≪��腴区軌(A2)",
@@ -54393,7 +54427,8 @@
           "normal": 0.23
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202644060912": {
     "race_name": "���腮���劫�ョ�区軌(C1)",
@@ -54612,7 +54647,8 @@
           "normal": 0.26
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646060901": {
     "race_name": "C16",
@@ -54826,7 +54862,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646060902": {
     "race_name": "絖�������(C1)",
@@ -55045,7 +55082,8 @@
           "normal": 0.22
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646060903": {
     "race_name": "C14",
@@ -55265,7 +55303,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646060904": {
     "race_name": "C13",
@@ -55479,7 +55518,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646060905": {
     "race_name": "�����������＜����≪�������蚊����帥�弱�����荐�綽�(C1)",
@@ -55693,7 +55733,8 @@
           "normal": 0.17
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646060906": {
     "race_name": "箙�莪欠�主�劫��(C1)",
@@ -55913,7 +55954,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646060907": {
     "race_name": "���莖�箙�莪決��(3罩括��薤�)",
@@ -56132,7 +56174,8 @@
           "normal": 0.14
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646060908": {
     "race_name": "3罩�A3",
@@ -56346,7 +56389,8 @@
           "normal": 0.03
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646060909": {
     "race_name": "��������冴����若�����(B1)",
@@ -56560,7 +56604,8 @@
           "normal": 0.1
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646060910": {
     "race_name": "��初����������劫��(B1)",
@@ -56774,7 +56819,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646060911": {
     "race_name": "��喝�����薈����莖�",
@@ -56988,7 +57034,8 @@
           "normal": 0.14
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646060912": {
     "race_name": "���羃∝�狗Μ���罐遵ぉ腴狗Μ��ф��腑�!��劫��(A2)",
@@ -57208,6 +57255,7 @@
           "normal": 0.01
         }
       }
-    }
+    },
+    "notified_predict": true
   }
 }
