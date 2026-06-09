@@ -140,9 +140,18 @@ jobs:
           # 今日以外のキャッシュを削除（JST基準・日付が変わったら再予想）
           from datetime import datetime, timezone, timedelta
           today_str = (datetime.now(timezone.utc) + timedelta(hours=9)).date().isoformat()
+          def _entry_date(k, v):
+              rd = v.get('race_date', '')
+              if rd:
+                  return rd
+              # race_id (YYYYVVMMDDNN) からフォールバック
+              try:
+                  return f'{k[:4]}-{k[6:8]}-{k[8:10]}'
+              except Exception:
+                  return ''
           stale = [k for k, v in cache.items()
                    if not k.startswith('_') and isinstance(v, dict)
-                   and v.get('race_date') and v['race_date'] != today_str]
+                   and _entry_date(k, v) != today_str]
           if stale:
               for k in stale:
                   del cache[k]

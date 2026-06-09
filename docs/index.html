@@ -566,6 +566,14 @@ const VENUE_MAP = {
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
   ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
+/* race_date が空の場合 race_id (YYYYVVMMDDNN) から導出 */
+function getRaceDate(raceId, entry) {
+  if (entry && entry.race_date) return entry.race_date;
+  const rid = String(raceId || '');
+  if (rid.length >= 10) return `${rid.slice(0,4)}-${rid.slice(6,8)}-${rid.slice(8,10)}`;
+  return '';
+}
+
 /* 内部カラム名（snake_case）→ 日本語ラベル変換マップ */
 const FEATURE_LABEL_JA = {
   'distance': '距離適性',
@@ -839,7 +847,7 @@ function _findNextRaceId(entries) {
   let nextId = '';
   let nextTime = '99:99';
   for (const [rid, r] of entries) {
-    if ((r.race_date || '') !== today) continue;
+    if (getRaceDate(rid, r) !== today) continue;
     if (_resultMap[rid]) continue;  // 結果ありはスキップ
     const st = r.start_time || '';
     if (!st || !/^\d{1,2}:\d{2}$/.test(st)) continue;
@@ -861,8 +869,8 @@ function renderPredictions(cache) {
   const entries = Object.entries(cache)
     .filter(([k]) => !k.startsWith('_'))
     .sort((a, b) => {
-      const da = (a[1].race_date || '') + ' ' + (a[1].start_time || '99:99');
-      const db = (b[1].race_date || '') + ' ' + (b[1].start_time || '99:99');
+      const da = getRaceDate(a[0], a[1]) + ' ' + (a[1].start_time || '99:99');
+      const db = getRaceDate(b[0], b[1]) + ' ' + (b[1].start_time || '99:99');
       return da.localeCompare(db);
     });
   _nextRaceId = _findNextRaceId(entries);
