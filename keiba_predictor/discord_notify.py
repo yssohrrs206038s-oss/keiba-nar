@@ -1792,7 +1792,11 @@ def run_predict_notify(
     today_str = _today_jst().isoformat()
     stale_ids = [
         rid for rid, entry in cache.items()
-        if not rid.startswith("_") and entry.get("race_date") and entry["race_date"] < today_str
+        if not rid.startswith("_") and (
+            entry.get("race_date") or (
+                f"{rid[:4]}-{rid[6:8]}-{rid[8:10]}" if len(rid) >= 10 else ""
+            )
+        ) < today_str
     ]
     if stale_ids:
         for rid in stale_ids:
@@ -1948,7 +1952,10 @@ def run_result_notify(
         for rid, entry in cache.items():
             if rid.startswith("_"):
                 continue
-            if entry.get("race_date") == today_str:
+            rd = entry.get("race_date") or (
+                f"{rid[:4]}-{rid[6:8]}-{rid[8:10]}" if len(rid) >= 10 else ""
+            )
+            if rd == today_str:
                 grade_races.append({
                     "race_id": rid,
                     "race_name": entry.get("race_name", rid),
