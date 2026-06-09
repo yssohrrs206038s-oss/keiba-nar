@@ -386,11 +386,12 @@ def _decide_bet_strategy(result_df: pd.DataFrame, _skip_venue_filter: bool = Fal
     """
     NAR予測結果DataFrameから買い目を決定する。
 
-    構成: ワイド ◎-○ 1点（固定1,000円）
+    構成: 3連複 ◎○▲ 1点（固定1,000円）
     フィルタ:
-    - 川崎・高知: 見送り（回収率43%・58%、モデル適性低い）
-    - 動的フィルタ: 直近20戦ROI < 50% の会場も自動除外
-    - 推定ワイドオッズ < 1.0倍: 見送り
+    - 静的除外: 笠松(47)・水沢(36)・大井(44)・不明(65)（実績ROI < 40%）
+    - 頭数 > 8頭: 見送り（多頭数フィルタ）
+    - ◎ > 2.0倍: 見送り
+    - ▲ < 3.0倍: 見送り（3連複配当不足: 実績 avg 388円/100円）
     - ○確率 < 20%: 見送り
     - ◎○差 > 25%: 見送り
 
@@ -407,7 +408,7 @@ def _decide_bet_strategy(result_df: pd.DataFrame, _skip_venue_filter: bool = Fal
         venue = VENUE_MAP.get(venue_code, "")
 
     # 開催場フィルタ: 静的（川崎・高知）+ 動的（直近20戦ROI < 50%）
-    STATIC_SKIP_VENUES = {"65", "47", "36"}  # 65=帯広ばんえい, 47=福井(ROI28%), 36=笠松(ROI24%)
+    STATIC_SKIP_VENUES = {"65", "44", "47", "36"}  # 65=不明(ROI37%), 44=大井(ROI9%), 47=笠松(ROI28%), 36=水沢(ROI24%)
     # 動的フィルタ無効化: ◎≤2.0×≤8頭の厳選条件で十分絞れるため会場フィルタは静的除外のみ
     SKIP_VENUES = STATIC_SKIP_VENUES
 
@@ -514,9 +515,14 @@ def _decide_bet_strategy(result_df: pd.DataFrame, _skip_venue_filter: bool = Fal
     if not pd.notna(hon_odds) or float(hon_odds) > 2.0:
         return _empty(f"見送り（◎{float(hon_odds) if pd.notna(hon_odds) else 0:.1f}倍>2.0）")
 
-    # 3連複◎○▲ 1点 1,000円（ROI 133%、資金効率重視）
-    # 本気はJRA特別戦/重賞。NARは軽く回す。
-    note = f"3連複◎○▲ 1点（◎{float(hon_odds):.1f}倍 {len(result_df)}頭）"
+    # ▲オッズ最低フィルタ: ▲<3.0の3連複は配当が小さすぎて回収不能
+    # 実績: 3連複avg 388円/100円 → ROI70.3%。配当底上げのためのフィルタ。
+    MIN_ANA_ODDS = 3.0
+    if pd.notna(ana_odds) and float(ana_odds) < MIN_ANA_ODDS:
+        return _empty(f"見送り（▲{float(ana_odds):.1f}倍<{MIN_ANA_ODDS:.1f}: 3連複配当不足）")
+
+    # 3連複◎○▲ 1点 1,000円
+    note = f"3連複◎○▲ 1点（◎{float(hon_odds):.1f}倍 ▲{float(ana_odds):.1f}倍 {len(result_df)}頭）" if pd.notna(ana_odds) else f"3連複◎○▲ 1点（◎{float(hon_odds):.1f}倍 {len(result_df)}頭）"
     strategy = {
         "fukusho": [], "umaren": [], "wide": [],
         "sanrenpuku": {"trio": top3_nums},
