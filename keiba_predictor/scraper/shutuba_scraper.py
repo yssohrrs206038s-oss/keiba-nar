@@ -431,7 +431,18 @@ def scrape_shutuba(race_id: str) -> Optional[dict]:
     if race_date:
         logger.info(f"開催日をHTMLから取得: {race_date}")
     else:
-        logger.warning(f"開催日をHTMLから取得できませんでした (race_id={race_id})")
+        # race_id (12桁) YYYY+VV+MMDD+RR からフォールバック
+        rid = str(race_id)
+        if len(rid) >= 10:
+            try:
+                year = rid[:4]
+                mmdd = rid[6:10]
+                race_date = f"{year}-{mmdd[0:2]}-{mmdd[2:4]}"
+                logger.info(f"開催日をrace_idから導出: {race_date}")
+            except Exception:
+                logger.warning(f"開催日をHTMLから取得できませんでした (race_id={race_id})")
+        else:
+            logger.warning(f"開催日をHTMLから取得できませんでした (race_id={race_id})")
 
     # 発走時間
     start_time = ""
