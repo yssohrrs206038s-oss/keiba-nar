@@ -366,6 +366,10 @@ def _get_dynamic_skip_venues(
                 df[col] = 0
         df["venue_code"] = df["race_id"].astype(str).str[4:6]
 
+        # 多頭数シャドウは別戦略(ワイドBOX)のため、本線戦略の会場ROI判定から除外
+        if "shadow_type" in df.columns:
+            df = df[df["shadow_type"].fillna("") != "multi_horse"]
+
         # 実効bet/retを計算: シャドウがあればシャドウ、なければ実投資（旧データ互換）
         df["eff_bet"] = df["shadow_bet_total"].where(df["shadow_bet_total"] > 0, df["bet_total"])
         df["eff_ret"] = df["shadow_return_total"].where(df["shadow_bet_total"] > 0, df["return_total"])
@@ -412,6 +416,38 @@ def _decide_bet_strategy(result_df: pd.DataFrame, _skip_venue_filter: bool = Fal
     """
     # レースの会場を取得
     race_id = str(result_df.iloc[0].get("race_id", "")) if "race_id" in result_df.columns else ""
+
+    def _multi_horse_shadow(df: pd.DataFrame) -> dict:
+        """
+        多頭数(>MAX_HORSES)見送りレース用のシャドウ買い目を生成する(実購入なし)。
+
+        多頭数では3連複1点は構造的に当たらないため、シャドウは
+        ワイド上位3頭BOX(◎-○/◎-▲/○-▲ 各300円)で「もし買っていたら」を記録する。
+        多頭数レース解禁の判断材料を貯めることが目的の実験的戦略であり、
+        バックテスト未検証。実弾投入はシャドウROI集計の検証後に判断すること。
+        """
+        if "prob_top3" not in df.columns or len(df) < 3:
+            return {}
+        top3 = df.head(3)
+        nums = [int(r["horse_number"]) for _, r in top3.iterrows()
+                if pd.notna(r.get("horse_number"))]
+        if len(nums) < 3:
+            return {}
+        probs = pd.to_numeric(top3["prob_top3"], errors="coerce")
+        if probs.isna().any():
+            return {}
+        wide = [{"nums": [nums[0], nums[1]]},
+                {"nums": [nums[0], nums[2]]},
+                {"nums": [nums[1], nums[2]]}]
+        return {
+            "fukusho": [], "umaren": [], "wide": wide,
+            "sanrenpuku": {}, "total_points": 3, "total_cost": 900,
+            "strategy_note": f"シャドウ(多頭数{len(df)}頭): ワイド上位3頭BOX 各300円",
+            "use_wide": True,
+            "shadow_type": "multi_horse",
+            "shadow_note": f"{len(df)}頭",
+        }
+
     venue = ""
     venue_code = ""
     if len(race_id) >= 6:
@@ -430,7 +466,12 @@ def _decide_bet_strategy(result_df: pd.DataFrame, _skip_venue_filter: bool = Fal
         try:
             shadow = _decide_bet_strategy(result_df, _skip_venue_filter=True)
             if shadow.get("total_points", 0) > 0:
+                shadow.setdefault("shadow_type", "venue")
+                shadow.setdefault("shadow_note", venue)
                 result["shadow_strategy"] = shadow
+            elif shadow.get("shadow_strategy"):
+                # 会場フィルタ×多頭数の重複時: 内側で生成された多頭数シャドウを採用
+                result["shadow_strategy"] = shadow["shadow_strategy"]
         except Exception as e:
             logger.debug(f"shadow_strategy 計算失敗: {e}")
         return result
@@ -454,7 +495,12 @@ def _decide_bet_strategy(result_df: pd.DataFrame, _skip_venue_filter: bool = Fal
 
     MAX_HORSES = 8  # 76,099Rバックテスト: ≤8頭で3連複的中率24.3% ROI121% 約4.6戦/日
     if len(result_df) > MAX_HORSES:
-        return _empty(f"見送り（{len(result_df)}頭: 多頭数フィルタ）")
+        result = _empty(f"見送り（{len(result_df)}頭: 多頭数フィルタ）")
+        # 多頭数レース解禁の判断材料として、ワイドBOXのシャドウを記録する
+        shadow = _multi_horse_shadow(result_df)
+        if shadow:
+            result["shadow_strategy"] = shadow
+        return result
 
     top2 = result_df.head(2)
     nums = [int(r["horse_number"]) for _, r in top2.iterrows()

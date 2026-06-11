@@ -49,6 +49,7 @@ HISTORY_COLS = [
     # シャドウ列: 動的会場フィルタの復帰判定用。見送りレースは「もし買っていたら」
     # の成績を、実買いレースは bet_total / return_total と同値を記録する。
     "shadow_bet_total", "shadow_return_total",
+    "shadow_type", "shadow_note",
     "fukusho_hit",
     "umaren_hit",     "umaren_payout",
     "wide_hit",       "wide_payout",
@@ -149,6 +150,7 @@ def load_history() -> pd.DataFrame:
         "sanrenpuku_hit": "False", "sanrenpuku_payout": "0",
         "bet_total": "0",        "return_total": "0",
         "shadow_bet_total": "0", "shadow_return_total": "0",
+        "shadow_type": "", "shadow_note": "",
     }
     for col, default in _defaults.items():
         if col not in df.columns:
@@ -213,6 +215,7 @@ def record_result(
             "sanrenpuku_hit": False, "sanrenpuku_payout": 0,
             "bet_total": 0, "return_total": 0,
             "shadow_bet_total": 0, "shadow_return_total": 0,
+            "shadow_type": "", "shadow_note": "",
         }
         DATA_DIR.mkdir(parents=True, exist_ok=True)
         new_row_df = pd.DataFrame([row])
@@ -377,6 +380,8 @@ def record_result(
         "return_total":    return_total,
         "shadow_bet_total":    shadow_bet_total,
         "shadow_return_total": shadow_return_total,
+        "shadow_type": ((shadow_bs or {}).get("shadow_type", "venue") if (shadow_bs and is_skip) else ""),
+        "shadow_note": ((shadow_bs or {}).get("shadow_note", "") if (shadow_bs and is_skip) else ""),
     }
 
     # CSV 書き込み（既存race_idは上書き、新規は追記）
@@ -422,6 +427,8 @@ def weekly_summary(df: pd.DataFrame, week_end: date) -> dict:
     we = pd.Timestamp(week_end)
     mask = (df["date"] >= ws) & (df["date"] <= we + pd.Timedelta(days=1) - pd.Timedelta(seconds=1))
     wdf = df[mask]
+    # 的中率・回収率は実購入レースのみで算出（シャドウ記録行 bet_total=0 を母数から除外）
+    wdf = wdf[pd.to_numeric(wdf["bet_total"], errors="coerce").fillna(0) > 0]
 
     if wdf.empty:
         return {"n_races": 0, "fukusho_rate": 0.0, "umaren_rate": 0.0,
@@ -447,6 +454,9 @@ def weekly_summary(df: pd.DataFrame, week_end: date) -> dict:
 
 def cumulative_summary(df: pd.DataFrame) -> dict:
     """全期間の累計集計 dict を返す。"""
+    # 的中率・回収率は実購入レースのみで算出（シャドウ記録行 bet_total=0 を母数から除外）
+    if not df.empty:
+        df = df[pd.to_numeric(df["bet_total"], errors="coerce").fillna(0) > 0]
     if df.empty:
         return {"n_races": 0, "fukusho_rate": 0.0, "umaren_rate": 0.0,
                 "wide_rate": 0.0, "sanrenpuku_rate": 0.0,
