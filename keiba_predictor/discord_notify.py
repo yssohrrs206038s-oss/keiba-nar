@@ -990,9 +990,9 @@ def scrape_payouts(race_id: str, session: requests.Session) -> dict:
     Returns:
         {"馬連": [{"combo": "3-5", "amount": 1450}], "ワイド": [...], ...}
     """
-    # NAR: result.html?race_id=...  (EUC-JP)
+    # NAR: result.html?race_id=... (サイトはUTF-8に移行済み)
     url = f"{NAR_RESULT_URL}?race_id={race_id}"
-    soup = _get(url, session, encoding="euc-jp")
+    soup = _get(url, session, encoding="utf-8")
     if soup is None:
         return {}
 
