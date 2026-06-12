@@ -151,14 +151,40 @@ jobs:
                   env_file.write('MODEL_WIDE=N/A\n')
           "
 
-      # ── モデルをGoogle Driveにアップロード ───────────────────
-      - name: モデルをGoogle Driveにアップロード
+      # ── モデルを GitHub Releases にアップロード ─────────────
+      - name: モデルを GitHub Releases にアップロード
         if: env.DATA_READY == 'true'
-        continue-on-error: true
+        id: upload_model
         env:
-          GDRIVE_SERVICE_ACCOUNT_JSON: ${{ secrets.GDRIVE_SERVICE_ACCOUNT_JSON }}
-          NAR_MODEL_GDRIVE_ID: ${{ secrets.NAR_MODEL_GDRIVE_ID }}
-        run: python keiba_predictor/scripts/upload_model.py
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          MODEL_PATH="keiba_predictor/model/xgb_model.pkl"
+          if [ ! -f "$MODEL_PATH" ]; then
+            echo "⚠️ $MODEL_PATH が存在しないためアップロードをスキップ"
+            echo "GDRIVE_UPLOAD=skipped(no model)" >> $GITHUB_ENV
+            exit 0
+          fi
+          TAG="model-latest"
+          # リリースが存在しなければ作成
+          if ! gh release view "$TAG" --repo "${{ github.repository }}" > /dev/null 2>&1; then
+            echo "📦 リリース $TAG を作成..."
+            gh release create "$TAG" \
+              --repo "${{ github.repository }}" \
+              --title "Model: latest" \
+              --notes "最新の NAR 予測モデル（自動更新）" \
+              --prerelease
+          fi
+          # アセットをアップロード（既存なら --clobber で上書き）
+          echo "📤 $MODEL_PATH を $TAG にアップロード中..."
+          if gh release upload "$TAG" "$MODEL_PATH" \
+               --repo "${{ github.repository }}" \
+               --clobber; then
+            echo "✅ GitHub Releases アップロード成功"
+            echo "GDRIVE_UPLOAD=GitHub Releases(model-latest)" >> $GITHUB_ENV
+          else
+            echo "::warning::GitHub Releases アップロード失敗"
+            echo "GDRIVE_UPLOAD=failed" >> $GITHUB_ENV
+          fi
 
       # ── キャッシュをコミット ─────────────────────────────────
       - name: キャッシュをコミット
