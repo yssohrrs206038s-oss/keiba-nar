@@ -87,9 +87,10 @@ jobs:
           python -m playwright install chromium
           python -m playwright install-deps chromium
 
-      - name: モデルをGoogle Driveからダウンロード
+      - name: モデルをダウンロード（GitHub Releases 優先 → GDrive フォールバック）
         continue-on-error: true
         env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
           NAR_MODEL_GDRIVE_ID: ${{ secrets.NAR_MODEL_GDRIVE_ID }}
         run: python keiba_predictor/scripts/download_model.py
 
