@@ -1099,6 +1099,14 @@ def scrape_nar_race_result(
             if field in col_idx:
                 break
 
+    # ヘッダーマッチ数が少ない場合は DEFAULT_IDX フォールバックが起きている可能性を警告
+    _n_matched = len(col_idx)
+    if _n_matched < 5:
+        logger.warning(
+            f"[NAR] ヘッダーマッチ数={_n_matched}/14 (race_id={race_id}): "
+            f"DEFAULT_IDXフォールバック発動の疑い。raw_headers={raw_headers}"
+        )
+
     DEFAULT_IDX = {
         "finish_position": 0, "frame_number": 1, "horse_number": 2,
         "horse_name": 3, "sex_age": 4, "weight_carried": 5,
@@ -1178,7 +1186,62 @@ def scrape_nar_race_result(
         rows.append(row)
 
     _sleep()
-    return pd.DataFrame(rows) if rows else None
+    if not rows:
+        return None
+
+    df_result = pd.DataFrame(rows)
+    df_result = _validate_nar_result(df_result, race_id)
+    return df_result
+
+
+def _validate_nar_result(df: pd.DataFrame, race_id: str) -> pd.DataFrame:
+    """
+    NAR スクレイピング結果の妥当性を検証し、異常があれば odds/popularity を
+    NaN に置換する。行は捨てない（着順・馬名等は有効）。
+
+    検証項目:
+      1. ヘッダーマッチ数は呼び出し元で警告済み（この関数では行わない）
+      2. オーバーラウンド: Σ(1/odds) が [1.05, 1.8] 範囲外
+      3. popularity が全行 NaN
+    """
+    OVERROUND_MIN = 1.05
+    OVERROUND_MAX = 1.8
+
+    odds_num = pd.to_numeric(df["odds"], errors="coerce")
+    pop_num  = pd.to_numeric(df["popularity"], errors="coerce")
+
+    # オーバーラウンド検証
+    valid_odds = odds_num.dropna()
+    if len(valid_odds) > 0:
+        overround = (1.0 / valid_odds.clip(lower=0.01)).sum()
+        if not (OVERROUND_MIN <= overround <= OVERROUND_MAX):
+            logger.error(
+                f"[NAR][GUARD] オーバーラウンド異常 overround={overround:.3f} "
+                f"(期待範囲 {OVERROUND_MIN}〜{OVERROUND_MAX}), race_id={race_id} "
+                "→ odds/popularity を NaN に置換"
+            )
+            df = df.copy()
+            df["odds"]       = float("nan")
+            df["popularity"] = float("nan")
+            return df
+    else:
+        logger.error(
+            f"[NAR][GUARD] odds が全て非数値, race_id={race_id} "
+            "→ odds/popularity を NaN に置換"
+        )
+        df = df.copy()
+        df["odds"]       = float("nan")
+        df["popularity"] = float("nan")
+        return df
+
+    # popularity 全 NaN 検証
+    if pop_num.isna().all():
+        logger.error(
+            f"[NAR][GUARD] popularity が全行 NaN, race_id={race_id} "
+            "→ popularity は NaN のまま保持（odds は正常）"
+        )
+
+    return df
 
 
 def scrape_nar_races(
