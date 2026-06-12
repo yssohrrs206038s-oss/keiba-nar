@@ -34,8 +34,14 @@ DATA_DIR    = REPO_ROOT / "keiba_predictor" / "data"
 REPORT_PATH = DATA_DIR / "anauma_backtest_report.md"
 
 # 時系列分割境界
-TRAIN_END    = pd.Timestamp("2025-07-01")   # < この日付が学習期間
-VAL_MID      = None                          # 検証の前半/後半境界（等分で自動計算）
+# 2026年データはオッズ異常（オーバーラウンド<1.0のレースが13%、全馬ROI 172%）のため除外。
+DATA_END  = pd.Timestamp("2026-01-01")       # この日付以降を除外（2026年全体）
+TRAIN_END = pd.Timestamp("2024-07-01")       # < この日付が学習期間
+# 検証期間: 2024-07-01〜2025-12-31 を前半(キャリブレーション)/後半(バックテスト)に等分
+
+# 健全性チェック: 全馬単勝ROIの正常範囲（控除率約25-30% → 70〜75%が正常）
+BASELINE_ROI_MIN = 0.60
+BASELINE_ROI_MAX = 0.80
 
 # オッズ帯ラベル
 ODDS_BANDS = [
@@ -84,6 +90,11 @@ def load_data(sample: bool = False) -> pd.DataFrame:
     logger.info(f"データ読み込み: {path}")
     df = pd.read_csv(path, encoding="utf-8-sig", parse_dates=["race_date"])
     df = df.sort_values("race_date").reset_index(drop=True)
+
+    # 2026年データはオッズ異常のため除外（オーバーラウンド<1.0のレースが13%、全馬ROI 172%）
+    before = len(df)
+    df = df[df["race_date"] < DATA_END].reset_index(drop=True)
+    logger.info(f"2026年以降を除外: {before} → {len(df)} 行（-{before - len(df):,}行）")
 
     if sample:
         df = df.tail(10_000).reset_index(drop=True)
@@ -327,10 +338,16 @@ def build_report(
     n_val_cal: int,
     n_val_bt: int,
 ) -> str:
+    baseline_ok = BASELINE_ROI_MIN <= baseline["all_roi"] <= BASELINE_ROI_MAX
+    baseline_flag = "✅ 正常範囲" if baseline_ok else "⚠️ 異常値 — 結果を解釈する前にデータを確認してください"
+
     lines = [
         "# 穴馬発見モデル バックテストレポート",
         "",
         f"**生成日**: {pd.Timestamp.now().strftime('%Y-%m-%d %H:%M')}",
+        "",
+        "> **⚠️ データ注記**: 2026年データはオッズ異常（オーバーラウンド < 1.0 のレースが 13%、"
+        "全馬単勝ROI 172%）のため除外。評価対象は 2021〜2025年データのみ。",
         "",
         "---",
         "",
@@ -338,14 +355,14 @@ def build_report(
         "",
         f"| 区間 | 行数 | 用途 |",
         f"|:-----|-----:|:-----|",
-        f"| race_date < 2025-07-01 | {n_train:,} | 盲目モデル学習 + 市場確率モデル学習 |",
+        f"| race_date < {TRAIN_END.date()} | {n_train:,} | 盲目モデル学習 + 市場確率モデル学習 |",
         f"| 検証前半（キャリブレーション用） | {n_val_cal:,} | Plattスケーリング学習 |",
         f"| 検証後半（バックテスト専用）      | {n_val_bt:,} | 最終評価のみ（閾値選択に不使用） |",
         f"| バックテスト期間 | {val_period[0]} 〜 {val_period[1]} | |",
         "",
         "---",
         "",
-        "## 2. 盲目モデル（odds/popularity除外）単体性能",
+        "## 2. 盲目モデル（odds/popularity/last_3f除外）単体性能",
         "",
         f"- 検証後半 AUC: **{auc_blind:.4f}**  ← 現行モデルより低いのは正常（オッズ情報を使わないため）",
         "",
@@ -404,14 +421,16 @@ def build_report(
     lines.append(_md_table(["θ", "3着以内率"], rows_fb))
     lines += ["", "---", ""]
 
-    # ベースライン
+    # ベースライン（健全性チェック付き）
     lines += [
         "## 7. ベースライン比較（同期間）",
         "",
-        f"| 戦略 | 購入数 | ROI |",
-        f"|:-----|-------:|----:|",
-        f"| 全馬単勝 | {baseline['all_n']:,} | {baseline['all_roi']*100:.1f}% |",
-        f"| 1番人気単勝 | {baseline['fav_n']:,} | {baseline['fav_roi']*100:.1f}% |",
+        f"| 戦略 | 購入数 | ROI | 健全性 |",
+        f"|:-----|-------:|----:|:------|",
+        f"| 全馬単勝 | {baseline['all_n']:,} | {baseline['all_roi']*100:.1f}% | {baseline_flag} |",
+        f"| 1番人気単勝 | {baseline['fav_n']:,} | {baseline['fav_roi']*100:.1f}% | （参考） |",
+        "",
+        f"> 全馬単勝ROIの正常範囲: {BASELINE_ROI_MIN*100:.0f}%〜{BASELINE_ROI_MAX*100:.0f}%（控除率 20〜40%相当）",
         "",
         "---",
         "",
@@ -441,7 +460,9 @@ def build_report(
     lines += [
         "## 注記",
         "",
-        "- **盲目モデル**: odds/popularity を除外したXGBoost（訓練期間で学習）",
+        "- **2026年データ除外**: オッズ異常（オーバーラウンド<1.0が13%、全馬ROI 172%）のため評価対象外",
+        "- **盲目モデル**: odds/popularity/last_3f を除外したXGBoost（訓練期間で学習）",
+        "- **last_3f除外理由**: 当日レースの上がり3Fはレース後にしか判明しないためリーク",
         "- **市場確率**: log(p_win)・出走頭数 → ロジスティック回帰 → 3着以内確率",
         "- **乖離スコア**: 盲目モデルのPlatt補正済み確率 − 市場3着以内確率",
         "- **単勝払戻**: odds × 100円（控除率込みのオッズをそのまま使用）",
@@ -543,6 +564,20 @@ def main(sample: bool = False) -> None:
         f"ベースライン: 全馬ROI={baseline['all_roi']*100:.1f}%, "
         f"1番人気ROI={baseline['fav_roi']*100:.1f}%"
     )
+
+    # ── 健全性チェック ───────────────────────────────────────────
+    # 全馬単勝ROIが正常範囲（60〜80%）でなければオッズ異常の可能性があるため中止
+    all_roi = baseline["all_roi"]
+    if not (BASELINE_ROI_MIN <= all_roi <= BASELINE_ROI_MAX):
+        msg = (
+            f"[ABORT] 全馬単勝ROI={all_roi*100:.1f}% が正常範囲"
+            f"({BASELINE_ROI_MIN*100:.0f}%〜{BASELINE_ROI_MAX*100:.0f}%)を外れています。"
+            "バックテスト期間のオッズデータに異常がある可能性があります。"
+            "データを確認してから再実行してください。"
+        )
+        logger.error(msg)
+        sys.exit(1)
+    logger.info(f"健全性チェック OK: 全馬単勝ROI={all_roi*100:.1f}%")
 
     # 乖離上位20頭
     examples = top_deviation_examples(df_bt, n=20)
