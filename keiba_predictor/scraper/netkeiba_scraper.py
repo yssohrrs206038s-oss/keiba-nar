@@ -128,38 +128,65 @@ def _get_result_html_with_playwright(url: str) -> Optional[str]:
         return None
 
 
+def _best_encoding(content: bytes, hint: str, ct_charset: str) -> tuple[str, str]:
+    """
+    バイト列を最もU+FFFD置換文字が少ないエンコーディングでデコードして返す。
+
+    試行順: Content-Typeのcharset → 呼び出し側ヒント → utf-8 → euc-jp → cp932
+    置換文字ゼロの候補が見つかった時点で即採用する。
+
+    Returns:
+        (decoded_text, adopted_encoding)
+    """
+    REPLACEMENT = "�"
+    candidates: list[str] = []
+    if ct_charset and not ct_charset.startswith("iso-8859"):
+        candidates.append(ct_charset)
+    if hint and hint.lower() not in [c.lower() for c in candidates]:
+        candidates.append(hint)
+    for enc in ("utf-8", "euc-jp", "cp932"):
+        if enc not in [c.lower() for c in candidates]:
+            candidates.append(enc)
+
+    best_text = content.decode("utf-8", errors="replace")
+    best_enc = "utf-8"
+    best_count = best_text.count(REPLACEMENT)
+
+    for enc in candidates:
+        try:
+            text = content.decode(enc, errors="replace")
+        except (UnicodeDecodeError, LookupError):
+            continue
+        count = text.count(REPLACEMENT)
+        if count < best_count:
+            best_text = text
+            best_enc = enc
+            best_count = count
+        if count == 0:
+            return text, enc
+
+    return best_text, best_enc
+
+
 def _get(url: str, session: requests.Session, encoding: str = "UTF-8") -> Optional[BeautifulSoup]:
     """
     GETリクエストを送り BeautifulSoup を返す。失敗時はNone。
 
-    エンコーディング検出順:
-      1. Content-Type ヘッダーの charset
-      2. 引数 encoding（デフォルト EUC-JP）
-      3. HTML内の <meta charset> タグ（BS4が自動検出）
-    resp.content (bytes) + from_encoding を使うことで BS4 に正しく検出させる。
+    エンコーディングは自己修復方式で決定する:
+      候補リスト(Content-Typeのcharset → 引数encoding → utf-8 → euc-jp → cp932)を
+      順にデコードし、U+FFFD置換文字が最少の結果を採用する。
+      置換文字ゼロの候補が見つかった時点で即採用。
     """
     try:
         resp = session.get(url, headers=HEADERS, timeout=20)
         resp.raise_for_status()
-        # Content-Type ヘッダーから charset を取得
         ct = resp.headers.get("Content-Type", "")
         m = re.search(r"charset=([^\s;,]+)", ct, re.I)
         ct_charset = m.group(1).strip().lower() if m else ""
-        # 明示的にエンコーディングが指定されている場合（euc-jp等）は常にそれを優先
-        # NAR は charset= が空、apparent_encoding が iso-8859-5 等の誤検出を返すため
-        if encoding.lower() != "utf-8":
-            detected = encoding
-        elif ct_charset and not ct_charset.startswith("iso-8859"):
-            detected = ct_charset
-        elif resp.apparent_encoding and resp.apparent_encoding.lower() not in ("ascii", "windows-1252") and not resp.apparent_encoding.lower().startswith("iso-8859"):
-            detected = resp.apparent_encoding
-        else:
-            detected = encoding
-        # bytesを明示的にデコードしてからBS4に渡す（from_encodingが無視されるケースの対策）
-        try:
-            html_text = resp.content.decode(detected, errors="replace")
-        except (UnicodeDecodeError, LookupError):
-            html_text = resp.content.decode("utf-8", errors="replace")
+
+        html_text, adopted = _best_encoding(resp.content, encoding, ct_charset)
+        if adopted.lower() != encoding.lower():
+            logger.info(f"encoding: hint={encoding!r} → adopted={adopted!r} ({url})")
         return BeautifulSoup(html_text, "html.parser")
     except requests.RequestException as e:
         logger.warning(f"Request failed: {url} -> {e}")
