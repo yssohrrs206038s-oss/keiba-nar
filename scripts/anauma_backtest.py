@@ -110,7 +110,9 @@ def load_data(sample: bool = False) -> pd.DataFrame:
 # 盲目モデル
 # ──────────────────────────────────────────────────────────────────
 
-BLIND_COLS = [c for c in FEATURE_COLS if c not in ("odds", "popularity")]
+# last_3f は当日レースの上がり3Fであり、レース終了後にしか判明しないためリーク除外。
+# prev2_last_3f / prev3_last_3f は過去走の値なので残す。
+BLIND_COLS = [c for c in FEATURE_COLS if c not in ("odds", "popularity", "last_3f")]
 
 
 def train_blind_model(df_train: pd.DataFrame) -> xgb.XGBClassifier:
