@@ -3,6 +3,15 @@ name: NAR 水曜データ更新・モデル再学習
 on:
   # スケジュールは外部cron-jobで管理（水曜 10:00）
   workflow_dispatch:
+    inputs:
+      start_ym:
+        description: 'スクレイピング開始月 (YYYY-MM)。未指定なら直近2週間前の月'
+        required: false
+        default: ''
+      end_ym:
+        description: 'スクレイピング終了月 (YYYY-MM)。未指定なら今月'
+        required: false
+        default: ''
 
 permissions:
   contents: write
@@ -39,18 +48,29 @@ jobs:
           echo "✅ pip install 完了"
 
       # ── データ収集 ──────────────────────────────────────────
-      - name: NARスクレイピング（直近2週間）
+      - name: NARスクレイピング（期間自動計算 or 手動指定）
         run: |
-          TWO_WEEKS_AGO=$(date -d "14 days ago" +%Y-%m 2>/dev/null || \
-            python3 -c "from datetime import date,timedelta;print((date.today()-timedelta(days=14)).strftime('%Y-%m'))")
-          END=$(date +%Y-%m)
-          echo "📅 NAR スクレイピング期間: $TWO_WEEKS_AGO ～ $END"
+          # start_ym / end_ym が手動指定されていればそれを使用、未指定なら直近2週間〜今月
+          INPUT_START="${{ github.event.inputs.start_ym }}"
+          INPUT_END="${{ github.event.inputs.end_ym }}"
+          if [ -n "$INPUT_START" ]; then
+            START="$INPUT_START"
+          else
+            START=$(date -d "14 days ago" +%Y-%m 2>/dev/null || \
+              python3 -c "from datetime import date,timedelta;print((date.today()-timedelta(days=14)).strftime('%Y-%m'))")
+          fi
+          if [ -n "$INPUT_END" ]; then
+            END="$INPUT_END"
+          else
+            END=$(date +%Y-%m)
+          fi
+          echo "📅 NAR スクレイピング期間: $START ～ $END"
           python -c "
           import sys, logging
           sys.stdout.reconfigure(encoding='utf-8', errors='replace')
           logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
           from keiba_predictor.scraper.netkeiba_scraper import scrape_nar_races
-          start = '$TWO_WEEKS_AGO'.split('-')
+          start = '$START'.split('-')
           end = '$END'.split('-')
           df = scrape_nar_races(int(start[0]), int(start[1]), int(end[0]), int(end[1]))
           print(f'NAR取得完了: {len(df)} rows')
