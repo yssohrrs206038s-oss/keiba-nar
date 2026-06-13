@@ -88,6 +88,18 @@ FEATURE_COLS = [
     "sire_course_win_rate",      # 同じ父馬×コース種別の3着以内率
     "sire_dist_win_rate",        # 同じ父馬×距離帯の3着以内率
     "bms_course_win_rate",       # 同じ母父×コース種別の3着以内率
+    # クラス昇降特徴量
+    "race_class_level",          # レースクラス階層（新馬=0…重賞=10）
+    "prev_class_level",          # 前走クラス
+    "class_diff",                # クラス差（正=昇級）
+    "is_class_up",               # 昇級フラグ
+    "is_class_down",             # 降級フラグ
+    # Eloレーティング
+    "horse_elo",                 # レース前Eloレーティング
+    "elo_minus_field_avg",       # horse_elo − フィールド平均Elo
+    "prev_race_opp_elo",         # 前走対戦相手の平均Elo
+    # 騎手乗り替わり
+    "is_jockey_change",          # 騎手変更フラグ（前走比）
 ]
 
 
@@ -523,6 +535,170 @@ def add_pedigree_features(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
+# ── レースクラス階層 ──────────────────────────────────────────────
+# NAR クラス体系: 新馬/未格付=0, C3=1, C2=2, C1=3, B3=4, B2=5, B1=6, A3=7, A2=8, A1=9, 重賞/OP=10
+# 複合クラス名（例: "B1B2", "A1(A1A2)"）は上位（数値大）を採用する
+
+_NAR_CLASS_PATTERNS: list[tuple[re.Pattern, int]] = [
+    (re.compile(r"重賞|グレード|OP|オープン|特別"), 10),
+    (re.compile(r"A1"),  9),
+    (re.compile(r"A2"),  8),
+    (re.compile(r"A3"),  7),
+    (re.compile(r"B1"),  6),
+    (re.compile(r"B2"),  5),
+    (re.compile(r"B3"),  4),
+    (re.compile(r"C1"),  3),
+    (re.compile(r"C2"),  2),
+    (re.compile(r"C3"),  1),
+    (re.compile(r"新馬|未格付|未出走"), 0),
+]
+
+
+def parse_race_class(race_name) -> float:
+    """race_name 文字列からNARクラス階層（0–10）を返す。判定不能なら NaN。"""
+    if not isinstance(race_name, str) or not race_name.strip():
+        return float("nan")
+    best = float("nan")
+    for pat, val in _NAR_CLASS_PATTERNS:
+        if pat.search(race_name):
+            if np.isnan(best) or val > best:
+                best = float(val)
+    return best
+
+
+def add_race_class_features(df: pd.DataFrame) -> pd.DataFrame:
+    """NAR レースクラス昇降特徴量を追加する。"""
+    logger.info("レースクラス特徴量を計算中...")
+    if "race_name" in df.columns:
+        df["race_class_level"] = df["race_name"].map(parse_race_class)
+    else:
+        df["race_class_level"] = np.nan
+
+    df = df.sort_values(["horse_id", "race_date"]).reset_index(drop=True)
+    df["prev_class_level"] = df.groupby("horse_id", group_keys=False)["race_class_level"].shift(1)
+
+    cl = pd.to_numeric(df["race_class_level"], errors="coerce")
+    prev_cl = pd.to_numeric(df["prev_class_level"], errors="coerce")
+    df["class_diff"] = cl - prev_cl
+    df["is_class_up"]   = (df["class_diff"] > 0).astype(float).where(df["class_diff"].notna(), np.nan)
+    df["is_class_down"] = (df["class_diff"] < 0).astype(float).where(df["class_diff"].notna(), np.nan)
+    return df
+
+
+# ── Eloレーティング ───────────────────────────────────────────────
+
+def build_elo_table(df: pd.DataFrame, K: float = 20.0, init_elo: float = 1500.0) -> pd.DataFrame:
+    """
+    horse_id ベースの Elo レーティングを計算し、レースごとのレース前 Elo を返す。
+
+    - horse_id が NaN / 空文字の馬は対象外（Elo 計算・記録ともスキップ）
+    - NaN / DNF 着順は更新に使わないが、レース前 Elo は記録する
+    - 戻り値: df の index に対応した horse_elo 列を持つ DataFrame
+    """
+    df = df.copy()
+    df["race_date"] = pd.to_datetime(df["race_date"], errors="coerce")
+
+    elo_dict: dict[str, float] = {}  # horse_id -> current Elo
+
+    pre_elo = pd.Series(np.nan, index=df.index, dtype=float)
+
+    # レース単位で処理（日付順）
+    for race_id, race in df.sort_values("race_date").groupby("race_id", sort=False):
+        # horse_id が有効な馬のみ
+        valid_mask = race["horse_id"].notna() & (race["horse_id"].astype(str).str.strip() != "") & (race["horse_id"].astype(str) != "nan")
+        valid_idx = race.index[valid_mask]
+        if len(valid_idx) == 0:
+            continue
+
+        # レース前 Elo を記録
+        for idx in valid_idx:
+            hid = str(race.at[idx, "horse_id"])
+            pre_elo.at[idx] = elo_dict.get(hid, init_elo)
+
+        # 有効着順（数値変換可能）がある馬だけで Elo 更新
+        fp = pd.to_numeric(race.loc[valid_idx, "finish_position"], errors="coerce")
+        update_idx = valid_idx[fp.notna()]
+        if len(update_idx) < 2:
+            # 初期値を確定させるだけ（更新なし）
+            for idx in valid_idx:
+                hid = str(race.at[idx, "horse_id"])
+                if hid not in elo_dict:
+                    elo_dict[hid] = init_elo
+            continue
+
+        # 全ペア勝負結果で更新（暫定 Elo を更新してから書き戻し）
+        current = {str(race.at[idx, "horse_id"]): elo_dict.get(str(race.at[idx, "horse_id"]), init_elo)
+                   for idx in update_idx}
+        delta: dict[str, float] = {hid: 0.0 for hid in current}
+
+        positions = {str(race.at[idx, "horse_id"]): float(fp.at[idx]) for idx in update_idx}
+        hids = list(current.keys())
+        for i in range(len(hids)):
+            for j in range(i + 1, len(hids)):
+                a, b = hids[i], hids[j]
+                ea = 1.0 / (1.0 + 10.0 ** ((current[b] - current[a]) / 400.0))
+                sa = 1.0 if positions[a] < positions[b] else (0.5 if positions[a] == positions[b] else 0.0)
+                delta[a] += K * (sa - ea)
+                delta[b] += K * ((1.0 - sa) - (1.0 - ea))
+
+        for hid in hids:
+            elo_dict[hid] = current[hid] + delta[hid]
+        # 未更新馬（DNF等）も登録
+        for idx in valid_idx:
+            hid = str(race.at[idx, "horse_id"])
+            if hid not in elo_dict:
+                elo_dict[hid] = init_elo
+
+    result = df[[]].copy()
+    result["horse_elo"] = pre_elo
+    return result
+
+
+def add_elo_features(df: pd.DataFrame) -> pd.DataFrame:
+    """Elo レーティング特徴量を追加する。"""
+    logger.info("Eloレーティングを計算中...")
+    elo_df = build_elo_table(df)
+    df["horse_elo"] = elo_df["horse_elo"].values
+
+    # フィールド平均 Elo との差
+    field_avg = df.groupby("race_id")["horse_elo"].transform("mean")
+    df["elo_minus_field_avg"] = df["horse_elo"] - field_avg
+
+    # 前走対戦相手の平均 Elo（vectorized版）
+    logger.info("前走対戦相手Eloを計算中...")
+    # race_id ごとの合計 Elo と人数を計算
+    horse_elo_num = pd.to_numeric(df["horse_elo"], errors="coerce")
+    race_sum  = horse_elo_num.groupby(df["race_id"]).transform("sum")
+    race_cnt  = horse_elo_num.groupby(df["race_id"]).transform("count")
+    # 自分を除いた平均 = (合計 - 自分) / (人数 - 1)
+    opp_sum = race_sum - horse_elo_num.fillna(0)
+    opp_cnt = race_cnt - horse_elo_num.notna().astype(int)
+    df["_race_opp_elo_mean"] = np.where(opp_cnt > 0, opp_sum / opp_cnt, np.nan)
+
+    # 前走の race_opp_elo_mean を horse_id ごとに shift(1)
+    df = df.sort_values(["horse_id", "race_date"]).reset_index(drop=True)
+    df["prev_race_opp_elo"] = df.groupby("horse_id", sort=False)["_race_opp_elo_mean"].shift(1).values
+    df = df.drop(columns=["_race_opp_elo_mean"])
+    return df
+
+
+# ── 騎手乗り替わり ────────────────────────────────────────────────
+
+def add_jockey_change_feature(df: pd.DataFrame) -> pd.DataFrame:
+    """前走から騎手が変わったかどうかのフラグを追加する。"""
+    logger.info("騎手乗り替わりフラグを計算中...")
+    if "jockey_id" not in df.columns:
+        df["is_jockey_change"] = np.nan
+        return df
+
+    df = df.sort_values(["horse_id", "race_date"]).reset_index(drop=True)
+    prev_jockey = df.groupby("horse_id", sort=False)["jockey_id"].shift(1)
+    changed = (df["jockey_id"] != prev_jockey).astype(float)
+    changed[prev_jockey.isna()] = np.nan
+    df["is_jockey_change"] = changed.values
+    return df
+
+
 def build_features(df: pd.DataFrame) -> pd.DataFrame:
     """
     クリーニング済みDataFrameにすべての特徴量を追加して返す。
@@ -543,6 +719,9 @@ def build_features(df: pd.DataFrame) -> pd.DataFrame:
     df = add_jockey_course_dist_features(df)  # NAR: 地区別に変更
     df = add_jockey_trainer_features(df)
     df = add_pedigree_features(df)
+    df = add_race_class_features(df)
+    df = add_elo_features(df)
+    df = add_jockey_change_feature(df)
 
     # same_day_rank / prob_vs_avg は学習時には使えない（leakage）ため NaN で埋める
     # ライブ予測時のみ predict_race() 後に計算する
