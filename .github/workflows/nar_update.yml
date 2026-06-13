@@ -266,13 +266,26 @@ jobs:
       - name: Python 構文チェック（py_compile）
         run: |
           python3 -m py_compile keiba_predictor/main.py
+          python3 -m py_compile keiba_predictor/scripts/download_model.py
           echo "✅ py_compile OK"
+
+      - name: gdown をインストール
+        run: pip install gdown
+
+      - name: GDrive からモデルをダウンロード
+        env:
+          NAR_MODEL_GDRIVE_ID: ${{ secrets.NAR_MODEL_GDRIVE_ID }}
+          # Releases をスキップして GDrive から直接取得する
+          GITHUB_REPOSITORY: ""
+        run: |
+          python keiba_predictor/scripts/download_model.py
+          echo "✅ モデルダウンロード完了"
 
       - name: モデルファイルの存在確認
         run: |
           MODEL_PATH="keiba_predictor/model/xgb_model.pkl"
           if [ ! -f "$MODEL_PATH" ]; then
-            echo "::error::$MODEL_PATH が見つかりません。アップロード対象がありません。"
+            echo "::error::$MODEL_PATH が見つかりません。ダウンロードに失敗した可能性があります。"
             exit 1
           fi
           echo "✅ モデルファイル確認: $MODEL_PATH"
