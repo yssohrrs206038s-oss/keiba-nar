@@ -162,9 +162,9 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          MODEL_PATH="keiba_predictor/model/xgb_model.pkl"
-          if [ ! -f "$MODEL_PATH" ]; then
-            echo "⚠️ $MODEL_PATH が存在しないためアップロードをスキップ"
+          PKL_FILES=$(ls keiba_predictor/model/*.pkl 2>/dev/null)
+          if [ -z "$PKL_FILES" ]; then
+            echo "⚠️ アップロード対象の .pkl ファイルが見つかりません"
             echo "GDRIVE_UPLOAD=skipped(no model)" >> $GITHUB_ENV
             exit 0
           fi
@@ -178,17 +178,15 @@ jobs:
               --notes "最新の NAR 予測モデル（自動更新）" \
               --prerelease
           fi
-          # アセットをアップロード（既存なら --clobber で上書き）
-          echo "📤 $MODEL_PATH を $TAG にアップロード中..."
-          if gh release upload "$TAG" "$MODEL_PATH" \
-               --repo "${{ github.repository }}" \
-               --clobber; then
-            echo "✅ GitHub Releases アップロード成功"
-            echo "GDRIVE_UPLOAD=GitHub Releases(model-latest)" >> $GITHUB_ENV
-          else
-            echo "::warning::GitHub Releases アップロード失敗"
-            echo "GDRIVE_UPLOAD=failed" >> $GITHUB_ENV
-          fi
+          # 全 .pkl をアップロード（既存なら --clobber で上書き）
+          for PKL in $PKL_FILES; do
+            echo "  📤 アップロード: $PKL"
+            gh release upload "$TAG" "$PKL" \
+              --repo "${{ github.repository }}" \
+              --clobber
+          done
+          echo "✅ GitHub Releases アップロード成功 (全 .pkl)"
+          echo "GDRIVE_UPLOAD=GitHub Releases(model-latest)" >> $GITHUB_ENV
 
       # ── キャッシュをコミット ─────────────────────────────────
       - name: キャッシュをコミット
@@ -294,7 +292,11 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          MODEL_PATH="keiba_predictor/model/xgb_model.pkl"
+          PKL_FILES=$(ls keiba_predictor/model/*.pkl 2>/dev/null)
+          if [ -z "$PKL_FILES" ]; then
+            echo "::error::アップロード対象の .pkl ファイルが見つかりません"
+            exit 1
+          fi
           TAG="model-latest"
           # リリースが存在しなければ作成
           if ! gh release view "$TAG" --repo "${{ github.repository }}" > /dev/null 2>&1; then
@@ -305,19 +307,15 @@ jobs:
               --notes "最新の NAR 予測モデル（自動更新）" \
               --prerelease
           fi
-          # アセットをアップロード（既存なら --clobber で上書き）
-          echo "📤 $MODEL_PATH を $TAG にアップロード中..."
-          if gh release upload "$TAG" "$MODEL_PATH" \
-               --repo "${{ github.repository }}" \
-               --clobber; then
-            echo "✅ GitHub Releases アップロード成功"
-            UPLOAD_RESULT="GitHub Releases(model-latest)"
-          else
-            echo "::error::GitHub Releases アップロード失敗"
-            UPLOAD_RESULT="failed"
-            exit 1
-          fi
-          echo "GDRIVE_UPLOAD=$UPLOAD_RESULT" >> $GITHUB_ENV
+          # 全 .pkl をアップロード（既存なら --clobber で上書き）
+          for PKL in $PKL_FILES; do
+            echo "  📤 アップロード: $PKL"
+            gh release upload "$TAG" "$PKL" \
+              --repo "${{ github.repository }}" \
+              --clobber
+          done
+          echo "✅ GitHub Releases アップロード成功 (全 .pkl)"
+          echo "GDRIVE_UPLOAD=GitHub Releases(model-latest)" >> $GITHUB_ENV
 
       - name: ✅ 完了を Discord に通知
         run: |
