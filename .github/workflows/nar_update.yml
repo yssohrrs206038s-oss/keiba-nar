@@ -12,6 +12,11 @@ on:
         description: 'スクレイピング終了月 (YYYY-MM)。未指定なら今月'
         required: false
         default: ''
+      upload_only:
+        description: 'true にするとデータ取得・再学習をスキップし、既存モデルをアップロードするだけで終了'
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: write
@@ -23,6 +28,7 @@ env:
 jobs:
   update:
     runs-on: ubuntu-latest
+    if: github.event.inputs.upload_only != 'true'
 
     steps:
       - name: リポジトリをチェックアウト
@@ -130,7 +136,6 @@ jobs:
           fi
 
       - name: モデルメトリクスを取得
-        if: env.DATA_READY == 'true'
         run: |
           python -c "
           import pickle, os, sys
@@ -153,7 +158,6 @@ jobs:
 
       # ── モデルを GitHub Releases にアップロード ─────────────
       - name: モデルを GitHub Releases にアップロード
-        if: env.DATA_READY == 'true'
         id: upload_model
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -249,3 +253,81 @@ jobs:
           curl -s -X POST "$DISCORD_WEBHOOK_URL" \
             -H "Content-Type: application/json" \
             -d "{\"content\": \"⚠️ **NAR水曜データ更新が失敗しました**\nログ: ${RUN_URL}\"}" || true
+
+  # ── upload_only=true のときだけ動くアップロード専用ジョブ ──────
+  upload_model:
+    runs-on: ubuntu-latest
+    if: github.event.inputs.upload_only == 'true'
+
+    steps:
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v4
+
+      - name: Python 構文チェック（py_compile）
+        run: |
+          python3 -m py_compile keiba_predictor/main.py
+          echo "✅ py_compile OK"
+
+      - name: モデルファイルの存在確認
+        run: |
+          MODEL_PATH="keiba_predictor/model/xgb_model.pkl"
+          if [ ! -f "$MODEL_PATH" ]; then
+            echo "::error::$MODEL_PATH が見つかりません。アップロード対象がありません。"
+            exit 1
+          fi
+          echo "✅ モデルファイル確認: $MODEL_PATH"
+
+      - name: モデルを GitHub Releases にアップロード
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          MODEL_PATH="keiba_predictor/model/xgb_model.pkl"
+          TAG="model-latest"
+          # リリースが存在しなければ作成
+          if ! gh release view "$TAG" --repo "${{ github.repository }}" > /dev/null 2>&1; then
+            echo "📦 リリース $TAG を作成..."
+            gh release create "$TAG" \
+              --repo "${{ github.repository }}" \
+              --title "Model: latest" \
+              --notes "最新の NAR 予測モデル（自動更新）" \
+              --prerelease
+          fi
+          # アセットをアップロード（既存なら --clobber で上書き）
+          echo "📤 $MODEL_PATH を $TAG にアップロード中..."
+          if gh release upload "$TAG" "$MODEL_PATH" \
+               --repo "${{ github.repository }}" \
+               --clobber; then
+            echo "✅ GitHub Releases アップロード成功"
+            UPLOAD_RESULT="GitHub Releases(model-latest)"
+          else
+            echo "::error::GitHub Releases アップロード失敗"
+            UPLOAD_RESULT="failed"
+            exit 1
+          fi
+          echo "GDRIVE_UPLOAD=$UPLOAD_RESULT" >> $GITHUB_ENV
+
+      - name: ✅ 完了を Discord に通知
+        run: |
+          if [ -z "$DISCORD_WEBHOOK_URL" ]; then exit 0; fi
+          PAYLOAD=$(python3 -c "
+          import json
+          msg = (
+              '\`\`\`\n'
+              '✅ KEIBA EDGE NAR モデルアップロード完了\n'
+              '📤 GitHub Releases: model-latest\n'
+              '\`\`\`'
+          )
+          print(json.dumps({'content': msg}))
+          ")
+          curl -s -X POST "$DISCORD_WEBHOOK_URL" \
+            -H "Content-Type: application/json" \
+            -d "$PAYLOAD" || true
+
+      - name: ❌ エラーを Discord に通知
+        if: failure()
+        run: |
+          if [ -z "$DISCORD_WEBHOOK_URL" ]; then exit 0; fi
+          RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          curl -s -X POST "$DISCORD_WEBHOOK_URL" \
+            -H "Content-Type: application/json" \
+            -d "{\"content\": \"⚠️ **NAR モデルアップロードが失敗しました**\nログ: ${RUN_URL}\"}" || true
