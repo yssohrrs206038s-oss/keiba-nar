@@ -612,6 +612,90 @@ def add_jockey_frame_feature(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
+def add_trainer_comeback_feature(df: pd.DataFrame) -> pd.DataFrame:
+    """調教師の「前走5着以下 → 翌走3着以内」累積率を追加する。
+
+    大衆が前走大敗でオッズを高く見積もる馬を立て直せる調教師を特定する。
+    leakage 防止: expanding sum を shift(1) してそのレース自身は含めない。
+    最低10サンプル未満は NaN。
+    """
+    logger.info("調教師の立て直し複勝率を計算中...")
+    df = df.sort_values(["horse_id", "race_date"]).reset_index(drop=True)
+
+    # 前走着順（horse_id 単位）
+    if "prev_fp" not in df.columns:
+        df["prev_fp"] = (
+            df.groupby("horse_id", group_keys=False)["finish_position"]
+            .transform(lambda x: pd.to_numeric(x, errors="coerce").shift(1))
+        )
+
+    top3_num = pd.to_numeric(df["top3"], errors="coerce")
+    prev_fp_num = pd.to_numeric(df["prev_fp"], errors="coerce")
+
+    df = df.sort_values("race_date").reset_index(drop=True)
+    result = pd.Series(np.nan, index=df.index, dtype=float)
+
+    for trainer_id, group in df.groupby("trainer_id", sort=False):
+        group = group.sort_values("race_date")
+        idxs = group.index.tolist()
+
+        fp_arr   = prev_fp_num.loc[idxs].values
+        top3_arr = top3_num.loc[idxs].values
+
+        cum_hit   = 0.0
+        cum_total = 0.0
+        for i, idx in enumerate(idxs):
+            if cum_total >= 10:
+                result[idx] = cum_hit / cum_total
+            # この行を累積に追加（shift相当: 計算後に加算）
+            if pd.notna(fp_arr[i]) and fp_arr[i] >= 5:
+                cum_total += 1.0
+                if pd.notna(top3_arr[i]) and top3_arr[i] == 1:
+                    cum_hit += 1.0
+
+    df["trainer_comeback_rate"] = result
+    return df
+
+
+def add_jockey_frame_feature(df: pd.DataFrame) -> pd.DataFrame:
+    """騎手の内枠(1-3番)・外枠(7番以上)別複勝率と枠適性差を追加する。
+
+    leakage 防止: expanding sum を shift(1) してそのレース自身は含めない。
+    最低5サンプル未満は NaN。
+    """
+    logger.info("騎手の枠別複勝率を計算中...")
+    df = df.sort_values("race_date").reset_index(drop=True)
+
+    frame_num = pd.to_numeric(df["frame_number"], errors="coerce")
+    df["_inner"] = (frame_num <= 3).astype(float)
+    df["_outer"] = (frame_num >= 7).astype(float)
+    top3_num = pd.to_numeric(df["top3"], errors="coerce")
+
+    for flag_col, new_col in [("_inner", "jockey_inner_rate"),
+                               ("_outer", "jockey_outer_rate")]:
+        result = pd.Series(np.nan, index=df.index, dtype=float)
+        for _, group in df.groupby("jockey_id", sort=False):
+            group = group.sort_values("race_date")
+            idxs = group.index.tolist()
+            flag_arr  = df.loc[idxs, flag_col].values
+            top3_arr  = top3_num.loc[idxs].values
+
+            cum_hit   = 0.0
+            cum_total = 0.0
+            for i, idx in enumerate(idxs):
+                if cum_total >= 5:
+                    result[idx] = cum_hit / cum_total
+                if flag_arr[i] == 1.0:
+                    cum_total += 1.0
+                    if pd.notna(top3_arr[i]) and top3_arr[i] == 1:
+                        cum_hit += 1.0
+        df[new_col] = result
+
+    df["jockey_frame_diff"] = df["jockey_inner_rate"] - df["jockey_outer_rate"]
+    df = df.drop(columns=["_inner", "_outer"])
+    return df
+
+
 def build_features(df: pd.DataFrame) -> pd.DataFrame:
     """
     クリーニング済みDataFrameにすべての特徴量を追加して返す。
