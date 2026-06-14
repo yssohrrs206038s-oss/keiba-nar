@@ -1321,7 +1321,287 @@ def scrape_nar_races(
     return combined
 
 
-if __name__ == "__main__":
+# ── JRA 調教データスクレイパー ───────────────────────────────────────
+
+JRA_TRAINING_URL = "https://race.netkeiba.com/horse/training.html"
+
+# 強度スコアマッピング (追い切り強度 → 数値)
+_INTENSITY_MAP = {
+    "一杯": 3, "いっぱい": 3,
+    "強め": 2, "つよめ": 2, "末強め": 2,
+    "馬なり": 1, "うまなり": 1,
+    "軽め": 1, "軽": 1,
+}
+
+# 追い切りコースのエンコーディング
+_COURSE_MAP = {
+    "坂路": 1, "さかみち": 1,
+    "W": 2, "ウッド": 2, "ウッドチップ": 2, "w": 2,
+    "CW": 2, "cw": 2,
+    "P": 3, "ポリ": 3, "ポリトラック": 3,
+    "芝": 4, "しば": 4,
+    "ダ": 5, "ダート": 5, "だ": 5,
+}
+
+
+def _parse_training_time(time_str: str) -> Optional[float]:
+    """
+    '53.5' や '1:23.4' 形式のタイム文字列を秒数(float)に変換する。
+    変換不能な場合はNone。
+    """
+    if not time_str or not isinstance(time_str, str):
+        return None
+    time_str = time_str.strip().replace(".", ".", 1)
+    # mm:ss.f 形式
+    m = re.match(r"(\d+):(\d+)\.(\d+)", time_str)
+    if m:
+        return int(m.group(1)) * 60 + int(m.group(2)) + float(f"0.{m.group(3)}")
+    # ss.f 形式
+    m = re.match(r"(\d+)\.(\d+)", time_str)
+    if m:
+        return float(f"{m.group(1)}.{m.group(2)}")
+    return None
+
+
+def _get_html_jra_training(horse_id: str) -> Optional[str]:
+    """
+    Playwright でrace.netkeiba.comの調教ページのHTMLを取得する。
+    playwright 未インストール時は None を返す (requests へのフォールバックなし)。
+
+    race.netkeiba.com はJavaScriptでテーブルを描画するため requests では取得不可。
+    """
+    try:
+        from playwright.sync_api import sync_playwright, TimeoutError as PWTimeout
+    except ImportError:
+        logger.warning("playwright 未インストール → JRA調教スクレイピングをスキップ")
+        return None
+
+    url = f"{JRA_TRAINING_URL}?horse_id={horse_id}"
+    try:
+        with sync_playwright() as pw:
+            browser = pw.chromium.launch(headless=True)
+            ctx = browser.new_context(
+                user_agent=HEADERS["User-Agent"],
+                locale="ja-JP",
+                extra_http_headers={
+                    "Accept-Language": HEADERS["Accept-Language"],
+                    "Accept": HEADERS["Accept"],
+                },
+            )
+            page = ctx.new_page()
+            # メインページでCookieを取得してからアクセス
+            page.goto("https://race.netkeiba.com/", wait_until="domcontentloaded", timeout=20000)
+            time.sleep(1)
+            page.goto(url, wait_until="networkidle", timeout=30000)
+            # 追い切りテーブルが出るまで待機
+            try:
+                page.wait_for_selector(
+                    "table.TrainingTable, table#traning_table, table[summary*='追い切り'], "
+                    "div.TrainingWrap table, .Training_Table",
+                    timeout=10000,
+                )
+            except PWTimeout:
+                logger.warning(f"調教テーブルセレクタのタイムアウト（HTMLをそのまま使用）: {horse_id}")
+            html = page.content()
+            browser.close()
+            logger.info(f"JRA調教取得成功: horse_id={horse_id}, {len(html)} bytes")
+            return html
+    except Exception as e:
+        logger.warning(f"JRA調教Playwright取得失敗: horse_id={horse_id}: {e}")
+        return None
+
+
+def _parse_training_table(soup: "BeautifulSoup", race_date: Optional[str] = None) -> list[dict]:
+    """
+    調教ページのBeautifulSoupオブジェクトから追い切りレコードのリストを返す。
+
+    netkeiba の調教テーブルは複数のセレクタで出現する。
+    列構成（想定）: 追い切り日 | 場所 | 馬場 | 強度 | 距離 | 時計 | 4F | 3F | 1F
+
+    race_date: "YYYY-MM-DD" 形式。指定した場合はレース日との日数差を計算する。
+    """
+    # 複数セレクタでテーブルを探す
+    table = (
+        soup.select_one("table.TrainingTable")
+        or soup.select_one("table#traning_table")
+        or soup.select_one("div.TrainingWrap table")
+        or soup.select_one("table[summary*='追い切り']")
+        or soup.select_one(".Training_Table table")
+    )
+    if table is None:
+        # フォールバック: テキストに「馬なり」や「強め」を含む最初のtable
+        for t in soup.find_all("table"):
+            txt = t.get_text()
+            if any(kw in txt for kw in ["馬なり", "強め", "一杯", "追い切り"]):
+                table = t
+                break
+    if table is None:
+        logger.warning("調教テーブルが見つかりませんでした")
+        return []
+
+    # ヘッダ行からカラムインデックスを特定
+    header_row = table.select_one("tr.Head, thead tr, tr:first-child")
+    headers = []
+    if header_row:
+        headers = [th.get_text(strip=True) for th in header_row.find_all(["th", "td"])]
+    logger.debug(f"調教テーブルヘッダ: {headers}")
+
+    # カラムインデックスの推定 (ヘッダが取れない場合はデフォルト順序を使用)
+    # 想定列順: 日付(0), 場所(1), 馬場(2), 強度(3), 距離(4), 時計(5), 4F(6), 3F(7), 1F(8)
+    def _col_idx(candidates: list[str], fallback: int) -> int:
+        for h in headers:
+            for c in candidates:
+                if c in h:
+                    return headers.index(h)
+        return fallback
+
+    idx_date      = _col_idx(["日", "追い切り日", "date"], 0)
+    idx_course    = _col_idx(["場所", "コース", "course"], 1)
+    idx_intensity = _col_idx(["強度", "強さ", "intensity"], 3)
+    idx_dist      = _col_idx(["距離", "dist"], 4)
+    idx_time      = _col_idx(["時計", "タイム", "time"], 5)
+    idx_3f        = _col_idx(["3F", "3ハロン", "3f"], 7)
+
+    from datetime import datetime as _dt, timedelta as _td
+    race_dt = None
+    if race_date:
+        try:
+            race_dt = _dt.strptime(race_date, "%Y-%m-%d")
+        except ValueError:
+            pass
+
+    rows = []
+    current_year = _dt.today().year
+    for tr in table.find_all("tr")[1:]:  # ヘッダ行をスキップ
+        cells = [td.get_text(strip=True) for td in tr.find_all(["td", "th"])]
+        if len(cells) < 4:
+            continue
+        # 日付パース: "6/14 (土)" → datetime
+        date_str = cells[idx_date] if idx_date < len(cells) else ""
+        training_dt = None
+        for fmt in ["%m/%d", "%Y/%m/%d", "%Y年%m月%d日"]:
+            try:
+                parsed = _dt.strptime(re.sub(r"\s*[（(]\S*[）)]", "", date_str).strip(), fmt)
+                if fmt == "%m/%d":
+                    parsed = parsed.replace(year=current_year)
+                    # 未来日付になったら前年とみなす
+                    if parsed > _dt.today() + _td(days=7):
+                        parsed = parsed.replace(year=current_year - 1)
+                training_dt = parsed
+                break
+            except ValueError:
+                continue
+
+        course_raw = cells[idx_course] if idx_course < len(cells) else ""
+        intensity_raw = cells[idx_intensity] if idx_intensity < len(cells) else ""
+        dist_raw   = cells[idx_dist] if idx_dist < len(cells) else ""
+        time_raw   = cells[idx_time] if idx_time < len(cells) else ""
+        time_3f_raw = cells[idx_3f] if idx_3f < len(cells) else ""
+
+        # コースのエンコーディング
+        course_enc = 0
+        for k, v in _COURSE_MAP.items():
+            if k in course_raw:
+                course_enc = v
+                break
+
+        # 強度スコア
+        intensity_score = 0
+        for k, v in _INTENSITY_MAP.items():
+            if k in intensity_raw:
+                intensity_score = v
+                break
+
+        # 距離
+        dist_m = None
+        dist_match = re.search(r"(\d+)", dist_raw)
+        if dist_match:
+            dist_m = int(dist_match.group(1))
+
+        # タイム
+        time_sec = _parse_training_time(time_raw)
+        time_3f  = _parse_training_time(time_3f_raw)
+
+        # レースまでの日数
+        days_before = None
+        if training_dt and race_dt:
+            days_before = (race_dt - training_dt).days
+
+        # 無効行スキップ (日付もコースも取れない)
+        if training_dt is None and course_enc == 0:
+            continue
+
+        rows.append({
+            "training_date":    training_dt.strftime("%Y-%m-%d") if training_dt else None,
+            "course_raw":       course_raw,
+            "course_enc":       course_enc,
+            "intensity_raw":    intensity_raw,
+            "intensity_score":  intensity_score,
+            "distance_m":       dist_m,
+            "time_sec":         time_sec,
+            "time_3f":          time_3f,
+            "days_before_race": days_before,
+        })
+
+    return rows
+
+
+def scrape_horse_training(
+    horse_id: str,
+    session: requests.Session,
+    race_date: Optional[str] = None,
+    weeks_back: int = 4,
+) -> list[dict]:
+    """
+    JRA馬の調教データを取得してレコードリストで返す。
+
+    Args:
+        horse_id:   netkeiba horse_id (10桁整数文字列)
+        session:    requests.Session (Playwright使用時は不要だが引数統一のため残す)
+        race_date:  "YYYY-MM-DD" 形式のレース日。days_before_race 計算に使用。
+        weeks_back: 取得週数 (デフォルト4週)。現状はパーサ側でフィルタせず全件返す。
+
+    Returns:
+        調教レコードのリスト。取得失敗時は空リスト（本番を止めない）。
+    """
+    html = _get_html_jra_training(horse_id)
+    if html is None:
+        return []
+    soup = BeautifulSoup(html, "html.parser")
+    rows = _parse_training_table(soup, race_date=race_date)
+    logger.info(f"horse_id={horse_id}: 調教レコード {len(rows)} 件取得")
+    return rows
+
+
+def scrape_race_training(
+    horse_ids: list[str],
+    race_date: Optional[str] = None,
+    sleep_sec: float = 2.0,
+) -> dict[str, list[dict]]:
+    """
+    出馬表の全horse_idの調教データを一括取得する。
+
+    Args:
+        horse_ids: 出馬表のhorse_idリスト
+        race_date: "YYYY-MM-DD" 形式のレース日
+        sleep_sec: 馬ごとのスリープ秒数 (IPブロック防止)
+
+    Returns:
+        {horse_id: [調教レコード, ...]} の辞書
+    """
+    session = requests.Session()
+    session.headers.update(HEADERS)
+    result: dict[str, list[dict]] = {}
+    for i, hid in enumerate(horse_ids):
+        try:
+            rows = scrape_horse_training(hid, session, race_date=race_date)
+            result[hid] = rows
+        except Exception as e:
+            logger.warning(f"調教取得失敗 horse_id={hid}: {e}")
+            result[hid] = []
+        if i < len(horse_ids) - 1:
+            time.sleep(sleep_sec)
+    return result
     # 動作確認: 直近1ヶ月を試験取得
     today = datetime.today()
     df = scrape_races(

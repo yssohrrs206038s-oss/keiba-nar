@@ -972,9 +972,27 @@ def predict_live(
         raise ValueError(f"出馬表に馬が見つかりませんでした: race_id={race_id}")
 
 
+    # JRA調教データ取得（JRAレースのみ; 失敗しても続行）
+    training_cache: Optional[dict] = None
+    league = shutuba_info.get("league", "nar")
+    if str(league).lower() == "jra":
+        try:
+            from keiba_predictor.scraper.netkeiba_scraper import scrape_race_training
+            horse_ids = [
+                str(h.get("horse_id", ""))
+                for _, h in horses_df.iterrows()
+                if h.get("horse_id")
+            ]
+            race_date_str_for_training = shutuba_info.get("race_date", "")
+            logger.info(f"JRA調教データ取得開始: {len(horse_ids)}頭")
+            training_cache = scrape_race_training(horse_ids, race_date=race_date_str_for_training)
+        except Exception as e:
+            logger.warning(f"JRA調教データ取得失敗（続行）: {e}")
+
     # 特徴量を生成（cleaned_races.csv がない/列欠損な環境でも動くよう KeyError を握る）
     try:
-        race_df = build_live_features(shutuba_info, cleaned_path=cleaned_path)
+        race_df = build_live_features(shutuba_info, cleaned_path=cleaned_path,
+                                      training_cache=training_cache)
     except KeyError as e:
         missing = str(e).strip("'\"")
         logger.warning(
@@ -986,6 +1004,7 @@ def predict_live(
             race_df = build_live_features(
                 {**shutuba_info, "_skip_history": True},
                 cleaned_path=cleaned_path,
+                training_cache=training_cache,
             )
         except Exception:
             race_df = pd.DataFrame()

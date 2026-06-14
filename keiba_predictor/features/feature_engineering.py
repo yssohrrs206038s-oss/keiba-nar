@@ -93,6 +93,12 @@ FEATURE_COLS = [
     "jockey_inner_rate",         # 騎手の内枠(1-3番)複勝率
     "jockey_outer_rate",         # 騎手の外枠(7番以上)複勝率
     "jockey_frame_diff",         # 枠適性差 (inner - outer)
+    # JRA調教特徴量（JRA専用; NARでは常にNaN）
+    "training_days_last",        # 最終追い切りからレース当日までの日数
+    "training_count_2w",         # 直近2週間の追い切り本数
+    "training_speed_best_3f",    # 直近2週間の最速上がり3F (秒)
+    "training_intensity_max",    # 直近2週間の最大強度スコア (一杯=3, 強め=2, 馬なり=1)
+    "training_course_type",      # 最終追い切りコース (坂路=1, ウッド/CW=2, ポリ=3, 芝=4, ダ=5)
 ]
 
 
@@ -693,6 +699,95 @@ def add_jockey_frame_feature(df: pd.DataFrame) -> pd.DataFrame:
 
     df["jockey_frame_diff"] = df["jockey_inner_rate"] - df["jockey_outer_rate"]
     df = df.drop(columns=["_inner", "_outer"])
+    return df
+
+
+def add_training_features(
+    df: pd.DataFrame,
+    training_cache: "dict[str, list[dict]] | None" = None,
+) -> pd.DataFrame:
+    """JRA調教特徴量を追加する。
+
+    Args:
+        df:             build_features 済みの DataFrame (horse_id, race_date 列が必要)
+        training_cache: {horse_id: [調教レコード, ...]} の辞書。
+                        None または空の場合は全特徴量NaNで返す。
+                        scrape_race_training() の戻り値を渡す。
+
+    Returns:
+        調教特徴量列を追加した DataFrame (NAR馬は全NaN, JRA馬は実値)
+    """
+    TRAINING_COLS = [
+        "training_days_last",
+        "training_count_2w",
+        "training_speed_best_3f",
+        "training_intensity_max",
+        "training_course_type",
+    ]
+    for col in TRAINING_COLS:
+        df[col] = np.nan
+
+    if not training_cache:
+        return df
+
+    from datetime import datetime as _dt, timedelta as _td
+
+    for idx, row in df.iterrows():
+        hid = str(row.get("horse_id", ""))
+        if not hid or hid not in training_cache:
+            continue
+        records = training_cache[hid]
+        if not records:
+            continue
+
+        race_date_raw = row.get("race_date")
+        try:
+            race_dt = pd.to_datetime(race_date_raw)
+        except Exception:
+            continue
+
+        cutoff_2w = race_dt - _td(weeks=2)
+
+        # 直近2週間のレコードに絞る
+        recent = []
+        for r in records:
+            td_str = r.get("training_date")
+            if not td_str:
+                continue
+            try:
+                td = _dt.strptime(td_str, "%Y-%m-%d")
+            except ValueError:
+                continue
+            if _dt.fromtimestamp(cutoff_2w.timestamp()) <= td <= _dt.fromtimestamp(race_dt.timestamp()):
+                recent.append((td, r))
+
+        if not recent:
+            continue
+
+        recent.sort(key=lambda x: x[0], reverse=True)  # 新しい順
+
+        # training_days_last: 最終追い切りからレースまでの日数
+        last_dt, last_r = recent[0]
+        days_last = (race_dt.to_pydatetime() - last_dt).days
+        df.at[idx, "training_days_last"] = float(days_last)
+
+        # training_count_2w: 直近2週間の追い切り本数
+        df.at[idx, "training_count_2w"] = float(len(recent))
+
+        # training_speed_best_3f: 最速上がり3F
+        times_3f = [r.get("time_3f") for _, r in recent if r.get("time_3f") is not None]
+        if times_3f:
+            df.at[idx, "training_speed_best_3f"] = float(min(times_3f))
+
+        # training_intensity_max: 最大強度スコア
+        scores = [r.get("intensity_score", 0) for _, r in recent]
+        if scores:
+            df.at[idx, "training_intensity_max"] = float(max(scores))
+
+        # training_course_type: 最終追い切りコース
+        df.at[idx, "training_course_type"] = float(last_r.get("course_enc", 0) or 0)
+
+    logger.info(f"調教特徴量付与完了: {df[TRAINING_COLS].notna().any(axis=1).sum()} 馬")
     return df
 
 

@@ -410,6 +410,7 @@ def _bms_course_rate(bms, history, ped_db, race_date, course_type_enc):
 def build_live_features(
     shutuba_info: dict,
     cleaned_path: Optional[Path] = None,
+    training_cache: "dict | None" = None,
 ) -> pd.DataFrame:
     """
     出馬表情報 + 過去成績CSV から予測用 DataFrame を生成する。
@@ -558,6 +559,14 @@ def build_live_features(
     for col in FEATURE_COLS:
         if col in result_df.columns:
             result_df[col] = pd.to_numeric(result_df[col], errors="coerce")
+
+    # JRA調教特徴量 (training_cache が渡された場合のみ適用)
+    if training_cache:
+        try:
+            from keiba_predictor.features.feature_engineering import add_training_features
+            result_df = add_training_features(result_df, training_cache)
+        except Exception as e:
+            logger.warning(f"調教特徴量付与でエラー（続行）: {e}")
 
     logger.info(f"ライブ特徴量生成完了: {len(result_df)}頭 / race_id={race_id}")
     return result_df
