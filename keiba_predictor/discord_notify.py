@@ -773,6 +773,27 @@ def _save_cache(cache: dict) -> None:
     print(f"[_save_cache] 書き込み完了: {PRED_CACHE.resolve()} ({size}bytes, {len(keys)}件: {keys})", flush=True)
 
 
+def _build_place_ev_top(result_df: pd.DataFrame) -> list[dict]:
+    """複勝EV >= 1.05 の馬をシャドウ記録用にリスト化する。"""
+    if "ev_place_cal" not in result_df.columns:
+        return []
+    cands = result_df[
+        pd.to_numeric(result_df["ev_place_cal"], errors="coerce") >= 1.05
+    ].nlargest(3, "ev_place_cal")
+    result = []
+    for _, r in cands.iterrows():
+        entry = {
+            "horse_number": int(r["horse_number"]) if pd.notna(r.get("horse_number")) else None,
+            "horse_name":   str(r.get("horse_name", "")),
+            "ev_place_cal": round(float(r["ev_place_cal"]), 3),
+            "prob_cal":     round(float(r["prob_top3_cal"]), 4) if pd.notna(r.get("prob_top3_cal")) else None,
+        }
+        if pd.notna(r.get("place_odds_approx")):
+            entry["place_odds_approx"] = round(float(r["place_odds_approx"]), 2)
+        result.append(entry)
+    return result
+
+
 def _ana_horse_info(result_df: pd.DataFrame, ana_horse_num: "Optional[int]") -> dict:
     """穴馬の詳細情報を返す（キャッシュ保存用）。"""
     if ana_horse_num is None or result_df.empty:
@@ -927,6 +948,7 @@ def _store_prediction(race_id: str, race_name: str, race_date: str,
         "ev_top3":             ev_top3,
         "dangerous_horses":    dangerous,
         "ai_comments":         ai_comments or {},
+        "place_ev_top":        _build_place_ev_top(result_df),
     }
 
     # 買い目自動決定

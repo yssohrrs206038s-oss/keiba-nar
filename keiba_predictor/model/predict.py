@@ -145,6 +145,18 @@ def calc_ev_and_flags(result_df: pd.DataFrame) -> pd.DataFrame:
     if "prob_top3_cal" in df.columns:
         df["ev_score_cal"] = df["prob_top3_cal"] * odds_num
 
+    # 複勝EV: 単勝オッズから複勝オッズを近似して計算
+    # 複勝オッズ ≈ 1 + (単勝オッズ - 1) × k  (k: 頭数依存)
+    # 8頭以下=2着内複勝、9頭以上=3着内複勝
+    n_horses = len(df)
+    if "prob_top3_cal" in df.columns:
+        k = 0.45 if n_horses <= 8 else 0.30
+        place_odds_approx = (1 + (odds_num - 1) * k).clip(lower=1.05)
+        # 8頭以下は2着内が対象なので3着以内確率を補正
+        place_prob = df["prob_top3_cal"] * (0.85 if n_horses <= 8 else 1.0)
+        df["ev_place_cal"] = place_prob * place_odds_approx
+        df["place_odds_approx"] = place_odds_approx.round(2)
+
     def _reasons(row: pd.Series) -> list[str]:
         pop   = pd.to_numeric(row.get("popularity"),      errors="coerce")
         pfp   = pd.to_numeric(row.get("prev_finish_pos"), errors="coerce")
@@ -781,6 +793,19 @@ def format_prediction(
             reasons = row.get("danger_reasons", [])
             reason  = reasons[0] if reasons else "要注意"
             lines1.append(f"⚠危険 {num}番{name}（{reason}）")
+
+    # 💴複勝推奨（ev_place_cal >= 1.05 の馬をシャドウ記録）
+    if "ev_place_cal" in result_df.columns:
+        place_cands = result_df[
+            pd.to_numeric(result_df["ev_place_cal"], errors="coerce") >= 1.05
+        ].nlargest(2, "ev_place_cal")
+        for _, row in place_cands.iterrows():
+            num      = int(row["horse_number"]) if pd.notna(row.get("horse_number")) else 0
+            name     = str(row.get("horse_name", ""))
+            ev_p     = float(row["ev_place_cal"])
+            p_odds   = row.get("place_odds_approx")
+            odds_str = f" ≈{float(p_odds):.2f}倍" if pd.notna(p_odds) else ""
+            lines1.append(f"💴複勝推奨 {num}番{name}（EV{ev_p:.2f}{odds_str}・シャドウ）")
 
     lines1.append(sep)
     msg1 = "\n".join(lines1)
