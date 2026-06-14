@@ -598,6 +598,15 @@ def _decide_bet_strategy(result_df: pd.DataFrame, _skip_venue_filter: bool = Fal
     tai_odds = pd.to_numeric(result_df.iloc[1].get("odds"), errors="coerce")
     ana_odds = pd.to_numeric(result_df.iloc[2].get("odds"), errors="coerce")
 
+    # キャリブレーション済みEVフィルタ: ◎の ev_score_cal < 1.0 → 負の期待値 → 見送り
+    # ev_score_cal = prob_top3_cal × odds（補正後確率ベース）
+    # ev_score_cal が存在しない場合（旧モデル等）はスキップ
+    hon_ev_cal = pd.to_numeric(result_df.iloc[0].get("ev_score_cal"), errors="coerce")
+    if pd.notna(hon_ev_cal) and float(hon_ev_cal) < 1.0:
+        return _attach_place_mid(_empty(
+            f"見送り（◎EV_cal{float(hon_ev_cal):.2f}<1.0: 期待値不足）"
+        ))
+
     # ◎オッズフィルタ（76,098Rバックテスト）
     # ◎≤2.0倍 × ≤8頭: 3連複的中率24.2% ROI推定120.9%
     # ◎>2.0倍: 3連複8-14%・ワイド3点ROI65% → 見送り
@@ -714,8 +723,14 @@ def format_prediction(
         mark     = MARKS[rank] if rank < len(MARKS) else "　"
         num      = str(int(row["horse_number"])) if pd.notna(row.get("horse_number")) else "-"
         name     = str(row.get("horse_name", "-"))
-        ev       = row.get("ev_score")
-        ev_str   = f" EV{ev:.2f}" if pd.notna(ev) else ""
+        ev_cal   = row.get("ev_score_cal")
+        ev_raw   = row.get("ev_score")
+        if pd.notna(ev_cal):
+            ev_str = f" EV{ev_cal:.2f}"
+        elif pd.notna(ev_raw):
+            ev_str = f" EV{ev_raw:.2f}*"
+        else:
+            ev_str = ""
         # MC確率を優先、なければ XGBoost prob_top3 を表示
         mc_rate  = row.get("mc_top3_rate")
         prob_val = None

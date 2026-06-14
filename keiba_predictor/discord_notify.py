@@ -814,6 +814,13 @@ def _store_prediction(race_id: str, race_name: str, race_date: str,
             "prob":         float(r["prob_top3"]),
             "odds":         o_val,
         }
+        # キャリブレーション済み確率とEV
+        prob_cal = r.get("prob_top3_cal")
+        if prob_cal is not None and pd.notna(prob_cal):
+            entry["prob_cal"] = round(float(prob_cal), 4)
+        ev_cal = r.get("ev_score_cal")
+        if ev_cal is not None and pd.notna(ev_cal):
+            entry["ev_score_cal"] = round(float(ev_cal), 3)
         # SHAP値の上位要因を追加
         shap_top = r.get("shap_top")
         if isinstance(shap_top, list) and shap_top:
@@ -862,16 +869,23 @@ def _store_prediction(race_id: str, race_name: str, race_date: str,
         logger.warning(f"全馬同一オッズ({odds_vals.iloc[0]}) → 仮オッズのため odds=None として保存")
 
     ev_top3: list[dict] = []
-    for _, r in result_df[result_df["ev_score"].notna()].nlargest(3, "ev_score").iterrows():
+    # ev_score_cal が存在する場合はキャリブレーション済みEVで並び替え
+    _ev_col = "ev_score_cal" if "ev_score_cal" in result_df.columns and result_df["ev_score_cal"].notna().any() else "ev_score"
+    _ev_base = result_df[result_df[_ev_col].notna()]
+    for _, r in _ev_base.nlargest(3, _ev_col).iterrows():
         raw_odds = pd.to_numeric(r.get("odds"), errors="coerce")
         odds_val = None if (not pd.notna(raw_odds) or all_same_odds) else round(float(raw_odds), 1)
-        ev_top3.append({
+        entry_ev = {
             "horse_number": int(r["horse_number"]) if pd.notna(r.get("horse_number")) else None,
             "horse_name":   str(r.get("horse_name", "")),
-            "ev_score":     round(float(r["ev_score"]), 3),
+            "ev_score":     round(float(r["ev_score"]), 3) if pd.notna(r.get("ev_score")) else None,
             "prob":         round(float(r["prob_top3"]), 4),
             "odds":         odds_val,
-        })
+        }
+        ev_cal_val = r.get("ev_score_cal")
+        if ev_cal_val is not None and pd.notna(ev_cal_val):
+            entry_ev["ev_score_cal"] = round(float(ev_cal_val), 3)
+        ev_top3.append(entry_ev)
 
     dangerous: list[dict] = []
     for _, r in result_df[result_df["is_dangerous"]].iterrows():
