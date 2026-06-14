@@ -38,8 +38,8 @@ FEATURE_COLS = [
     "frame_number",
     "horse_number",
     "weight_carried",
-    "odds",
-    "popularity",
+    # odds / popularity は除外（市場人気順をなぞるだけになるため）
+    # prev_odds 系は「前走時点の市場評価」として正当な情報なので残す
     "sex_enc",
     "age",
     # 馬体重
