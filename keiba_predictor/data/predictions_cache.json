@@ -222,7 +222,8 @@
           "normal": 0.24
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636061402": {
     "race_name": "ファーストステップ 2歳 新馬戦",
@@ -441,7 +442,8 @@
           "normal": 0.23
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636061403": {
     "race_name": "C2九組",
@@ -671,7 +673,8 @@
           "normal": 0.1
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636061404": {
     "race_name": "C2八組",
@@ -906,7 +909,8 @@
           "normal": 0.23
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636061405": {
     "race_name": "C2七組",
@@ -1141,7 +1145,8 @@
           "normal": 0.18
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636061406": {
     "race_name": "C2",
