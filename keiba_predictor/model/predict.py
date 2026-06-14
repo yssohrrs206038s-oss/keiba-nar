@@ -448,6 +448,31 @@ def _decide_bet_strategy(result_df: pd.DataFrame, _skip_venue_filter: bool = Fal
             "shadow_note": f"{len(df)}頭",
         }
 
+    def _place_mid_shadow(df: pd.DataFrame) -> dict:
+        """複勝シャドウ: prob_top3降順1位/2位かつ単勝5.0〜20.0倍の馬を対象。100円/頭。"""
+        if "prob_top3" not in df.columns or len(df) < 1:
+            return {}
+        targets = []
+        for _, row in df.head(2).iterrows():
+            odds_val = pd.to_numeric(row.get("odds"), errors="coerce")
+            if pd.isna(odds_val):
+                continue
+            if 5.0 <= float(odds_val) <= 20.0:
+                hn = row.get("horse_number")
+                if pd.notna(hn):
+                    targets.append({"num": int(hn)})
+        if not targets:
+            return {}
+        n = len(targets)
+        return {
+            "fukusho": targets, "umaren": [], "wide": [], "sanrenpuku": {},
+            "total_points": n, "total_cost": n * 100,
+            "strategy_note": "シャドウ(複勝中オッズ): 評価上位×5-20倍 各100円",
+            "use_wide": False,
+            "shadow_type": "place_mid",
+            "shadow_note": f"{n}頭",
+        }
+
     venue = ""
     venue_code = ""
     if len(race_id) >= 6:
@@ -485,29 +510,36 @@ def _decide_bet_strategy(result_df: pd.DataFrame, _skip_venue_filter: bool = Fal
             "strategy_note": note, "use_wide": True,
         }
 
+    def _attach_place_mid(result: dict) -> dict:
+        """place_mid シャドウを付帯する（優先: place_mid > multi_horse > venue）。"""
+        pm = _place_mid_shadow(result_df)
+        if pm:
+            result["shadow_strategy"] = pm
+        return result
+
     if len(result_df) < 2:
         return _empty("出走頭数不足")
 
     if not _skip_venue_filter and venue_code in SKIP_VENUES:
         if venue_code in STATIC_SKIP_VENUES:
-            return _with_shadow(_empty(f"見送り（{venue}フィルタ: 回収率低）"))
-        return _with_shadow(_empty(f"見送り（{venue}: 直近20戦ROI<50%）"))
+            return _attach_place_mid(_with_shadow(_empty(f"見送り（{venue}フィルタ: 回収率低）")))
+        return _attach_place_mid(_with_shadow(_empty(f"見送り（{venue}: 直近20戦ROI<50%）")))
 
     MAX_HORSES = 8  # 76,099Rバックテスト: ≤8頭で3連複的中率24.3% ROI121% 約4.6戦/日
     if len(result_df) > MAX_HORSES:
         result = _empty(f"見送り（{len(result_df)}頭: 多頭数フィルタ）")
-        # 多頭数レース解禁の判断材料として、ワイドBOXのシャドウを記録する
+        # place_mid優先。未対象なら多頭数ワイドBOXシャドウにフォールバック
         shadow = _multi_horse_shadow(result_df)
         if shadow:
             result["shadow_strategy"] = shadow
-        return result
+        return _attach_place_mid(result)
 
     top2 = result_df.head(2)
     nums = [int(r["horse_number"]) for _, r in top2.iterrows()
             if pd.notna(r.get("horse_number"))]
 
     if len(nums) < 2:
-        return _empty("出走頭数不足")
+        return _attach_place_mid(_empty("出走頭数不足"))
 
     hon = nums[0]
     tai = nums[1]
@@ -521,15 +553,15 @@ def _decide_bet_strategy(result_df: pd.DataFrame, _skip_venue_filter: bool = Fal
     hon_prob = pd.to_numeric(result_df.iloc[0].get("prob_top3"), errors="coerce")
     tai_prob = pd.to_numeric(result_df.iloc[1].get("prob_top3"), errors="coerce")
     if pd.isna(hon_prob) or pd.isna(tai_prob):
-        return _empty("見送り（AI確率取得失敗）")
+        return _attach_place_mid(_empty("見送り（AI確率取得失敗）"))
     if float(hon_prob) < MIN_PROB or float(tai_prob) < MIN_PROB:
-        return _empty(
+        return _attach_place_mid(_empty(
             f"見送り（AI確率不足: ◎{float(hon_prob)*100:.1f}% ○{float(tai_prob)*100:.1f}%）"
-        )
+        ))
     if float(tai_prob) < MIN_TAI_PROB:
-        return _empty(
+        return _attach_place_mid(_empty(
             f"見送り（○確率{float(tai_prob)*100:.1f}% < 30%）"
-        )
+        ))
     prob_diff = float(hon_prob) - float(tai_prob)
     # ◎○差が大きい場合: オッズ比3倍以上なら3連複に切替（後段で処理）、それ以外は見送り
     _hon_odds_tmp = pd.to_numeric(result_df.iloc[0].get("odds"), errors="coerce")
@@ -538,29 +570,29 @@ def _decide_bet_strategy(result_df: pd.DataFrame, _skip_venue_filter: bool = Fal
                        if pd.notna(_hon_odds_tmp) and pd.notna(_tai_odds_tmp) and _hon_odds_tmp > 0
                        else 0)
     if prob_diff > MAX_PROB_DIFF and _odds_ratio_tmp < 3.0:
-        return _empty(
+        return _attach_place_mid(_empty(
             f"見送り（◎○差{prob_diff*100:.1f}% > 15%）"
-        )
+        ))
     prob_sum = float(hon_prob) + float(tai_prob)
     if prob_sum < MIN_PROB_SUM:
-        return _empty(
+        return _attach_place_mid(_empty(
             f"見送り（◎○合計{prob_sum*100:.0f}% < 180%）"
-        )
+        ))
 
     # ▲確率チェック（混戦レース回避）
     if len(result_df) >= 3:
         ana_prob = pd.to_numeric(result_df.iloc[2].get("prob_top3"), errors="coerce")
         if pd.notna(ana_prob) and float(ana_prob) < MIN_ANA_PROB:
-            return _empty(
+            return _attach_place_mid(_empty(
                 f"見送り（▲確率{float(ana_prob)*100:.1f}% < 50%・混戦）"
-            )
+            ))
 
     # ◎○▲の馬番・オッズ取得
     top3_df = result_df.head(3)
     top3_nums = [int(r["horse_number"]) for _, r in top3_df.iterrows()
                  if pd.notna(r.get("horse_number"))]
     if len(top3_nums) < 3:
-        return _empty("出走頭数不足（3頭未満）")
+        return _attach_place_mid(_empty("出走頭数不足（3頭未満）"))
 
     hon_odds = pd.to_numeric(result_df.iloc[0].get("odds"), errors="coerce")
     tai_odds = pd.to_numeric(result_df.iloc[1].get("odds"), errors="coerce")
@@ -570,13 +602,13 @@ def _decide_bet_strategy(result_df: pd.DataFrame, _skip_venue_filter: bool = Fal
     # ◎≤2.0倍 × ≤8頭: 3連複的中率24.2% ROI推定120.9%
     # ◎>2.0倍: 3連複8-14%・ワイド3点ROI65% → 見送り
     if not pd.notna(hon_odds) or float(hon_odds) > 2.0:
-        return _empty(f"見送り（◎{float(hon_odds) if pd.notna(hon_odds) else 0:.1f}倍>2.0）")
+        return _attach_place_mid(_empty(f"見送り（◎{float(hon_odds) if pd.notna(hon_odds) else 0:.1f}倍>2.0）"))
 
     # ▲オッズ最低フィルタ: ▲<3.0の3連複は配当が小さすぎて回収不能
     # 実績: 3連複avg 388円/100円 → ROI70.3%。配当底上げのためのフィルタ。
     MIN_ANA_ODDS = 3.0
     if pd.notna(ana_odds) and float(ana_odds) < MIN_ANA_ODDS:
-        return _empty(f"見送り（▲{float(ana_odds):.1f}倍<{MIN_ANA_ODDS:.1f}: 3連複配当不足）")
+        return _attach_place_mid(_empty(f"見送り（▲{float(ana_odds):.1f}倍<{MIN_ANA_ODDS:.1f}: 3連複配当不足）"))
 
     # 3連複◎○▲ 1点 1,000円
     note = f"3連複◎○▲ 1点（◎{float(hon_odds):.1f}倍 ▲{float(ana_odds):.1f}倍 {len(result_df)}頭）" if pd.notna(ana_odds) else f"3連複◎○▲ 1点（◎{float(hon_odds):.1f}倍 {len(result_df)}頭）"
@@ -587,7 +619,7 @@ def _decide_bet_strategy(result_df: pd.DataFrame, _skip_venue_filter: bool = Fal
         "strategy_note": note, "use_wide": False,
     }
 
-    return strategy
+    return _attach_place_mid(strategy)
 
 
 def _build_buy_lines(result_df: pd.DataFrame, race_name: str = "") -> list[str]:

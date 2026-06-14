@@ -16,6 +16,7 @@ results_history.csv スキーマ:
   bet_total, return_total
 """
 
+import json
 import logging
 import re
 from datetime import date, timedelta
@@ -226,6 +227,15 @@ def record_result(
             combined.to_csv(HISTORY_PATH, index=False, encoding="utf-8-sig")
         else:
             new_row_df.to_csv(HISTORY_PATH, mode="w", header=True, index=False, encoding="utf-8-sig")
+        _payouts_dir = DATA_DIR / "payouts"
+        _payouts_file = _payouts_dir / f"{race_id}.json"
+        if payouts and not _payouts_file.exists():
+            try:
+                _payouts_dir.mkdir(parents=True, exist_ok=True)
+                with open(_payouts_file, "w", encoding="utf-8") as _f:
+                    json.dump(payouts, _f, ensure_ascii=False, indent=2)
+            except Exception as _e:
+                logger.warning(f"  [payouts] 書き込み失敗: {race_id}: {_e}")
         logger.info(f"  [history] 返還記録: {race_name} ({race_id})")
         return row
 
@@ -322,10 +332,33 @@ def record_result(
     sanren_return = sanren_payout * sanren_multiplier if sanren_hit else 0
     return_total = (wide_return + sanren_return) if not is_skip else 0
 
-    # ── シャドウ成績（動的会場フィルタの復帰判定用） ────────────
-    # 見送り時: shadow_strategy があれば「もし買っていたら」を計算
-    # 実買時  : shadow = 実投資（bet_total / return_total と同値）
-    if shadow_bs and is_skip:
+    # ── シャドウ成績 ─────────────────────────────────────────────
+    # place_mid: 複勝シャドウ精算（本線・見送り問わず）
+    # 既存:     会場フィルタ見送り時の「もし買っていたら」ワイド/3連複
+    # 実買時(shadow なし): shadow = 実投資と同値
+    if shadow_bs and shadow_bs.get("shadow_type") == "place_mid":
+        shadow_bet_total = int(shadow_bs.get("total_cost", 0) or 0)
+        shadow_return_total = 0
+        _fp_series = pd.to_numeric(actual_df.get("finish_position", pd.Series(dtype=str)), errors="coerce")
+        _total_h = int(_fp_series.notna().sum())
+        _place_thresh = 2 if _total_h <= 7 else 3
+        for _fk in shadow_bs.get("fukusho", []):
+            _hn = _fk.get("num")
+            if _hn is None:
+                continue
+            _horse_rows = actual_df[
+                pd.to_numeric(actual_df.get("horse_number", pd.Series(dtype=str)), errors="coerce") == _hn
+            ]
+            if _horse_rows.empty:
+                continue
+            _fp_val = pd.to_numeric(_horse_rows.iloc[0].get("finish_position"), errors="coerce")
+            if pd.isna(_fp_val) or int(_fp_val) > _place_thresh:
+                continue
+            for _entry in payouts.get("複勝", []):
+                if str(_hn) in set(re.findall(r"\d+", str(_entry.get("combo", "")))):
+                    shadow_return_total += int(_entry.get("amount") or 0)
+                    break
+    elif shadow_bs and is_skip:
         shadow_bet_total = int(shadow_bs.get("total_cost", 0) or 0)
         shadow_wide_return = 0
         if shadow_bs.get("wide"):
@@ -361,6 +394,10 @@ def record_result(
         shadow_bet_total = bet_total
         shadow_return_total = return_total
 
+    _use_shadow_meta = shadow_bs and (is_skip or (shadow_bs.get("shadow_type") == "place_mid"))
+    _shadow_type = (shadow_bs or {}).get("shadow_type", "venue") if _use_shadow_meta else ""
+    _shadow_note = (shadow_bs or {}).get("shadow_note", "") if _use_shadow_meta else ""
+
     row = {
         "date":       race_date,
         "race_id":    race_id,
@@ -380,9 +417,20 @@ def record_result(
         "return_total":    return_total,
         "shadow_bet_total":    shadow_bet_total,
         "shadow_return_total": shadow_return_total,
-        "shadow_type": ((shadow_bs or {}).get("shadow_type", "venue") if (shadow_bs and is_skip) else ""),
-        "shadow_note": ((shadow_bs or {}).get("shadow_note", "") if (shadow_bs and is_skip) else ""),
+        "shadow_type": _shadow_type,
+        "shadow_note": _shadow_note,
     }
+
+    # 全券種配当ログ保存
+    _payouts_dir = DATA_DIR / "payouts"
+    _payouts_file = _payouts_dir / f"{race_id}.json"
+    if not _payouts_file.exists():
+        try:
+            _payouts_dir.mkdir(parents=True, exist_ok=True)
+            with open(_payouts_file, "w", encoding="utf-8") as _f:
+                json.dump(payouts, _f, ensure_ascii=False, indent=2)
+        except Exception as _e:
+            logger.warning(f"  [payouts] 書き込み失敗: {race_id}: {_e}")
 
     # CSV 書き込み（既存race_idは上書き、新規は追記）
     DATA_DIR.mkdir(parents=True, exist_ok=True)
