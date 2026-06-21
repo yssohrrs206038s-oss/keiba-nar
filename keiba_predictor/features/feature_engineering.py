@@ -100,6 +100,27 @@ FEATURE_COLS = [
     "prev_race_opp_elo",         # 前走対戦相手の平均Elo
     # 騎手乗り替わり
     "is_jockey_change",          # 騎手変更フラグ（前走比）
+    # ── 追加特徴量(設計書 17項目) ────────────────────────────────────
+    # 前走詳細
+    "prev_last_3f",              # 前走上がり3F
+    "prev_margin",               # 前走着差
+    # "prev_passing" は passing列存在時のみ追加（下記で動的に含める）
+    # 直近N走平均
+    "avg_finish_3",              # 直近3走平均着順
+    "avg_popularity_3",          # 直近3走平均人気
+    "avg_last3f_3",              # 直近3走平均上がり3F
+    "avg_margin_3",              # 直近3走平均着差
+    "avg_finish_5",              # 直近5走平均着順
+    "avg_last3f_5",              # 直近5走平均上がり3F
+    # 条件別成績
+    "same_distance_rate",        # 同距離(完全一致)複勝率
+    "same_venue_rate",           # 同競馬場複勝率
+    "going_good_rate",           # 良馬場時複勝率
+    "going_bad_rate",            # 道悪時複勝率
+    # 騎手・調教師勝率
+    "jockey_win_rate",           # 騎手勝率
+    "trainer_win_rate",          # 調教師勝率
+    "jockey_venue_rate",         # 騎手×競馬場複勝率
 ]
 
 
@@ -699,6 +720,136 @@ def add_jockey_change_feature(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
+def add_prev_detail_features(df: pd.DataFrame) -> pd.DataFrame:
+    """前走詳細特徴量: prev_last_3f, prev_margin, prev_passing(あれば)"""
+    df = df.sort_values(["horse_id", "race_date"]).reset_index(drop=True)
+
+    if "last_3f" in df.columns:
+        df["prev_last_3f"] = df.groupby("horse_id", group_keys=False)["last_3f"].shift(1).values
+    else:
+        df["prev_last_3f"] = np.nan
+
+    if "margin" in df.columns:
+        df["prev_margin"] = df.groupby("horse_id", group_keys=False)["margin"].shift(1).values
+    else:
+        df["prev_margin"] = np.nan
+
+    if "passing" in df.columns:
+        df["prev_passing"] = df.groupby("horse_id", group_keys=False)["passing"].shift(1).values
+    # prev_passing は passing列がある場合のみ生成
+
+    return df
+
+
+def add_rolling_avg_features(df: pd.DataFrame) -> pd.DataFrame:
+    """直近N走平均特徴量(着順・人気・上がり3F・着差)"""
+    df = df.sort_values(["horse_id", "race_date"]).reset_index(drop=True)
+
+    def _roll(col, n, out_col):
+        if col in df.columns:
+            df[out_col] = (
+                df.groupby("horse_id", group_keys=False)[col]
+                .transform(lambda x: pd.to_numeric(x, errors="coerce").shift(1).rolling(n, min_periods=1).mean())
+            )
+        else:
+            df[out_col] = np.nan
+
+    _roll("finish_position", 3, "avg_finish_3")
+    _roll("popularity",      3, "avg_popularity_3")
+    _roll("last_3f",         3, "avg_last3f_3")
+    _roll("margin",          3, "avg_margin_3")
+    _roll("finish_position", 5, "avg_finish_5")
+    _roll("last_3f",         5, "avg_last3f_5")
+
+    return df
+
+
+def add_condition_rate_features(df: pd.DataFrame) -> pd.DataFrame:
+    """条件別成績: same_distance_rate, same_venue_rate, going_good_rate, going_bad_rate"""
+    df = df.sort_values(["horse_id", "race_date"]).reset_index(drop=True)
+
+    # 同距離(完全一致)複勝率 — 最低3走未満はNaN
+    logger.info("同距離複勝率を計算中...")
+    def _min3_mean(x):
+        s = x.shift(1)
+        cnt = s.expanding().count()
+        return s.expanding().mean().where(cnt >= 3)
+
+    df["same_distance_rate"] = (
+        df.groupby(["horse_id", "distance"], group_keys=False)["top3"]
+        .transform(_min3_mean)
+    )
+
+    # 同競馬場複勝率
+    logger.info("同競馬場複勝率を計算中...")
+    if "venue" in df.columns:
+        df["same_venue_rate"] = (
+            df.groupby(["horse_id", "venue"], group_keys=False)["top3"]
+            .transform(lambda x: x.shift(1).expanding().mean())
+        )
+    else:
+        df["same_venue_rate"] = np.nan
+
+    # 良馬場 / 道悪 複勝率
+    logger.info("馬場状態別複勝率(良/道悪)を計算中...")
+    if "track_condition" in df.columns:
+        df["_is_good"] = (df["track_condition"] == "良").astype(float)
+        df["_is_bad"]  = df["track_condition"].isin(["重", "不良"]).astype(float)
+
+        df["going_good_rate"] = (
+            df.groupby(["horse_id", df["track_condition"] == "良"], group_keys=False)["top3"]
+            .transform(lambda x: x.shift(1).expanding().mean())
+        )
+        df["going_bad_rate"] = (
+            df.groupby(["horse_id", df["track_condition"].isin(["重", "不良"])], group_keys=False)["top3"]
+            .transform(lambda x: x.shift(1).expanding().mean())
+        )
+        df = df.drop(columns=["_is_good", "_is_bad"])
+    else:
+        df["going_good_rate"] = np.nan
+        df["going_bad_rate"]  = np.nan
+
+    return df
+
+
+def add_jockey_trainer_win_rate(df: pd.DataFrame) -> pd.DataFrame:
+    """騎手・調教師の勝率(1着率)を expanding+shift で計算する。"""
+    df = df.sort_values(["race_date", "horse_id"]).reset_index(drop=True)
+
+    win = (pd.to_numeric(df["finish_position"], errors="coerce") == 1).astype(float)
+    df["_win"] = win
+
+    logger.info("騎手勝率を計算中...")
+    df["jockey_win_rate"] = (
+        df.groupby("jockey_id", group_keys=False)["_win"]
+        .transform(lambda x: x.shift(1).expanding().mean())
+    )
+
+    logger.info("調教師勝率を計算中...")
+    df["trainer_win_rate"] = (
+        df.groupby("trainer_id", group_keys=False)["_win"]
+        .transform(lambda x: x.shift(1).expanding().mean())
+    )
+
+    df = df.drop(columns=["_win"])
+    return df
+
+
+def add_jockey_venue_features(df: pd.DataFrame) -> pd.DataFrame:
+    """騎手×競馬場の複勝率を追加する。"""
+    if "venue" not in df.columns:
+        df["jockey_venue_rate"] = np.nan
+        return df
+
+    logger.info("騎手×競馬場複勝率を計算中...")
+    df = df.sort_values(["jockey_id", "race_date"]).reset_index(drop=True)
+    df["jockey_venue_rate"] = (
+        df.groupby(["jockey_id", "venue"], group_keys=False)["top3"]
+        .transform(lambda x: x.shift(1).expanding().mean())
+    )
+    return df
+
+
 def build_features(df: pd.DataFrame) -> pd.DataFrame:
     """
     クリーニング済みDataFrameにすべての特徴量を追加して返す。
@@ -722,6 +873,16 @@ def build_features(df: pd.DataFrame) -> pd.DataFrame:
     df = add_race_class_features(df)
     df = add_elo_features(df)
     df = add_jockey_change_feature(df)
+    df = add_prev_detail_features(df)
+    df = add_rolling_avg_features(df)
+    df = add_condition_rate_features(df)
+    df = add_jockey_trainer_win_rate(df)
+    df = add_jockey_venue_features(df)
+
+    # passing列がある場合のみ prev_passing を FEATURE_COLS に含める
+    if "passing" in df.columns and "prev_passing" in df.columns:
+        if "prev_passing" not in FEATURE_COLS:
+            FEATURE_COLS.append("prev_passing")
 
     # same_day_rank / prob_vs_avg は学習時には使えない（leakage）ため NaN で埋める
     # ライブ予測時のみ predict_race() 後に計算する
