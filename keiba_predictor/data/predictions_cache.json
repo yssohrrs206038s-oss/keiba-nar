@@ -233,7 +233,8 @@
           "normal": 0.12
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636062202": {
     "race_name": "C2",
@@ -468,7 +469,8 @@
           "normal": 0.19
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636062203": {
     "race_name": "C2六組",
@@ -713,7 +715,8 @@
           "normal": 0.03
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636062204": {
     "race_name": "C2五組",
@@ -943,7 +946,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636062205": {
     "race_name": "C2四組",
@@ -1188,7 +1192,8 @@
           "normal": 0.1
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636062206": {
     "race_name": "3歳C2五組",
@@ -3077,7 +3082,8 @@
           "normal": 0.23
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202642062202": {
     "race_name": "3歳四",
@@ -3297,7 +3303,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202642062203": {
     "race_name": "ドリームチャレンジ(2歳)",
@@ -5777,7 +5784,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646062202": {
     "race_name": "ダッシュダッシュいのちゃん!年男カーン杯(C1特別)",
@@ -6022,7 +6030,8 @@
           "normal": 0.17
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646062203": {
     "race_name": "いのちゃん@36歳年男☆みんなでかん杯(C1特別)",
@@ -6255,7 +6264,8 @@
           "normal": 0.21
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646062204": {
     "race_name": "3歳B8",
@@ -6469,7 +6479,8 @@
           "normal": 0.01
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646062205": {
     "race_name": "3歳B7",
