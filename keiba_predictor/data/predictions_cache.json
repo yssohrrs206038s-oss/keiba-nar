@@ -233,7 +233,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635062802": {
     "race_name": "C2八組",
@@ -478,7 +479,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635062803": {
     "race_name": "C2七組",
@@ -723,7 +725,8 @@
           "normal": 0.1
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635062804": {
     "race_name": "2歳",
@@ -937,7 +940,8 @@
           "normal": 0.17
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635062805": {
     "race_name": "3歳B1",
@@ -1182,7 +1186,8 @@
           "normal": 0.23
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635062806": {
     "race_name": "B2",
@@ -5922,7 +5927,8 @@
           "normal": 0.17
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646062802": {
     "race_name": "C22",
@@ -6136,7 +6142,8 @@
           "normal": 0.22
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646062803": {
     "race_name": "2歳新馬",
@@ -6350,7 +6357,8 @@
           "normal": 0.18
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646062804": {
     "race_name": "2歳新馬",
@@ -6564,7 +6572,8 @@
           "normal": 0.22
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646062805": {
     "race_name": "2歳2",
