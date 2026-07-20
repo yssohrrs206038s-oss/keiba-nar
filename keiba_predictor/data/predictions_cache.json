@@ -248,7 +248,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635072002": {
     "race_name": "C2",
@@ -498,7 +499,8 @@
           "normal": 0.26
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635072003": {
     "race_name": "C2五組",
@@ -712,7 +714,8 @@
           "normal": 0.16
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635072004": {
     "race_name": "街を守る盛岡市消防団員募集賞(C2)",
@@ -926,7 +929,8 @@
           "normal": 0.02
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635072005": {
     "race_name": "うまレター賞(3歳C2)",
@@ -1171,7 +1175,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635072006": {
     "race_name": "安比高原夏休み賞(3歳C2)",
@@ -5925,7 +5930,8 @@
           "normal": 0.01
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646072002": {
     "race_name": "3歳B8",
@@ -6161,7 +6167,8 @@
           "normal": 0.01
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646072003": {
     "race_name": "3歳B7",
@@ -8236,7 +8243,8 @@
           "normal": 0.26
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647072002": {
     "race_name": "C18組",
@@ -8466,7 +8474,8 @@
           "normal": 0.03
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647072003": {
     "race_name": "加織・文行結婚記念(C)",
@@ -8698,7 +8707,8 @@
           "normal": 0.05
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647072004": {
     "race_name": "ハルとダイチがきた!記念(C)",
@@ -8930,7 +8940,8 @@
           "normal": 0.12
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647072005": {
     "race_name": "ひまわり特別(A)",
@@ -9144,7 +9155,8 @@
           "normal": 0.04
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647072006": {
     "race_name": "田中将太技師昇進記念(C)",
@@ -9376,7 +9388,8 @@
           "normal": 0.04
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647072007": {
     "race_name": "祝50歳第二章開幕!花咲く途中(C)",
@@ -9608,7 +9621,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647072008": {
     "race_name": "C13組",
