@@ -238,7 +238,8 @@
           "normal": 0.15
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630080602": {
     "race_name": "優駿の里安平町夢民舎賞(2歳)",
@@ -483,7 +484,8 @@
           "normal": 0.05
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630080603": {
     "race_name": "道の駅あびらオリジナル賞(2歳)",
@@ -728,7 +730,8 @@
           "normal": 0.05
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630080604": {
     "race_name": "優駿の里安平町SRK菜の花賞(C4)",
@@ -978,7 +981,8 @@
           "normal": 0.12
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630080605": {
     "race_name": "JRA認定競走アタックチャレンジ競走(2歳)",
@@ -1198,7 +1202,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630080606": {
     "race_name": "JRA認定競走フレッシュチャレンジ競走(2歳)",
@@ -1433,7 +1438,8 @@
           "normal": 0.23
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630080607": {
     "race_name": "優駿の里安平町谷川農園賞(C3)",
@@ -1653,7 +1659,8 @@
           "normal": 0.03
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630080608": {
     "race_name": "優駿の里安平町アサヒメロン賞(C3)",
@@ -1867,7 +1874,8 @@
           "normal": 0.1
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630080609": {
     "race_name": "優駿の里安平町あびら川特別(B4)",
@@ -2097,7 +2105,8 @@
           "normal": 0.17
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630080610": {
     "race_name": "グランシャリオドリーム43(B4)",
@@ -2311,7 +2320,8 @@
           "normal": 0.01
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630080611": {
     "race_name": "NORTHERN BREW特別(B3)",
@@ -2556,7 +2566,8 @@
           "normal": 0.13
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630080612": {
     "race_name": "サッポロクラシックカップ〔H3〕(ミッキ重賞",
@@ -2786,7 +2797,8 @@
           "normal": 0.12
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202643080601": {
     "race_name": "ハイビスカスデビュー(2歳)",
@@ -3021,7 +3033,8 @@
           "normal": 0.23
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202643080602": {
     "race_name": "ハイビスカスデビュー(2歳)",
@@ -3240,7 +3253,8 @@
           "normal": 0.23
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202643080603": {
     "race_name": "コヨーテスプリント(3歳)",
@@ -3490,7 +3504,8 @@
           "normal": 0.05
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202643080604": {
     "race_name": "ウミネコスプリント(3歳)",
@@ -3726,7 +3741,8 @@
           "normal": 0.19
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202643080605": {
     "race_name": "雄風スプリント(C3)",
@@ -3971,7 +3987,8 @@
           "normal": 0.01
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202643080606": {
     "race_name": "みずほスプリント(C3)",
@@ -4191,7 +4208,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202643080607": {
     "race_name": "疾風迅雷スプリント(C2)",
@@ -4411,7 +4429,8 @@
           "normal": 0.22
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202643080608": {
     "race_name": "獅子座ダッシュ(C2C3)",
@@ -4646,7 +4665,8 @@
           "normal": 0.32
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202643080609": {
     "race_name": "馬い!八肥の会グリーングラス発売記念(A2B1)",
@@ -4860,7 +4880,8 @@
           "normal": 0.04
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202643080610": {
     "race_name": "ナイアガラスプリント(C1)",
@@ -5105,7 +5126,8 @@
           "normal": 0.12
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202643080611": {
     "race_name": "習志野きらっとスプリント重賞",
@@ -5350,7 +5372,8 @@
           "normal": 0.15
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202643080612": {
     "race_name": "葉月ダッシュ(B2B3)",
@@ -5580,7 +5603,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650080601": {
     "race_name": "C3三",
@@ -5825,7 +5849,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650080602": {
     "race_name": "C2四",
@@ -6039,7 +6064,8 @@
           "normal": 0.06
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650080603": {
     "race_name": "C2三",
@@ -6274,7 +6300,8 @@
           "normal": 0.15
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650080604": {
     "race_name": "烏帽子7ハロンC3二",
@@ -6519,7 +6546,8 @@
           "normal": 0.04
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650080605": {
     "race_name": "勝成7ハロンC3一",
@@ -6769,7 +6797,8 @@
           "normal": 0.14
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650080606": {
     "race_name": "C3",
@@ -7019,7 +7048,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650080607": {
     "race_name": "C2二",
@@ -7239,7 +7269,8 @@
           "normal": 0.04
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650080608": {
     "race_name": "C2一",
@@ -7469,7 +7500,8 @@
           "normal": 0.05
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650080609": {
     "race_name": "C1",
@@ -7714,7 +7746,8 @@
           "normal": 0.0
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650080610": {
     "race_name": "JRA交流 摩耶山特別",
@@ -7964,7 +7997,8 @@
           "normal": 0.15
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650080611": {
     "race_name": "葉月特別B1B2",
@@ -8209,7 +8243,8 @@
           "normal": 0.04
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650080612": {
     "race_name": "B2",
@@ -8454,6 +8489,7 @@
           "normal": 0.04
         }
       }
-    }
+    },
+    "notified_predict": true
   }
 }
