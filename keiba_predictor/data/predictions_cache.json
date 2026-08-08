@@ -222,7 +222,8 @@
           "normal": 0.12
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635080902": {
     "race_name": "C2八組",
@@ -467,7 +468,8 @@
           "normal": 0.13
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635080903": {
     "race_name": "C2七組",
