@@ -248,7 +248,8 @@
           "normal": 0.05
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635081002": {
     "race_name": "C2",
@@ -498,7 +499,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635081003": {
     "race_name": "C2五組",
@@ -743,7 +745,8 @@
           "normal": 0.06
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635081004": {
     "race_name": "C2四組",
@@ -973,7 +976,8 @@
           "normal": 0.02
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635081005": {
     "race_name": "2歳",
@@ -1208,7 +1212,8 @@
           "normal": 0.17
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635081006": {
     "race_name": "2歳",
@@ -3130,7 +3135,8 @@
           "normal": 0.21
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202642081002": {
     "race_name": "3歳未格付選抜馬ア",
@@ -3375,7 +3381,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202642081003": {
     "race_name": "ドリームチャレンジ(2歳)",
