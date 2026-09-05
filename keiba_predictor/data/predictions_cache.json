@@ -248,7 +248,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636090602": {
     "race_name": "C2十組",
@@ -493,7 +494,8 @@
           "normal": 0.13
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636090603": {
     "race_name": "C2九組",
@@ -738,7 +740,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636090604": {
     "race_name": "C2八組",
@@ -983,7 +986,8 @@
           "normal": 0.16
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636090605": {
     "race_name": "2歳",
@@ -1202,7 +1206,8 @@
           "normal": 0.19
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636090606": {
     "race_name": "B2",
@@ -2836,7 +2841,8 @@
           "normal": 0.18
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646090602": {
     "race_name": "ラジオ放送第69回記念杯(C1)",
@@ -3050,7 +3056,8 @@
           "normal": 0.25
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646090603": {
     "race_name": "このたん末脚爆裂記念(C1)",
@@ -3286,7 +3293,8 @@
           "normal": 0.16
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646090604": {
     "race_name": "2歳新馬",
