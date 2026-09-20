@@ -248,7 +248,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636092102": {
     "race_name": "C2九組",
@@ -493,7 +494,8 @@
           "normal": 0.16
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636092103": {
     "race_name": "C2八組",
@@ -738,7 +740,8 @@
           "normal": 0.15
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636092104": {
     "race_name": "C2七組",
@@ -983,7 +986,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636092105": {
     "race_name": "2歳",
@@ -1228,7 +1232,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636092106": {
     "race_name": "B2",
@@ -1478,7 +1483,8 @@
           "normal": 0.35
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636092107": {
     "race_name": "B1B2混合",
@@ -3181,7 +3187,8 @@
           "normal": 0.06
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646092102": {
     "race_name": "C12",
@@ -3411,7 +3418,8 @@
           "normal": 0.15
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646092103": {
     "race_name": "2歳4",
@@ -3625,7 +3633,8 @@
           "normal": 0.02
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646092104": {
     "race_name": "いとめでぃあチャンネル登録してくだ杯(2歳)",
