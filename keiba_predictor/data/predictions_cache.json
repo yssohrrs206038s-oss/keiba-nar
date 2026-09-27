@@ -238,7 +238,8 @@
           "normal": 0.2
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636092802": {
     "race_name": "3歳C2六組",
@@ -483,7 +484,8 @@
           "normal": 0.03
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636092803": {
     "race_name": "3歳C2五組",
@@ -713,7 +715,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636092804": {
     "race_name": "C2",
@@ -958,7 +961,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636092805": {
     "race_name": "C2",
@@ -1203,7 +1207,8 @@
           "normal": 0.02
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636092806": {
     "race_name": "C2六組",
@@ -5924,7 +5929,8 @@
           "normal": 0.15
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646092802": {
     "race_name": "C215",
@@ -6144,7 +6150,8 @@
           "normal": 0.0
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646092803": {
     "race_name": "中村家内田家結婚お祝い記念杯(C2)",
@@ -6364,7 +6371,8 @@
           "normal": 0.01
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646092804": {
     "race_name": "C213",
