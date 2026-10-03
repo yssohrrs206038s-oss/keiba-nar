@@ -222,7 +222,8 @@
           "normal": 0.16
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635100402": {
     "race_name": "C2",
@@ -452,7 +453,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635100403": {
     "race_name": "C2十一組",
@@ -672,7 +674,8 @@
           "normal": 0.0
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635100404": {
     "race_name": "C2十一組",
@@ -886,7 +889,8 @@
           "normal": 0.03
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635100405": {
     "race_name": "B1",
@@ -1131,7 +1135,8 @@
           "normal": 0.04
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635100406": {
     "race_name": "C2十組",
@@ -4922,7 +4927,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646100402": {
     "race_name": "かいと&るり結婚記念(2歳)",
@@ -5167,7 +5173,8 @@
           "normal": 0.02
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646100403": {
     "race_name": "2歳3",
@@ -5387,7 +5394,8 @@
           "normal": 0.14
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646100404": {
     "race_name": "真実社会日本人コミュニティ三周年記念(2歳)",
