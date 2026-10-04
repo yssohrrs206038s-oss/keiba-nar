@@ -248,7 +248,8 @@
           "normal": 0.15
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635100502": {
     "race_name": "C2",
@@ -493,7 +494,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635100503": {
     "race_name": "C2七組",
@@ -738,7 +740,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635100504": {
     "race_name": "C2六組",
@@ -983,7 +986,8 @@
           "normal": 0.06
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635100505": {
     "race_name": "C2五組",
@@ -1213,7 +1217,8 @@
           "normal": 0.18
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635100506": {
     "race_name": "2歳",
@@ -5557,7 +5562,8 @@
           "normal": 0.03
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646100502": {
     "race_name": "C115",
@@ -5787,7 +5793,8 @@
           "normal": 0.02
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646100503": {
     "race_name": "龍太郎&瑠里子☆結婚記念(C1)",
@@ -6032,7 +6039,8 @@
           "normal": 0.01
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646100504": {
     "race_name": "C113",
