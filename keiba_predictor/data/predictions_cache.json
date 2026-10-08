@@ -217,7 +217,8 @@
           "normal": 0.0
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202644100902": {
     "race_name": "C2三",
@@ -449,7 +450,8 @@
           "normal": 0.06
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202644100903": {
     "race_name": "とき特別競走(2歳)",
@@ -699,7 +701,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202644100904": {
     "race_name": "C2四五六(C2五)",
@@ -939,7 +942,8 @@
           "normal": 0.16
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202644100905": {
     "race_name": "C2四五六(C2五)",
@@ -1169,7 +1173,8 @@
           "normal": 0.14
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202644100906": {
     "race_name": "サンチャゴ賞(C2五)",
@@ -1399,7 +1404,8 @@
           "normal": 0.22
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202644100907": {
     "race_name": "C1二三四(C1三)",
@@ -1654,7 +1660,8 @@
           "normal": 0.04
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202644100908": {
     "race_name": "金風特別競走(C1三)",
@@ -1899,7 +1906,8 @@
           "normal": 0.03
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202644100909": {
     "race_name": "汝、星のごとく賞競走(B2)",
@@ -2144,7 +2152,8 @@
           "normal": 0.03
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202644100910": {
     "race_name": "神無月特別競走(C1三)",
@@ -2389,7 +2398,8 @@
           "normal": 0.02
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647100901": {
     "race_name": "C8組",
@@ -2631,7 +2641,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647100902": {
     "race_name": "阪口幸治生誕&生還記念杯(C)",
@@ -2861,7 +2872,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647100903": {
     "race_name": "神谷美紗都☆誕生6か月記念(C)",
@@ -3075,7 +3087,8 @@
           "normal": 0.05
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647100904": {
     "race_name": "令和8年熊本地震被災地支援レース(C)",
@@ -3305,7 +3318,8 @@
           "normal": 0.29
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647100905": {
     "race_name": "C4組",
@@ -3519,7 +3533,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647100906": {
     "race_name": "祝!千々和・澤島入籍記念(C)",
@@ -3764,7 +3779,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647100907": {
     "race_name": "第2回おにぎり270食達成記念(C)",
@@ -4009,7 +4025,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647100908": {
     "race_name": "B8組",
@@ -4259,7 +4276,8 @@
           "normal": 0.4
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647100909": {
     "race_name": "B7組",
@@ -4489,7 +4507,8 @@
           "normal": 0.23
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647100910": {
     "race_name": "B6組",
@@ -4719,7 +4738,8 @@
           "normal": 0.06
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647100911": {
     "race_name": "秋刀魚特別(C)",
@@ -4949,7 +4969,8 @@
           "normal": 0.06
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647100912": {
     "race_name": "五平餅特別(C)",
@@ -5179,7 +5200,8 @@
           "normal": 0.05
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650100901": {
     "race_name": "C3三",
@@ -5424,7 +5446,8 @@
           "normal": 0.05
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650100902": {
     "race_name": "2歳オープン",
@@ -5649,7 +5672,8 @@
           "normal": 0.1
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650100903": {
     "race_name": "C2三",
@@ -5863,7 +5887,8 @@
           "normal": 0.02
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650100904": {
     "race_name": "C1",
@@ -6077,7 +6102,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650100905": {
     "race_name": "C2二",
@@ -6291,7 +6317,8 @@
           "normal": 0.02
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650100906": {
     "race_name": "C2一",
@@ -6536,7 +6563,8 @@
           "normal": 0.18
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650100907": {
     "race_name": "C3二",
@@ -6774,7 +6802,8 @@
           "normal": 0.27
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650100908": {
     "race_name": "C3一",
@@ -7004,7 +7033,8 @@
           "normal": 0.03
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650100909": {
     "race_name": "A1A2",
@@ -7218,7 +7248,8 @@
           "normal": 0.0
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650100910": {
     "race_name": "シクラメン賞C1",
@@ -7432,7 +7463,8 @@
           "normal": 0.24
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650100911": {
     "race_name": "尼崎市制110周年記念B1B2",
@@ -7692,7 +7724,8 @@
           "normal": 0.23
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650100912": {
     "race_name": "サンゴ賞C3",
@@ -7922,6 +7955,7 @@
           "normal": 0.12
         }
       }
-    }
+    },
+    "notified_predict": true
   }
 }
