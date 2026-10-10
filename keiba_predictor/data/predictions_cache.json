@@ -248,7 +248,8 @@
           "normal": 0.29
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635101102": {
     "race_name": "C2十二組",
@@ -493,7 +494,8 @@
           "normal": 0.01
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635101103": {
     "race_name": "C2十一組",
@@ -738,7 +740,8 @@
           "normal": 0.01
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635101104": {
     "race_name": "C2十組",
@@ -983,7 +986,8 @@
           "normal": 0.1
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635101105": {
     "race_name": "C2九組",
@@ -1228,7 +1232,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635101106": {
     "race_name": "C2八組",
@@ -3139,7 +3144,8 @@
           "normal": 0.23
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646101102": {
     "race_name": "C212",
@@ -3384,7 +3390,8 @@
           "normal": 0.01
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646101103": {
     "race_name": "秋ちゃん華ちゃんお誕生日おめでとう記念(C2)",
@@ -3629,7 +3636,8 @@
           "normal": 0.04
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646101104": {
     "race_name": "C210",
