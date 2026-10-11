@@ -248,7 +248,8 @@
           "normal": 0.02
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635101202": {
     "race_name": "釜石リアス海藻店リアスわかめ賞(C2)",
@@ -493,7 +494,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635101203": {
     "race_name": "いわてくじ山形村短角牛賞(C2)",
@@ -723,7 +725,8 @@
           "normal": 0.06
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635101204": {
     "race_name": "テレトラック石鳥谷5周年賞(C2)",
@@ -968,7 +971,8 @@
           "normal": 0.05
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635101205": {
     "race_name": "スマホで買うなら!楽天競馬賞(C2)",
@@ -1213,7 +1217,8 @@
           "normal": 0.01
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635101206": {
     "race_name": "安比高原スキー場賞(C1)",
