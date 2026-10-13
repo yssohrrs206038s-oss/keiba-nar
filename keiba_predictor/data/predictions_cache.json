@@ -253,7 +253,8 @@
           "normal": 0.22
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630101402": {
     "race_name": "3歳以上 C4ー3",
@@ -498,7 +499,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630101403": {
     "race_name": "2歳 3組",
@@ -743,7 +745,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630101404": {
     "race_name": "2歳 3組",
@@ -993,7 +996,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630101405": {
     "race_name": "オータムライト級カップ(2歳)",
@@ -1238,7 +1242,8 @@
           "normal": 0.01
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630101406": {
     "race_name": "オパール特別(2歳)OP",
@@ -1457,7 +1462,8 @@
           "normal": 0.12
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630101407": {
     "race_name": "3歳以上 C4ー2",
@@ -1687,7 +1693,8 @@
           "normal": 0.13
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630101408": {
     "race_name": "3歳以上 C4ー2",
@@ -1901,7 +1908,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630101409": {
     "race_name": "オンコ特別(B4)",
@@ -2146,7 +2154,8 @@
           "normal": 0.22
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630101410": {
     "race_name": "グランシャリオドリーム72(B4)",
@@ -2391,7 +2400,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630101411": {
     "race_name": "ポプラ特別(B4)",
@@ -2636,7 +2646,8 @@
           "normal": 0.02
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630101412": {
     "race_name": "イチョウ特別(B3)",
@@ -2886,7 +2897,8 @@
           "normal": 0.12
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202645101401": {
     "race_name": "笠懸賞(C3)",
@@ -3131,7 +3143,8 @@
           "normal": 0.06
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202645101402": {
     "race_name": "円海山賞(3歳)",
@@ -3376,7 +3389,8 @@
           "normal": 0.03
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202645101403": {
     "race_name": "影武者賞(2歳)",
@@ -3611,7 +3625,8 @@
           "normal": 0.29
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202645101404": {
     "race_name": "六国見山賞(C2)",
@@ -3856,7 +3871,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202645101405": {
     "race_name": "流鏑馬賞(C2)",
@@ -4101,7 +4117,8 @@
           "normal": 0.13
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202645101406": {
     "race_name": "弓弦賞(C2)",
@@ -4331,7 +4348,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202645101407": {
     "race_name": "社会貢献×川崎競馬うまレター賞(C2)",
@@ -4561,7 +4579,8 @@
           "normal": 0.03
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202645101408": {
     "race_name": "内藤哲也さん・藤江れいなさん来場記念(C1)",
@@ -4791,7 +4810,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202645101409": {
     "race_name": "トランキーロ、あっせんなよ!賞(B3二)",
@@ -5021,7 +5041,8 @@
           "normal": 0.12
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202645101410": {
     "race_name": "ロス・トランキーロス・デ・ハポン賞(B2)",
@@ -5266,7 +5287,8 @@
           "normal": 0.05
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202645101411": {
     "race_name": "鎌倉記念【地方交流】(全日本2歳重賞",
@@ -5511,7 +5533,8 @@
           "normal": 0.13
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202645101412": {
     "race_name": "デスティーノ賞(C1)",
@@ -5746,7 +5769,8 @@
           "normal": 0.3
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648101401": {
     "race_name": "C25組",
@@ -5991,7 +6015,8 @@
           "normal": 0.03
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648101402": {
     "race_name": "C24組",
@@ -6236,7 +6261,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648101403": {
     "race_name": "C23組",
@@ -6466,7 +6492,8 @@
           "normal": 0.15
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648101404": {
     "race_name": "2歳疾風戦",
@@ -6711,7 +6738,8 @@
           "normal": 0.01
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648101405": {
     "race_name": "富士見第三9組羚ちゃん応援記念(2歳)",
@@ -6956,7 +6984,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648101406": {
     "race_name": "C22組",
@@ -7201,7 +7230,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648101407": {
     "race_name": "C21組",
@@ -7446,7 +7476,8 @@
           "normal": 0.14
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648101408": {
     "race_name": "B5組",
@@ -7686,7 +7717,8 @@
           "normal": 0.36
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648101409": {
     "race_name": "B4組",
@@ -7926,7 +7958,8 @@
           "normal": 0.33
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648101410": {
     "race_name": "一等賞(B)",
@@ -8156,7 +8189,8 @@
           "normal": 0.2
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648101411": {
     "race_name": "初紅葉特別(A)",
@@ -8411,7 +8445,8 @@
           "normal": 0.21
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648101412": {
     "race_name": "金シャチ最終戦(C)",
@@ -8641,7 +8676,8 @@
           "normal": 0.29
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650101401": {
     "race_name": "C3",
@@ -8891,7 +8927,8 @@
           "normal": 0.12
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650101402": {
     "race_name": "2歳未勝利二",
@@ -9110,7 +9147,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650101403": {
     "race_name": "2歳未勝利一",
@@ -9324,7 +9362,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650101404": {
     "race_name": "東経135度7ハロンC3一",
@@ -9569,7 +9608,8 @@
           "normal": 0.15
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650101405": {
     "race_name": "北緯35度7ハロンC2三",
@@ -9814,7 +9854,8 @@
           "normal": 0.05
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650101406": {
     "race_name": "C2",
@@ -10059,7 +10100,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650101407": {
     "race_name": "C3二",
@@ -10273,7 +10315,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650101408": {
     "race_name": "C2二",
@@ -10518,7 +10561,8 @@
           "normal": 0.14
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650101409": {
     "race_name": "C2一",
@@ -10738,7 +10782,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650101410": {
     "race_name": "A2",
@@ -10958,7 +11003,8 @@
           "normal": 0.01
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650101411": {
     "race_name": "西脇市日本のへそ特別B1B2",
@@ -11203,7 +11249,8 @@
           "normal": 0.21
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650101412": {
     "race_name": "りんご賞C1",
@@ -11433,6 +11480,7 @@
           "normal": 0.16
         }
       }
-    }
+    },
+    "notified_predict": true
   }
 }
