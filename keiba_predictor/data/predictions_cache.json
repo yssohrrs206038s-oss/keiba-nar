@@ -233,7 +233,8 @@
           "normal": 0.16
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630101502": {
     "race_name": "夢をのせて浦河産馬賞(2歳)",
@@ -478,7 +479,8 @@
           "normal": 0.02
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630101503": {
     "race_name": "生涯学習の町宣言 浦河町賞(C4)",
@@ -723,7 +725,8 @@
           "normal": 0.13
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630101504": {
     "race_name": "浦河町総合文化会館30周年賞(C4)",
@@ -961,7 +964,8 @@
           "normal": 0.29
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630101505": {
     "race_name": "うらかわ優駿ビレッジアエル賞(2歳)",
@@ -1175,7 +1179,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630101506": {
     "race_name": "こどもまんなか応援サポート賞(C3)",
@@ -1420,7 +1425,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630101507": {
     "race_name": "浦河町ふるさと納税大感謝賞(C3)",
@@ -1665,7 +1671,8 @@
           "normal": 0.0
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630101508": {
     "race_name": "JRA認定競走ウィナーズチャレンジ8競走(2歳)OP",
@@ -1915,7 +1922,8 @@
           "normal": 0.14
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630101509": {
     "race_name": "がんばれ!Aiba浦河応援賞(C3)",
@@ -2160,7 +2168,8 @@
           "normal": 0.02
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630101510": {
     "race_name": "グランシャリオドリーム73(C1)",
@@ -2405,7 +2414,8 @@
           "normal": 0.0
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630101511": {
     "race_name": "浦河の新名産うららサーモン特別(C1)",
@@ -2650,7 +2660,8 @@
           "normal": 0.04
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630101512": {
     "race_name": "シスキン・プレミアム(B3)",
@@ -2880,7 +2891,8 @@
           "normal": 0.16
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202645101501": {
     "race_name": "稲村ヶ崎賞(C3)",
@@ -3125,7 +3137,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202645101502": {
     "race_name": "馬追賞(2歳)",
@@ -3361,7 +3374,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202645101503": {
     "race_name": "七里ヶ浜賞(3歳)",
@@ -3606,7 +3620,8 @@
           "normal": 0.02
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202645101504": {
     "race_name": "由比ガ浜賞(C2)",
@@ -3851,7 +3866,8 @@
           "normal": 0.03
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202645101505": {
     "race_name": "材木座賞(C2)",
@@ -4096,7 +4112,8 @@
           "normal": 0.05
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202645101506": {
     "race_name": "YJSトライアルラウンド川崎 第1戦(C3)",
@@ -4326,7 +4343,8 @@
           "normal": 0.19
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202645101507": {
     "race_name": "展覧会「富野由悠季の原(C1)",
@@ -4556,7 +4574,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202645101508": {
     "race_name": "YJSトライアルラウンド川崎 第2戦(C2)",
@@ -4789,7 +4808,8 @@
           "normal": 0.22
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202645101509": {
     "race_name": "小田原市ふるさと応援賞(C1)",
@@ -5019,7 +5039,8 @@
           "normal": 0.1
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202645101510": {
     "race_name": "オクトーバースター賞(B2B3)",
@@ -5274,7 +5295,8 @@
           "normal": 0.24
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202645101511": {
     "race_name": "サルビアカップ(3歳)OP",
@@ -5509,7 +5531,8 @@
           "normal": 0.14
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202645101512": {
     "race_name": "伊勢新九郎特別(B3二)",
@@ -5739,7 +5762,8 @@
           "normal": 0.12
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648101501": {
     "race_name": "C20組",
@@ -5969,7 +5993,8 @@
           "normal": 0.23
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648101502": {
     "race_name": "C19組",
@@ -6199,7 +6224,8 @@
           "normal": 0.15
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648101503": {
     "race_name": "C18組",
@@ -6444,7 +6470,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648101504": {
     "race_name": "C17組",
@@ -6689,7 +6716,8 @@
           "normal": 0.13
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648101505": {
     "race_name": "C16組",
@@ -6934,7 +6962,8 @@
           "normal": 0.06
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648101506": {
     "race_name": "C15組",
@@ -7164,7 +7193,8 @@
           "normal": 0.25
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648101507": {
     "race_name": "乳岩疾風戦(C)",
@@ -7394,7 +7424,8 @@
           "normal": 0.13
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648101508": {
     "race_name": "B7組",
@@ -7639,7 +7670,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648101509": {
     "race_name": "B6組",
@@ -7884,7 +7916,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648101510": {
     "race_name": "フロンティア・ドリーム昇竜戦(A)",
@@ -8120,7 +8153,8 @@
           "normal": 0.1
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648101511": {
     "race_name": "ゴールド争覇重賞",
@@ -8365,7 +8399,8 @@
           "normal": 0.12
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202648101512": {
     "race_name": "金シャチ最終戦(C)",
@@ -8605,7 +8640,8 @@
           "normal": 0.16
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650101501": {
     "race_name": "C2二",
@@ -8850,7 +8886,8 @@
           "normal": 0.03
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650101502": {
     "race_name": "C3二",
@@ -9095,7 +9132,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650101503": {
     "race_name": "NewBeginning 2歳初出走",
@@ -9309,7 +9347,8 @@
           "normal": 0.15
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650101504": {
     "race_name": "オクトーバースプリントC2一",
@@ -9554,7 +9593,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650101505": {
     "race_name": "HUKリベンジ企画3頭セレクションハンデ(C2C3)",
@@ -9784,7 +9824,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650101506": {
     "race_name": "C3",
@@ -10019,7 +10060,8 @@
           "normal": 0.22
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650101507": {
     "race_name": "C3一",
@@ -10249,7 +10291,8 @@
           "normal": 0.06
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650101508": {
     "race_name": "C2二",
@@ -10494,7 +10537,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650101509": {
     "race_name": "C2一",
@@ -10749,7 +10793,8 @@
           "normal": 0.1
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650101510": {
     "race_name": "B2",
@@ -10994,7 +11039,8 @@
           "normal": 0.13
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650101511": {
     "race_name": "園田オータムトロフィー重賞",
@@ -11239,7 +11285,8 @@
           "normal": 0.03
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650101512": {
     "race_name": "C1",
@@ -11489,6 +11536,7 @@
           "normal": 0.26
         }
       }
-    }
+    },
+    "notified_predict": true
   }
 }
