@@ -248,7 +248,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635101802": {
     "race_name": "C2十一組",
@@ -498,7 +499,8 @@
           "normal": 0.32
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635101803": {
     "race_name": "C2十組",
@@ -728,7 +730,8 @@
           "normal": 0.04
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635101804": {
     "race_name": "C2九組",
@@ -973,7 +976,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635101805": {
     "race_name": "C2八組",
@@ -1218,7 +1222,8 @@
           "normal": 0.03
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635101806": {
     "race_name": "2歳",
@@ -3168,7 +3173,8 @@
           "normal": 0.02
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646101802": {
     "race_name": "C115",
@@ -3398,7 +3404,8 @@
           "normal": 0.05
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646101803": {
     "race_name": "新潟県畜産協会長賞(C1)",
@@ -3643,7 +3650,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646101804": {
     "race_name": "福井県畜産協会長賞(2歳)",
@@ -3863,7 +3871,8 @@
           "normal": 0.05
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646101805": {
     "race_name": "富山県畜産振興協会長賞(2歳)",
