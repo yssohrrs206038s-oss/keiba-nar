@@ -233,7 +233,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635101902": {
     "race_name": "C2",
@@ -478,7 +479,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635101903": {
     "race_name": "C2七組",
@@ -723,7 +725,8 @@
           "normal": 0.16
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635101904": {
     "race_name": "C2六組",
@@ -968,7 +971,8 @@
           "normal": 0.01
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635101905": {
     "race_name": "C2五組",
@@ -1198,7 +1202,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635101906": {
     "race_name": "B1",
@@ -3112,7 +3117,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202642101902": {
     "race_name": "ランチタイム(3歳)",
@@ -3326,7 +3332,8 @@
           "normal": 0.12
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202642101903": {
     "race_name": "ドリームチャレンジ(2歳)",
@@ -3545,7 +3552,8 @@
           "normal": 0.23
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202642101904": {
     "race_name": "ドリームチャレンジ(2歳)",
@@ -3764,7 +3772,8 @@
           "normal": 0.14
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202642101905": {
     "race_name": "C2三四",
@@ -3994,7 +4003,8 @@
           "normal": 0.03
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202642101906": {
     "race_name": "C2三四",
@@ -5924,7 +5934,8 @@
           "normal": 0.13
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646101902": {
     "race_name": "C112",
@@ -6144,7 +6155,8 @@
           "normal": 0.02
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646101903": {
     "race_name": "祝!むーちゃんお誕生日おめでとう記念(C1)",
@@ -6389,7 +6401,8 @@
           "normal": 0.02
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646101904": {
     "race_name": "C110",
