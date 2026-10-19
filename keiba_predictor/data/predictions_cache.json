@@ -233,7 +233,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630102002": {
     "race_name": "2歳 未勝利",
@@ -478,7 +479,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630102003": {
     "race_name": "3歳以上 C4ー3",
@@ -723,7 +725,8 @@
           "normal": 0.04
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630102004": {
     "race_name": "3歳以上 C4ー3",
@@ -968,7 +971,8 @@
           "normal": 0.12
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630102005": {
     "race_name": "2歳 未勝利",
@@ -1203,7 +1207,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630102006": {
     "race_name": "3歳以上 C4ー2",
@@ -1433,7 +1438,8 @@
           "normal": 0.16
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630102007": {
     "race_name": "3歳以上 C4ー2",
@@ -1678,7 +1684,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630102008": {
     "race_name": "3歳以上 C4ー2",
@@ -1908,7 +1915,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630102009": {
     "race_name": "3歳以上 C4ー2",
@@ -2153,7 +2161,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630102010": {
     "race_name": "グランシャリオドリーム74(C4)",
@@ -2383,7 +2392,8 @@
           "normal": 0.22
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630102011": {
     "race_name": "カエデ特別(A4)",
@@ -2613,7 +2623,8 @@
           "normal": 0.1
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630102012": {
     "race_name": "新鮮野菜!JA日胆青協・紡特別(A4)",
@@ -2858,7 +2869,8 @@
           "normal": 0.18
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635102001": {
     "race_name": "C2四組",
@@ -3103,7 +3115,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635102002": {
     "race_name": "C2三組",
@@ -3358,7 +3371,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635102003": {
     "race_name": "C2二組",
@@ -3603,7 +3617,8 @@
           "normal": 0.21
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635102004": {
     "race_name": "C2一組",
@@ -3848,7 +3863,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635102005": {
     "race_name": "B2",
@@ -4093,7 +4109,8 @@
           "normal": 0.12
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635102006": {
     "race_name": "B2",
@@ -4338,7 +4355,8 @@
           "normal": 0.04
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635102007": {
     "race_name": "B2二組",
@@ -4568,7 +4586,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635102008": {
     "race_name": "B2一組",
@@ -4798,7 +4817,8 @@
           "normal": 0.27
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635102009": {
     "race_name": "B1",
@@ -5043,7 +5063,8 @@
           "normal": 0.03
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635102010": {
     "race_name": "YJSトライアルラウンド盛岡第1戦(B2)",
@@ -5288,7 +5309,8 @@
           "normal": 0.04
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635102011": {
     "race_name": "アレキサンドライト賞(B1)",
@@ -5533,7 +5555,8 @@
           "normal": 0.1
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635102012": {
     "race_name": "YJSトライアルラウンド盛岡第2戦(B2)",
@@ -5778,7 +5801,8 @@
           "normal": 0.0
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202642102001": {
     "race_name": "C3三四",
@@ -6013,7 +6037,8 @@
           "normal": 0.33
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202642102002": {
     "race_name": "ランチタイム(C3)",
@@ -6258,7 +6283,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202642102003": {
     "race_name": "ドリームチャレンジ(2歳)",
@@ -6472,7 +6498,8 @@
           "normal": 0.14
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202642102004": {
     "race_name": "C2五六",
@@ -6717,7 +6744,8 @@
           "normal": 0.12
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202642102005": {
     "race_name": "C2五六",
@@ -6962,7 +6990,8 @@
           "normal": 0.3
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202642102006": {
     "race_name": "特選(C2)",
@@ -7195,7 +7224,8 @@
           "normal": 0.28
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202642102007": {
     "race_name": "HBA日高軽種馬農業協同組合賞(C1)",
@@ -7440,7 +7470,8 @@
           "normal": 0.04
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202642102008": {
     "race_name": "新鋭特別(2歳)",
@@ -7690,7 +7721,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202642102009": {
     "race_name": "てんびん座特別(C1C2)",
@@ -7935,7 +7967,8 @@
           "normal": 0.03
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202642102010": {
     "race_name": "秋風特別(C1)",
@@ -8165,7 +8198,8 @@
           "normal": 0.02
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202642102011": {
     "race_name": "’26 ミズナラ盃(A2B1)",
@@ -8410,7 +8444,8 @@
           "normal": 0.19
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202642102012": {
     "race_name": "夕焼け特別(B2B3)",
@@ -8645,7 +8680,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646102001": {
     "race_name": "C15",
@@ -8890,7 +8926,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646102002": {
     "race_name": "誘宵かのん杯(C1)",
@@ -9135,7 +9172,8 @@
           "normal": 0.05
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646102003": {
     "race_name": "C13",
@@ -9380,7 +9418,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646102004": {
     "race_name": "金沢マラソン2026特別(C1)",
@@ -9610,7 +9649,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646102005": {
     "race_name": "第5回相羽あいな生誕記念(C1)",
@@ -9846,7 +9886,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646102006": {
     "race_name": "2歳2",
@@ -10096,7 +10137,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646102007": {
     "race_name": "B27",
@@ -10341,7 +10383,8 @@
           "normal": 0.13
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646102008": {
     "race_name": "こいつぁ晴から縁起がいい!天晴瀧汗夏舞杯(B2)",
@@ -10586,7 +10629,8 @@
           "normal": 0.22
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646102009": {
     "race_name": "B25",
@@ -10831,7 +10875,8 @@
           "normal": 0.18
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646102010": {
     "race_name": "楽天ポイントが貯まる!楽天競馬特別(A1)",
@@ -11045,7 +11090,8 @@
           "normal": 0.04
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646102011": {
     "race_name": "ネクストスター金沢重賞",
@@ -11280,7 +11326,8 @@
           "normal": 0.12
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646102012": {
     "race_name": "B24",
@@ -11535,6 +11582,7 @@
           "normal": 0.13
         }
       }
-    }
+    },
+    "notified_predict": true
   }
 }
