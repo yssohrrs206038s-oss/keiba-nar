@@ -248,7 +248,8 @@
           "normal": 0.0
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635102502": {
     "race_name": "C2十一組",
@@ -493,7 +494,8 @@
           "normal": 0.02
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635102503": {
     "race_name": "C2十組",
@@ -738,7 +740,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635102504": {
     "race_name": "盛岡市職員 盛駿会会長賞(C2)",
@@ -993,7 +996,8 @@
           "normal": 0.13
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635102505": {
     "race_name": "C2八組",
@@ -1238,7 +1242,8 @@
           "normal": 0.05
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635102506": {
     "race_name": "おいしい!いわての原木しいたけ賞(2歳)",
@@ -3163,7 +3168,8 @@
           "normal": 0.25
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646102502": {
     "race_name": "暁水栞結婚記念(C2)",
@@ -3408,7 +3414,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646102503": {
     "race_name": "C213",
