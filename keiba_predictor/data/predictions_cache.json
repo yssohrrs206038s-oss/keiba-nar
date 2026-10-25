@@ -248,7 +248,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635102602": {
     "race_name": "C2",
@@ -493,7 +494,8 @@
           "normal": 0.05
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635102603": {
     "race_name": "C2七組",
@@ -738,7 +740,8 @@
           "normal": 0.0
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635102604": {
     "race_name": "C2六組",
@@ -983,7 +986,8 @@
           "normal": 0.1
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635102605": {
     "race_name": "C2五組",
@@ -1228,7 +1232,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635102606": {
     "race_name": "C1",
@@ -6002,7 +6007,8 @@
           "normal": 0.17
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202655102602": {
     "race_name": "2歳ー3組",
