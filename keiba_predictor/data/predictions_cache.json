@@ -233,7 +233,8 @@
           "normal": 0.06
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635110202": {
     "race_name": "C2",
@@ -478,7 +479,8 @@
           "normal": 0.04
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635110203": {
     "race_name": "C2七組",
@@ -723,7 +725,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635110204": {
     "race_name": "C2六組",
@@ -953,7 +956,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635110205": {
     "race_name": "C2五組",
@@ -1198,7 +1202,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635110206": {
     "race_name": "2歳",
@@ -5976,7 +5981,8 @@
           "normal": 0.2
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647110202": {
     "race_name": "C19組",
@@ -6221,7 +6227,8 @@
           "normal": 0.18
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647110203": {
     "race_name": "加藤誓二騎手生誕祭☆(C)",
@@ -6466,7 +6473,8 @@
           "normal": 0.03
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647110204": {
     "race_name": "ベイクドモチョチョ☆らーびー(C)",
@@ -6711,7 +6719,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647110205": {
     "race_name": "すみれ誕生記念(C)",
@@ -6941,7 +6950,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647110206": {
     "race_name": "オキザリス特別(B)",
@@ -7171,7 +7181,8 @@
           "normal": 0.06
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647110207": {
     "race_name": "正親&美哉子結婚式記念(C)",
@@ -7401,7 +7412,8 @@
           "normal": 0.05
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647110208": {
     "race_name": "C13組",
@@ -7646,7 +7658,8 @@
           "normal": 0.01
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647110209": {
     "race_name": "ルピナス特別(AB)",
