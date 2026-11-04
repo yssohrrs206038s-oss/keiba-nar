@@ -248,7 +248,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630110502": {
     "race_name": "2歳 未勝利",
@@ -498,7 +499,8 @@
           "normal": 0.06
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630110503": {
     "race_name": "3歳以上 C4ー2",
@@ -743,7 +745,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630110504": {
     "race_name": "3歳以上 C4ー2",
@@ -988,7 +991,8 @@
           "normal": 0.18
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630110505": {
     "race_name": "3歳以上 C4ー2",
@@ -1233,7 +1237,8 @@
           "normal": 0.14
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630110506": {
     "race_name": "3歳以上 C4ー2",
@@ -1478,7 +1483,8 @@
           "normal": 0.28
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630110507": {
     "race_name": "3歳以上 C4ー2",
@@ -1723,7 +1729,8 @@
           "normal": 0.19
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630110508": {
     "race_name": "ムクゲ特別(A1)",
@@ -1953,7 +1960,8 @@
           "normal": 0.21
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630110509": {
     "race_name": "ミズナラ特別(2歳)",
@@ -2167,7 +2175,8 @@
           "normal": 0.02
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630110510": {
     "race_name": "グランシャリオドリーム81(2歳)",
@@ -2417,7 +2426,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630110511": {
     "race_name": "エゾマツ特別(A1)",
@@ -2636,7 +2646,8 @@
           "normal": 0.1
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202630110512": {
     "race_name": "道営記念〔H1〕重賞",
@@ -2866,7 +2877,8 @@
           "normal": 0.32
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202643110501": {
     "race_name": "3歳三",
@@ -3116,7 +3128,8 @@
           "normal": 0.16
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202643110502": {
     "race_name": "C3三",
@@ -3361,7 +3374,8 @@
           "normal": 0.23
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202643110503": {
     "race_name": "ユーカリデビュー(2歳)",
@@ -3575,7 +3589,8 @@
           "normal": 0.36
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202643110504": {
     "race_name": "馬い!八丈島青レモン発売記念(C3)",
@@ -3820,7 +3835,8 @@
           "normal": 0.04
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202643110505": {
     "race_name": "サンストーン特別(2歳)",
@@ -4040,7 +4056,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202643110506": {
     "race_name": "サザンカスプリント(C2)",
@@ -4285,7 +4302,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202643110507": {
     "race_name": "トパーズダッシュ(C1)",
@@ -4515,7 +4533,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202643110508": {
     "race_name": "菊花特別(B1B2)",
@@ -4745,7 +4764,8 @@
           "normal": 0.06
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202643110509": {
     "race_name": "スコーピオンスプリント(B2)",
@@ -4975,7 +4995,8 @@
           "normal": 0.16
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202643110510": {
     "race_name": "サフラン特別(B2)",
@@ -5220,7 +5241,8 @@
           "normal": 0.04
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202643110511": {
     "race_name": "カムイユカラスプリント(A2)",
@@ -5455,7 +5477,8 @@
           "normal": 0.22
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202643110512": {
     "race_name": "日高軽種馬農業協同組合賞(C1)",
@@ -5695,7 +5718,8 @@
           "normal": 0.28
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647110501": {
     "race_name": "笠松デビュー馬未勝利(2歳)",
@@ -5925,7 +5949,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647110502": {
     "race_name": "C3組",
@@ -6170,7 +6195,8 @@
           "normal": 0.04
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647110503": {
     "race_name": "2歳2組",
@@ -6420,7 +6446,8 @@
           "normal": 0.1
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647110504": {
     "race_name": "加藤真人事務局長就任記念(C)",
@@ -6665,7 +6692,8 @@
           "normal": 0.05
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647110505": {
     "race_name": "とうが&えり結婚記念!杯(BC)",
@@ -6910,7 +6938,8 @@
           "normal": 0.26
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647110506": {
     "race_name": "笠松けいば重賞開催日は笠ちゅーぶ!(B)",
@@ -7150,7 +7179,8 @@
           "normal": 0.17
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647110507": {
     "race_name": "B5組",
@@ -7385,7 +7415,8 @@
           "normal": 0.16
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647110508": {
     "race_name": "社会貢献×笠松競馬うまレター賞(B)",
@@ -7630,7 +7661,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647110509": {
     "race_name": "英国発笠松行スプリント(2歳)",
@@ -7865,7 +7897,8 @@
           "normal": 0.15
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647110510": {
     "race_name": "イロハモミジ特別(C)",
@@ -8110,7 +8143,8 @@
           "normal": 0.01
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647110511": {
     "race_name": "ヤマモミジ特別(C)",
@@ -8340,7 +8374,8 @@
           "normal": 0.13
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202647110512": {
     "race_name": "ラブミーチャン記念重賞",
@@ -8585,7 +8620,8 @@
           "normal": 0.1
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650110501": {
     "race_name": "C3二",
@@ -8825,7 +8861,8 @@
           "normal": 0.25
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650110502": {
     "race_name": "2歳未勝利二",
@@ -9070,7 +9107,8 @@
           "normal": 0.14
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650110503": {
     "race_name": "2歳未勝利一",
@@ -9320,7 +9358,8 @@
           "normal": 0.14
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650110504": {
     "race_name": "ペルセウス賞C3一",
@@ -9565,7 +9604,8 @@
           "normal": 0.17
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650110505": {
     "race_name": "HUK企画☆超短距離スーパースプリントC(C2C3)",
@@ -9795,7 +9835,8 @@
           "normal": 0.03
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650110506": {
     "race_name": "C2三",
@@ -10040,7 +10081,8 @@
           "normal": 0.04
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650110507": {
     "race_name": "B1B2",
@@ -10285,7 +10327,8 @@
           "normal": 0.03
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650110508": {
     "race_name": "C2二",
@@ -10515,7 +10558,8 @@
           "normal": 0.11
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650110509": {
     "race_name": "C2一",
@@ -10745,7 +10789,8 @@
           "normal": 0.05
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650110510": {
     "race_name": "C1",
@@ -10990,7 +11035,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650110511": {
     "race_name": "おゝ浜のポン酢特別A1A2",
@@ -11235,7 +11281,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202650110512": {
     "race_name": "C2",
@@ -11480,6 +11527,7 @@
           "normal": 0.0
         }
       }
-    }
+    },
+    "notified_predict": true
   }
 }
