@@ -233,7 +233,8 @@
           "normal": 0.05
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635110802": {
     "race_name": "C2十一組",
@@ -478,7 +479,8 @@
           "normal": 0.0
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635110803": {
     "race_name": "C2十組",
@@ -713,7 +715,8 @@
           "normal": 0.25
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635110804": {
     "race_name": "C2九組",
@@ -958,7 +961,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635110805": {
     "race_name": "青森県畜産協会バスツアー記念賞(C2)",
@@ -1188,7 +1192,8 @@
           "normal": 0.08
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202635110806": {
     "race_name": "青森県軽種馬生産農業協同組合賞(2歳)",
