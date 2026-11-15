@@ -248,7 +248,8 @@
           "normal": 0.07
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636111602": {
     "race_name": "C2",
@@ -493,7 +494,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636111603": {
     "race_name": "C2七組",
@@ -723,7 +725,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636111604": {
     "race_name": "C2六組",
@@ -968,7 +971,8 @@
           "normal": 0.02
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636111605": {
     "race_name": "C2五組",
@@ -1213,7 +1217,8 @@
           "normal": 0.03
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202636111606": {
     "race_name": "2歳",
@@ -6028,7 +6033,8 @@
           "normal": 0.09
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646111602": {
     "race_name": "白鳥優菜さんお誕生日記念(C1)",
@@ -6273,7 +6279,8 @@
           "normal": 0.02
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646111603": {
     "race_name": "C112",
@@ -6528,7 +6535,8 @@
           "normal": 0.2
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646111604": {
     "race_name": "C111",
@@ -6758,7 +6766,8 @@
           "normal": 0.05
         }
       }
-    }
+    },
+    "notified_predict": true
   },
   "202646111605": {
     "race_name": "顔面国宝瑠伊さんお誕生日後夜祭(C1)",
